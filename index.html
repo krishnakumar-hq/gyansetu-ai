@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GyanSetu AI — NEB Class 11 & 12 AI Study Companion</title>
+  <title>GyanSetu AI — NEB Class 11 & 12 Study Companion</title>
   <style>
     :root {
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
       --primary-light: #eff6ff;
       --accent: #0ea5e9;
+      --success: #16a34a;
+      --warning: #f59e0b;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
@@ -48,12 +50,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
     }
 
     .brand-group {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      cursor: pointer;
     }
 
     .logo-badge {
@@ -81,10 +85,27 @@
       font-weight: 600;
     }
 
-    .auth-actions {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn.active, .nav-btn:hover {
+      color: var(--primary);
+      background: var(--primary-light);
     }
 
     .btn-auth {
@@ -166,6 +187,14 @@
       padding: 2rem 1.25rem;
     }
 
+    /* App Views */
+    .view-section {
+      display: none;
+    }
+    .view-section.active {
+      display: block;
+    }
+
     /* Hero Section */
     .hero {
       text-align: center;
@@ -206,7 +235,7 @@
       margin-bottom: 1.75rem;
     }
 
-    /* Class Selection Switcher */
+    /* Class Switcher */
     .class-switcher-wrap {
       display: flex;
       justify-content: center;
@@ -320,7 +349,7 @@
       justify-content: space-between;
     }
 
-    /* Chapter List Drawer / Viewer */
+    /* Chapter List Viewer */
     .curriculum-viewer {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -361,6 +390,18 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .chapter-item.mastered {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .chapter-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 0.5rem;
     }
 
@@ -378,10 +419,27 @@
       letter-spacing: 0.05em;
     }
 
+    .status-check-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .status-check-btn.done {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #86efac;
+      font-weight: 700;
+    }
+
     .chapter-actions {
       display: flex;
       gap: 0.5rem;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
     }
 
     .btn-small {
@@ -408,19 +466,62 @@
       border-color: var(--primary);
     }
 
-    .btn-small.ai:hover {
-      background: var(--primary-dark);
+    /* Dashboard Specific Styles */
+    .dashboard-header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
 
-    /* Pillars / Learning Modes */
-    .modes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .dash-greeting h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+    }
+
+    .dash-greeting p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .resume-card {
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: #ffffff;
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
       gap: 1.25rem;
-      margin-bottom: 3.5rem;
     }
 
-    .mode-box {
+    .btn-resume {
+      background: #ffffff;
+      color: var(--primary);
+      border: none;
+      padding: 0.55rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -428,21 +529,93 @@
       box-shadow: var(--shadow);
     }
 
-    .mode-icon {
-      font-size: 1.75rem;
-      margin-bottom: 0.75rem;
-      display: inline-block;
+    .stat-card .label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
-    .mode-box h4 {
-      font-size: 1.05rem;
+    .stat-card .value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 0.35rem;
+    }
+
+    /* Progress Tracker Bars */
+    .progress-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .subject-progress-row {
+      margin-bottom: 1.25rem;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .progress-bar-bg {
+      background: #e2e8f0;
+      height: 10px;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: var(--primary);
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+
+    /* Weak Topic Alert Box */
+    .weak-topic-alert {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .weak-topic-alert h3 {
+      color: #92400e;
+      font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
 
-    .mode-box p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
+    .weak-topic-alert p {
+      color: #78350f;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .weak-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .weak-pill {
+      background: #ffffff;
+      border: 1px solid #fcd34d;
+      color: #b45309;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      cursor: pointer;
     }
 
     /* Auth Modal */
@@ -585,12 +758,14 @@
       margin-bottom: 0.5rem;
     }
 
-    @media (max-width: 640px) {
-      .hero h1 {
-        font-size: 1.75rem;
+    @media (max-width: 768px) {
+      .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      .chapters-container {
-        grid-template-columns: 1fr;
+      .resume-card {
+        width: 100%;
+        justify-content: space-between;
       }
     }
   </style>
@@ -605,13 +780,19 @@
   <!-- Header -->
   <header>
     <div class="nav-container">
-      <div class="brand-group">
+      <div class="brand-group" onclick="showView('curriculum')">
         <div class="logo-badge">GS</div>
         <div class="brand-name">GyanSetu AI</div>
         <span class="stream-tag">Science Stream</span>
       </div>
 
-      <!-- Auth Buttons / User Profile -->
+      <!-- Navigation Switcher -->
+      <div class="nav-links">
+        <button class="nav-btn active" id="nav-btn-explore" onclick="showView('curriculum')">📚 Curriculum</button>
+        <button class="nav-btn" id="nav-btn-dash" onclick="showView('dashboard')">📊 My Dashboard</button>
+      </div>
+
+      <!-- Auth Actions -->
       <div class="auth-actions">
         <button class="btn-auth" id="btn-open-login" onclick="openAuthModal('login')">Sign In</button>
         
@@ -676,82 +857,148 @@
     </div>
   </div>
 
-  <!-- Main Content Area -->
+  <!-- Main Content Container -->
   <div class="container">
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-pill">✨ NEB Curriculum-Aligned AI Study Engine</div>
-      <h1>Master NEB Class 11 & 12 Science with <span>Targeted AI Tutoring</span></h1>
-      <p>Concept breakdowns, step-by-step numerical calculations, past exam answer formulations, and chapter quizzes aligned specifically with the NEB syllabus.</p>
+    <!-- VIEW 1: CURRICULUM EXPLORER & LANDING -->
+    <div id="view-curriculum" class="view-section active">
 
-      <!-- Class Switcher -->
-      <div class="class-switcher-wrap">
-        <div class="class-switcher">
-          <button class="class-btn active" id="btn-c11" onclick="selectClass('class-11')">Class 11</button>
-          <button class="class-btn" id="btn-c12" onclick="selectClass('class-12')">Class 12</button>
-        </div>
-      </div>
-    </section>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-pill">✨ NEB Curriculum-Aligned AI Study Engine</div>
+        <h1>Master NEB Class 11 & 12 Science with <span>Targeted AI Tutoring</span></h1>
+        <p>Concept breakdowns, step-by-step numerical calculations, past exam answer formulations, and chapter quizzes aligned specifically with the NEB syllabus.</p>
 
-    <!-- Subjects Section -->
-    <section>
-      <div class="section-head">
-        <div>
-          <h2 id="subjects-heading">Class 11 Subjects</h2>
-          <p>Select a subject to explore units, chapters, and study modules.</p>
+        <!-- Class Switcher -->
+        <div class="class-switcher-wrap">
+          <div class="class-switcher">
+            <button class="class-btn active" id="btn-c11" onclick="selectClass('class-11')">Class 11</button>
+            <button class="class-btn" id="btn-c12" onclick="selectClass('class-12')">Class 12</button>
+          </div>
         </div>
-      </div>
-      <div class="subject-grid" id="subject-grid">
-        <!-- Dynamically rendered by JavaScript -->
-      </div>
-    </section>
+      </section>
 
-    <!-- Chapter Explorer Section -->
-    <section class="curriculum-viewer" id="curriculum-viewer">
-      <div class="viewer-header">
-        <div>
-          <h3 id="viewer-subject-title">Loading Chapters...</h3>
-          <span id="viewer-subject-code" style="font-size: 0.8rem; color: var(--text-muted);"></span>
+      <!-- Subjects Section -->
+      <section>
+        <div class="section-head">
+          <div>
+            <h2 id="subjects-heading">Class 11 Subjects</h2>
+            <p>Select a subject to explore units, chapters, and study modules.</p>
+          </div>
         </div>
-        <span id="chapter-count" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);"></span>
-      </div>
-      <div class="chapters-container" id="chapters-container">
-        <!-- Dynamically loaded from curriculum.json -->
-      </div>
-    </section>
+        <div class="subject-grid" id="subject-grid"></div>
+      </section>
 
-    <!-- Core Study Pillars Section -->
-    <section>
-      <div class="section-head">
-        <div>
-          <h2>Structured NEB Study Modes</h2>
-          <p>Designed specifically to prepare you for NEB board exams.</p>
+      <!-- Chapter Explorer -->
+      <section class="curriculum-viewer" id="curriculum-viewer">
+        <div class="viewer-header">
+          <div>
+            <h3 id="viewer-subject-title">Loading Chapters...</h3>
+            <span id="viewer-subject-code" style="font-size: 0.8rem; color: var(--text-muted);"></span>
+          </div>
+          <span id="chapter-count" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);"></span>
+        </div>
+        <div class="chapters-container" id="chapters-container"></div>
+      </section>
+
+      <!-- Core Study Modes -->
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>Structured NEB Study Modes</h2>
+            <p>Designed specifically to prepare you for NEB board exams.</p>
+          </div>
+        </div>
+        <div class="modes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+          <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow);">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">💡</div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Concept Explanations</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Clear, simplified breakdowns in English and simple Nepali-English.</p>
+          </div>
+          <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow);">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">🔢</div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Numerical Problem Solver</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Structured 7-step method: Given, Required, Formula, Substitution, Calculation, Answer, Explanation.</p>
+          </div>
+          <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow);">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">📝</div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Exam-Style Formatter</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Model answer structures tailored to NEB 2-mark and 4/8-mark questions.</p>
+          </div>
+          <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow);">
+            <div style="font-size: 1.75rem; margin-bottom: 0.75rem;">🎯</div>
+            <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">Chapter Quizzes</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Targeted MCQs and rapid concept tests to identify weak topics.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- VIEW 2: STUDENT DASHBOARD -->
+    <div id="view-dashboard" class="view-section">
+      
+      <!-- Greeting Header & Quick Resume -->
+      <div class="dashboard-header">
+        <div class="dash-greeting">
+          <h2 id="dash-student-greeting">Namaste, Student 👋</h2>
+          <p id="dash-student-class">Class 11 Science • NEB Board Exam Target: 2027</p>
+        </div>
+        <div class="resume-card">
+          <div>
+            <div style="font-size: 0.75rem; opacity: 0.85; text-transform: uppercase; font-weight: 700;">Continue Studying</div>
+            <div id="dash-resume-chapter" style="font-weight: 700; font-size: 1.05rem; margin-top: 0.15rem;">Physics: Kinematics</div>
+          </div>
+          <button class="btn-resume" onclick="showView('curriculum')">Resume Study</button>
         </div>
       </div>
-      <div class="modes-grid">
-        <div class="mode-box">
-          <div class="mode-icon">💡</div>
-          <h4>Concept Explanations</h4>
-          <p>Clear, simplified breakdowns in English and simple Nepali-English to solidify fundamentals.</p>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="label">Chapters Mastered</div>
+          <div class="value" id="stat-chapters-mastered">0</div>
         </div>
-        <div class="mode-box">
-          <div class="mode-icon">🔢</div>
-          <h4>Numerical Problem Solver</h4>
-          <p>Structured 7-step method: Given, Required, Formula, Substitution, Calculation, Answer, and Explanation.</p>
+        <div class="stat-card">
+          <div class="label">Study Sessions</div>
+          <div class="value" id="stat-sessions">1</div>
         </div>
-        <div class="mode-box">
-          <div class="mode-icon">📝</div>
-          <h4>Exam-Style Formatter</h4>
-          <p>Model answer structures tailored to NEB 2-mark short questions and 4/8-mark comprehensive questions.</p>
+        <div class="stat-card">
+          <div class="label">Quiz Accuracy</div>
+          <div class="value" id="stat-accuracy">85%</div>
         </div>
-        <div class="mode-box">
-          <div class="mode-icon">🎯</div>
-          <h4>Chapter Quizzes</h4>
-          <p>Targeted MCQs and rapid concept tests to identify weak topics before board exams.</p>
+        <div class="stat-card">
+          <div class="label">Daily AI Limit</div>
+          <div class="value" id="stat-ai-quota">20 / 20</div>
         </div>
       </div>
-    </section>
+
+      <!-- Subject Progress Section -->
+      <div class="progress-section">
+        <div class="section-head">
+          <div>
+            <h2>Syllabus Coverage</h2>
+            <p>Track your completion across all 4 NEB Science subjects.</p>
+          </div>
+        </div>
+        <div id="subject-progress-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Weak Topic Alert Box -->
+      <div class="weak-topic-alert">
+        <h3>⚡ Recommended Priority Revision Topics</h3>
+        <p>Based on high-weightage NEB exam questions and typical student challenge areas:</p>
+        <div class="weak-pills">
+          <span class="weak-pill" onclick="showView('curriculum')">Vectors & Resolution of Forces</span>
+          <span class="weak-pill" onclick="showView('curriculum')">Thermodynamics: First Law Applications</span>
+          <span class="weak-pill" onclick="showView('curriculum')">Chemical Stoichiometry & Molarity</span>
+          <span class="weak-pill" onclick="showView('curriculum')">Calculus: Limits & Derivatives</span>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 
@@ -762,11 +1009,23 @@
     <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8;">&copy; 2026 GyanSetu AI. All rights reserved.</p>
   </footer>
 
-  <!-- Application Script -->
+  <!-- Script -->
   <script>
     let curriculumData = null;
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-physics';
+
+    // View Switching
+    function showView(viewName) {
+      document.getElementById('view-curriculum').classList.toggle('active', viewName === 'curriculum');
+      document.getElementById('view-dashboard').classList.toggle('active', viewName === 'dashboard');
+      document.getElementById('nav-btn-explore').classList.toggle('active', viewName === 'curriculum');
+      document.getElementById('nav-btn-dash').classList.toggle('active', viewName === 'dashboard');
+
+      if (viewName === 'dashboard') {
+        updateDashboard();
+      }
+    }
 
     // Auth Modal Logic
     function openAuthModal(mode = 'login') {
@@ -814,7 +1073,6 @@
         return;
       }
 
-      // Store in client session state
       const user = { name, email, classId: userClass };
       localStorage.setItem('gyansetu_user', JSON.stringify(user));
       showAuthAlert('Account created successfully! Signing you in...', true);
@@ -823,6 +1081,7 @@
         closeAuthModal();
         initSession();
         selectClass(userClass);
+        showView('dashboard');
       }, 700);
     }
 
@@ -836,7 +1095,6 @@
         return;
       }
 
-      // Check existing profile or create active session
       let existing = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
       if (!existing || existing.email !== email) {
         existing = { name: email.split('@')[0], email: email, classId: currentClassId };
@@ -847,6 +1105,7 @@
       setTimeout(() => {
         closeAuthModal();
         initSession();
+        showView('dashboard');
       }, 700);
     }
 
@@ -871,9 +1130,64 @@
     function logoutStudent() {
       localStorage.removeItem('gyansetu_user');
       initSession();
+      showView('curriculum');
     }
 
-    // Curriculum Loader Logic
+    // Progress and Mastery
+    function getMasteredChapters() {
+      return JSON.parse(localStorage.getItem('gyansetu_mastered') || '[]');
+    }
+
+    function toggleChapterMastery(chapterId) {
+      let list = getMasteredChapters();
+      if (list.includes(chapterId)) {
+        list = list.filter(id => id !== chapterId);
+      } else {
+        list.push(chapterId);
+      }
+      localStorage.setItem('gyansetu_mastered', JSON.stringify(list));
+      renderChapters();
+      updateDashboard();
+    }
+
+    // Dashboard Data Updater
+    function updateDashboard() {
+      const user = JSON.parse(localStorage.getItem('gyansetu_user') || '{"name":"Student","classId":"class-11"}');
+      document.getElementById('dash-student-greeting').textContent = `Namaste, ${user.name} 👋`;
+      document.getElementById('dash-student-class').textContent = `${user.classId === 'class-11' ? 'Class 11' : 'Class 12'} Science • NEB Board Exam Target: 2027`;
+
+      const mastered = getMasteredChapters();
+      document.getElementById('stat-chapters-mastered').textContent = mastered.length;
+
+      // Render Subject Progress Bars
+      if (curriculumData && curriculumData.classes) {
+        const cls = curriculumData.classes.find(c => c.id === currentClassId);
+        const container = document.getElementById('subject-progress-container');
+        if (cls && container) {
+          container.innerHTML = '';
+          cls.subjects.forEach(sub => {
+            const total = sub.chapters ? sub.chapters.length : 1;
+            const completed = (sub.chapters || []).filter(ch => mastered.includes(ch.id)).length;
+            const pct = Math.round((completed / total) * 100);
+
+            const row = document.createElement('div');
+            row.className = 'subject-progress-row';
+            row.innerHTML = `
+              <div class="progress-labels">
+                <span>${sub.icon || '📚'} ${sub.name}</span>
+                <span>${completed}/${total} Chapters (${pct}%)</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: ${pct}%;"></div>
+              </div>
+            `;
+            container.appendChild(row);
+          });
+        }
+      }
+    }
+
+    // Curriculum Loader
     async function loadCurriculum() {
       try {
         const res = await fetch('data/curriculum.json');
@@ -885,6 +1199,7 @@
       }
       renderSubjects();
       renderChapters();
+      updateDashboard();
     }
 
     function selectClass(classId) {
@@ -901,6 +1216,7 @@
       }
       renderSubjects();
       renderChapters();
+      updateDashboard();
     }
 
     function selectSubject(subjectId) {
@@ -956,18 +1272,25 @@
       container.innerHTML = '';
 
       const chapters = sub.chapters || [];
+      const mastered = getMasteredChapters();
       document.getElementById('chapter-count').textContent = `${chapters.length} Chapters in Syllabus`;
 
       chapters.forEach((ch, idx) => {
+        const isMastered = mastered.includes(ch.id);
         const item = document.createElement('div');
-        item.className = 'chapter-item';
+        item.className = `chapter-item ${isMastered ? 'mastered' : ''}`;
         item.innerHTML = `
           <div>
-            <span class="chapter-unit">${ch.unit || 'Core Unit'}</span>
+            <div class="chapter-header-row">
+              <span class="chapter-unit">${ch.unit || 'Core Unit'}</span>
+              <button class="status-check-btn ${isMastered ? 'done' : ''}" onclick="toggleChapterMastery('${ch.id}')">
+                ${isMastered ? '✓ Mastered' : '○ Mark Mastered'}
+              </button>
+            </div>
             <div class="chapter-title">${idx + 1}. ${ch.name}</div>
           </div>
           <div class="chapter-actions">
-            <button class="btn-small" onclick="alert('Chapter learning module will open for: ${ch.name}')">📖 Notes</button>
+            <button class="btn-small" onclick="alert('Chapter notes and formula sheet will open for: ${ch.name}')">📖 Notes</button>
             <button class="btn-small ai" onclick="alert('AI Tutor integration will activate for: ${ch.name}')">⚡ Ask AI</button>
           </div>
         `;
