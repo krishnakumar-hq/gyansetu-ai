@@ -1,0 +1,106 @@
+{
+  "p11-01": {
+    "title": "Physical Quantities and Vectors",
+    "concepts": "Vectors possess both magnitude and direction and obey vector laws of addition. Key NEB focus: Resolution of vectors into rectangular components (Rx = R cosθ, Ry = R sinθ), triangle law, and parallelogram law of vector addition.",
+    "bilingual": "Vector भन्नाले magnitude र direction दुवै भएको भौतिक राशि हो। Parallelogram law अनुसार यदि दुई vector लाई parallelogram को adjacent sides ले देखाउँछ भने तिनीहरूको resultant diagonal ले दिन्छ।",
+    "formulas": [
+      { "math": "R = √(P² + Q² + 2PQ cosθ)", "desc": "Parallelogram law of vector addition (Resultant magnitude)" },
+      { "math": "tan α = (Q sinθ) / (P + Q cosθ)", "desc": "Direction of resultant vector R with respect to vector P" },
+      { "math": "A · B = |A||B| cosθ = AxBx + AyBy + AzBz", "desc": "Scalar (Dot) Product: Zero when vectors are perpendicular" },
+      { "math": "|A × B| = |A||B| sinθ", "desc": "Vector (Cross) Product magnitude: Zero when vectors are parallel" }
+    ],
+    "pastPapers": [
+      { "q": "State and prove the parallelogram law of vector addition.", "type": "4 Marks • NEB Board" },
+      { "q": "Show that the dot product of two mutually perpendicular vectors is zero.", "type": "2 Marks • NEB Board" }
+    ]
+  },
+  "p11-02": {
+    "title": "Kinematics",
+    "concepts": "Kinematics describes motion without considering its causes. In the NEB curriculum, uniformly accelerated rectilinear motion and 2D projectile motion launched at an angle θ with the horizontal are high-weightage topics.",
+    "bilingual": "Kinematics मा हामी acceleration constant हुँदा गतिको समीकरणहरू (v = u + at, s = ut + 1/2 at²) प्रयोग गर्छौं। Projectile motion मा horizontal velocity सधैं constant रहन्छ किनभने horizontal acceleration शून्य हुन्छ।",
+    "formulas": [
+      { "math": "v = u + at", "desc": "Final velocity under constant acceleration" },
+      { "math": "s = ut + ½ at²", "desc": "Displacement under constant acceleration" },
+      { "math": "v² = u² + 2as", "desc": "Velocity-displacement relation" },
+      { "math": "T = (2u sinθ) / g", "desc": "Total time of flight of a projectile" },
+      { "math": "H_max = (u² sin²θ) / (2g)", "desc": "Maximum vertical height reached by projectile" },
+      { "math": "R = (u² sin 2θ) / g", "desc": "Horizontal range (Maximum range occurs at θ = 45°)" }
+    ],
+    "pastPapers": [
+      { "q": "Derive the expressions for maximum height, time of flight, and horizontal range of a projectile fired with velocity u at an angle θ.", "type": "4 Marks • NEB Board" },
+      { "q": "Prove that the path followed by a projectile in a uniform gravitational field is parabolic.", "type": "4 Marks • NEB Board" }
+    ]
+  },
+  "ch11-01": {
+    "title": "Foundation and Stoichiometry",
+    "concepts": "Stoichiometry is the study of quantitative relationships among reactants and products in chemical reactions. High-frequency NEB topics include the mole concept, molarity, normality, percentage composition, and limiting reactant calculations.",
+    "bilingual": "1 Mole भन्नाले 6.022 × 10²³ particles हुन्छ। Limiting reactant त्यो पदार्थ हो जुन रासायनिक प्रतिक्रियामा पहिले सकिन्छ र त्यसले नै बन्ने product को मात्रा निर्धारण गर्छ।",
+    "formulas": [
+      { "math": "n = Mass (g) / Molar Mass (g/mol)", "desc": "Number of Moles calculation" },
+      { "math": "Molarity (M) = Moles of Solute / Volume of Solution (L)", "desc": "Molar Concentration (mol/L)" },
+      { "math": "Normality (N) = Molarity (M) × Valency Factor (n-factor)", "desc": "Relation between Normality and Molarity" },
+      { "math": "M₁V₁ = M₂V₂", "desc": "Dilution equation for molar solutions" }
+    ],
+    "pastPapers": [
+      { "q": "Define limiting reagent with a suitable chemical reaction example.", "type": "2 Marks • NEB Board" },
+      { "q": "An organic compound contains C = 40%, H = 6.67%, and O = 53.33%. If its vapor density is 30, find its empirical and molecular formula.", "type": "4 Marks • NEB Board" }
+    ]
+  },
+  "m11-07": {
+    "title": "Limits and Continuity",
+    "concepts": "Limits examine function behavior as variables approach a specific value. In NEB Class 11 Calculus, standard trigonometric limits, algebraic rationalization, and the definition of continuity at a point are fundamental.",
+    "bilingual": "Limit ले function को कुनै बिन्दु नजिक पुग्दाको behavior देखाउँछ। कुनै function continuous हुन Left Hand Limit = Right Hand Limit = Function value हुनुपर्छ।",
+    "formulas": [
+      { "math": "lim (x→0) [sin x / x] = 1", "desc": "Standard trigonometric limit (x in radians)" },
+      { "math": "lim (x→a) [(xⁿ - aⁿ) / (x - a)] = n · aⁿ⁻¹", "desc": "Standard algebraic power limit theorem" },
+      { "math": "lim (x→a⁻) f(x) = lim (x→a⁺) f(x) = f(a)", "desc": "Condition for continuity of f(x) at x = a" }
+    ],
+    "pastPapers": [
+      { "q": "Evaluate: lim (x→0) [(1 - cos 2x) / x²]", "type": "2 Marks • NEB Board" },
+      { "q": "Test the continuity of the function f(x) at x = 2.", "type": "4 Marks • NEB Board" }
+    ]
+  },
+  "cs11-05": {
+    "title": "Fundamentals of Programming in C",
+    "concepts": "C is a structured, procedural programming language. NEB Class 11 covers data types, operators, control flow statements (if-else, switch, loops: for, while, do-while), and 1D arrays.",
+    "bilingual": "C Programming मा variables, loops (for, while) र conditional statements (if-else) प्रयोग गरेर problem solve गरिन्छ। NEB परीक्षामा loop tracing र short C programs धेरै सोधिन्छ।",
+    "formulas": [
+      { "math": "for(initialization; condition; increment/decrement)", "desc": "Standard for-loop syntax" },
+      { "math": "printf(\"format specifier\", variable);", "desc": "Standard output function in <stdio.h>" },
+      { "math": "scanf(\"format specifier\", &variable);", "desc": "Standard input function with address operator" }
+    ],
+    "pastPapers": [
+      { "q": "Write a C program to check whether a given integer is prime or composite.", "type": "4 Marks • NEB Board" },
+      { "q": "Differentiate between while loop and do-while loop with syntax.", "type": "2 Marks • NEB Board" }
+    ]
+  },
+  "p12-05": {
+    "title": "Current Electricity and Kirchhoff's Laws",
+    "concepts": "NEB Class 12 Physics focuses on Kirchhoff's Current Law (junction rule) and Kirchhoff's Voltage Law (loop rule), Wheatstone bridge principle, meter bridge, and potentiometer applications.",
+    "bilingual": "Kirchhoff's First Law (KCL) conservation of charge मा आधारित हुन्छ भने Second Law (KVL) conservation of energy मा आधारित हुन्छ। Wheatstone bridge balanced हुँदा P/Q = R/S हुन्छ।",
+    "formulas": [
+      { "math": "∑ I = 0", "desc": "Kirchhoff's Current Law (Junction Rule - Charge Conservation)" },
+      { "math": "∑ IR = ∑ E", "desc": "Kirchhoff's Voltage Law (Loop Rule - Energy Conservation)" },
+      { "math": "P / Q = R / S", "desc": "Wheatstone Bridge Balanced Condition" },
+      { "math": "E₁ / E₂ = L₁ / L₂", "desc": "Comparison of EMF of two cells using a Potentiometer" }
+    ],
+    "pastPapers": [
+      { "q": "State Kirchhoff's laws of electricity and use them to obtain the balanced condition for a Wheatstone bridge network.", "type": "4 Marks • NEB Board" },
+      { "q": "Why is a potentiometer preferred over a voltmeter for measuring the accurate EMF of a cell?", "type": "2 Marks • NEB Board" }
+    ]
+  },
+  "cs12-01": {
+    "title": "Database Management System (DBMS & SQL)",
+    "concepts": "Class 12 CS covers Relational Database Management Systems (RDBMS), keys (Primary, Foreign, Candidate), normalization (1NF, 2NF, 3NF), and core SQL queries (DDL, DML).",
+    "bilingual": "DBMS ले data लाई structured रूपमा store र manage गर्न मद्दत गर्छ। Primary Key ले table मा प्रत्येक row लाई uniquely identify गर्छ भने Foreign Key ले दुई table बीच relation बनाउँछ।",
+    "formulas": [
+      { "math": "SELECT column1, column2 FROM table_name WHERE condition;", "desc": "Core SQL Query syntax for data retrieval" },
+      { "math": "INSERT INTO table_name VALUES (val1, val2...);", "desc": "SQL Data Insertion" }
+    ],
+    "pastPapers": [
+      { "q": "Define primary key and foreign key with suitable table examples.", "type": "2 Marks • NEB Board" },
+      { "q": "What is normalization? Explain 1NF, 2NF, and 3NF with examples.", "type": "4 Marks • NEB Board" }
+    ]
+  }
+}
+
