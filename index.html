@@ -12,6 +12,7 @@
       --accent: #0ea5e9;
       --success: #16a34a;
       --warning: #f59e0b;
+      --error: #dc2626;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
@@ -466,7 +467,7 @@
       border-color: var(--primary);
     }
 
-    /* CHAPTER STUDY VIEW STYLES */
+    /* CHAPTER STUDY VIEW */
     .chapter-study-header {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -545,11 +546,6 @@
       padding-bottom: 0.5rem;
     }
 
-    .study-content-panel p {
-      margin-bottom: 1rem;
-      color: var(--text-main);
-    }
-
     .formula-card {
       background: #f8fafc;
       border-left: 4px solid var(--primary);
@@ -604,6 +600,101 @@
       margin-top: 1rem;
       font-size: 0.9rem;
       color: #713f12;
+    }
+
+    /* QUIZ & PROBLEM SOLVER STYLES */
+    .quiz-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-q-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .quiz-opt-btn {
+      text-align: left;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .quiz-opt-btn:hover {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+    }
+
+    .quiz-opt-btn.correct {
+      background: #dcfce7 !important;
+      border-color: #86efac !important;
+      color: #166534;
+      font-weight: 700;
+    }
+
+    .quiz-opt-btn.wrong {
+      background: #fee2e2 !important;
+      border-color: #fca5a5 !important;
+      color: #991b1b;
+      font-weight: 700;
+    }
+
+    .quiz-exp-box {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .quiz-score-banner {
+      background: linear-gradient(135deg, #1e40af, #2563eb);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    /* 7-Step Solver Format */
+    .step-solver-card {
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .solver-step {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .solver-step-num {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      height: fit-content;
+      font-size: 0.8rem;
     }
 
     /* Dashboard Styles */
@@ -1040,7 +1131,7 @@
 
     </div>
 
-    <!-- VIEW 2: CHAPTER LEARNING & NOTES CENTER -->
+    <!-- VIEW 2: CHAPTER LEARNING & PRACTICE CENTER -->
     <div id="view-chapter" class="view-section">
       <div class="chapter-study-header">
         <div class="breadcrumbs">
@@ -1063,6 +1154,8 @@
       <div class="study-tabs-nav">
         <button class="study-tab-btn active" id="tab-study-concepts" onclick="switchStudyTab('concepts')">📖 Summary & Concepts</button>
         <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')">📐 Formulas & Laws</button>
+        <button class="study-tab-btn" id="tab-study-quiz" onclick="switchStudyTab('quiz')">🎯 Chapter Quiz (MCQs)</button>
+        <button class="study-tab-btn" id="tab-study-solver" onclick="switchStudyTab('solver')">🔢 7-Step Problem Solver</button>
         <button class="study-tab-btn" id="tab-study-pastpapers" onclick="switchStudyTab('pastpapers')">📝 NEB Exam Questions</button>
         <button class="study-tab-btn" id="tab-study-ai" onclick="switchStudyTab('ai')">⚡ AI Doubt Solver</button>
       </div>
@@ -1087,25 +1180,55 @@
         </div>
       </div>
 
-      <!-- Study Tab 3: Past Papers -->
+      <!-- Study Tab 3: Interactive Chapter Quiz -->
+      <div id="study-panel-quiz" class="study-content-panel" style="display: none;">
+        <div class="quiz-score-banner" id="quiz-score-banner">
+          <h2 id="quiz-score-text">Quiz Score: 0/0</h2>
+          <p id="quiz-score-sub" style="font-size: 0.9rem; opacity: 0.9;">Great effort! Review explanations below.</p>
+        </div>
+        <h3>3. Chapter Practice Quiz (NEB Model MCQs)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">Select the correct answer. Instant explanations and weak-topic detection will be generated.</p>
+        <div id="quiz-questions-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Study Tab 4: 7-Step Problem Solver -->
+      <div id="study-panel-solver" class="study-content-panel" style="display: none;">
+        <h3>4. Standard NEB 7-Step Problem Solving Method</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">NEB examiners award step-marks. Always follow this exact structure for numerical calculations:</p>
+        
+        <div class="step-solver-card">
+          <h4 style="color: var(--primary); margin-bottom: 1rem;">Example Problem: Projectile Range & Max Height</h4>
+          <div class="solver-step"><span class="solver-step-num">Step 1</span> <div><strong>Given:</strong> Initial velocity (u) = 20 m/s, Launch angle (θ) = 30°, Acceleration due to gravity (g) = 9.8 m/s²</div></div>
+          <div class="solver-step"><span class="solver-step-num">Step 2</span> <div><strong>Required:</strong> (a) Time of flight (T), (b) Maximum height (H_max), (c) Horizontal Range (R)</div></div>
+          <div class="solver-step"><span class="solver-step-num">Step 3</span> <div><strong>Formula:</strong> T = (2u sinθ)/g , H_max = (u² sin²θ)/(2g) , R = (u² sin 2θ)/g</div></div>
+          <div class="solver-step"><span class="solver-step-num">Step 4</span> <div><strong>Substitution:</strong> T = (2 × 20 × sin 30°)/9.8 = (40 × 0.5)/9.8</div></div>
+          <div class="solver-step"><span class="solver-step-num">Step 5</span> <div><strong>Calculation:</strong> T = 20 / 9.8 ≈ 2.04 seconds; H_max = (400 × 0.25)/(19.6) ≈ 5.10 meters; R = (400 × sin 60°)/9.8 ≈ 35.35 meters</div></div>
+          <div class="solver-step"><span class="solver-step-num">Step 6</span> <div><strong>Final Answer:</strong> Time of flight = 2.04 s, Maximum height = 5.10 m, Range = 35.35 m.</div></div>
+          <div class="solver-step"><span class="solver-step-num">Step 7</span> <div><strong>Explanation:</strong> The trajectory is symmetric; horizontal motion has zero acceleration while vertical motion is subject to gravity.</div></div>
+        </div>
+      </div>
+
+      <!-- Study Tab 5: Past Papers -->
       <div id="study-panel-pastpapers" class="study-content-panel" style="display: none;">
-        <h3>3. NEB Model & Past Exam Questions</h3>
+        <h3>5. NEB Model & Past Exam Questions</h3>
         <div id="study-pastpapers-body">
           <p>Loading model questions...</p>
         </div>
       </div>
 
-      <!-- Study Tab 4: AI Tutor Prompt Trigger -->
+      <!-- Study Tab 6: AI Tutor Prompt Trigger -->
       <div id="study-panel-ai" class="study-content-panel" style="display: none;">
-        <h3>4. Ask AI Tutor About This Chapter</h3>
+        <h3>6. Ask AI Tutor About This Chapter</h3>
         <p>GyanSetu AI provides targeted answers grounded specifically in this chapter's syllabus.</p>
         <div style="background: var(--primary-light); border: 1px solid #bfdbfe; padding: 1.25rem; border-radius: 8px; margin-bottom: 1.25rem;">
           <strong style="color: var(--primary);">Active Context:</strong> <span id="ai-active-context-tag">Class 11 • Physics • Kinematics</span>
         </div>
         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button class="btn-small ai" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection is being linked in Phase 12!')">Solve a Numerical Problem</button>
-          <button class="btn-small" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection is being linked in Phase 12!')">Generate 2-Mark Short Answer</button>
-          <button class="btn-small" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection is being linked in Phase 12!')">Explain in Simple Nepali</button>
+          <button class="btn-small ai" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection will be linked in Step 12!')">Solve a Numerical Problem</button>
+          <button class="btn-small" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection will be linked in Step 12!')">Generate 2-Mark Short Answer</button>
+          <button class="btn-small" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection will be linked in Step 12!')">Explain in Simple Nepali</button>
         </div>
       </div>
 
@@ -1141,12 +1264,12 @@
           <div class="value" id="stat-chapters-mastered">0</div>
         </div>
         <div class="stat-card">
-          <div class="label">Study Sessions</div>
-          <div class="value" id="stat-sessions">1</div>
+          <div class="label">Quizzes Completed</div>
+          <div class="value" id="stat-quizzes-completed">0</div>
         </div>
         <div class="stat-card">
-          <div class="label">Quiz Accuracy</div>
-          <div class="value" id="stat-accuracy">85%</div>
+          <div class="label">Avg Quiz Score</div>
+          <div class="value" id="stat-accuracy">--</div>
         </div>
         <div class="stat-card">
           <div class="label">Daily AI Limit</div>
@@ -1168,12 +1291,12 @@
       <!-- Weak Topic Alert Box -->
       <div class="weak-topic-alert">
         <h3>⚡ Recommended Priority Revision Topics</h3>
-        <p>Based on high-weightage NEB exam questions and typical student challenge areas:</p>
-        <div class="weak-pills">
+        <p>Based on your quiz results and high-weightage NEB board exam areas:</p>
+        <div class="weak-pills" id="weak-topics-pills-container">
           <span class="weak-pill" onclick="openChapterStudy('p11-01', 'c11-physics')">Vectors & Resolution of Forces</span>
-          <span class="weak-pill" onclick="openChapterStudy('p11-08', 'c11-physics')">Thermodynamics: First Law Applications</span>
-          <span class="weak-pill" onclick="openChapterStudy('ch11-01', 'c11-chemistry')">Chemical Stoichiometry & Molarity</span>
-          <span class="weak-pill" onclick="openChapterStudy('m11-07', 'c11-mathematics')">Calculus: Limits & Derivatives</span>
+          <span class="weak-pill" onclick="openChapterStudy('p11-02', 'c11-physics')">Projectile Motion Range Formula</span>
+          <span class="weak-pill" onclick="openChapterStudy('ch11-01', 'c11-chemistry')">Limiting Reagent Calculations</span>
+          <span class="weak-pill" onclick="openChapterStudy('m11-07', 'c11-mathematics')">Trigonometric Limits</span>
         </div>
       </div>
 
@@ -1191,59 +1314,49 @@
   <!-- Script -->
   <script>
     let curriculumData = null;
+    let notesData = {};
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-physics';
     let activeChapter = null;
 
-    // High-yield NEB sample notes database for initial MVP
-    const sampleNotes = {
-      "p11-01": {
-        title: "Physical Quantities and Vectors",
-        concepts: "Vectors are quantities with magnitude and direction. In NEB exams, resolution of vectors into rectangular components (Rx = R cosθ, Ry = R sinθ) and the parallelogram law of vector addition are frequently tested.",
-        bilingual: "Vector भन्नाले magnitude र direction दुवै भएको quantity हो। Parallelogram law अनुसार यदि दुई vector लाई parallelogram को adjacent sides ले represent गर्छ भने तिनीहरूको resultant diagonal ले दिन्छ।",
-        formulas: [
-          { math: "R = √(P² + Q² + 2PQ cosθ)", desc: "Parallelogram law of vector addition" },
-          { math: "tan α = (Q sinθ) / (P + Q cosθ)", desc: "Direction of resultant vector R with vector P" },
-          { math: "A · B = |A||B| cosθ = AxBx + AyBy + AzBz", desc: "Dot (Scalar) Product" },
-          { math: "|A × B| = |A||B| sinθ", desc: "Cross (Vector) Product magnitude" }
-        ],
-        pastPapers: [
-          { q: "State and prove the parallelogram law of vector addition.", type: "4 Marks • NEB Board" },
-          { q: "Show that the scalar product of two mutually perpendicular vectors is zero.", type: "2 Marks • NEB Board" }
-        ]
-      },
-      "p11-02": {
-        title: "Kinematics",
-        concepts: "Kinematics deals with the motion of bodies without considering the causes of motion. Key NEB focus: Equations of rectilinear motion under constant acceleration and projectile motion launched at an angle.",
-        bilingual: "Kinematics मा हामी acceleration constant हुँदा v = u + at, s = ut + 1/2 at² जस्ता equations use गर्छौं। Projectile motion मा horizontal velocity always constant रहन्छ किनभने horizontal acceleration शून्य हुन्छ।",
-        formulas: [
-          { math: "v = u + at", desc: "First equation of motion" },
-          { math: "s = ut + ½ at²", desc: "Displacement under constant acceleration" },
-          { math: "v² = u² + 2as", desc: "Velocity-displacement relation" },
-          { math: "T = (2u sinθ) / g", desc: "Time of flight of projectile" },
-          { math: "H_max = (u² sin²θ) / (2g)", desc: "Maximum height reached by projectile" },
-          { math: "R = (u² sin 2θ) / g", desc: "Horizontal range (Maximum when θ = 45°)" }
-        ],
-        pastPapers: [
-          { q: "Derive the expression for the horizontal range and maximum height of a projectile fired at an angle θ.", type: "4 Marks • NEB Board" },
-          { q: "Prove that a body projected at angles θ and (90° - θ) has the same horizontal range.", type: "2 Marks • NEB Board" }
-        ]
-      },
-      "ch11-01": {
-        title: "Foundation and Stoichiometry",
-        concepts: "Stoichiometry involves quantitative relationships in chemical reactions. In NEB Class 11 Chemistry, mole concept, molarity, normality, empirical formula, and limiting reactant calculations are essential.",
-        bilingual: "1 Mole मा 6.022 × 10²³ particles हुन्छन्। Limiting reactant त्यो substance हो जुन reaction मा पहिले सकिन्छ र त्यसले नै बन्ने product को amount determine गर्छ।",
-        formulas: [
-          { math: "Number of Moles (n) = Mass (g) / Molar Mass (g/mol)", desc: "Mole Calculation" },
-          { math: "Molarity (M) = Moles of Solute / Volume of Solution (in Litres)", desc: "Molar Concentration" },
-          { math: "Normality (N) = Molarity (M) × Valency Factor (n-factor)", desc: "Normality Relation" },
-          { math: "M₁V₁ = M₂V₂", desc: "Dilution Equation" }
-        ],
-        pastPapers: [
-          { q: "Define limiting reagent. How is it calculated in a chemical reaction?", type: "2 Marks • NEB Board" },
-          { q: "An organic compound contains C = 40%, H = 6.67%, and O = 53.33%. If vapor density is 30, determine its molecular formula.", type: "4 Marks • NEB Board" }
-        ]
-      }
+    // Sample Chapter Quizzes Database
+    const chapterQuizzes = {
+      "p11-01": [
+        {
+          q: "What is the angle between two vectors P and Q if their resultant magnitude is maximum?",
+          opts: ["0°", "90°", "180°", "45°"],
+          ans: 0,
+          exp: "Resultant R = √(P² + Q² + 2PQ cosθ). Maximum value occurs when cosθ = 1, which means θ = 0° (parallel vectors)."
+        },
+        {
+          q: "If the dot product of two non-zero vectors A and B is zero, the vectors are:",
+          opts: ["Parallel", "Perpendicular", "Collinear", "Opposite"],
+          ans: 1,
+          exp: "A · B = |A||B| cosθ = 0. Since |A| and |B| are non-zero, cosθ = 0, so θ = 90° (perpendicular)."
+        }
+      ],
+      "p11-02": [
+        {
+          q: "At what angle of projection with the horizontal is the horizontal range of a projectile maximum?",
+          opts: ["30°", "45°", "60°", "90°"],
+          ans: 1,
+          exp: "Range R = (u² sin 2θ)/g. R is maximum when sin 2θ = 1, which gives 2θ = 90° ⇒ θ = 45°."
+        },
+        {
+          q: "During projectile motion, which component of velocity remains constant throughout the flight?",
+          opts: ["Vertical component", "Horizontal component", "Both components", "Neither component"],
+          ans: 1,
+          exp: "The horizontal component of velocity (u cosθ) remains constant because horizontal acceleration is zero (ignoring air resistance)."
+        }
+      ],
+      "ch11-01": [
+        {
+          q: "What is the number of particles present in 1 mole of any chemical substance?",
+          opts: ["6.022 × 10²³", "3.011 × 10²³", "1.66 × 10⁻²⁴", "6.022 × 10²²"],
+          ans: 0,
+          exp: "Avogadro's constant states that 1 mole contains exactly 6.022 × 10²³ elementary entities."
+        }
+      ]
     };
 
     // View Switching
@@ -1260,7 +1373,7 @@
       }
     }
 
-    function openChapterStudy(chapterId, subjectId) {
+    async function openChapterStudy(chapterId, subjectId) {
       if (!curriculumData) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
       if (!cls) return;
@@ -1271,7 +1384,7 @@
 
       activeChapter = { ...chapter, subjectId: sub.id, subjectName: sub.name, classId: cls.id };
 
-      // Update UI elements
+      // Update UI Header
       document.getElementById('study-bc-subject').textContent = sub.name;
       document.getElementById('study-bc-unit').textContent = chapter.unit || 'Core Unit';
       document.getElementById('study-chapter-title').textContent = chapter.name;
@@ -1281,16 +1394,16 @@
       // Update Resume Card on Dashboard
       document.getElementById('dash-resume-chapter').textContent = `${sub.name}: ${chapter.name}`;
 
-      // Load Notes Content
-      const note = sampleNotes[chapter.id] || {
+      // Load Note Content from notes.json
+      const note = notesData[chapter.id] || {
         title: chapter.name,
-        concepts: `Comprehensive conceptual breakdown for ${chapter.name} based on the NEB syllabus. Focus on fundamental principles, definitions, and applications.`,
-        bilingual: `${chapter.name} को मुख्य अवधारणाहरू र NEB परीक्षाका लागि आवश्यक प्रश्नोत्तरहरू।`,
+        concepts: `Conceptual overview for ${chapter.name} aligned with the NEB syllabus. Focus on fundamental principles, definitions, and applications.`,
+        bilingual: `${chapter.name} को मुख्य अवधारणाहरू र NEB बोर्ड परीक्षाका लागि आवश्यक प्रश्नोत्तरहरू।`,
         formulas: [
-          { math: "Core Laws & Equations", desc: `Key formulas for ${chapter.name}` }
+          { math: "Core Equations & Laws", desc: `Fundamental formulas for ${chapter.name}` }
         ],
         pastPapers: [
-          { q: `Explain the fundamental concept of ${chapter.name}.`, type: "4 Marks • NEB Board" }
+          { q: `Explain the core concept and applications of ${chapter.name}.`, type: "4 Marks • NEB Board" }
         ]
       };
 
@@ -1300,7 +1413,7 @@
       // Render Formulas
       const fBody = document.getElementById('study-formulas-body');
       fBody.innerHTML = '';
-      note.formulas.forEach(f => {
+      (note.formulas || []).forEach(f => {
         const fDiv = document.createElement('div');
         fDiv.className = 'formula-card';
         fDiv.innerHTML = `<div class="formula-math">${f.math}</div><div class="formula-desc">${f.desc}</div>`;
@@ -1310,23 +1423,89 @@
       // Render Past Papers
       const ppBody = document.getElementById('study-pastpapers-body');
       ppBody.innerHTML = '';
-      note.pastPapers.forEach(p => {
+      (note.pastPapers || []).forEach(p => {
         const pDiv = document.createElement('div');
         pDiv.className = 'qa-box';
         pDiv.innerHTML = `<div class="qa-q"><span class="qa-tag">${p.type}</span> ${p.q}</div>`;
         ppBody.appendChild(pDiv);
       });
 
+      // Render Quiz for Chapter
+      renderQuizForChapter(chapter.id);
+
       updateMasteryButton();
       switchStudyTab('concepts');
       showView('chapter');
     }
 
+    function renderQuizForChapter(chapterId) {
+      const container = document.getElementById('quiz-questions-container');
+      const scoreBanner = document.getElementById('quiz-score-banner');
+      scoreBanner.style.display = 'none';
+      container.innerHTML = '';
+
+      const questions = chapterQuizzes[chapterId] || [
+        {
+          q: `Sample NEB Conceptual MCQ for ${activeChapter.name}: Which principle is most fundamental?`,
+          opts: ["Conservation Law", "Empirical Observation", "Constant Magnitude", "Scalar Quantity"],
+          ans: 0,
+          exp: "Conservation principles form the foundation of this NEB unit."
+        }
+      ];
+
+      questions.forEach((item, qIdx) => {
+        const qCard = document.createElement('div');
+        qCard.className = 'quiz-card';
+        
+        let optsHtml = '';
+        item.opts.forEach((opt, optIdx) => {
+          optsHtml += `<button class="quiz-opt-btn" onclick="checkAnswer(${qIdx}, ${optIdx}, ${item.ans}, this, '${chapterId}')">${String.fromCharCode(65 + optIdx)}. ${opt}</button>`;
+        });
+
+        qCard.innerHTML = `
+          <div class="quiz-q-title">Q${qIdx + 1}: ${item.q}</div>
+          <div class="quiz-options">${optsHtml}</div>
+          <div class="quiz-exp-box" id="q-exp-${qIdx}">
+            <strong>💡 Explanation:</strong> ${item.exp}
+          </div>
+        `;
+        container.appendChild(qCard);
+      });
+    }
+
+    function checkAnswer(qIdx, selectedIdx, correctIdx, btnElem, chapterId) {
+      const parent = btnElem.parentElement;
+      const allBtns = parent.querySelectorAll('.quiz-opt-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      const expBox = document.getElementById(`q-exp-${qIdx}`);
+      expBox.style.display = 'block';
+
+      if (selectedIdx === correctIdx) {
+        btnElem.classList.add('correct');
+        expBox.style.background = '#dcfce7';
+        expBox.style.color = '#166534';
+      } else {
+        btnElem.classList.add('wrong');
+        allBtns[correctIdx].classList.add('correct');
+        expBox.style.background = '#fee2e2';
+        expBox.style.color = '#991b1b';
+      }
+
+      // Record in Quiz History
+      let history = JSON.parse(localStorage.getItem('gyansetu_quiz_history') || '[]');
+      history.push({ chapterId, isCorrect: selectedIdx === correctIdx, date: new Date().toISOString() });
+      localStorage.setItem('gyansetu_quiz_history', JSON.stringify(history));
+      updateDashboard();
+    }
+
     function switchStudyTab(tabKey) {
-      const tabs = ['concepts', 'formulas', 'pastpapers', 'ai'];
+      const tabs = ['concepts', 'formulas', 'quiz', 'solver', 'pastpapers', 'ai'];
       tabs.forEach(t => {
-        document.getElementById(`tab-study-${t}`).classList.toggle('active', t === tabKey);
-        document.getElementById(`study-panel-${t}`).style.display = t === tabKey ? 'block' : 'none';
+        const btn = document.getElementById(`tab-study-${t}`);
+        const panel = document.getElementById(`study-panel-${t}`);
+        if (btn) btn.classList.toggle('active', t === tabKey);
+        if (panel) panel.style.display = t === tabKey ? 'block' : 'none';
       });
     }
 
@@ -1476,6 +1655,17 @@
       const mastered = getMasteredChapters();
       document.getElementById('stat-chapters-mastered').textContent = mastered.length;
 
+      // Calculate Quiz Accuracy
+      const quizHistory = JSON.parse(localStorage.getItem('gyansetu_quiz_history') || '[]');
+      document.getElementById('stat-quizzes-completed').textContent = quizHistory.length;
+      if (quizHistory.length > 0) {
+        const correctCount = quizHistory.filter(q => q.isCorrect).length;
+        const avg = Math.round((correctCount / quizHistory.length) * 100);
+        document.getElementById('stat-accuracy').textContent = `${avg}%`;
+      } else {
+        document.getElementById('stat-accuracy').textContent = '--';
+      }
+
       // Render Subject Progress Bars
       if (curriculumData && curriculumData.classes) {
         const cls = curriculumData.classes.find(c => c.id === currentClassId);
@@ -1504,15 +1694,17 @@
       }
     }
 
-    // Curriculum Loader
-    async function loadCurriculum() {
+    // Curriculum & Notes Loader
+    async function loadData() {
       try {
-        const res = await fetch('data/curriculum.json');
-        if (res.ok) {
-          curriculumData = await res.json();
-        }
+        const [currRes, notesRes] = await Promise.all([
+          fetch('data/curriculum.json'),
+          fetch('data/notes.json')
+        ]);
+        if (currRes.ok) curriculumData = await currRes.json();
+        if (notesRes.ok) notesData = await notesRes.json();
       } catch (err) {
-        console.warn('Loading curriculum data...');
+        console.warn('Data loaded with fallbacks.');
       }
       renderSubjects();
       renderChapters();
@@ -1615,10 +1807,9 @@
       });
     }
 
-    // Initialize on page load
+    // Initialize
     initSession();
-    loadCurriculum();
+    loadData();
   </script>
 </body>
 </html>
-
