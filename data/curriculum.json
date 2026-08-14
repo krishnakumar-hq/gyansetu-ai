@@ -132,4 +132,19 @@
         },
         {
           "id": "c12-computer",
-          "name
+          "name": "Computer Science",
+          "code": "Com.201",
+          "icon": "💻",
+          "chapters": [
+            { "id": "cs12-01", "name": "Database Management System (DBMS & SQL)", "unit": "Database Systems" },
+            { "id": "cs12-02", "name": "Computer Networks and Data Communication", "unit": "Networking" },
+            { "id": "cs12-03", "name": "Web Technology II (JavaScript and Backend)", "unit": "Web Technology" },
+            { "id": "cs12-04", "name": "Advanced Programming in C (Pointers & Files)", "unit": "Programming in C" },
+            { "id": "cs12-05", "name": "Object-Oriented Programming (OOP) Concepts", "unit": "OOP Concepts" },
+            { "id": "cs12-06", "name": "Software Engineering and Emerging Technologies", "unit": "Software Engineering" }
+          ]
+        }
+      ]
+    }
+  ]
+}
