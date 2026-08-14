@@ -44,7 +44,7 @@
     .nav-container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0.9rem 1.25rem;
+      padding: 0.85rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -81,6 +81,74 @@
       font-weight: 600;
     }
 
+    .auth-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-auth {
+      background: var(--primary);
+      color: #ffffff;
+      border: 1px solid var(--primary);
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-auth:hover {
+      background: var(--primary-dark);
+    }
+
+    .user-profile-badge {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--primary-light);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .user-avatar {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .user-name-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid #cbd5e1;
+      color: var(--text-muted);
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-logout:hover {
+      background: #f1f5f9;
+      color: #ef4444;
+      border-color: #fca5a5;
+    }
+
     /* Disclaimer Notice Banner */
     .disclaimer-banner {
       background: #f1f5f9;
@@ -101,7 +169,7 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 3rem 1rem 2.5rem;
+      padding: 2.5rem 1rem 2rem;
       max-width: 800px;
       margin: 0 auto;
     }
@@ -377,6 +445,132 @@
       color: var(--text-muted);
     }
 
+    /* Auth Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 420px;
+      padding: 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem 0;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .auth-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .auth-message {
+      font-size: 0.85rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .auth-message.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .auth-message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
     /* Footer */
     footer {
       background: var(--card-bg);
@@ -416,8 +610,71 @@
         <div class="brand-name">GyanSetu AI</div>
         <span class="stream-tag">Science Stream</span>
       </div>
+
+      <!-- Auth Buttons / User Profile -->
+      <div class="auth-actions">
+        <button class="btn-auth" id="btn-open-login" onclick="openAuthModal('login')">Sign In</button>
+        
+        <div class="user-profile-badge" id="user-profile-badge">
+          <div class="user-avatar" id="user-avatar-initial">S</div>
+          <span class="user-name-text" id="user-name-display">Student</span>
+          <button class="btn-logout" onclick="logoutStudent()">Sign Out</button>
+        </div>
+      </div>
     </div>
   </header>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="auth-modal" onclick="closeAuthModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Create Account</button>
+      </div>
+
+      <div id="auth-alert" class="auth-message"></div>
+
+      <!-- Login Form -->
+      <form id="form-login" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="student@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-submit">Sign In to GyanSetu</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" style="display: none;" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Aayush Shrestha" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="student@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Choose Class</label>
+          <select id="reg-class" class="form-control">
+            <option value="class-11">Class 11 (Science)</option>
+            <option value="class-12">Class 12 (Science)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Create Password (min. 6 chars)</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="••••••••" minlength="6" required>
+        </div>
+        <button type="submit" class="btn-submit">Create Student Account</button>
+      </form>
+
+    </div>
+  </div>
 
   <!-- Main Content Area -->
   <div class="container">
@@ -511,42 +768,120 @@
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-physics';
 
-    // Fallback data in case of direct file inspection
-    const defaultData = {
-      "classes": [
-        {
-          "id": "class-11",
-          "name": "Class 11",
-          "subjects": [
-            { "id": "c11-physics", "name": "Physics", "code": "Phy.101", "icon": "⚡" },
-            { "id": "c11-chemistry", "name": "Chemistry", "code": "Chem.101", "icon": "🧪" },
-            { "id": "c11-mathematics", "name": "Mathematics", "code": "Mat.101", "icon": "📐" },
-            { "id": "c11-computer", "name": "Computer Science", "code": "Com.101", "icon": "💻" }
-          ]
-        },
-        {
-          "id": "class-12",
-          "name": "Class 12",
-          "subjects": [
-            { "id": "c12-physics", "name": "Physics", "code": "Phy.201", "icon": "⚡" },
-            { "id": "c12-chemistry", "name": "Chemistry", "code": "Chem.201", "icon": "🧪" },
-            { "id": "c12-mathematics", "name": "Mathematics", "code": "Mat.201", "icon": "📐" },
-            { "id": "c12-computer", "name": "Computer Science", "code": "Com.201", "icon": "💻" }
-          ]
-        }
-      ]
-    };
+    // Auth Modal Logic
+    function openAuthModal(mode = 'login') {
+      document.getElementById('auth-modal').classList.add('active');
+      switchAuthTab(mode);
+      clearAuthAlert();
+    }
 
+    function closeAuthModal(e) {
+      if (!e || e.target.id === 'auth-modal' || e.target.classList.contains('modal-close')) {
+        document.getElementById('auth-modal').classList.remove('active');
+      }
+    }
+
+    function switchAuthTab(mode) {
+      const isLogin = mode === 'login';
+      document.getElementById('tab-login').classList.toggle('active', isLogin);
+      document.getElementById('tab-register').classList.toggle('active', !isLogin);
+      document.getElementById('form-login').style.display = isLogin ? 'block' : 'none';
+      document.getElementById('form-register').style.display = isLogin ? 'none' : 'block';
+      clearAuthAlert();
+    }
+
+    function showAuthAlert(msg, isSuccess = false) {
+      const alertBox = document.getElementById('auth-alert');
+      alertBox.textContent = msg;
+      alertBox.className = `auth-message ${isSuccess ? 'success' : 'error'}`;
+    }
+
+    function clearAuthAlert() {
+      const alertBox = document.getElementById('auth-alert');
+      alertBox.className = 'auth-message';
+      alertBox.textContent = '';
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const userClass = document.getElementById('reg-class').value;
+      const password = document.getElementById('reg-password').value;
+
+      if (!name || !email || !password) {
+        showAuthAlert('Please fill in all fields.');
+        return;
+      }
+
+      // Store in client session state
+      const user = { name, email, classId: userClass };
+      localStorage.setItem('gyansetu_user', JSON.stringify(user));
+      showAuthAlert('Account created successfully! Signing you in...', true);
+
+      setTimeout(() => {
+        closeAuthModal();
+        initSession();
+        selectClass(userClass);
+      }, 700);
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      if (!email || !password) {
+        showAuthAlert('Please enter both email and password.');
+        return;
+      }
+
+      // Check existing profile or create active session
+      let existing = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
+      if (!existing || existing.email !== email) {
+        existing = { name: email.split('@')[0], email: email, classId: currentClassId };
+        localStorage.setItem('gyansetu_user', JSON.stringify(existing));
+      }
+
+      showAuthAlert('Welcome back! Loading your study dashboard...', true);
+      setTimeout(() => {
+        closeAuthModal();
+        initSession();
+      }, 700);
+    }
+
+    function initSession() {
+      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
+      const btnLogin = document.getElementById('btn-open-login');
+      const badge = document.getElementById('user-profile-badge');
+      const avatar = document.getElementById('user-avatar-initial');
+      const nameDisplay = document.getElementById('user-name-display');
+
+      if (user) {
+        btnLogin.style.display = 'none';
+        badge.style.display = 'flex';
+        avatar.textContent = user.name.charAt(0).toUpperCase();
+        nameDisplay.textContent = user.name;
+      } else {
+        btnLogin.style.display = 'block';
+        badge.style.display = 'none';
+      }
+    }
+
+    function logoutStudent() {
+      localStorage.removeItem('gyansetu_user');
+      initSession();
+    }
+
+    // Curriculum Loader Logic
     async function loadCurriculum() {
       try {
         const res = await fetch('data/curriculum.json');
         if (res.ok) {
           curriculumData = await res.json();
-        } else {
-          curriculumData = defaultData;
         }
       } catch (err) {
-        curriculumData = defaultData;
+        console.warn('Loading curriculum data...');
       }
       renderSubjects();
       renderChapters();
@@ -558,9 +893,11 @@
       document.getElementById('btn-c12').classList.toggle('active', classId === 'class-12');
       document.getElementById('subjects-heading').textContent = classId === 'class-11' ? 'Class 11 Subjects' : 'Class 12 Subjects';
 
-      const cls = curriculumData.classes.find(c => c.id === classId);
-      if (cls && cls.subjects.length > 0) {
-        currentSubjectId = cls.subjects[0].id;
+      if (curriculumData && curriculumData.classes) {
+        const cls = curriculumData.classes.find(c => c.id === classId);
+        if (cls && cls.subjects.length > 0) {
+          currentSubjectId = cls.subjects[0].id;
+        }
       }
       renderSubjects();
       renderChapters();
@@ -573,6 +910,7 @@
     }
 
     function renderSubjects() {
+      if (!curriculumData || !curriculumData.classes) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
       if (!cls) return;
 
@@ -605,6 +943,7 @@
     }
 
     function renderChapters() {
+      if (!curriculumData || !curriculumData.classes) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
       if (!cls) return;
       const sub = cls.subjects.find(s => s.id === currentSubjectId);
@@ -628,8 +967,8 @@
             <div class="chapter-title">${idx + 1}. ${ch.name}</div>
           </div>
           <div class="chapter-actions">
-            <button class="btn-small" onclick="alert('Chapter learning module will open in Phase 11 for: ${ch.name}')">📖 Notes</button>
-            <button class="btn-small ai" onclick="alert('AI Tutor integration will activate in Phase 12 for: ${ch.name}')">⚡ Ask AI</button>
+            <button class="btn-small" onclick="alert('Chapter learning module will open for: ${ch.name}')">📖 Notes</button>
+            <button class="btn-small ai" onclick="alert('AI Tutor integration will activate for: ${ch.name}')">⚡ Ask AI</button>
           </div>
         `;
         container.appendChild(item);
@@ -637,6 +976,7 @@
     }
 
     // Initialize on page load
+    initSession();
     loadCurriculum();
   </script>
 </body>
