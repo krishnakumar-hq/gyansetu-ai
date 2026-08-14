@@ -1,0 +1,135 @@
+{
+  "classes": [
+    {
+      "id": "class-11",
+      "name": "Class 11",
+      "stream": "Science",
+      "subjects": [
+        {
+          "id": "c11-physics",
+          "name": "Physics",
+          "code": "Phy.101",
+          "icon": "⚡",
+          "chapters": [
+            { "id": "p11-01", "name": "Physical Quantities and Vectors", "unit": "Mechanics" },
+            { "id": "p11-02", "name": "Kinematics", "unit": "Mechanics" },
+            { "id": "p11-03", "name": "Dynamics and Newton's Laws", "unit": "Mechanics" },
+            { "id": "p11-04", "name": "Work, Energy and Power", "unit": "Mechanics" },
+            { "id": "p11-05", "name": "Circular Motion and Gravitation", "unit": "Mechanics" },
+            { "id": "p11-06", "name": "Elasticity and Fluid Statics", "unit": "Mechanics" },
+            { "id": "p11-07", "name": "Thermal Expansion and Calorimetry", "unit": "Heat & Thermodynamics" },
+            { "id": "p11-08", "name": "First Law of Thermodynamics", "unit": "Heat & Thermodynamics" },
+            { "id": "p11-09", "name": "Reflection and Refraction of Light", "unit": "Optics" },
+            { "id": "p11-10", "name": "Prisms and Optical Instruments", "unit": "Optics" },
+            { "id": "p11-11", "name": "Electrostatics and Capacitance", "unit": "Electricity & Magnetism" },
+            { "id": "p11-12", "name": "Direct Current Circuits", "unit": "Electricity & Magnetism" },
+            { "id": "p11-13", "name": "Electrons, Photons and Atomic Structure", "unit": "Modern Physics" }
+          ]
+        },
+        {
+          "id": "c11-chemistry",
+          "name": "Chemistry",
+          "code": "Chem.101",
+          "icon": "🧪",
+          "chapters": [
+            { "id": "ch11-01", "name": "Foundation and Stoichiometry", "unit": "Physical Chemistry" },
+            { "id": "ch11-02", "name": "Atomic Structure", "unit": "Physical Chemistry" },
+            { "id": "ch11-03", "name": "Periodic Table and Chemical Bonding", "unit": "Physical Chemistry" },
+            { "id": "ch11-04", "name": "States of Matter (Gases and Liquids)", "unit": "Physical Chemistry" },
+            { "id": "ch11-05", "name": "Chemical Equilibrium", "unit": "Physical Chemistry" },
+            { "id": "ch11-06", "name": "Hydrogen, Oxygen and Ozone", "unit": "Inorganic Chemistry" },
+            { "id": "ch11-07", "name": "Halogens and Carbon Family", "unit": "Inorganic Chemistry" },
+            { "id": "ch11-08", "name": "Fundamentals of Organic Chemistry", "unit": "Organic Chemistry" },
+            { "id": "ch11-09", "name": "Alkanes, Alkenes and Alkynes", "unit": "Organic Chemistry" }
+          ]
+        },
+        {
+          "id": "c11-mathematics",
+          "name": "Mathematics",
+          "code": "Mat.101",
+          "icon": "📐",
+          "chapters": [
+            { "id": "m11-01", "name": "Logic, Sets and Real Numbers", "unit": "Algebra" },
+            { "id": "m11-02", "name": "Functions, Graphs and Quadratic Equations", "unit": "Algebra" },
+            { "id": "m11-03", "name": "Matrices and Determinants", "unit": "Algebra" },
+            { "id": "m11-04", "name": "Sequences, Series and Binomial Theorem", "unit": "Algebra" },
+            { "id": "m11-05", "name": "Trigonometric Equations and Properties of Triangles", "unit": "Trigonometry" },
+            { "id": "m11-06", "name": "Straight Lines and Circles", "unit": "Coordinate Geometry" },
+            { "id": "m11-07", "name": "Limits and Continuity", "unit": "Calculus" },
+            { "id": "m11-08", "name": "Derivatives and Applications", "unit": "Calculus" },
+            { "id": "m11-09", "name": "Indefinite and Definite Integration", "unit": "Calculus" },
+            { "id": "m11-10", "name": "Vectors and Statistics", "unit": "Vectors & Statistics" }
+          ]
+        },
+        {
+          "id": "c11-computer",
+          "name": "Computer Science",
+          "code": "Com.101",
+          "icon": "💻",
+          "chapters": [
+            { "id": "cs11-01", "name": "Computer System and Architecture", "unit": "Hardware & Systems" },
+            { "id": "cs11-02", "name": "Number System and Boolean Logic", "unit": "Digital Logic" },
+            { "id": "cs11-03", "name": "Software and Operating Systems", "unit": "Systems Software" },
+            { "id": "cs11-04", "name": "Application Packages and Web Tech (HTML/CSS)", "unit": "Web Technology" },
+            { "id": "cs11-05", "name": "Fundamentals of Programming in C", "unit": "Programming in C" },
+            { "id": "cs11-06", "name": "Information Security and Cyber Law in Nepal", "unit": "Cyber Ethics" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "class-12",
+      "name": "Class 12",
+      "stream": "Science",
+      "subjects": [
+        {
+          "id": "c12-physics",
+          "name": "Physics",
+          "code": "Phy.201",
+          "icon": "⚡",
+          "chapters": [
+            { "id": "p12-01", "name": "Rotational Dynamics", "unit": "Mechanics" },
+            { "id": "p12-02", "name": "Periodic Motion and Fluid Dynamics", "unit": "Mechanics" },
+            { "id": "p12-03", "name": "Second Law of Thermodynamics", "unit": "Thermodynamics" },
+            { "id": "p12-04", "name": "Wave Optics (Interference & Diffraction)", "unit": "Optics" },
+            { "id": "p12-05", "name": "Current Electricity and Kirchhoff's Laws", "unit": "Electricity & Magnetism" },
+            { "id": "p12-06", "name": "Electromagnetic Induction and AC Circuits", "unit": "Electricity & Magnetism" },
+            { "id": "p12-07", "name": "Photoelectric Effect, X-Rays and Nuclear Physics", "unit": "Modern Physics" },
+            { "id": "p12-08", "name": "Semiconductors and Communication Systems", "unit": "Modern Physics" }
+          ]
+        },
+        {
+          "id": "c12-chemistry",
+          "name": "Chemistry",
+          "code": "Chem.201",
+          "icon": "🧪",
+          "chapters": [
+            { "id": "ch12-01", "name": "Volumetric Analysis and Ionic Equilibrium", "unit": "Physical Chemistry" },
+            { "id": "ch12-02", "name": "Chemical Kinetics and Thermodynamics", "unit": "Physical Chemistry" },
+            { "id": "ch12-03", "name": "Electrochemistry", "unit": "Physical Chemistry" },
+            { "id": "ch12-04", "name": "Transition Elements and Metallurgy", "unit": "Inorganic Chemistry" },
+            { "id": "ch12-05", "name": "Haloalkanes and Haloarenes", "unit": "Organic Chemistry" },
+            { "id": "ch12-06", "name": "Alcohols, Phenols and Ethers", "unit": "Organic Chemistry" },
+            { "id": "ch12-07", "name": "Aldehydes, Ketones and Carboxylic Acids", "unit": "Organic Chemistry" },
+            { "id": "ch12-08", "name": "Nitro Compounds, Amines and Biomolecules", "unit": "Organic Chemistry" }
+          ]
+        },
+        {
+          "id": "c12-mathematics",
+          "name": "Mathematics",
+          "code": "Mat.201",
+          "icon": "📐",
+          "chapters": [
+            { "id": "m12-01", "name": "Matrices, Determinants and Linear Systems", "unit": "Algebra" },
+            { "id": "m12-02", "name": "Inverse Trigonometric & Hyperbolic Functions", "unit": "Calculus" },
+            { "id": "m12-03", "name": "Derivatives, Tangents and Maxima/Minima", "unit": "Calculus" },
+            { "id": "m12-04", "name": "Methods of Integration and Definite Integrals", "unit": "Calculus" },
+            { "id": "m12-05", "name": "Differential Equations and Applications", "unit": "Calculus" },
+            { "id": "m12-06", "name": "Conic Sections (Parabola, Ellipse, Hyperbola)", "unit": "Coordinate Geometry" },
+            { "id": "m12-07", "name": "Three-Dimensional Geometry and Vectors", "unit": "Vectors & Geometry" },
+            { "id": "m12-08", "name": "Probability Distributions and Statistics", "unit": "Statistics" }
+          ]
+        },
+        {
+          "id": "c12-computer",
+          "name
