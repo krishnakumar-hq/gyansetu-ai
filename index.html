@@ -3,114 +3,641 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GyanSetu AI — NEB Class 11 & 12 Study Platform</title>
+  <title>GyanSetu AI — NEB Class 11 & 12 AI Study Companion</title>
   <style>
     :root {
-      --primary: #1e40af;
-      --primary-dark: #1e3a8a;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #0ea5e9;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #475569;
       --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
+
     body {
       background-color: var(--bg);
       color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      line-height: 1.6;
     }
+
+    /* Header & Nav */
     header {
       background: var(--card-bg);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .brand {
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-badge {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+    }
+
+    .brand-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .stream-tag {
+      font-size: 0.75rem;
+      background: #e2e8f0;
+      color: var(--text-muted);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Disclaimer Notice Banner */
+    .disclaimer-banner {
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      margin-bottom: 1.25rem;
+      border: 1px solid #bfdbfe;
+    }
+
+    .hero h1 {
+      font-size: 2.3rem;
+      line-height: 1.25;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+
+    /* Class Selection Switcher */
+    .class-switcher-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .class-switcher {
+      display: inline-flex;
+      background: #e2e8f0;
+      padding: 0.35rem;
+      border-radius: 10px;
+      gap: 0.35rem;
+    }
+
+    .class-btn {
+      border: none;
+      background: transparent;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .class-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Section Headings */
+    .section-head {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-head h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .section-head p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Subject Grid */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .subject-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .subject-card:hover, .subject-card.selected {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .subject-card.selected {
+      background: #f0f7ff;
+      border-width: 2px;
+    }
+
+    .subject-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .subject-icon {
+      font-size: 1.75rem;
+    }
+
+    .subject-info h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .subject-code {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .subject-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Chapter List Drawer / Viewer */
+    .curriculum-viewer {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 3.5rem;
+    }
+
+    .viewer-header {
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .viewer-header h3 {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--primary);
     }
-    .badge {
-      font-size: 0.75rem;
-      background: #e0e7ff;
-      color: #3730a3;
-      padding: 0.25rem 0.5rem;
-      border-radius: 9999px;
+
+    .chapters-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .chapter-title {
+      font-size: 0.95rem;
       font-weight: 600;
+      color: var(--text-main);
     }
-    main {
-      flex: 1;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      text-align: center;
+
+    .chapter-unit {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .hero {
+
+    .chapter-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-small {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-main);
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.15s ease;
+    }
+
+    .btn-small:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-small.ai {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-small.ai:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Pillars / Learning Modes */
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .mode-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2.5rem 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    }
-    h1 {
-      font-size: 2rem;
-      color: var(--text-main);
-      margin-bottom: 0.75rem;
-    }
-    p.tagline {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-    .disclaimer {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      background: #f1f5f9;
-      padding: 0.75rem;
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 1rem;
-    }
-    footer {
-      text-align: center;
+      border-radius: var(--radius);
       padding: 1.5rem;
-      font-size: 0.85rem;
+      box-shadow: var(--shadow);
+    }
+
+    .mode-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .mode-box h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .mode-box p {
+      font-size: 0.88rem;
       color: var(--text-muted);
-      border-top: 1px solid var(--border);
+    }
+
+    /* Footer */
+    footer {
       background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.25rem 2rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+      .chapters-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="brand">GyanSetu AI</div>
-    <span class="badge">MVP Setup</span>
-  </header>
+  <!-- Disclaimer Banner -->
+  <div class="disclaimer-banner">
+    📢 <strong>Notice:</strong> GyanSetu AI is an independent educational platform built for NEB students. Not affiliated with NEB or the Government of Nepal.
+  </div>
 
-  <main>
-    <div class="hero">
-      <h1>GyanSetu AI</h1>
-      <p class="tagline">Curriculum-Aligned AI Study Companion for NEB Class 11 & 12</p>
-      <div class="disclaimer">
-        Notice: Independent educational platform for NEB students. Not affiliated with the National Examinations Board (NEB) or the Government of Nepal.
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-group">
+        <div class="logo-badge">GS</div>
+        <div class="brand-name">GyanSetu AI</div>
+        <span class="stream-tag">Science Stream</span>
       </div>
     </div>
-  </main>
+  </header>
 
+  <!-- Main Content Area -->
+  <div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-pill">✨ NEB Curriculum-Aligned AI Study Engine</div>
+      <h1>Master NEB Class 11 & 12 Science with <span>Targeted AI Tutoring</span></h1>
+      <p>Concept breakdowns, step-by-step numerical calculations, past exam answer formulations, and chapter quizzes aligned specifically with the NEB syllabus.</p>
+
+      <!-- Class Switcher -->
+      <div class="class-switcher-wrap">
+        <div class="class-switcher">
+          <button class="class-btn active" id="btn-c11" onclick="selectClass('class-11')">Class 11</button>
+          <button class="class-btn" id="btn-c12" onclick="selectClass('class-12')">Class 12</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section>
+      <div class="section-head">
+        <div>
+          <h2 id="subjects-heading">Class 11 Subjects</h2>
+          <p>Select a subject to explore units, chapters, and study modules.</p>
+        </div>
+      </div>
+      <div class="subject-grid" id="subject-grid">
+        <!-- Dynamically rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Chapter Explorer Section -->
+    <section class="curriculum-viewer" id="curriculum-viewer">
+      <div class="viewer-header">
+        <div>
+          <h3 id="viewer-subject-title">Loading Chapters...</h3>
+          <span id="viewer-subject-code" style="font-size: 0.8rem; color: var(--text-muted);"></span>
+        </div>
+        <span id="chapter-count" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);"></span>
+      </div>
+      <div class="chapters-container" id="chapters-container">
+        <!-- Dynamically loaded from curriculum.json -->
+      </div>
+    </section>
+
+    <!-- Core Study Pillars Section -->
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Structured NEB Study Modes</h2>
+          <p>Designed specifically to prepare you for NEB board exams.</p>
+        </div>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-box">
+          <div class="mode-icon">💡</div>
+          <h4>Concept Explanations</h4>
+          <p>Clear, simplified breakdowns in English and simple Nepali-English to solidify fundamentals.</p>
+        </div>
+        <div class="mode-box">
+          <div class="mode-icon">🔢</div>
+          <h4>Numerical Problem Solver</h4>
+          <p>Structured 7-step method: Given, Required, Formula, Substitution, Calculation, Answer, and Explanation.</p>
+        </div>
+        <div class="mode-box">
+          <div class="mode-icon">📝</div>
+          <h4>Exam-Style Formatter</h4>
+          <p>Model answer structures tailored to NEB 2-mark short questions and 4/8-mark comprehensive questions.</p>
+        </div>
+        <div class="mode-box">
+          <div class="mode-icon">🎯</div>
+          <h4>Chapter Quizzes</h4>
+          <p>Targeted MCQs and rapid concept tests to identify weak topics before board exams.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
   <footer>
-    &copy; 2026 GyanSetu AI — Designed for NEB Science Students (Physics, Chemistry, Maths, Computer Science).
+    <p><strong>GyanSetu AI</strong> — Independent Educational Study Platform for NEB Class 11 & 12.</p>
+    <p>Curriculum coverage: Physics, Chemistry, Mathematics, Computer Science (Science Stream).</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8;">&copy; 2026 GyanSetu AI. All rights reserved.</p>
   </footer>
 
+  <!-- Application Script -->
+  <script>
+    let curriculumData = null;
+    let currentClassId = 'class-11';
+    let currentSubjectId = 'c11-physics';
+
+    // Fallback data in case of direct file inspection
+    const defaultData = {
+      "classes": [
+        {
+          "id": "class-11",
+          "name": "Class 11",
+          "subjects": [
+            { "id": "c11-physics", "name": "Physics", "code": "Phy.101", "icon": "⚡" },
+            { "id": "c11-chemistry", "name": "Chemistry", "code": "Chem.101", "icon": "🧪" },
+            { "id": "c11-mathematics", "name": "Mathematics", "code": "Mat.101", "icon": "📐" },
+            { "id": "c11-computer", "name": "Computer Science", "code": "Com.101", "icon": "💻" }
+          ]
+        },
+        {
+          "id": "class-12",
+          "name": "Class 12",
+          "subjects": [
+            { "id": "c12-physics", "name": "Physics", "code": "Phy.201", "icon": "⚡" },
+            { "id": "c12-chemistry", "name": "Chemistry", "code": "Chem.201", "icon": "🧪" },
+            { "id": "c12-mathematics", "name": "Mathematics", "code": "Mat.201", "icon": "📐" },
+            { "id": "c12-computer", "name": "Computer Science", "code": "Com.201", "icon": "💻" }
+          ]
+        }
+      ]
+    };
+
+    async function loadCurriculum() {
+      try {
+        const res = await fetch('data/curriculum.json');
+        if (res.ok) {
+          curriculumData = await res.json();
+        } else {
+          curriculumData = defaultData;
+        }
+      } catch (err) {
+        curriculumData = defaultData;
+      }
+      renderSubjects();
+      renderChapters();
+    }
+
+    function selectClass(classId) {
+      currentClassId = classId;
+      document.getElementById('btn-c11').classList.toggle('active', classId === 'class-11');
+      document.getElementById('btn-c12').classList.toggle('active', classId === 'class-12');
+      document.getElementById('subjects-heading').textContent = classId === 'class-11' ? 'Class 11 Subjects' : 'Class 12 Subjects';
+
+      const cls = curriculumData.classes.find(c => c.id === classId);
+      if (cls && cls.subjects.length > 0) {
+        currentSubjectId = cls.subjects[0].id;
+      }
+      renderSubjects();
+      renderChapters();
+    }
+
+    function selectSubject(subjectId) {
+      currentSubjectId = subjectId;
+      renderSubjects();
+      renderChapters();
+    }
+
+    function renderSubjects() {
+      const cls = curriculumData.classes.find(c => c.id === currentClassId);
+      if (!cls) return;
+
+      const grid = document.getElementById('subject-grid');
+      grid.innerHTML = '';
+
+      cls.subjects.forEach(sub => {
+        const isSelected = sub.id === currentSubjectId;
+        const count = sub.chapters ? sub.chapters.length : 0;
+        const card = document.createElement('div');
+        card.className = `subject-card ${isSelected ? 'selected' : ''}`;
+        card.onclick = () => selectSubject(sub.id);
+        card.innerHTML = `
+          <div>
+            <div class="subject-header">
+              <span class="subject-icon">${sub.icon || '📚'}</span>
+              <div class="subject-info">
+                <h3>${sub.name}</h3>
+                <span class="subject-code">${sub.code || ''}</span>
+              </div>
+            </div>
+          </div>
+          <div class="subject-meta">
+            <span>NEB Curriculum</span>
+            <span>${count > 0 ? count + ' Chapters' : 'Active'}</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderChapters() {
+      const cls = curriculumData.classes.find(c => c.id === currentClassId);
+      if (!cls) return;
+      const sub = cls.subjects.find(s => s.id === currentSubjectId);
+      if (!sub) return;
+
+      document.getElementById('viewer-subject-title').textContent = `${cls.name} — ${sub.name}`;
+      document.getElementById('viewer-subject-code').textContent = `Official NEB Subject Code: ${sub.code || 'N/A'}`;
+      
+      const container = document.getElementById('chapters-container');
+      container.innerHTML = '';
+
+      const chapters = sub.chapters || [];
+      document.getElementById('chapter-count').textContent = `${chapters.length} Chapters in Syllabus`;
+
+      chapters.forEach((ch, idx) => {
+        const item = document.createElement('div');
+        item.className = 'chapter-item';
+        item.innerHTML = `
+          <div>
+            <span class="chapter-unit">${ch.unit || 'Core Unit'}</span>
+            <div class="chapter-title">${idx + 1}. ${ch.name}</div>
+          </div>
+          <div class="chapter-actions">
+            <button class="btn-small" onclick="alert('Chapter learning module will open in Phase 11 for: ${ch.name}')">📖 Notes</button>
+            <button class="btn-small ai" onclick="alert('AI Tutor integration will activate in Phase 12 for: ${ch.name}')">⚡ Ask AI</button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // Initialize on page load
+    loadCurriculum();
+  </script>
 </body>
 </html>
