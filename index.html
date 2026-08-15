@@ -12,12 +12,12 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- KaTeX for Math & Science Formulas -->
+  <!-- KaTeX for Formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   
-  <!-- Marked.js for Clean Markdown Typography -->
+  <!-- Marked.js -->
   <script src="https://cdn.jsdelivr.net/npm/marked@13.0.2/marked.min.js"></script>
 
   <style>
@@ -3080,13 +3080,6 @@
     }
 
     function renderChapters() {
-      if          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function renderChapters() {
       if (!curriculumData || !curriculumData.classes) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
       if (!cls) return;
@@ -3112,6 +3105,10 @@
             <div class="chapter-header-row">
               <span class="chapter-unit">${ch.unit || 'Core Unit'}</span>
               <button class="status-check-btn ${isMastered ? 'done' : ''}" onclick="toggleChapterMastery('${ch.id}')">
+                ${isMastered ? '✓ Mastered' : '○ Mark Mastered'}
+              </button>
+            </div>
+            <div">
                 ${isMastered ? '✓ Mastered' : '○ Mark Mastered'}
               </button>
             </div>
