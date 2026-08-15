@@ -2,7 +2,6 @@
  * GyanSetu AI - Cloudflare Worker Backend
  * Provides secure server-side API endpoints & Gemini AI proxy
  */
-
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
