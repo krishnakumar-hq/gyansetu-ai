@@ -39,62 +39,73 @@ Guidelines:
 4. For Nepali/bilingual requests, provide natural Nepali-English explanations easy for Nepali high school students.
 5. Maintain an encouraging academic tone. Do not claim official government affiliation.`;
 
-        // 1. Auto-discover the active model for this API key
-        let targetModel = "gemini-2.0-flash";
-        try {
-          const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
-          if (listRes.ok) {
-            const listData = await listRes.json();
-            if (listData.models && Array.isArray(listData.models)) {
-              const active = listData.models.find(m => 
-                m.supportedGenerationMethods && 
-                m.supportedGenerationMethods.includes("generateContent") &&
-                (m.name.includes("flash") || m.name.includes("pro") || m.name.includes("gemini"))
-              );
-              if (active && active.name) {
-                targetModel = active.name.replace("models/", "");
+        const fullPrompt = `${systemPrompt}\n\nStudent Question:\n${prompt}`;
+
+        // 1. Google AI Studio Interactions API (Latest 2026 standard)
+        const models = ["gemini-3.6-flash", "gemini-3-flash-preview", "gemini-2.5-flash-lite", "gemini-3-pro-preview"];
+        let finalReply = null;
+        let lastErrorText = "";
+
+        for (const model of models) {
+          try {
+            const intRes = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": apiKey
+              },
+              body: JSON.stringify({
+                model: model,
+                input: fullPrompt
+              })
+            });
+
+            if (intRes.ok) {
+              const intData = await intRes.json();
+              const textOut = intData.output_text || 
+                              (intData.outputs && intData.outputs.find(o => o.type === "text" || o.text)?.text) || 
+                              (intData.outputs && intData.outputs[0]?.text);
+              if (textOut) {
+                finalReply = textOut;
+                break;
               }
+            } else {
+              lastErrorText = await intRes.text();
             }
+          } catch (e) {
+            lastErrorText = e.message;
           }
-        } catch (e) {
-          // Fallback to default
         }
 
-        // 2. Execute content generation
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey}`;
-
-        const geminiRes = await fetch(apiUrl, {
-          method: "POST",
-          headers: { 
-            "Content-Type": "application/json",
-            "x-goog-api-key": apiKey
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: "user",
-                parts: [{ text: `${systemPrompt}\n\nStudent Question:\n${prompt}` }]
+        // 2. Fallback to generateContent API if needed
+        if (!finalReply) {
+          const legacyModels = ["gemini-2.0-flash", "gemini-1.5-flash-8b", "gemini-1.5-pro"];
+          for (const gModel of legacyModels) {
+            try {
+              const genRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${gModel}:generateContent?key=${apiKey}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  contents: [{ role: "user", parts: [{ text: fullPrompt }] }]
+                })
+              });
+              if (genRes.ok) {
+                const gData = await genRes.json();
+                finalReply = gData.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (finalReply) break;
               }
-            ],
-            generationConfig: {
-              temperature: 0.4,
-              maxOutputTokens: 1024
-            }
-          })
-        });
+            } catch (e) {}
+          }
+        }
 
-        if (!geminiRes.ok) {
-          const errText = await geminiRes.text();
-          return new Response(JSON.stringify({ error: `Gemini API error on model [${targetModel}]`, details: errText }), {
+        if (!finalReply) {
+          return new Response(JSON.stringify({ error: "Unable to generate AI answer", details: lastErrorText }), {
             status: 502,
             headers: { "Content-Type": "application/json" }
           });
         }
 
-        const data = await geminiRes.json();
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
-
-        return new Response(JSON.stringify({ reply }), {
+        return new Response(JSON.stringify({ reply: finalReply }), {
           headers: { "Content-Type": "application/json" }
         });
 
