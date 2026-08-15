@@ -713,6 +713,11 @@
       background: var(--primary-dark);
     }
 
+    .btn-ai-submit:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
     .ai-response-container {
       background: #ffffff;
       border: 1px solid var(--border);
@@ -1421,7 +1426,7 @@
           <div class="ai-input-row">
             <textarea id="ai-user-prompt" class="ai-textarea" placeholder="Type your specific question or numerical problem here..."></textarea>
             <button class="btn-ai-submit" id="btn-ask-gemini" onclick="submitAiQuestion()">
-              <span>Ask AI</span> ⚡
+              <span id="ai-btn-text">Ask AI</span> ⚡
             </button>
           </div>
 
@@ -1452,7 +1457,6 @@
         </div>
       </div>
 
-      <!-- Official Marks Distribution Table -->
       <div class="revision-matrix-card">
         <h3 style="color: var(--primary); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">📊 Official NEB Science Marks Distribution</h3>
         <p style="font-size: 0.88rem; color: var(--text-muted);">Total Theory: 75 Marks | Practical: 25 Marks per subject</p>
@@ -1495,7 +1499,6 @@
         </table>
       </div>
 
-      <!-- 30-Day Checklist Timeline -->
       <div class="section-head">
         <div>
           <h2>30-Day Master Revision Roadmap</h2>
@@ -1537,7 +1540,6 @@
         </div>
       </div>
 
-      <!-- Examiner Tips Card -->
       <div class="bilingual-box" style="margin-bottom: 3rem;">
         <h3>💡 Top 5 NEB Board Exam Marking Secrets (परीक्षार्थीहरूका लागि महत्त्वपूर्ण सुझावहरू):</h3>
         <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.8;">
@@ -1653,6 +1655,7 @@
     let currentSubjectId = 'c11-physics';
     let currentLanguage = 'bilingual';
     let activeChapter = null;
+    let isAiCooldownActive = false;
 
     // Mock Exam Questions
     const mockQuestions = [
@@ -1865,13 +1868,37 @@
       updateDashboard();
     }
 
-    // AI Doubt Solver Functions
+    // AI Doubt Solver Functions with Cooldown Protection
     function setAiPrompt(text) {
       document.getElementById('ai-user-prompt').value = text;
       document.getElementById('ai-user-prompt').focus();
     }
 
+    function startButtonCooldown() {
+      isAiCooldownActive = true;
+      const btn = document.getElementById('btn-ask-gemini');
+      const textSpan = document.getElementById('ai-btn-text');
+      btn.disabled = true;
+
+      let countdown = 10;
+      textSpan.textContent = `Wait ${countdown}s`;
+
+      const interval = setInterval(() => {
+        countdown--;
+        if (countdown > 0) {
+          textSpan.textContent = `Wait ${countdown}s`;
+        } else {
+          clearInterval(interval);
+          isAiCooldownActive = false;
+          btn.disabled = false;
+          textSpan.textContent = 'Ask AI';
+        }
+      }, 1000);
+    }
+
     async function submitAiQuestion() {
+      if (isAiCooldownActive) return;
+
       const promptInput = document.getElementById('ai-user-prompt');
       const prompt = promptInput.value.trim();
       if (!prompt) {
@@ -1911,10 +1938,15 @@
 
         const data = await res.json();
         loadingElem.style.display = 'none';
-        submitBtn.disabled = false;
         responseBox.style.display = 'block';
 
         if (res.ok && data.reply) {
+          // Decrement daily quota count
+          let count = parseInt(localStorage.getItem('gyansetu_ai_count') || '0', 10) + 1;
+          localStorage.setItem('gyansetu_ai_count', count.toString());
+          updateDashboard();
+
+          // Render Markdown & Math
           let parsedHtml = marked.parse(data.reply);
           responseBox.innerHTML = parsedHtml;
 
@@ -1928,13 +1960,14 @@
             });
           }
         } else {
-          responseBox.innerHTML = `<div style="color: var(--error); font-weight: 600;">⚠️ Error: ${data.error || 'Failed to generate response.'}</div><pre style="font-size:0.8rem; margin-top:0.5rem;">${data.details || ''}</pre>`;
+          responseBox.innerHTML = `<div style="color: var(--error); font-weight: 600;">${data.error || 'Failed to generate response.'}</div><pre style="font-size:0.8rem; margin-top:0.5rem;">${data.details || ''}</pre>`;
         }
       } catch (err) {
         loadingElem.style.display = 'none';
-        submitBtn.disabled = false;
         responseBox.style.display = 'block';
         responseBox.innerHTML = `<div style="color: var(--error);">⚠️ Connection error: ${err.message}</div>`;
+      } finally {
+        startButtonCooldown();
       }
     }
 
@@ -2174,6 +2207,11 @@
       } else {
         document.getElementById('stat-accuracy').textContent = '--';
       }
+
+      // Update Daily AI Quota counter (e.g. 20 daily free queries)
+      const usedQueries = parseInt(localStorage.getItem('gyansetu_ai_count') || '0', 10);
+      const remaining = Math.max(0, 20 - usedQueries);
+      document.getElementById('stat-ai-quota').textContent = `${remaining} / 20`;
 
       if (curriculumData && curriculumData.classes) {
         const cls = curriculumData.classes.find(c => c.id === currentClassId);
