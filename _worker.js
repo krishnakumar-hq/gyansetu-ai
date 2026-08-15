@@ -41,12 +41,18 @@ Guidelines:
 
         const fullPrompt = `${systemPrompt}\n\nStudent Question:\n${prompt}`;
 
-        // 1. Google AI Studio Interactions API (Latest 2026 standard)
-        const models = ["gemini-3.6-flash", "gemini-3-flash-preview", "gemini-2.5-flash-lite", "gemini-3-pro-preview"];
+        // Production models for Interactions API
+        const activeModels = [
+          "gemini-3.5-flash",
+          "gemini-3.5-flash-lite",
+          "gemini-3.6-flash",
+          "gemini-3-flash"
+        ];
+
         let finalReply = null;
         let lastErrorText = "";
 
-        for (const model of models) {
+        for (const model of activeModels) {
           try {
             const intRes = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
               method: "POST",
@@ -77,29 +83,8 @@ Guidelines:
           }
         }
 
-        // 2. Fallback to generateContent API if needed
         if (!finalReply) {
-          const legacyModels = ["gemini-2.0-flash", "gemini-1.5-flash-8b", "gemini-1.5-pro"];
-          for (const gModel of legacyModels) {
-            try {
-              const genRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${gModel}:generateContent?key=${apiKey}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  contents: [{ role: "user", parts: [{ text: fullPrompt }] }]
-                })
-              });
-              if (genRes.ok) {
-                const gData = await genRes.json();
-                finalReply = gData.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (finalReply) break;
-              }
-            } catch (e) {}
-          }
-        }
-
-        if (!finalReply) {
-          return new Response(JSON.stringify({ error: "Unable to generate AI answer", details: lastErrorText }), {
+          return new Response(JSON.stringify({ error: "Gemini API error", details: lastErrorText }), {
             status: 502,
             headers: { "Content-Type": "application/json" }
           });
