@@ -118,6 +118,18 @@
       background: var(--primary-light);
     }
 
+    .lang-switcher-select {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-main);
+      outline: none;
+      cursor: pointer;
+    }
+
     .btn-auth {
       background: var(--primary);
       color: #ffffff;
@@ -608,6 +620,21 @@
       margin-top: 1rem;
       font-size: 0.9rem;
       color: #713f12;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .glossary-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
     }
 
     /* AI DOUBT SOLVER & FORMATTED OUTPUT */
@@ -1197,8 +1224,14 @@
         <button class="nav-btn" id="nav-btn-dash" onclick="showView('dashboard')">📊 My Dashboard</button>
       </div>
 
-      <!-- Auth Actions -->
+      <!-- Language Selector & Auth Actions -->
       <div class="auth-actions">
+        <select class="lang-switcher-select" id="global-lang-switcher" onchange="changeLanguage(this.value)">
+          <option value="bilingual">🇳🇵 Nepali-English</option>
+          <option value="english">🇬🇧 English</option>
+          <option value="pure_nepali">🇳🇵 शुद्ध नेपाली</option>
+        </select>
+
         <button class="btn-auth" id="btn-open-login" onclick="openAuthModal('login')">Sign In</button>
         
         <div class="user-profile-badge" id="user-profile-badge">
@@ -1343,7 +1376,15 @@
         </div>
         <div class="bilingual-box">
           💡 <strong>Nepali-English Concept Note (नेपाली-English सारांश):</strong>
-          <p id="study-bilingual-note" style="margin-top: 0.35rem; margin-bottom: 0;">Loading bilingual explanation...</p>
+          <p id="study-bilingual-note" style="margin-top: 0.35rem; margin-bottom: 0.75rem;">Loading bilingual explanation...</p>
+
+          <strong style="font-size: 0.82rem; color: #854d0e;">📖 Key Scientific Glossary (पारिभाषिक शब्दावली):</strong>
+          <div class="glossary-grid" id="glossary-container">
+            <div class="glossary-item"><strong>Vector:</strong> सदिश राशि (Magnitude + Direction)</div>
+            <div class="glossary-item"><strong>Displacement:</strong> विस्थापन (Shortest distance)</div>
+            <div class="glossary-item"><strong>Velocity:</strong> वेग (Rate of displacement)</div>
+            <div class="glossary-item"><strong>Acceleration:</strong> प्रवेग (Rate of change of velocity)</div>
+          </div>
         </div>
       </div>
 
@@ -1610,6 +1651,7 @@
     let notesData = {};
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-physics';
+    let currentLanguage = 'bilingual';
     let activeChapter = null;
 
     // Mock Exam Questions
@@ -1647,6 +1689,19 @@
     let userExamAnswers = {};
     let examTimeRemaining = 600;
     let examTimerInterval = null;
+
+    // Language Change Handler
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('gyansetu_lang', lang);
+    }
+
+    function initLanguage() {
+      const savedLang = localStorage.getItem('gyansetu_lang') || 'bilingual';
+      currentLanguage = savedLang;
+      const selectElem = document.getElementById('global-lang-switcher');
+      if (selectElem) selectElem.value = savedLang;
+    }
 
     // View Switching
     function showView(viewName) {
@@ -1833,13 +1888,19 @@
       submitBtn.disabled = true;
 
       try {
+        const langMap = {
+          'bilingual': 'English & Simple Nepali (Nepali-English mix for high-school students)',
+          'english': 'English medium standard',
+          'pure_nepali': 'Pure Nepali (शुद्ध नेपाली)'
+        };
+
         const payload = {
           prompt: prompt,
           classId: currentClassId,
           subjectName: activeChapter ? activeChapter.subjectName : 'Science',
           chapterName: activeChapter ? activeChapter.name : 'General',
           mode: 'Exam & Concept Tutor',
-          language: 'English & Simple Nepali'
+          language: langMap[currentLanguage] || 'English & Simple Nepali'
         };
 
         const res = await fetch('/api/chat', {
@@ -2255,6 +2316,7 @@
     }
 
     // Initialize
+    initLanguage();
     initSession();
     loadData();
   </script>
