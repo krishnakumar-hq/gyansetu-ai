@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "title": "Grade 11 Basic Mathematics Complete Solutions Manual",
+    "source_document": "A Complete Manual to Basic Mathematics Grade XI (Sukunda Pustak Bhawan, Kathmandu)",
+    "authors": "Kamal Kant Marsyani, Krishan Datt Pant, Sushil Aryal"
+  },
+  "chapters": [
+    {
+      "id": "ch01",
+      "number": 1,
+      "name": "Logic, Sets and Real Number System",
+      "unit": "Unit 1: Algebra",
+      "exercises": [
+        {
+          "id": "ex1_1",
+          "name": "Exercise 1.1",
+          "topic": "Logic",
+          "source_page": "1-8",
+          "questions": [
+            {
+              "id": "ex1_1_q1",
+              "q_num": "1",
+              "text": "Which of the following sentences are the statements? Find the truth values of those sentences which are statements:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?",
+              "source_solution": "a) The given sentence is a declarative sentence. So, it is a statement and its truth value is True (T).\nb) The given sentence is a declarative sentence. So, it is a statement and its truth value is False (F).\nc) The given sentence is a declarative sentence. So, it is a statement and its truth value is True (T).\nd) The given sentence is an interrogative sentence. So, it is not a statement.\ne) The given sentence is an imperative sentence. So, it is not a statement.\nf) The given sentence is an exclamatory sentence. So, it is not a statement."
+            },
+            {
+              "id": "ex1_1_q2",
+              "q_num": "2",
+              "text": "Let $p$: demand is increasing and $q$: supply is decreasing. Express each of the following statements into words:\na) $\\sim p$\nb) $\\sim q$\nc) $p \\land q$\nd) $p \\lor q$\ne) $\\sim p \\land q$\nf) $p \\lor \\sim q$\ng) $\\sim p \\land \\sim q$\nh) $\\sim(p \\land q)$",
+              "source_solution": "a) $\\sim p$: Demand is not increasing.\nb) $\\sim q$: Supply is not decreasing.\nc) $p \\land q$: Demand is increasing and supply is decreasing.\nd) $p \\lor q$: Demand is increasing or supply is decreasing.\ne) $\\sim p \\land q$: Demand is not increasing and supply is decreasing.\nf) $p \\lor \\sim q$: Demand is increasing or supply is not decreasing.\ng) $\\sim p \\land \\sim q$: Neither demand is increasing nor supply is decreasing.\nh) $\\sim(p \\land q)$: It is false that demand is increasing and supply is decreasing."
+            },
+            {
+              "id": "ex1_1_q3",
+              "q_num": "3",
+              "text": "Express each of the following statements into symbolic form:\na) $p$: temperature is increasing, $q$: length is expanding.\nTemperature is increasing and length is expanding.\nb) $p$: pressure is decreasing, $q$: volume is increasing.\nPressure is decreasing or volume is increasing.\nc) $p$: demand is increasing, $q$: price is increasing.\nNeither demand is increasing nor price is increasing.\nd) $p$: Pradeep is bold, $q$: Sandeep is handsome.\nIt is false that Pradeep is bold or Sandeep is handsome.",
+              "source_solution": "a) $p \\land q$\nb) $p \\lor q$\nc) $\\sim p \\land \\sim q$\nd) $\\sim(p \\lor q)$"
+            },
+            {
+              "id": "ex1_1_q4_a",
+              "q_num": "4. a)",
+              "text": "Construct truth table for: $(\\sim p) \\land q$",
+              "source_solution": "Truth table for $(\\sim p) \\land q$:\n\n$$\\begin{array}{|c|c|c|c|}\n\\hline\np & q & \\sim p & (\\sim p) \\land q \\\\\n\\hline\nT & T & F & F \\\\\nT & F & F & F \\\\\nF & T & T & T \\\\\nF & F & T & F \\\\\n\\hline\n\\end{array}$$"
+            },
+            {
+              "id": "ex1_1_q4_b",
+              "q_num": "4. b)",
+              "text": "Construct truth table for: $(\\sim p) \\lor (\\sim q)$",
+              "source_solution": "Truth table for $(\\sim p) \\lor (\\sim q)$:\n\n$$\\begin{array}{|c|c|c|c|c|}\n\\hline\np & q & \\sim p & \\sim q & (\\sim p) \\lor (\\sim q) \\\\\n\\hline\nT & T & F & F & F \\\\\nT & F & F & T & T \\\\\nF & T & T & F & T \\\\\nF & F & T & T & T \\\\\n\\hline\n\\end{array}$$"
+            },
+            {
+              "id": "ex1_1_q4_e",
+              "q_num": "4. e)",
+              "text": "Construct truth table for: $(p \\implies q) \\land (q \\implies p)$",
+              "source_solution": "Truth table for $(p \\implies q) \\land (q \\implies p)$:\n\n$$\\begin{array}{|c|c|c|c|c|}\n\\hline\np & q & p \\implies q & q \\implies p & (p \\implies q) \\land (q \\implies p) \\\\\n\\hline\nT & T & T & T & T \\\\\nT & F & F & T & F \\\\\nF & T & T & F & F \\\\\nF & F & T & T & T \\\\\n\\hline\n\\end{array}$$"
+            },
+            {
+              "id": "ex1_1_q6_a",
+              "q_num": "6. a)",
+              "text": "If $p$ and $q$ are any two statements, prove that $p \\land (\\sim p) \\equiv c$ where $c$ is a contradiction.",
+              "source_solution": "Constructing the truth table for $p \\land (\\sim p)$:\n\n$$\\begin{array}{|c|c|c|c|}\n\\hline\np & \\sim p & p \\land (\\sim p) & c \\\\\n\\hline\nT & F & F & F \\\\\nF & T & F & F \\\\\n\\hline\n\\end{array}$$\n\nFrom the above truth table, since all truth values in the column $p \\land (\\sim p)$ are $F$, $p \\land (\\sim p) \\equiv c$."
+            },
+            {
+              "id": "ex1_1_q10_a",
+              "q_num": "10. a)",
+              "text": "If $p$ and $q$ be the statements. Prove that $p \\lor (\\sim p \\land q)$ is a tautology.",
+              "source_solution": "The truth table for $p \\lor (\\sim p \\land q)$ is:\n\n$$\\begin{array}{|c|c|c|c|c|}\n\\hline\np & q & \\sim p & \\sim p \\land q & p \\lor (\\sim p \\land q) \\\\\n\\hline\nT & T & F & F & T \\\\\nT & F & F & F & T \\\\\nF & T & T & T & T \\\\\nF & F & T & F & T \\\\\n\\hline\n\\end{array}$$\n\nSince the truth values of the last column are all $T$, the statement $p \\lor (\\sim p \\land q)$ is a tautology."
+            }
+          ]
+        },
+        {
+          "id": "ex1_2",
+          "name": "Exercise 1.2",
+          "topic": "Sets",
+          "source_page": "9-12",
+          "questions": [
+            {
+              "id": "ex1_2_q1_a",
+              "q_num": "1. a)",
+              "text": "If $A \\cap B = \\phi$, prove that $A \\subseteq \\overline{B}$.",
+              "source_solution": "Given, $A \\cap B = \\phi$, so $A$ and $B$ are disjoint sets.\nLet $x$ be an arbitrary element of $A$. Then,\n$$x \\in A \\implies x \\notin B \\quad [\\because A \\cap B = \\phi]$$\n$$\\implies x \\in \\overline{B}$$\nHence, $A \\subseteq \\overline{B}$."
+            },
+            {
+              "id": "ex1_2_q2_b",
+              "q_num": "2. b)",
+              "text": "If $A \\subseteq B$, prove that $A \\cup B = B$.",
+              "source_solution": "Let $x$ be any arbitrary element of $A \\cup B$.\nThen, $A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\}$\n$$= \\{x : x \\in B \\text{ or } x \\in B\\} \\quad [\\because A \\subseteq B]$$\n$$= \\{x : x \\in B\\} = B$$\nHence, $A \\cup B = B$."
+            },
+            {
+              "id": "ex1_2_q4_a",
+              "q_num": "4. a)",
+              "text": "If $A, B$ and $C$ are the subsets of a universal set $U$, prove that:\n$$A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C)$$",
+              "source_solution": "Let $x$ be any arbitrary element of $A \\cup (B \\cap C)$.\nThen,\n$$x \\in A \\cup (B \\cap C) \\iff x \\in A \\text{ or } (x \\in B \\cap C)$$\n$$\\iff x \\in A \\text{ or } (x \\in B \\text{ and } x \\in C)$$\n$$\\iff (x \\in A \\text{ or } x \\in B) \\text{ and } (x \\in A \\text{ or } x \\in C)$$\n$$\\iff (x \\in A \\cup B) \\text{ and } (x \\in A \\cup C)$$\n$$\\iff x \\in (A \\cup B) \\cap (A \\cup C)$$\n$$\\therefore A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C)$$"
+            },
+            {
+              "id": "ex1_2_q5_a",
+              "q_num": "5. a)",
+              "text": "If $A, B$ and $C$ are subsets of $U$, prove De Morgan's law: $(A \\cup B)' = A' \\cap B'$.",
+              "source_solution": "Let $x$ be an arbitrary element of $(A \\cup B)'$.\nThen,\n$$x \\in $(A \\cup B)' \\iff x \\notin (A \\cup B)$$\n$$\\iff x \\notin A \\text{ and } x \\notin B$$\n$$\\iff x \\in A' \\text{ and } x \\in B'$$\n$$\\iff x \\in A' \\cap B'$$\n$$\\therefore (A \\cup B)' = A' \\cap B'$$"
+            }
+          ]
+        },
+        {
+          "id": "ex1_3",
+          "name": "Exercise 1.3",
+          "topic": "Real Number System",
+          "source_page": "13-18",
+          "questions": [
+            {
+              "id": "ex1_3_q1",
+              "q_num": "1",
+              "text": "Evaluate:\na) $|-2| + 4$\nb) $|-5| + |-2| - 3$\nc) $2 + |-3| - |-5|$\nd) $|3 - |-5||$",
+              "source_solution": "a) $|-2| + 4 = 2 + 4 = 6$\nb) $|-5| + |-2| - 3 = 5 + 2 - 3 = 4$\nc) $2 + |-3| - |-5| = 2 + 3 - 5 = 0$\nd) $|3 - |-5|| = |3 - 5| = |-2| = 2$"
+            },
+            {
+              "id": "ex1_3_q3_e",
+              "q_num": "3. e)",
+              "text": "Solve the inequality: $x^2 - 2x > 0$",
+              "source_solution": "The corresponding equation of the inequality $x^2 - 2x > 0$ is:\n$$x^2 - 2x = 0 \\implies x(x - 2) = 0 \\implies x = 0, 2$$\n\nTesting the sign of $x(x - 2)$ across real line intervals:\n$$\\begin{array}{|c|c|c|c|}\n\\hline\n\\text{Intervals} & x & x - 2 & x(x - 2) \\\\\n\\hline\n(-\\infty, 0) & - & - & + \\\\\n(0, 2) & + & - & - \\\\\n(2, \\infty) & + & + & + \\\\\n\\hline\n\\end{array}$$\n\nHence, the required solution set is $x \\in (-\\infty, 0) \\cup (2, \\infty)$."
+            },
+            {
+              "id": "ex1_3_q7_a",
+              "q_num": "7. a)",
+              "text": "Solve the inequality: $|x + 2| < 4$",
+              "source_solution": "$$|x + 2| < 4$$\n$$\\implies -4 < x + 2 < 4$$\n$$\\implies -4 - 2 < x + 2 - 2 < 4 - 2$$\n$$\\implies -6 < x < 2$$\n$$\\therefore x \\in (-6, 2)$$"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
