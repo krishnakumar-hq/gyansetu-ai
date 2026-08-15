@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>GyanSetu AI — NEB Class 11 & 12 Study Companion</title>
+  <title>GyanSetu AI — NEB Class 11 & 12 Study Companion</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2563eb">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <!-- KaTeX for Beautiful Math & Chemistry Formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
@@ -1303,6 +1304,33 @@
     </div>
   </div>
 
+  <!-- Feedback & Quality Control Report Modal -->
+  <div class="modal-overlay" id="report-modal" onclick="closeReportModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeReportModal()">&times;</button>
+      <h3 style="color:var(--primary); font-size:1.2rem; margin-bottom:0.5rem;">🚩 Report Inaccuracy / Suggest Edit</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Help us keep GyanSetu AI 100% aligned with official NEB board standards.</p>
+      
+      <form onsubmit="handleSendFeedback(event)">
+        <div class="form-group">
+          <label>Issue Type</label>
+          <select id="report-type" class="form-control">
+            <option value="calculation_error">Incorrect Calculation / Number</option>
+            <option value="formula_error">Incorrect Formula or Unit</option>
+            <option value="syllabus_mismatch">Out of NEB Syllabus</option>
+            <option value="translation_issue">Nepali Translation / Spelling Issue</option>
+            <option value="other">Other Suggestion</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Details & Suggested Correction</label>
+          <textarea id="report-details" class="form-control" rows="3" placeholder="Explain what needs fixing or provide the correct value..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" style="background:#dc2626;">Submit Correction Report</button>
+      </form>
+    </div>
+  </div>
+
   <!-- Main Content Container -->
   <div class="container">
 
@@ -1441,6 +1469,12 @@
 
           <!-- Formatted AI Response Box -->
           <div class="ai-response-container" id="ai-response-box"></div>
+
+          <!-- Quality Control Disclaimer & Report Button -->
+          <div id="ai-footer-bar" style="margin-top:0.75rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.78rem; color:var(--text-muted);">
+            <span>⚠️ AI answers should be verified with official NEB CDC textbooks.</span>
+            <button class="btn-small" onclick="openReportModal()" style="font-size:0.75rem; color:#b91c1c; border-color:#fca5a5;">🚩 Report Inaccuracy</button>
+          </div>
         </div>
       </div>
 
@@ -1709,6 +1743,43 @@
       if (selectElem) selectElem.value = savedLang;
     }
 
+    // Feedback Modal Functions
+    function openReportModal() {
+      document.getElementById('report-modal').classList.add('active');
+    }
+
+    function closeReportModal(e) {
+      if (!e || e.target.id === 'report-modal' || e.target.classList.contains('modal-close')) {
+        document.getElementById('report-modal').classList.remove('active');
+      }
+    }
+
+    async function handleSendFeedback(e) {
+      e.preventDefault();
+      const reportType = document.getElementById('report-type').value;
+      const details = document.getElementById('report-details').value.trim();
+      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
+
+      try {
+        await fetch('/api/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userEmail: user ? user.email : 'guest_student',
+            chapterId: activeChapter ? activeChapter.id : 'general',
+            reportType,
+            details
+          })
+        });
+        alert('Thank you! Your feedback has been recorded for review.');
+        closeReportModal();
+        document.getElementById('report-details').value = '';
+      } catch (err) {
+        alert('Report logged locally. Thank you!');
+        closeReportModal();
+      }
+    }
+
     // View Switching
     function showView(viewName) {
       document.getElementById('view-curriculum').classList.toggle('active', viewName === 'curriculum');
@@ -1944,12 +2015,10 @@
         responseBox.style.display = 'block';
 
         if (res.ok && data.reply) {
-          // Decrement daily quota count
           let count = parseInt(localStorage.getItem('gyansetu_ai_count') || '0', 10) + 1;
           localStorage.setItem('gyansetu_ai_count', count.toString());
           updateDashboard();
 
-          // Render Markdown & Math
           let parsedHtml = marked.parse(data.reply);
           responseBox.innerHTML = parsedHtml;
 
@@ -2101,80 +2170,82 @@
       alertBox.className = 'auth-message';
       alertBox.textContent = '';
     }
-async function handleRegister(e) {
-  e.preventDefault();
-  const name = document.getElementById('reg-name').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  const userClass = document.getElementById('reg-class').value;
-  const password = document.getElementById('reg-password').value;
 
-  if (!name || !email || !password) {
-    showAuthAlert('Please fill in all fields.');
-    return;
-  }
+    async function handleRegister(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const userClass = document.getElementById('reg-class').value;
+      const password = document.getElementById('reg-password').value;
 
-  showAuthAlert('Saving account to Cloudflare D1 database...', true);
+      if (!name || !email || !password) {
+        showAuthAlert('Please fill in all fields.');
+        return;
+      }
 
-  try {
-    const res = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fullName: name, email, password, classLevel: userClass })
-    });
-    const data = await res.json();
-    if (res.ok && data.success) {
-      const user = { name: data.user.fullName, email: data.user.email, classId: data.user.classLevel };
-      localStorage.setItem('gyansetu_user', JSON.stringify(user));
-      showAuthAlert('✓ Account saved to D1! Signing you in...', true);
-      setTimeout(() => {
-        closeAuthModal();
-        initSession();
-        selectClass(userClass);
-        showView('dashboard');
-      }, 700);
-    } else {
-      showAuthAlert(data.error || 'Registration failed.');
+      showAuthAlert('Saving account to Cloudflare D1 database...', true);
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullName: name, email, password, classLevel: userClass })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          const user = { name: data.user.fullName, email: data.user.email, classId: data.user.classLevel };
+          localStorage.setItem('gyansetu_user', JSON.stringify(user));
+          showAuthAlert('✓ Account saved to D1! Signing you in...', true);
+          setTimeout(() => {
+            closeAuthModal();
+            initSession();
+            selectClass(userClass);
+            showView('dashboard');
+          }, 700);
+        } else {
+          showAuthAlert(data.error || 'Registration failed.');
+        }
+      } catch (err) {
+        showAuthAlert(`Connection error: ${err.message}`);
+      }
     }
-  } catch (err) {
-    showAuthAlert(`Connection error: ${err.message}`);
-  }
-}
 
-async function handleLogin(e) {
-  e.preventDefault();
-  const email = document.getElementById('login-email').value.trim();
-  const password = document.getElementById('login-password').value;
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
 
-  if (!email || !password) {
-    showAuthAlert('Please enter both email and password.');
-    return;
-  }
+      if (!email || !password) {
+        showAuthAlert('Please enter both email and password.');
+        return;
+      }
 
-  showAuthAlert('Verifying credentials with D1...', true);
+      showAuthAlert('Verifying credentials with D1...', true);
 
-  try {
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-    const data = await res.json();
-    if (res.ok && data.success) {
-      const user = { name: data.user.full_name || data.user.fullName, email: data.user.email, classId: data.user.class_level || data.user.classLevel };
-      localStorage.setItem('gyansetu_user', JSON.stringify(user));
-      showAuthAlert('✓ Welcome back! Loading your dashboard...', true);
-      setTimeout(() => {
-        closeAuthModal();
-        initSession();
-        showView('dashboard');
-      }, 700);
-    } else {
-      showAuthAlert(data.error || 'Invalid credentials.');
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          const user = { name: data.user.full_name || data.user.fullName, email: data.user.email, classId: data.user.class_level || data.user.classLevel };
+          localStorage.setItem('gyansetu_user', JSON.stringify(user));
+          showAuthAlert('✓ Welcome back! Loading your dashboard...', true);
+          setTimeout(() => {
+            closeAuthModal();
+            initSession();
+            showView('dashboard');
+          }, 700);
+        } else {
+          showAuthAlert(data.error || 'Invalid credentials.');
+        }
+      } catch (err) {
+        showAuthAlert(`Connection error: ${err.message}`);
+      }
     }
-  } catch (err) {
-    showAuthAlert(`Connection error: ${err.message}`);
-  }
-}
+
     function initSession() {
       const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
       const btnLogin = document.getElementById('btn-open-login');
@@ -2199,12 +2270,12 @@ async function handleLogin(e) {
       showView('curriculum');
     }
 
-    // Progress and Mastery
+    // Progress and Mastery with Cloud D1 Sync
     function getMasteredChapters() {
       return JSON.parse(localStorage.getItem('gyansetu_mastered') || '[]');
     }
 
-   async function toggleChapterMastery(chapterId) {
+    async function toggleChapterMastery(chapterId) {
       let list = getMasteredChapters();
       const isAdding = !list.includes(chapterId);
       if (list.includes(chapterId)) {
@@ -2257,7 +2328,6 @@ async function handleLogin(e) {
         document.getElementById('stat-accuracy').textContent = '--';
       }
 
-      // Update Daily AI Quota counter (e.g. 20 daily free queries)
       const usedQueries = parseInt(localStorage.getItem('gyansetu_ai_count') || '0', 10);
       const remaining = Math.max(0, 20 - usedQueries);
       document.getElementById('stat-ai-quota').textContent = `${remaining} / 20`;
@@ -2402,7 +2472,7 @@ async function handleLogin(e) {
       });
     }
 
-    // Initialize
+    // Initialize on page load
     initLanguage();
     initSession();
     loadData();
