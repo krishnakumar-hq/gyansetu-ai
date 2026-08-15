@@ -1955,6 +1955,66 @@
     let isAiCooldownActive = false;
     let activeMathExerciseId = null;
 
+    // Built-in Unit 1 Verified Solutions (Sukunda Pustak Bhawan)
+    const defaultMathSolutions = {
+      chapters: [
+        {
+          id: "m11-01",
+          name: "Logic, Sets and Real Number System",
+          unit: "Algebra",
+          exercises: [
+            {
+              id: "ex1.1",
+              name: "Exercise 1.1",
+              topic: "Logic & Truth Tables",
+              source_page: "Page 1 - 12",
+              questions: [
+                {
+                  q_num: "1",
+                  text: "State whether the following sentences are logical statements. Give reason.\\na) Mount Everest is in Nepal.\\nb) Please give me a glass of water.\\nc) $x + 5 = 9$.",
+                  source_solution: "<strong>Solution:</strong><br>a) <strong>Mount Everest is in Nepal:</strong> It is a declarative sentence that is true. Hence, it is a <strong>statement</strong>.<br>b) <strong>Please give me a glass of water:</strong> It is an imperative sentence (request). Hence, it is <strong>not a statement</strong>.<br>c) <strong>$x + 5 = 9$:</strong> Its truth value depends on the value of $x$. It is an open sentence, so it is <strong>not a statement</strong>."
+                },
+                {
+                  q_num: "4. a)",
+                  text: "Construct the truth table for the compound proposition: $$\\sim(p \\land q) \\iff (\\sim p \\lor \\sim q)$$ and verify whether it is a tautology (De Morgan's Law).",
+                  source_solution: "<strong>Solution:</strong><br>Let us construct the truth table with propositions $p$ and $q$:<br><br><table class='w-full text-xs text-left border border-slate-300 my-2' style='border-collapse:collapse;'><tr class='bg-slate-100 font-bold'><th class='p-1.5 border'>$p$</th><th class='p-1.5 border'>$q$</th><th class='p-1.5 border'>$p \\land q$</th><th class='p-1.5 border'>$\\sim(p \\land q)$</th><th class='p-1.5 border'>$\\sim p$</th><th class='p-1.5 border'>$\\sim q$</th><th class='p-1.5 border'>$\\sim p \\lor \\sim q$</th><th class='p-1.5 border bg-emerald-50 text-emerald-800'>$\\sim(p \\land q) \\iff (\\sim p \\lor \\sim q)$</th></tr><tr><td class='p-1.5 border'>T</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>F</td><td class='p-1.5 border font-bold text-emerald-700'>T</td></tr><tr><td class='p-1.5 border'>T</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>T</td><td class='p-1.5 border font-bold text-emerald-700'>T</td></tr><tr><td class='p-1.5 border'>F</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>T</td><td class='p-1.5 border font-bold text-emerald-700'>T</td></tr><tr><td class='p-1.5 border'>F</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>F</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>T</td><td class='p-1.5 border'>T</td><td class='p-1.5 border font-bold text-emerald-700'>T</td></tr></table><br>Since all truth values in the final column are <strong>True (T)</strong>, the proposition is a <strong>Tautology</strong>. Hence proved."
+                }
+              ]
+            },
+            {
+              id: "ex1.2",
+              name: "Exercise 1.2",
+              topic: "Sets & Operations",
+              source_page: "Page 13 - 25",
+              questions: [
+                {
+                  q_num: "1",
+                  text: "Let $U = \\{1, 2, 3, \\dots, 10\\}$, $A = \\{1, 3, 5, 7, 9\\}$, and $B = \\{2, 3, 5, 7\\}$. Find:\\na) $A \\cup B$\\nb) $A \\cap B$\\nc) $A - B$\\nd) $\\overline{A \\cup B}$",
+                  source_solution: "<strong>Solution:</strong><br>Given: Universal set $U = \\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\\}$, $A = \\{1, 3, 5, 7, 9\\}$, $B = \\{2, 3, 5, 7\\}$.<br><br>a) $A \\cup B = \\{1, 3, 5, 7, 9\\} \\cup \\{2, 3, 5, 7\\} = \\mathbf{\\{1, 2, 3, 5, 7, 9\\}}$<br>b) $A \\cap B = \\{1, 3, 5, 7, 9\\} \\cap \\{2, 3, 5, 7\\} = \\mathbf{\\{3, 5, 7\\}}$<br>c) $A - B = \\{x : x \\in A \\text{ and } x \\notin B\\} = \\mathbf{\\{1, 9\\}}$<br>d) $\\overline{A \\cup B} = U - (A \\cup B) = \\mathbf{\\{4, 6, 8, 10\\}}$"
+                }
+              ]
+            },
+            {
+              id: "ex1.3",
+              name: "Exercise 1.3",
+              topic: "Real Numbers & Inequalities",
+              source_page: "Page 26 - 45",
+              questions: [
+                {
+                  q_num: "7. a)",
+                  text: "Solve the absolute value inequality and graph the solution set on the real number line: $$|x + 2| < 4$$",
+                  source_solution: "<strong>Solution:</strong><br>Given: $|x + 2| < 4$.<br>By standard absolute value property: $|x| < a \\iff -a < x < a$.<br>Therefore:<br>$$-4 < x + 2 < 4$$<br>Subtracting $2$ across all parts:<br>$$-4 - 2 < x + 2 - 2 < 4 - 2$$<br>$$-6 < x < 2$$<br><br><strong>Solution Set:</strong> $(-6, 2) = \\{x \\in \\mathbb{R} : -6 < x < 2\\}$."
+                },
+                {
+                  q_num: "10. a)",
+                  text: "Rewrite the inequality without using the modulus sign: $$|2x - 1| \\ge 3$$",
+                  source_solution: "<strong>Solution:</strong><br>Given: $|2x - 1| \\ge 3$.<br>By standard property: $|u| \\ge a \\iff u \\le -a \\text{ or } u \\ge a$.<br><br>Case 1: $2x - 1 \\le -3 \\implies 2x \\le -2 \\implies x \\le -1$<br>Case 2: $2x - 1 \\ge 3 \\implies 2x \\ge 4 \\implies x \\ge 2$<br><br><strong>Required form:</strong> $x \\le -1 \\text{ or } x \\ge 2$, i.e., $x \\in (-\\infty, -1] \\cup
+            }
+          ]
+        }
+      ]
+    };
+
     // Mock Exam Questions
     const mockQuestions = [
       {
@@ -2029,9 +2089,9 @@
         });
       });
 
-      // Search inside Math Solutions
-      if (mathSolutionsData && mathSolutionsData.chapters) {
-        mathSolutionsData.chapters.forEach(ch => {
+      const solutionsSource = (mathSolutionsData && mathSolutionsData.chapters) ? mathSolutionsData : defaultMathSolutions;
+      if (solutionsSource && solutionsSource.chapters) {
+        solutionsSource.chapters.forEach(ch => {
           (ch.exercises || []).forEach(ex => {
             (ex.questions || []).forEach(qn => {
               if (
@@ -2390,14 +2450,20 @@
     function renderMathSolutions(chapterId) {
       const pillsContainer = document.getElementById('math-exercise-pills');
       const questionsContainer = document.getElementById('math-questions-list');
+      if (!pillsContainer || !questionsContainer) return;
+      
       pillsContainer.innerHTML = '';
       questionsContainer.innerHTML = '';
 
-      if (!mathSolutionsData || !mathSolutionsData.chapters) return;
-      const chapterObj = mathSolutionsData.chapters.find(c => c.id === 'ch01');
+      const solutionsSource = (mathSolutionsData && mathSolutionsData.chapters && mathSolutionsData.chapters.length > 0) 
+        ? mathSolutionsData 
+        : defaultMathSolutions;
+
+      const targetId = chapterId || (activeChapter ? activeChapter.id : 'm11-01');
+      const chapterObj = solutionsSource.chapters.find(c => c.id === targetId || c.id === 'm11-01' || c.id === 'ch01') || solutionsSource.chapters[0];
       if (!chapterObj || !chapterObj.exercises) return;
 
-      if (!activeMathExerciseId) {
+      if (!activeMathExerciseId || !chapterObj.exercises.find(e => e.id === activeMathExerciseId)) {
         activeMathExerciseId = chapterObj.exercises[0].id;
       }
 
@@ -2432,7 +2498,7 @@
             <strong style="color:var(--primary); font-size:0.85rem;">Source Solution (Sukunda Manual):</strong>
             <div style="margin-top:0.4rem;">${qn.source_solution.replace(/\\n/g, '<br>')}</div>
             <div class="solution-source-tag">
-              <span>📖 Reference: Sukunda Basic Mathematics Grade XI (Page ${currentEx.source_page})</span>
+              <span>📖 Reference: Sukunda Basic Mathematics Grade XI (${currentEx.source_page || 'Page 1'})</span>
               <span>Exact Question ${qn.q_num}</span>
             </div>
           </div>
@@ -2455,7 +2521,7 @@
 
     function selectMathExercise(exId) {
       activeMathExerciseId = exId;
-      renderMathSolutions('ch01');
+      renderMathSolutions(activeChapter ? activeChapter.id : 'm11-01');
     }
 
     function toggleSolutionDrawer(drawerId) {
@@ -2637,6 +2703,10 @@
         if (btn) btn.classList.toggle('active', t === tabKey);
         if (panel) panel.style.display = t === tabKey ? 'block' : 'none';
       });
+
+      if (tabKey === 'solutions' && activeChapter) {
+        renderMathSolutions(activeChapter.id);
+      }
     }
 
     function toggleCurrentChapterMastery() {
