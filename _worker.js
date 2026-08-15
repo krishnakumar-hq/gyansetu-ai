@@ -39,44 +39,53 @@ Guidelines:
 4. For Nepali/bilingual requests, provide natural Nepali-English explanations easy for Nepali high school students.
 5. Maintain an encouraging academic tone. Do not claim official government affiliation.`;
 
-        // Active Gemini models list for new Google AI Studio accounts
-        const supportedModels = ["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-1.5-flash-8b", "gemini-1.5-pro"];
-        let geminiRes = null;
-        let lastErrorText = "";
-
-        for (const model of supportedModels) {
-          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-          
-          const res = await fetch(apiUrl, {
-            method: "POST",
-            headers: { 
-              "Content-Type": "application/json",
-              "x-goog-api-key": apiKey
-            },
-            body: JSON.stringify({
-              contents: [
-                {
-                  role: "user",
-                  parts: [{ text: `${systemPrompt}\n\nStudent Question:\n${prompt}` }]
-                }
-              ],
-              generationConfig: {
-                temperature: 0.4,
-                maxOutputTokens: 1024
+        // 1. Auto-discover the active model for this API key
+        let targetModel = "gemini-2.0-flash";
+        try {
+          const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+          if (listRes.ok) {
+            const listData = await listRes.json();
+            if (listData.models && Array.isArray(listData.models)) {
+              const active = listData.models.find(m => 
+                m.supportedGenerationMethods && 
+                m.supportedGenerationMethods.includes("generateContent") &&
+                (m.name.includes("flash") || m.name.includes("pro") || m.name.includes("gemini"))
+              );
+              if (active && active.name) {
+                targetModel = active.name.replace("models/", "");
               }
-            })
-          });
-
-          if (res.ok) {
-            geminiRes = res;
-            break;
-          } else {
-            lastErrorText = await res.text();
+            }
           }
+        } catch (e) {
+          // Fallback to default
         }
 
-        if (!geminiRes) {
-          return new Response(JSON.stringify({ error: "Gemini API error across models", details: lastErrorText }), {
+        // 2. Execute content generation
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey}`;
+
+        const geminiRes = await fetch(apiUrl, {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                role: "user",
+                parts: [{ text: `${systemPrompt}\n\nStudent Question:\n${prompt}` }]
+              }
+            ],
+            generationConfig: {
+              temperature: 0.4,
+              maxOutputTokens: 1024
+            }
+          })
+        });
+
+        if (!geminiRes.ok) {
+          const errText = await geminiRes.text();
+          return new Response(JSON.stringify({ error: `Gemini API error on model [${targetModel}]`, details: errText }), {
             status: 502,
             headers: { "Content-Type": "application/json" }
           });
