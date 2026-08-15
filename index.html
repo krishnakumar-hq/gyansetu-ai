@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GyanSetu AI — NEB Class 11 & 12 Study Companion</title>
+
+  <!-- KaTeX for Beautiful Math Formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  
+  <!-- Marked.js for Clean Markdown Typography -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@13.0.2/marked.min.js"></script>
+
   <style>
     :root {
       --primary: #2563eb;
@@ -555,7 +564,6 @@
     }
 
     .formula-math {
-      font-family: "Courier New", monospace;
       font-size: 1.1rem;
       font-weight: 700;
       color: #1e3a8a;
@@ -602,91 +610,7 @@
       color: #713f12;
     }
 
-    /* QUIZ & PROBLEM SOLVER */
-    .quiz-card {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .quiz-q-title {
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .quiz-opt-btn {
-      text-align: left;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .quiz-opt-btn:hover {
-      background: var(--primary-light);
-      border-color: #bfdbfe;
-    }
-
-    .quiz-opt-btn.correct {
-      background: #dcfce7 !important;
-      border-color: #86efac !important;
-      color: #166534;
-      font-weight: 700;
-    }
-
-    .quiz-opt-btn.wrong {
-      background: #fee2e2 !important;
-      border-color: #fca5a5 !important;
-      color: #991b1b;
-      font-weight: 700;
-    }
-
-    .quiz-exp-box {
-      display: none;
-      margin-top: 0.75rem;
-      padding: 0.75rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-    }
-
-    .step-solver-card {
-      background: #ffffff;
-      border: 1px solid #bfdbfe;
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .solver-step {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-      font-size: 0.9rem;
-    }
-
-    .solver-step-num {
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 800;
-      padding: 0.15rem 0.5rem;
-      border-radius: 6px;
-      height: fit-content;
-      font-size: 0.8rem;
-    }
-
-    /* AI DOUBT SOLVER PANEL STYLES */
+    /* AI DOUBT SOLVER & FORMATTED OUTPUT */
     .ai-chat-box {
       background: #f8fafc;
       border: 1px solid var(--border);
@@ -766,12 +690,41 @@
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 1.5rem;
+      padding: 1.75rem;
       margin-top: 1rem;
       display: none;
-      white-space: pre-wrap;
       font-size: 0.95rem;
-      line-height: 1.7;
+      line-height: 1.75;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .ai-response-container h1, .ai-response-container h2, .ai-response-container h3, .ai-response-container h4 {
+      color: var(--primary-dark);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ai-response-container p {
+      margin-bottom: 0.85rem;
+    }
+
+    .ai-response-container ul, .ai-response-container ol {
+      margin-left: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .ai-response-container hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.25rem 0;
+    }
+
+    .ai-response-container blockquote {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem;
     }
 
     .ai-loading-indicator {
@@ -1295,15 +1248,15 @@
         <h3>4. Standard NEB 7-Step Problem Solving Method</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">NEB examiners award step-marks. Always follow this exact structure for numerical calculations:</p>
         
-        <div class="step-solver-card">
+        <div class="step-solver-card" style="background: #ffffff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 1.5rem;">
           <h4 style="color: var(--primary); margin-bottom: 1rem;">Example Problem: Projectile Range & Max Height</h4>
-          <div class="solver-step"><span class="solver-step-num">Step 1</span> <div><strong>Given:</strong> Initial velocity (u) = 20 m/s, Launch angle (θ) = 30°, Acceleration due to gravity (g) = 9.8 m/s²</div></div>
-          <div class="solver-step"><span class="solver-step-num">Step 2</span> <div><strong>Required:</strong> (a) Time of flight (T), (b) Maximum height (H_max), (c) Horizontal Range (R)</div></div>
-          <div class="solver-step"><span class="solver-step-num">Step 3</span> <div><strong>Formula:</strong> T = (2u sinθ)/g , H_max = (u² sin²θ)/(2g) , R = (u² sin 2θ)/g</div></div>
-          <div class="solver-step"><span class="solver-step-num">Step 4</span> <div><strong>Substitution:</strong> T = (2 × 20 × sin 30°)/9.8 = (40 × 0.5)/9.8</div></div>
-          <div class="solver-step"><span class="solver-step-num">Step 5</span> <div><strong>Calculation:</strong> T = 20 / 9.8 ≈ 2.04 seconds; H_max = (400 × 0.25)/(19.6) ≈ 5.10 meters; R = (400 × sin 60°)/9.8 ≈ 35.35 meters</div></div>
-          <div class="solver-step"><span class="solver-step-num">Step 6</span> <div><strong>Final Answer:</strong> Time of flight = 2.04 s, Maximum height = 5.10 m, Range = 35.35 m.</div></div>
-          <div class="solver-step"><span class="solver-step-num">Step 7</span> <div><strong>Explanation:</strong> The trajectory is symmetric; horizontal motion has zero acceleration while vertical motion is subject to gravity.</div></div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 1</span> <div><strong>Given:</strong> Initial velocity ($u$) = $20\text{ m/s}$, Launch angle ($\theta$) = $30^\circ$, $g = 9.8\text{ m/s}^2$</div></div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 2</span> <div><strong>Required:</strong> Time of flight ($T$), Max height ($H$), Range ($R$)</div></div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 3</span> <div><strong>Formula:</strong> $T = \frac{2u\sin\theta}{g}$, $H = \frac{u^2\sin^2\theta}{2g}$, $R = \frac{u^2\sin 2\theta}{g}$</div></div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 4</span> <div><strong>Substitution:</strong> $T = \frac{2 \times 20 \times \sin 30^\circ}{9.8}$</div></div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 5</span> <div><strong>Calculation:</strong> $T \approx 2.04\text{ s}$, $H \approx 5.10\text{ m}$, $R \approx 35.35\text{ m}$</div></div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 6</span> <div><strong>Final Answer:</strong> $T = 2.04\text{ s}$, $H = 5.10\text{ m}$, $R = 35.35\text{ m}$</div></div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 7</span> <div><strong>Explanation:</strong> Horizontal velocity stays constant throughout the trajectory.</div></div>
         </div>
       </div>
 
@@ -1510,15 +1463,28 @@
         responseBox.style.display = 'block';
 
         if (res.ok && data.reply) {
-          responseBox.textContent = data.reply;
+          // Render Markdown
+          let parsedHtml = marked.parse(data.reply);
+          responseBox.innerHTML = parsedHtml;
+
+          // Render Math with KaTeX
+          if (window.renderMathInElement) {
+            renderMathInElement(responseBox, {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false }
+              ],
+              throwOnError: false
+            });
+          }
         } else {
-          responseBox.textContent = `⚠️ Error: ${data.error || 'Failed to generate response. Please ensure GEMINI_API_KEY is configured.'}\n${data.details || ''}`;
+          responseBox.innerHTML = `<div style="color: var(--error); font-weight: 600;">⚠️ Error: ${data.error || 'Failed to generate response.'}</div><pre style="font-size:0.8rem; margin-top:0.5rem;">${data.details || ''}</pre>`;
         }
       } catch (err) {
         loadingElem.style.display = 'none';
         submitBtn.disabled = false;
         responseBox.style.display = 'block';
-        responseBox.textContent = `⚠️ Connection error: ${err.message}. Ensure your Cloudflare deployment is active.`;
+        responseBox.innerHTML = `<div style="color: var(--error);">⚠️ Connection error: ${err.message}</div>`;
       }
     }
 
@@ -1602,6 +1568,19 @@
       updateMasteryButton();
       switchStudyTab('concepts');
       showView('chapter');
+
+      // Trigger math rendering on static formulas
+      setTimeout(() => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.getElementById('view-chapter'), {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
+        }
+      }, 100);
     }
 
     function renderQuizForChapter(chapterId) {
