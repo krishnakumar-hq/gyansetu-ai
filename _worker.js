@@ -17,7 +17,7 @@ export default {
 
         const apiKey = env.GEMINI_API_KEY;
         if (!apiKey) {
-          return new Response(JSON.stringify({ error: "GEMINI_API_KEY is not set in Cloudflare." }), {
+          return new Response(JSON.stringify({ error: "GEMINI_API_KEY is not configured in Cloudflare." }), {
             status: 500,
             headers: { "Content-Type": "application/json" }
           });
@@ -37,9 +37,9 @@ Guidelines:
 2. For numericals, use the 7-step method: Given, Required, Formula, Substitution, Calculation, Final Answer (with SI units), Explanation.
 3. For theory, structure answers for NEB 2-mark or 4/8-mark board exam standards.
 4. For Nepali/bilingual requests, provide natural Nepali-English explanations easy for Nepali high school students.
-5. Do not claim official government affiliation.`;
+5. Maintain an encouraging academic tone. Do not claim official government affiliation.`;
 
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
         const geminiRes = await fetch(apiUrl, {
           method: "POST",
