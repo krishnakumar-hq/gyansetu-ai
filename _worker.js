@@ -53,6 +53,16 @@ Guidelines:
           })
         });
 
+        // Handle Free-Tier Rate Limits (429 Too Many Requests)
+        if (intRes.status === 429) {
+          return new Response(JSON.stringify({ 
+            error: "⏱️ Free tier rate limit reached. Please wait 10 seconds before asking your next question." 
+          }), {
+            status: 429,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
         if (!intRes.ok) {
           const errText = await intRes.text();
           return new Response(JSON.stringify({ error: `Gemini API error: ${intRes.status}`, details: errText }), {
@@ -81,7 +91,7 @@ Guidelines:
           replyText = intData.output_text || 
                       (intData.outputs && intData.outputs[0]?.text) || 
                       (intData.candidates && intData.candidates[0]?.content?.parts?.[0]?.text) ||
-                      JSON.stringify(intData);
+                      "No response generated.";
         }
 
         return new Response(JSON.stringify({ reply: replyText }), {
