@@ -602,7 +602,7 @@
       color: #713f12;
     }
 
-    /* QUIZ & PROBLEM SOLVER STYLES */
+    /* QUIZ & PROBLEM SOLVER */
     .quiz-card {
       background: #f8fafc;
       border: 1px solid var(--border);
@@ -661,17 +661,6 @@
       font-size: 0.85rem;
     }
 
-    .quiz-score-banner {
-      background: linear-gradient(135deg, #1e40af, #2563eb);
-      color: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      display: none;
-    }
-
-    /* 7-Step Solver Format */
     .step-solver-card {
       background: #ffffff;
       border: 1px solid #bfdbfe;
@@ -695,6 +684,117 @@
       border-radius: 6px;
       height: fit-content;
       font-size: 0.8rem;
+    }
+
+    /* AI DOUBT SOLVER PANEL STYLES */
+    .ai-chat-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .ai-prompt-templates {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .template-chip {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .template-chip:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .ai-input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .ai-textarea {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      resize: vertical;
+      min-height: 55px;
+    }
+
+    .ai-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .btn-ai-submit {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s ease;
+      height: fit-content;
+    }
+
+    .btn-ai-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .ai-response-container {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      display: none;
+      white-space: pre-wrap;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .ai-loading-indicator {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #bfdbfe;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* Dashboard Styles */
@@ -987,13 +1087,12 @@
     }
 
     @media (max-width: 768px) {
-      .dashboard-header {
+      .ai-input-row {
         flex-direction: column;
-        align-items: flex-start;
       }
-      .resume-card {
+      .btn-ai-submit {
         width: 100%;
-        justify-content: space-between;
+        justify-content: center;
       }
     }
   </style>
@@ -1188,9 +1287,7 @@
         </div>
         <h3>3. Chapter Practice Quiz (NEB Model MCQs)</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">Select the correct answer. Instant explanations and weak-topic detection will be generated.</p>
-        <div id="quiz-questions-container">
-          <!-- Dynamically populated -->
-        </div>
+        <div id="quiz-questions-container"></div>
       </div>
 
       <!-- Study Tab 4: 7-Step Problem Solver -->
@@ -1218,17 +1315,35 @@
         </div>
       </div>
 
-      <!-- Study Tab 6: AI Tutor Prompt Trigger -->
+      <!-- Study Tab 6: LIVE AI DOUBT SOLVER -->
       <div id="study-panel-ai" class="study-content-panel" style="display: none;">
-        <h3>6. Ask AI Tutor About This Chapter</h3>
-        <p>GyanSetu AI provides targeted answers grounded specifically in this chapter's syllabus.</p>
-        <div style="background: var(--primary-light); border: 1px solid #bfdbfe; padding: 1.25rem; border-radius: 8px; margin-bottom: 1.25rem;">
-          <strong style="color: var(--primary);">Active Context:</strong> <span id="ai-active-context-tag">Class 11 • Physics • Kinematics</span>
-        </div>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button class="btn-small ai" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection will be linked in Step 12!')">Solve a Numerical Problem</button>
-          <button class="btn-small" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection will be linked in Step 12!')">Generate 2-Mark Short Answer</button>
-          <button class="btn-small" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="alert('Gemini AI API connection will be linked in Step 12!')">Explain in Simple Nepali</button>
+        <h3>6. Live GyanSetu AI Tutor</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Ask any conceptual doubt, request a 7-step numerical solution, or ask for a simple Nepali-English explanation grounded in this chapter.</p>
+        
+        <div class="ai-chat-box">
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">Quick Question Starters:</div>
+          <div class="ai-prompt-templates">
+            <span class="template-chip" onclick="setAiPrompt('Explain the core concept and physical significance of this chapter in simple terms with a real-life example.')">💡 Explain Core Concept</span>
+            <span class="template-chip" onclick="setAiPrompt('Give me a high-frequency NEB board numerical problem for this chapter and solve it using the complete 7-step method.')">🔢 Solve 7-Step Numerical</span>
+            <span class="template-chip" onclick="setAiPrompt('Generate a standard 2-mark short answer question and model answer strictly formatted for the NEB board exam.')">📝 2-Mark Board Question</span>
+            <span class="template-chip" onclick="setAiPrompt('यस अध्यायको मुख्य कुराहरू र महत्त्वपूर्ण फर्मुलाहरू सरल नेपाली-English भाषामा बुझाइदिनुहोस्।')">🇳🇵 Explain in Simple Nepali</span>
+          </div>
+
+          <div class="ai-input-row">
+            <textarea id="ai-user-prompt" class="ai-textarea" placeholder="Type your specific question or numerical problem here..."></textarea>
+            <button class="btn-ai-submit" id="btn-ask-gemini" onclick="submitAiQuestion()">
+              <span>Ask AI</span> ⚡
+            </button>
+          </div>
+
+          <!-- Loading Indicator -->
+          <div class="ai-loading-indicator" id="ai-loading">
+            <div class="spinner"></div>
+            <span>GyanSetu AI is analyzing the NEB syllabus and formulating your solution...</span>
+          </div>
+
+          <!-- Formatted AI Response Box -->
+          <div class="ai-response-container" id="ai-response-box"></div>
         </div>
       </div>
 
@@ -1319,7 +1434,7 @@
     let currentSubjectId = 'c11-physics';
     let activeChapter = null;
 
-    // Sample Chapter Quizzes Database
+    // Sample Quizzes
     const chapterQuizzes = {
       "p11-01": [
         {
@@ -1348,16 +1463,64 @@
           ans: 1,
           exp: "The horizontal component of velocity (u cosθ) remains constant because horizontal acceleration is zero (ignoring air resistance)."
         }
-      ],
-      "ch11-01": [
-        {
-          q: "What is the number of particles present in 1 mole of any chemical substance?",
-          opts: ["6.022 × 10²³", "3.011 × 10²³", "1.66 × 10⁻²⁴", "6.022 × 10²²"],
-          ans: 0,
-          exp: "Avogadro's constant states that 1 mole contains exactly 6.022 × 10²³ elementary entities."
-        }
       ]
     };
+
+    // AI Doubt Solver Functions
+    function setAiPrompt(text) {
+      document.getElementById('ai-user-prompt').value = text;
+      document.getElementById('ai-user-prompt').focus();
+    }
+
+    async function submitAiQuestion() {
+      const promptInput = document.getElementById('ai-user-prompt');
+      const prompt = promptInput.value.trim();
+      if (!prompt) {
+        alert('Please type a question or select a starter template.');
+        return;
+      }
+
+      const loadingElem = document.getElementById('ai-loading');
+      const responseBox = document.getElementById('ai-response-box');
+      const submitBtn = document.getElementById('btn-ask-gemini');
+
+      loadingElem.style.display = 'flex';
+      responseBox.style.display = 'none';
+      submitBtn.disabled = true;
+
+      try {
+        const payload = {
+          prompt: prompt,
+          classId: currentClassId,
+          subjectName: activeChapter ? activeChapter.subjectName : 'Science',
+          chapterName: activeChapter ? activeChapter.name : 'General',
+          mode: 'Exam & Concept Tutor',
+          language: 'English & Simple Nepali'
+        };
+
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        loadingElem.style.display = 'none';
+        submitBtn.disabled = false;
+        responseBox.style.display = 'block';
+
+        if (res.ok && data.reply) {
+          responseBox.textContent = data.reply;
+        } else {
+          responseBox.textContent = `⚠️ Error: ${data.error || 'Failed to generate response. Please ensure GEMINI_API_KEY is configured.'}\n${data.details || ''}`;
+        }
+      } catch (err) {
+        loadingElem.style.display = 'none';
+        submitBtn.disabled = false;
+        responseBox.style.display = 'block';
+        responseBox.textContent = `⚠️ Connection error: ${err.message}. Ensure your Cloudflare deployment is active.`;
+      }
+    }
 
     // View Switching
     function showView(viewName) {
@@ -1389,12 +1552,15 @@
       document.getElementById('study-bc-unit').textContent = chapter.unit || 'Core Unit';
       document.getElementById('study-chapter-title').textContent = chapter.name;
       document.getElementById('study-chapter-meta').textContent = `${cls.name} Science • ${sub.name} (${sub.code || ''}) • Unit: ${chapter.unit || 'Core'}`;
-      document.getElementById('ai-active-context-tag').textContent = `${cls.name} • ${sub.name} • ${chapter.name}`;
       
       // Update Resume Card on Dashboard
       document.getElementById('dash-resume-chapter').textContent = `${sub.name}: ${chapter.name}`;
 
-      // Load Note Content from notes.json
+      // Reset AI response box
+      document.getElementById('ai-response-box').style.display = 'none';
+      document.getElementById('ai-user-prompt').value = '';
+
+      // Load Note Content
       const note = notesData[chapter.id] || {
         title: chapter.name,
         concepts: `Conceptual overview for ${chapter.name} aligned with the NEB syllabus. Focus on fundamental principles, definitions, and applications.`,
@@ -1492,7 +1658,6 @@
         expBox.style.color = '#991b1b';
       }
 
-      // Record in Quiz History
       let history = JSON.parse(localStorage.getItem('gyansetu_quiz_history') || '[]');
       history.push({ chapterId, isCorrect: selectedIdx === correctIdx, date: new Date().toISOString() });
       localStorage.setItem('gyansetu_quiz_history', JSON.stringify(history));
@@ -1655,7 +1820,6 @@
       const mastered = getMasteredChapters();
       document.getElementById('stat-chapters-mastered').textContent = mastered.length;
 
-      // Calculate Quiz Accuracy
       const quizHistory = JSON.parse(localStorage.getItem('gyansetu_quiz_history') || '[]');
       document.getElementById('stat-quizzes-completed').textContent = quizHistory.length;
       if (quizHistory.length > 0) {
@@ -1666,7 +1830,6 @@
         document.getElementById('stat-accuracy').textContent = '--';
       }
 
-      // Render Subject Progress Bars
       if (curriculumData && curriculumData.classes) {
         const cls = curriculumData.classes.find(c => c.id === currentClassId);
         const container = document.getElementById('subject-progress-container');
