@@ -720,6 +720,113 @@
       font-size: 0.85rem;
     }
 
+    /* TEXTBOOK SOLUTIONS STYLES */
+    .exercise-pills-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .exercise-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .exercise-pill.active, .exercise-pill:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .solution-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .solution-q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .solution-q-badge {
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .solution-q-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      flex: 1;
+    }
+
+    .solution-toggle-btn {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .solution-toggle-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .solution-content-drawer {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-top: 0.85rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .solution-content-drawer.open {
+      display: block;
+    }
+
+    .solution-source-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
     /* AI DOUBT SOLVER & FORMATTED OUTPUT */
     .ai-chat-box {
       background: #f8fafc;
@@ -1425,7 +1532,7 @@
         <!-- Search Bar -->
         <div class="search-box-wrap">
           <span class="search-icon">🔍</span>
-          <input type="text" id="curriculum-search-input" class="search-input" placeholder="Search any lesson, poem, story, grammar rule or formula (e.g. Selfish Giant, आमाको सपना, पदवर्ग, Projectile)..." oninput="handleCurriculumSearch(this.value)">
+          <input type="text" id="curriculum-search-input" class="search-input" placeholder="Search any lesson, exercise (e.g. Exercise 1.1), story, or formula..." oninput="handleCurriculumSearch(this.value)">
           <div class="search-results-dropdown" id="search-results-dropdown"></div>
         </div>
 
@@ -1485,6 +1592,7 @@
       <!-- Adaptive Study Tabs -->
       <div class="study-tabs-nav" id="study-tabs-nav-bar">
         <button class="study-tab-btn active" id="tab-study-concepts" onclick="switchStudyTab('concepts')">📖 Summary & Overview</button>
+        <button class="study-tab-btn" id="tab-study-solutions" onclick="switchStudyTab('solutions')" style="display: none;">📚 Textbook Solutions</button>
         <button class="study-tab-btn" id="tab-study-themes" onclick="switchStudyTab('themes')">🎭 Themes & Characters</button>
         <button class="study-tab-btn" id="tab-study-grammar" onclick="switchStudyTab('grammar')">✍️ Grammar & Vocab</button>
         <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')" style="display: none;">📐 Formulas & Laws</button>
@@ -1502,6 +1610,16 @@
           💡 <strong>Nepali-English Concept Note (नेपाली-English सारांश):</strong>
           <p id="study-bilingual-note" style="margin-top: 0.35rem; margin-bottom: 0.75rem;">Loading explanation...</p>
         </div>
+      </div>
+
+      <!-- Study Tab: TEXTBOOK SOLUTIONS MANUAL (Sukunda Publication) -->
+      <div id="study-panel-solutions" class="study-content-panel" style="display: none;">
+        <h3>📚 Textbook Solutions Manual (Step-by-Step)</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">
+          Primary solution steps from <em>A Complete Manual to Basic Mathematics Grade XI (Sukunda Pustak Bhawan)</em>.
+        </p>
+        <div class="exercise-pills-bar" id="math-exercise-pills"></div>
+        <div id="math-questions-list"></div>
       </div>
 
       <!-- Study Tab 2: Themes & Characters -->
@@ -1755,10 +1873,10 @@
         <h3>⚡ Recommended Priority Revision Topics</h3>
         <p>High-weightage CDC board exam focus areas:</p>
         <div class="weak-pills" id="weak-topics-pills-container">
+          <span class="weak-pill" onclick="openChapterStudy('m11-01', 'c11-mathematics'); switchStudyTab('solutions');">Maths: Logic & Truth Tables (Ex 1.1)</span>
           <span class="weak-pill" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">English: Selfish Giant Themes</span>
           <span class="weak-pill" onclick="openChapterStudy('nep11-p01', 'c11-nepali')">नेपाली: वीर पुर्खा कविता व्याख्या</span>
           <span class="weak-pill" onclick="openChapterStudy('p11-02', 'c11-physics')">Physics: Projectile Motion</span>
-          <span class="weak-pill" onclick="openChapterStudy('ch11-01', 'c11-chemistry')">Chemistry: Stoichiometry</span>
         </div>
       </div>
 
@@ -1777,14 +1895,23 @@
   <script>
     let curriculumData = null;
     let notesData = {};
+    let mathSolutionsData = null;
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-english';
     let currentLanguage = 'bilingual';
     let activeChapter = null;
     let isAiCooldownActive = false;
+    let activeMathExerciseId = null;
 
     // Mock Exam Questions
     const mockQuestions = [
+      {
+        subject: "Mathematics",
+        q: "Which of the following is the truth value of a contradiction $p \\land (\\sim p)$?",
+        opts: ["Always True (T)", "Always False (F)", "Contingency", "Indeterminate"],
+        ans: 1,
+        exp: "A contradiction $c$ is a compound proposition that is always false for all truth values."
+      },
       {
         subject: "English",
         q: "In 'The Selfish Giant' by Oscar Wilde, what brought Spring back into the Giant's garden?",
@@ -1842,15 +1969,41 @@
                 clsName: cls.name,
                 subId: sub.id,
                 subName: sub.name,
-                chapter: ch
+                chapter: ch,
+                matchType: 'Lesson'
               });
             }
           });
         });
       });
 
+      // Search inside Math Solutions
+      if (mathSolutionsData && mathSolutionsData.chapters) {
+        mathSolutionsData.chapters.forEach(ch => {
+          (ch.exercises || []).forEach(ex => {
+            (ex.questions || []).forEach(qn => {
+              if (
+                ex.name.toLowerCase().includes(q) || 
+                qn.q_num.toLowerCase().includes(q) || 
+                qn.text.toLowerCase().includes(q)
+              ) {
+                matches.push({
+                  clsId: 'class-11',
+                  clsName: 'Class 11',
+                  subId: 'c11-mathematics',
+                  chapter: { id: 'm11-01', name: ch.name, unit: ch.unit },
+                  subName: 'Mathematics',
+                  targetEx: ex.id,
+                  matchType: `${ex.name} • Q ${qn.q_num}`
+                });
+              }
+            });
+          });
+        });
+      }
+
       if (matches.length === 0) {
-        dropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem;">No matching lessons or topics found. Try another keyword.</div>';
+        dropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem;">No matching lessons, exercises or topics found. Try another keyword.</div>';
         dropdown.style.display = 'block';
         return;
       }
@@ -1862,11 +2015,15 @@
         item.onclick = () => {
           selectClass(m.clsId);
           openChapterStudy(m.chapter.id, m.subId);
+          if (m.targetEx) {
+            switchStudyTab('solutions');
+            selectMathExercise(m.targetEx);
+          }
           dropdown.style.display = 'none';
           document.getElementById('curriculum-search-input').value = '';
         };
         item.innerHTML = `
-          <div class="search-result-title">${m.chapter.name}</div>
+          <div class="search-result-title">${m.chapter.name} <span class="stream-tag" style="font-size:0.68rem; margin-left:0.35rem;">${m.matchType}</span></div>
           <div class="search-result-meta">${m.clsName} • ${m.subName} • ${m.chapter.unit || 'Core'}</div>
         `;
         dropdown.appendChild(item);
@@ -2082,6 +2239,11 @@
       document.getElementById('ai-user-prompt').focus();
     }
 
+    function askAiAboutSolution(qNum, qText) {
+      switchStudyTab('ai');
+      setAiPrompt(`Explain the solution steps for Question ${qNum} in simple terms:\n${qText}`);
+    }
+
     function startButtonCooldown() {
       isAiCooldownActive = true;
       const btn = document.getElementById('btn-ask-gemini');
@@ -2132,7 +2294,7 @@
         const payload = {
           prompt: prompt,
           classId: currentClassId,
-          subjectName: activeChapter ? activeChapter.subjectName : 'English',
+          subjectName: activeChapter ? activeChapter.subjectName : 'Mathematics',
           chapterName: activeChapter ? activeChapter.name : 'General',
           mode: 'Lesson Study & Exam Preparation',
           language: langMap[currentLanguage] || 'English & Simple Nepali'
@@ -2177,6 +2339,87 @@
       }
     }
 
+    // TEXTBOOK SOLUTIONS RENDERER
+    function renderMathSolutions(chapterId) {
+      const pillsContainer = document.getElementById('math-exercise-pills');
+      const questionsContainer = document.getElementById('math-questions-list');
+      pillsContainer.innerHTML = '';
+      questionsContainer.innerHTML = '';
+
+      if (!mathSolutionsData || !mathSolutionsData.chapters) return;
+      const chapterObj = mathSolutionsData.chapters.find(c => c.id === 'ch01');
+      if (!chapterObj || !chapterObj.exercises) return;
+
+      if (!activeMathExerciseId) {
+        activeMathExerciseId = chapterObj.exercises[0].id;
+      }
+
+      chapterObj.exercises.forEach(ex => {
+        const pill = document.createElement('button');
+        pill.className = `exercise-pill ${ex.id === activeMathExerciseId ? 'active' : ''}`;
+        pill.textContent = `${ex.name} (${ex.topic})`;
+        pill.onclick = () => selectMathExercise(ex.id);
+        pillsContainer.appendChild(pill);
+      });
+
+      const currentEx = chapterObj.exercises.find(e => e.id === activeMathExerciseId) || chapterObj.exercises[0];
+      if (!currentEx) return;
+
+      currentEx.questions.forEach((qn, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'solution-card';
+        card.innerHTML = `
+          <div class="solution-q-header">
+            <span class="solution-q-badge">${currentEx.name} • Q ${qn.q_num}</span>
+            <div class="solution-q-text">${qn.text.replace(/\\n/g, '<br>')}</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
+            <button class="solution-toggle-btn" onclick="toggleSolutionDrawer('drawer-${qIdx}')">
+              <span>👁️</span> <span id="toggle-lbl-drawer-${qIdx}">View Solution</span>
+            </button>
+            <button class="btn-small" onclick="askAiAboutSolution('${qn.q_num}', '${qn.text.replace(/'/g, "\\'")}')" style="color:var(--primary);">
+              ⚡ Explain with AI
+            </button>
+          </div>
+          <div class="solution-content-drawer" id="drawer-${qIdx}">
+            <strong style="color:var(--primary); font-size:0.85rem;">Source Solution (Sukunda Manual):</strong>
+            <div style="margin-top:0.4rem;">${qn.source_solution.replace(/\\n/g, '<br>')}</div>
+            <div class="solution-source-tag">
+              <span>📖 Reference: Sukunda Basic Mathematics Grade XI (Page ${currentEx.source_page})</span>
+              <span>Exact Question ${qn.q_num}</span>
+            </div>
+          </div>
+        `;
+        questionsContainer.appendChild(card);
+      });
+
+      setTimeout(() => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.getElementById('study-panel-solutions'), {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
+        }
+      }, 100);
+    }
+
+    function selectMathExercise(exId) {
+      activeMathExerciseId = exId;
+      renderMathSolutions('ch01');
+    }
+
+    function toggleSolutionDrawer(drawerId) {
+      const drawer = document.getElementById(drawerId);
+      const lbl = document.getElementById(`toggle-lbl-${drawerId}`);
+      if (drawer) {
+        const isOpen = drawer.classList.toggle('open');
+        if (lbl) lbl.textContent = isOpen ? 'Hide Solution' : 'View Solution';
+      }
+    }
+
     async function openChapterStudy(chapterId, subjectId) {
       if (!curriculumData) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
@@ -2198,11 +2441,13 @@
       document.getElementById('ai-user-prompt').value = '';
 
       const isLanguageSubject = sub.id.includes('english') || sub.id.includes('nepali');
+      const isClass11Math = sub.id === 'c11-mathematics';
       
-      // Adapt study tabs for Literature / Language vs Science
+      // Adapt study tabs for Mathematics vs Literature vs Science
+      document.getElementById('tab-study-solutions').style.display = isClass11Math ? 'block' : 'none';
       document.getElementById('tab-study-themes').style.display = isLanguageSubject ? 'block' : 'none';
       document.getElementById('tab-study-grammar').style.display = isLanguageSubject ? 'block' : 'none';
-      document.getElementById('tab-study-formulas').style.display = isLanguageSubject ? 'none' : 'block';
+      document.getElementById('tab-study-formulas').style.display = (isLanguageSubject || isClass11Math) ? 'none' : 'block';
 
       const note = notesData[chapter.id] || {
         title: chapter.name,
@@ -2221,7 +2466,12 @@
       document.getElementById('study-concepts-body').innerHTML = `<p style="font-size:0.95rem; line-height:1.7;">${note.concepts}</p>`;
       document.getElementById('study-bilingual-note').textContent = note.bilingual;
 
-      // 2. Themes & Characters Tab
+      // 2. Textbook Solutions Tab
+      if (isClass11Math) {
+        renderMathSolutions(chapter.id);
+      }
+
+      // 3. Themes & Characters Tab
       const themesBody = document.getElementById('study-themes-body');
       themesBody.innerHTML = '';
       if (note.themes && note.themes.length > 0) {
@@ -2247,7 +2497,7 @@
         themesBody.innerHTML += ldHtml;
       }
 
-      // 3. Grammar & Vocab Tab
+      // 4. Grammar & Vocab Tab
       const gramBody = document.getElementById('study-grammar-body');
       gramBody.innerHTML = '';
       if (note.grammar_vocab && note.grammar_vocab.length > 0) {
@@ -2260,7 +2510,7 @@
         gramBody.innerHTML = gHtml;
       }
 
-      // 4. Formulas Tab (For Science)
+      // 5. Formulas Tab (For Science)
       const fBody = document.getElementById('study-formulas-body');
       fBody.innerHTML = '';
       (note.formulas || []).forEach(f => {
@@ -2270,7 +2520,7 @@
         fBody.appendChild(fDiv);
       });
 
-      // 5. Past Papers Tab
+      // 6. Past Papers Tab
       const ppBody = document.getElementById('study-pastpapers-body');
       ppBody.innerHTML = '';
       (note.pastPapers || []).forEach(p => {
@@ -2284,7 +2534,7 @@
       });
 
       updateMasteryButton();
-      switchStudyTab('concepts');
+      switchStudyTab(isClass11Math ? 'solutions' : 'concepts');
       showView('chapter');
 
       setTimeout(() => {
@@ -2301,7 +2551,7 @@
     }
 
     function switchStudyTab(tabKey) {
-      const tabs = ['concepts', 'themes', 'grammar', 'formulas', 'pastpapers', 'ai'];
+      const tabs = ['concepts', 'solutions', 'themes', 'grammar', 'formulas', 'pastpapers', 'ai'];
       tabs.forEach(t => {
         const btn = document.getElementById(`tab-study-${t}`);
         const panel = document.getElementById(`study-panel-${t}`);
@@ -2549,12 +2799,14 @@
     // Curriculum & Notes Loader
     async function loadData() {
       try {
-        const [currRes, notesRes] = await Promise.all([
+        const [currRes, notesRes, mathRes] = await Promise.all([
           fetch('data/curriculum.json'),
-          fetch('data/notes.json')
+          fetch('data/notes.json'),
+          fetch('data/math11_solutions.json')
         ]);
         if (currRes.ok) curriculumData = await currRes.json();
         if (notesRes.ok) notesData = await notesRes.json();
+        if (mathRes.ok) mathSolutionsData = await mathRes.json();
       } catch (err) {
         console.warn('Data loaded with fallbacks.');
       }
