@@ -1,4 +1,4 @@
-// Helper for SHA-256 password hashing using Web Crypto
+// Helper for SHA-256 password hashing
 async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
@@ -11,12 +11,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // 1. Student Registration Endpoint: /api/auth/register
+    // 1. Student Registration: /api/auth/register
     if (url.pathname === "/api/auth/register" && request.method === "POST") {
       try {
         const { fullName, email, password, classLevel } = await request.json();
         if (!fullName || !email || !password) {
-          return new Response(JSON.stringify({ error: "Missing required registration fields." }), {
+          return new Response(JSON.stringify({ error: "Missing registration fields." }), {
             status: 400,
             headers: { "Content-Type": "application/json" }
           });
@@ -45,7 +45,7 @@ export default {
       }
     }
 
-    // 2. Student Login Endpoint: /api/auth/login
+    // 2. Student Login: /api/auth/login
     if (url.pathname === "/api/auth/login" && request.method === "POST") {
       try {
         const { email, password } = await request.json();
@@ -86,7 +86,37 @@ export default {
       }
     }
 
-    // 3. AI API Endpoint: /api/chat
+    // 3. Progress & Quiz Sync Endpoint: /api/progress/sync
+    if (url.pathname === "/api/progress/sync" && request.method === "POST") {
+      try {
+        const { userEmail, type, classLevel, subjectId, chapterId, score, totalQuestions, weakTopics } = await request.json();
+        
+        if (env.DB && userEmail) {
+          if (type === "mastery") {
+            const sessId = "s_" + Date.now();
+            await env.DB.prepare(
+              "INSERT INTO study_sessions (id, user_email, class_level, subject_id, chapter_id, study_mode, completed) VALUES (?, ?, ?, ?, ?, ?, 1)"
+            ).bind(sessId, userEmail, classLevel || "class-11", subjectId || "core", chapterId, "chapter_mastery").run();
+          } else if (type === "quiz" || type === "mock") {
+            const attemptId = "q_" + Date.now();
+            await env.DB.prepare(
+              "INSERT INTO quiz_attempts (id, user_email, chapter_id, score, total_questions, weak_topics) VALUES (?, ?, ?, ?, ?, ?)"
+            ).bind(attemptId, userEmail, chapterId || "mock_exam", score || 0, totalQuestions || 1, weakTopics || "").run();
+          }
+        }
+
+        return new Response(JSON.stringify({ success: true }), {
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: "Progress sync error", details: err.message }), {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+
+    // 4. AI API Endpoint: /api/chat
     if (url.pathname === "/api/chat" && request.method === "POST") {
       try {
         const body = await request.json();
@@ -203,7 +233,7 @@ Guidelines:
       }
     }
 
-    // 4. Serve all static files (index.html, curriculum.json, notes.json)
+    // 5. Serve all static files (index.html, curriculum.json, notes.json)
     return env.ASSETS.fetch(request);
   }
 };
