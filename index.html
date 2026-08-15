@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GyanSetu AI — NEB Class 11 & 12 Study Companion</title>
 
-  <!-- KaTeX for Beautiful Math Formulas -->
+  <!-- KaTeX for Beautiful Math & Chemistry Formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
@@ -98,7 +98,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .nav-btn {
@@ -750,6 +750,68 @@
       to { transform: rotate(360deg); }
     }
 
+    /* MOCK EXAM VIEW STYLES */
+    .exam-header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .timer-badge {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .exam-question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .exam-opt-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      background: #f8fafc;
+      transition: all 0.15s ease;
+    }
+
+    .exam-opt-row:hover {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+    }
+
+    .exam-opt-row.selected {
+      background: #eff6ff;
+      border-color: var(--primary);
+      font-weight: 700;
+      color: var(--primary);
+    }
+
     /* Dashboard Styles */
     .dashboard-header {
       background: var(--card-bg);
@@ -1069,6 +1131,7 @@
       <!-- Navigation Switcher -->
       <div class="nav-links">
         <button class="nav-btn active" id="nav-btn-explore" onclick="showView('curriculum')">📚 Curriculum</button>
+        <button class="nav-btn" id="nav-btn-mock" onclick="showView('mock')">⏱️ Mock Exam</button>
         <button class="nav-btn" id="nav-btn-dash" onclick="showView('dashboard')">📊 My Dashboard</button>
       </div>
 
@@ -1206,8 +1269,6 @@
       <div class="study-tabs-nav">
         <button class="study-tab-btn active" id="tab-study-concepts" onclick="switchStudyTab('concepts')">📖 Summary & Concepts</button>
         <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')">📐 Formulas & Laws</button>
-        <button class="study-tab-btn" id="tab-study-quiz" onclick="switchStudyTab('quiz')">🎯 Chapter Quiz (MCQs)</button>
-        <button class="study-tab-btn" id="tab-study-solver" onclick="switchStudyTab('solver')">🔢 7-Step Problem Solver</button>
         <button class="study-tab-btn" id="tab-study-pastpapers" onclick="switchStudyTab('pastpapers')">📝 NEB Exam Questions</button>
         <button class="study-tab-btn" id="tab-study-ai" onclick="switchStudyTab('ai')">⚡ AI Doubt Solver</button>
       </div>
@@ -1232,45 +1293,17 @@
         </div>
       </div>
 
-      <!-- Study Tab 3: Interactive Chapter Quiz -->
-      <div id="study-panel-quiz" class="study-content-panel" style="display: none;">
-        <div class="quiz-score-banner" id="quiz-score-banner">
-          <h2 id="quiz-score-text">Quiz Score: 0/0</h2>
-          <p id="quiz-score-sub" style="font-size: 0.9rem; opacity: 0.9;">Great effort! Review explanations below.</p>
-        </div>
-        <h3>3. Chapter Practice Quiz (NEB Model MCQs)</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">Select the correct answer. Instant explanations and weak-topic detection will be generated.</p>
-        <div id="quiz-questions-container"></div>
-      </div>
-
-      <!-- Study Tab 4: 7-Step Problem Solver -->
-      <div id="study-panel-solver" class="study-content-panel" style="display: none;">
-        <h3>4. Standard NEB 7-Step Problem Solving Method</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">NEB examiners award step-marks. Always follow this exact structure for numerical calculations:</p>
-        
-        <div class="step-solver-card" style="background: #ffffff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 1.5rem;">
-          <h4 style="color: var(--primary); margin-bottom: 1rem;">Example Problem: Projectile Range & Max Height</h4>
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 1</span> <div><strong>Given:</strong> Initial velocity ($u$) = $20\text{ m/s}$, Launch angle ($\theta$) = $30^\circ$, $g = 9.8\text{ m/s}^2$</div></div>
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 2</span> <div><strong>Required:</strong> Time of flight ($T$), Max height ($H$), Range ($R$)</div></div>
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 3</span> <div><strong>Formula:</strong> $T = \frac{2u\sin\theta}{g}$, $H = \frac{u^2\sin^2\theta}{2g}$, $R = \frac{u^2\sin 2\theta}{g}$</div></div>
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 4</span> <div><strong>Substitution:</strong> $T = \frac{2 \times 20 \times \sin 30^\circ}{9.8}$</div></div>
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 5</span> <div><strong>Calculation:</strong> $T \approx 2.04\text{ s}$, $H \approx 5.10\text{ m}$, $R \approx 35.35\text{ m}$</div></div>
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 6</span> <div><strong>Final Answer:</strong> $T = 2.04\text{ s}$, $H = 5.10\text{ m}$, $R = 35.35\text{ m}$</div></div>
-          <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;"><span style="background: var(--primary-light); color: var(--primary); font-weight: 800; padding: 0.15rem 0.5rem; border-radius: 6px; height: fit-content; font-size: 0.8rem;">Step 7</span> <div><strong>Explanation:</strong> Horizontal velocity stays constant throughout the trajectory.</div></div>
-        </div>
-      </div>
-
-      <!-- Study Tab 5: Past Papers -->
+      <!-- Study Tab 3: Past Papers -->
       <div id="study-panel-pastpapers" class="study-content-panel" style="display: none;">
-        <h3>5. NEB Model & Past Exam Questions</h3>
+        <h3>3. NEB Model & Past Exam Questions</h3>
         <div id="study-pastpapers-body">
           <p>Loading model questions...</p>
         </div>
       </div>
 
-      <!-- Study Tab 6: LIVE AI DOUBT SOLVER -->
+      <!-- Study Tab 4: LIVE AI DOUBT SOLVER -->
       <div id="study-panel-ai" class="study-content-panel" style="display: none;">
-        <h3>6. Live GyanSetu AI Tutor</h3>
+        <h3>4. Live GyanSetu AI Tutor</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem;">Ask any conceptual doubt, request a 7-step numerical solution, or ask for a simple Nepali-English explanation grounded in this chapter.</p>
         
         <div class="ai-chat-box">
@@ -1307,7 +1340,38 @@
       </div>
     </div>
 
-    <!-- VIEW 3: STUDENT DASHBOARD -->
+    <!-- VIEW 3: TIMED MOCK EXAM SIMULATOR -->
+    <div id="view-mock" class="view-section">
+      <div class="exam-header">
+        <div>
+          <h2 style="font-size: 1.5rem; font-weight: 800;">NEB Model Mock Examination</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Timed Board Preparation • Multi-Subject Science Evaluation</p>
+        </div>
+        <div class="timer-badge">
+          <span>⏱️</span> <span id="exam-timer-display">10:00</span>
+        </div>
+      </div>
+
+      <!-- Exam Result Card (Hidden until submitted) -->
+      <div id="exam-result-card" style="display:none; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; text-align: center; box-shadow: var(--shadow);">
+        <h2 id="exam-score-heading" style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Score: 0 / 10</h2>
+        <p id="exam-feedback-text" style="color: var(--text-muted); margin-bottom: 1.25rem;">Review your answers and detailed performance below.</p>
+        <button class="btn-auth" onclick="startMockExam()">Retake Mock Exam</button>
+      </div>
+
+      <!-- Questions List -->
+      <div id="mock-questions-container">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <button class="btn-ai-submit" id="btn-submit-mock-exam" onclick="submitMockExam()" style="margin: 0 auto; padding: 0.9rem 2.5rem; font-size: 1rem;">
+          Submit Examination & View Analysis 🎯
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 4: STUDENT DASHBOARD -->
     <div id="view-dashboard" class="view-section">
       
       <!-- Greeting Header & Quick Resume -->
@@ -1332,11 +1396,11 @@
           <div class="value" id="stat-chapters-mastered">0</div>
         </div>
         <div class="stat-card">
-          <div class="label">Quizzes Completed</div>
-          <div class="value" id="stat-quizzes-completed">0</div>
+          <div class="label">Mock Exams Completed</div>
+          <div class="value" id="stat-mocks-completed">0</div>
         </div>
         <div class="stat-card">
-          <div class="label">Avg Quiz Score</div>
+          <div class="label">Avg Accuracy</div>
           <div class="value" id="stat-accuracy">--</div>
         </div>
         <div class="stat-card">
@@ -1359,12 +1423,12 @@
       <!-- Weak Topic Alert Box -->
       <div class="weak-topic-alert">
         <h3>⚡ Recommended Priority Revision Topics</h3>
-        <p>Based on your quiz results and high-weightage NEB board exam areas:</p>
+        <p>Based on your test scores and high-weightage NEB board exam areas:</p>
         <div class="weak-pills" id="weak-topics-pills-container">
-          <span class="weak-pill" onclick="openChapterStudy('p11-01', 'c11-physics')">Vectors & Resolution of Forces</span>
-          <span class="weak-pill" onclick="openChapterStudy('p11-02', 'c11-physics')">Projectile Motion Range Formula</span>
-          <span class="weak-pill" onclick="openChapterStudy('ch11-01', 'c11-chemistry')">Limiting Reagent Calculations</span>
-          <span class="weak-pill" onclick="openChapterStudy('m11-07', 'c11-mathematics')">Trigonometric Limits</span>
+          <span class="weak-pill" onclick="openChapterStudy('p11-01', 'c11-physics')">Vectors: Parallelogram Law</span>
+          <span class="weak-pill" onclick="openChapterStudy('ch11-01', 'c11-chemistry')">Stoichiometry: Mole & Limiting Reagents</span>
+          <span class="weak-pill" onclick="openChapterStudy('m11-07', 'c11-mathematics')">Calculus: Trigonometric Limits</span>
+          <span class="weak-pill" onclick="openChapterStudy('cs11-05', 'c11-computer')">C Programming: Loops & Syntax</span>
         </div>
       </div>
 
@@ -1387,37 +1451,184 @@
     let currentSubjectId = 'c11-physics';
     let activeChapter = null;
 
-    // Sample Quizzes
-    const chapterQuizzes = {
-      "p11-01": [
-        {
-          q: "What is the angle between two vectors P and Q if their resultant magnitude is maximum?",
-          opts: ["0°", "90°", "180°", "45°"],
-          ans: 0,
-          exp: "Resultant R = √(P² + Q² + 2PQ cosθ). Maximum value occurs when cosθ = 1, which means θ = 0° (parallel vectors)."
-        },
-        {
-          q: "If the dot product of two non-zero vectors A and B is zero, the vectors are:",
-          opts: ["Parallel", "Perpendicular", "Collinear", "Opposite"],
-          ans: 1,
-          exp: "A · B = |A||B| cosθ = 0. Since |A| and |B| are non-zero, cosθ = 0, so θ = 90° (perpendicular)."
+    // Mock Exam Questions Database
+    const mockQuestions = [
+      {
+        subject: "Physics",
+        q: "What is the maximum horizontal range of a projectile fired with speed $u$ at an angle of $45^\\circ$?",
+        opts: ["$R = \\frac{u^2}{g}$", "$R = \\frac{u^2}{2g}$", "$R = \\frac{2u^2}{g}$", "$R = \\frac{u^2}{4g}$"],
+        ans: 0,
+        exp: "Formula $R = \\frac{u^2 \\sin 2\\theta}{g}$. When $\\theta = 45^\\circ$, $\\sin(90^\\circ) = 1$, giving maximum range $R_{\\max} = \\frac{u^2}{g}$."
+      },
+      {
+        subject: "Chemistry",
+        q: "How many moles are present in $50\\text{ g}$ of Calcium Carbonate ($\\text{CaCO}_3$)? [Atomic masses: $\\text{Ca}=40, \\text{C}=12, \\text{O}=16$]",
+        opts: ["$0.25\\text{ mol}$", "$0.50\\text{ mol}$", "$1.00\\text{ mol}$", "$2.00\\text{ mol}$"],
+        ans: 1,
+        exp: "Molar mass of $\\text{CaCO}_3 = 40 + 12 + 3(16) = 100\\text{ g/mol}$. Number of moles $n = \\frac{50}{100} = 0.50\\text{ mol}$."
+      },
+      {
+        subject: "Mathematics",
+        q: "Evaluate the standard limit: $\\lim_{x \\to 0} \\frac{\\sin x}{x}$ (where $x$ is in radians).",
+        opts: ["$0$", "$1$", "$\\infty$", "Undefined"],
+        ans: 1,
+        exp: "By standard calculus trigonometric limit theorem, $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$."
+      },
+      {
+        subject: "Computer Science",
+        q: "Which of the following is a post-tested loop in C Programming?",
+        opts: ["for loop", "while loop", "do-while loop", "if-else statement"],
+        ans: 2,
+        exp: "The `do-while` loop executes its body at least once before testing the loop condition at the end (post-tested)."
+      }
+    ];
+
+    let userExamAnswers = {};
+    let examTimeRemaining = 600; // 10 minutes in seconds
+    let examTimerInterval = null;
+
+    // View Switching
+    function showView(viewName) {
+      document.getElementById('view-curriculum').classList.toggle('active', viewName === 'curriculum');
+      document.getElementById('view-chapter').classList.toggle('active', viewName === 'chapter');
+      document.getElementById('view-mock').classList.toggle('active', viewName === 'mock');
+      document.getElementById('view-dashboard').classList.toggle('active', viewName === 'dashboard');
+      
+      document.getElementById('nav-btn-explore').classList.toggle('active', viewName === 'curriculum' || viewName === 'chapter');
+      document.getElementById('nav-btn-mock').classList.toggle('active', viewName === 'mock');
+      document.getElementById('nav-btn-dash').classList.toggle('active', viewName === 'dashboard');
+
+      if (viewName === 'mock') {
+        startMockExam();
+      }
+      if (viewName === 'dashboard') {
+        updateDashboard();
+      }
+    }
+
+    // Mock Exam Engine
+    function startMockExam() {
+      userExamAnswers = {};
+      examTimeRemaining = 600;
+      clearInterval(examTimerInterval);
+      document.getElementById('exam-result-card').style.display = 'none';
+      document.getElementById('btn-submit-mock-exam').style.display = 'block';
+
+      renderMockQuestions();
+
+      examTimerInterval = setInterval(() => {
+        examTimeRemaining--;
+        const mins = Math.floor(examTimeRemaining / 60);
+        const secs = examTimeRemaining % 60;
+        document.getElementById('exam-timer-display').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        if (examTimeRemaining <= 0) {
+          clearInterval(examTimerInterval);
+          alert('Time is up! Submitting your examination automatically...');
+          submitMockExam();
         }
-      ],
-      "p11-02": [
-        {
-          q: "At what angle of projection with the horizontal is the horizontal range of a projectile maximum?",
-          opts: ["30°", "45°", "60°", "90°"],
-          ans: 1,
-          exp: "Range R = (u² sin 2θ)/g. R is maximum when sin 2θ = 1, which gives 2θ = 90° ⇒ θ = 45°."
-        },
-        {
-          q: "During projectile motion, which component of velocity remains constant throughout the flight?",
-          opts: ["Vertical component", "Horizontal component", "Both components", "Neither component"],
-          ans: 1,
-          exp: "The horizontal component of velocity (u cosθ) remains constant because horizontal acceleration is zero (ignoring air resistance)."
+      }, 1000);
+    }
+
+    function renderMockQuestions() {
+      const container = document.getElementById('mock-questions-container');
+      container.innerHTML = '';
+
+      mockQuestions.forEach((qItem, idx) => {
+        const card = document.createElement('div');
+        card.className = 'exam-question-card';
+
+        let optsHtml = '';
+        qItem.opts.forEach((opt, optIdx) => {
+          optsHtml += `
+            <div class="exam-opt-row" id="exam-opt-${idx}-${optIdx}" onclick="selectExamOption(${idx}, ${optIdx})">
+              <input type="radio" name="mock_q_${idx}" id="radio-${idx}-${optIdx}">
+              <label>${String.fromCharCode(65 + optIdx)}. ${opt}</label>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; margin-bottom: 0.75rem;">
+            <span class="stream-tag" style="background:#e0e7ff; color:#3730a3;">${qItem.subject}</span>
+            <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Question ${idx + 1} of ${mockQuestions.length}</span>
+          </div>
+          <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:1rem;">${qItem.q}</h3>
+          <div>${optsHtml}</div>
+          <div id="exam-exp-${idx}" style="display:none; margin-top:1rem; padding:0.75rem; border-radius:6px; font-size:0.88rem;"></div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Render math formulas
+      setTimeout(() => {
+        if (window.renderMathInElement) {
+          renderMathInElement(container, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
         }
-      ]
-    };
+      }, 100);
+    }
+
+    function selectExamOption(qIdx, optIdx) {
+      userExamAnswers[qIdx] = optIdx;
+      const allRows = document.querySelectorAll(`[id^="exam-opt-${qIdx}-"]`);
+      allRows.forEach(r => r.classList.remove('selected'));
+      document.getElementById(`exam-opt-${qIdx}-${optIdx}`).classList.add('selected');
+      document.getElementById(`radio-${qIdx}-${optIdx}`).checked = true;
+    }
+
+    function submitMockExam() {
+      clearInterval(examTimerInterval);
+      let correct = 0;
+
+      mockQuestions.forEach((qItem, idx) => {
+        const userChoice = userExamAnswers[idx];
+        const expBox = document.getElementById(`exam-exp-${idx}`);
+        expBox.style.display = 'block';
+
+        if (userChoice === qItem.ans) {
+          correct++;
+          expBox.style.background = '#dcfce7';
+          expBox.style.color = '#166534';
+          expBox.innerHTML = `<strong>✓ Correct!</strong> ${qItem.exp}`;
+        } else {
+          expBox.style.background = '#fee2e2';
+          expBox.style.color = '#991b1b';
+          expBox.innerHTML = `<strong>✗ Incorrect.</strong> Correct answer is <strong>${String.fromCharCode(65 + qItem.ans)}</strong>.<br>${qItem.exp}`;
+        }
+      });
+
+      // Save to History
+      let mocks = JSON.parse(localStorage.getItem('gyansetu_mocks') || '[]');
+      mocks.push({ score: correct, total: mockQuestions.length, date: new Date().toISOString() });
+      localStorage.setItem('gyansetu_mocks', JSON.stringify(mocks));
+
+      // Display Result Card
+      document.getElementById('exam-result-card').style.display = 'block';
+      document.getElementById('exam-score-heading').textContent = `Score: ${correct} / ${mockQuestions.length} (${Math.round((correct/mockQuestions.length)*100)}%)`;
+      document.getElementById('btn-submit-mock-exam').style.display = 'none';
+
+      // Re-render math inside explanations
+      setTimeout(() => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.getElementById('view-mock'), {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false }
+            ],
+            throwOnError: false
+          });
+        }
+      }, 100);
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateDashboard();
+    }
 
     // AI Doubt Solver Functions
     function setAiPrompt(text) {
@@ -1488,20 +1699,6 @@
       }
     }
 
-    // View Switching
-    function showView(viewName) {
-      document.getElementById('view-curriculum').classList.toggle('active', viewName === 'curriculum');
-      document.getElementById('view-chapter').classList.toggle('active', viewName === 'chapter');
-      document.getElementById('view-dashboard').classList.toggle('active', viewName === 'dashboard');
-      
-      document.getElementById('nav-btn-explore').classList.toggle('active', viewName === 'curriculum' || viewName === 'chapter');
-      document.getElementById('nav-btn-dash').classList.toggle('active', viewName === 'dashboard');
-
-      if (viewName === 'dashboard') {
-        updateDashboard();
-      }
-    }
-
     async function openChapterStudy(chapterId, subjectId) {
       if (!curriculumData) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
@@ -1513,20 +1710,15 @@
 
       activeChapter = { ...chapter, subjectId: sub.id, subjectName: sub.name, classId: cls.id };
 
-      // Update UI Header
       document.getElementById('study-bc-subject').textContent = sub.name;
       document.getElementById('study-bc-unit').textContent = chapter.unit || 'Core Unit';
       document.getElementById('study-chapter-title').textContent = chapter.name;
       document.getElementById('study-chapter-meta').textContent = `${cls.name} Science • ${sub.name} (${sub.code || ''}) • Unit: ${chapter.unit || 'Core'}`;
       
-      // Update Resume Card on Dashboard
       document.getElementById('dash-resume-chapter').textContent = `${sub.name}: ${chapter.name}`;
-
-      // Reset AI response box
       document.getElementById('ai-response-box').style.display = 'none';
       document.getElementById('ai-user-prompt').value = '';
 
-      // Load Note Content
       const note = notesData[chapter.id] || {
         title: chapter.name,
         concepts: `Conceptual overview for ${chapter.name} aligned with the NEB syllabus. Focus on fundamental principles, definitions, and applications.`,
@@ -1542,7 +1734,6 @@
       document.getElementById('study-concepts-body').innerHTML = `<p>${note.concepts}</p>`;
       document.getElementById('study-bilingual-note').textContent = note.bilingual;
 
-      // Render Formulas
       const fBody = document.getElementById('study-formulas-body');
       fBody.innerHTML = '';
       (note.formulas || []).forEach(f => {
@@ -1552,7 +1743,6 @@
         fBody.appendChild(fDiv);
       });
 
-      // Render Past Papers
       const ppBody = document.getElementById('study-pastpapers-body');
       ppBody.innerHTML = '';
       (note.pastPapers || []).forEach(p => {
@@ -1562,14 +1752,10 @@
         ppBody.appendChild(pDiv);
       });
 
-      // Render Quiz for Chapter
-      renderQuizForChapter(chapter.id);
-
       updateMasteryButton();
       switchStudyTab('concepts');
       showView('chapter');
 
-      // Trigger math rendering on static formulas
       setTimeout(() => {
         if (window.renderMathInElement) {
           renderMathInElement(document.getElementById('view-chapter'), {
@@ -1583,68 +1769,8 @@
       }, 100);
     }
 
-    function renderQuizForChapter(chapterId) {
-      const container = document.getElementById('quiz-questions-container');
-      const scoreBanner = document.getElementById('quiz-score-banner');
-      scoreBanner.style.display = 'none';
-      container.innerHTML = '';
-
-      const questions = chapterQuizzes[chapterId] || [
-        {
-          q: `Sample NEB Conceptual MCQ for ${activeChapter.name}: Which principle is most fundamental?`,
-          opts: ["Conservation Law", "Empirical Observation", "Constant Magnitude", "Scalar Quantity"],
-          ans: 0,
-          exp: "Conservation principles form the foundation of this NEB unit."
-        }
-      ];
-
-      questions.forEach((item, qIdx) => {
-        const qCard = document.createElement('div');
-        qCard.className = 'quiz-card';
-        
-        let optsHtml = '';
-        item.opts.forEach((opt, optIdx) => {
-          optsHtml += `<button class="quiz-opt-btn" onclick="checkAnswer(${qIdx}, ${optIdx}, ${item.ans}, this, '${chapterId}')">${String.fromCharCode(65 + optIdx)}. ${opt}</button>`;
-        });
-
-        qCard.innerHTML = `
-          <div class="quiz-q-title">Q${qIdx + 1}: ${item.q}</div>
-          <div class="quiz-options">${optsHtml}</div>
-          <div class="quiz-exp-box" id="q-exp-${qIdx}">
-            <strong>💡 Explanation:</strong> ${item.exp}
-          </div>
-        `;
-        container.appendChild(qCard);
-      });
-    }
-
-    function checkAnswer(qIdx, selectedIdx, correctIdx, btnElem, chapterId) {
-      const parent = btnElem.parentElement;
-      const allBtns = parent.querySelectorAll('.quiz-opt-btn');
-      allBtns.forEach(b => b.disabled = true);
-
-      const expBox = document.getElementById(`q-exp-${qIdx}`);
-      expBox.style.display = 'block';
-
-      if (selectedIdx === correctIdx) {
-        btnElem.classList.add('correct');
-        expBox.style.background = '#dcfce7';
-        expBox.style.color = '#166534';
-      } else {
-        btnElem.classList.add('wrong');
-        allBtns[correctIdx].classList.add('correct');
-        expBox.style.background = '#fee2e2';
-        expBox.style.color = '#991b1b';
-      }
-
-      let history = JSON.parse(localStorage.getItem('gyansetu_quiz_history') || '[]');
-      history.push({ chapterId, isCorrect: selectedIdx === correctIdx, date: new Date().toISOString() });
-      localStorage.setItem('gyansetu_quiz_history', JSON.stringify(history));
-      updateDashboard();
-    }
-
     function switchStudyTab(tabKey) {
-      const tabs = ['concepts', 'formulas', 'quiz', 'solver', 'pastpapers', 'ai'];
+      const tabs = ['concepts', 'formulas', 'pastpapers', 'ai'];
       tabs.forEach(t => {
         const btn = document.getElementById(`tab-study-${t}`);
         const panel = document.getElementById(`study-panel-${t}`);
@@ -1799,11 +1925,12 @@
       const mastered = getMasteredChapters();
       document.getElementById('stat-chapters-mastered').textContent = mastered.length;
 
-      const quizHistory = JSON.parse(localStorage.getItem('gyansetu_quiz_history') || '[]');
-      document.getElementById('stat-quizzes-completed').textContent = quizHistory.length;
-      if (quizHistory.length > 0) {
-        const correctCount = quizHistory.filter(q => q.isCorrect).length;
-        const avg = Math.round((correctCount / quizHistory.length) * 100);
+      const mocks = JSON.parse(localStorage.getItem('gyansetu_mocks') || '[]');
+      document.getElementById('stat-mocks-completed').textContent = mocks.length;
+      if (mocks.length > 0) {
+        const totalCorrect = mocks.reduce((sum, m) => sum + m.score, 0);
+        const totalQ = mocks.reduce((sum, m) => sum + m.total, 0);
+        const avg = Math.round((totalCorrect / totalQ) * 100);
         document.getElementById('stat-accuracy').textContent = `${avg}%`;
       } else {
         document.getElementById('stat-accuracy').textContent = '--';
