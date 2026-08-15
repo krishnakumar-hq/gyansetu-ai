@@ -2098,55 +2098,80 @@
       alertBox.className = 'auth-message';
       alertBox.textContent = '';
     }
+async function handleRegister(e) {
+  e.preventDefault();
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const userClass = document.getElementById('reg-class').value;
+  const password = document.getElementById('reg-password').value;
 
-    function handleRegister(e) {
-      e.preventDefault();
-      const name = document.getElementById('reg-name').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      const userClass = document.getElementById('reg-class').value;
-      const password = document.getElementById('reg-password').value;
+  if (!name || !email || !password) {
+    showAuthAlert('Please fill in all fields.');
+    return;
+  }
 
-      if (!name || !email || !password) {
-        showAuthAlert('Please fill in all fields.');
-        return;
-      }
+  showAuthAlert('Saving account to Cloudflare D1 database...', true);
 
-      const user = { name, email, classId: userClass };
+  try {
+    const res = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fullName: name, email, password, classLevel: userClass })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      const user = { name: data.user.fullName, email: data.user.email, classId: data.user.classLevel };
       localStorage.setItem('gyansetu_user', JSON.stringify(user));
-      showAuthAlert('Account created successfully! Signing you in...', true);
-
+      showAuthAlert('✓ Account saved to D1! Signing you in...', true);
       setTimeout(() => {
         closeAuthModal();
         initSession();
         selectClass(userClass);
         showView('dashboard');
       }, 700);
+    } else {
+      showAuthAlert(data.error || 'Registration failed.');
     }
+  } catch (err) {
+    showAuthAlert(`Connection error: ${err.message}`);
+  }
+}
 
-    function handleLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value.trim();
-      const password = document.getElementById('login-password').value;
+async function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
 
-      if (!email || !password) {
-        showAuthAlert('Please enter both email and password.');
-        return;
-      }
+  if (!email || !password) {
+    showAuthAlert('Please enter both email and password.');
+    return;
+  }
 
-      let existing = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
-      if (!existing || existing.email !== email) {
-        existing = { name: email.split('@')[0], email: email, classId: currentClassId };
-        localStorage.setItem('gyansetu_user', JSON.stringify(existing));
-      }
+  showAuthAlert('Verifying credentials with D1...', true);
 
-      showAuthAlert('Welcome back! Loading your study dashboard...', true);
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      const user = { name: data.user.full_name || data.user.fullName, email: data.user.email, classId: data.user.class_level || data.user.classLevel };
+      localStorage.setItem('gyansetu_user', JSON.stringify(user));
+      showAuthAlert('✓ Welcome back! Loading your dashboard...', true);
       setTimeout(() => {
         closeAuthModal();
         initSession();
         showView('dashboard');
       }, 700);
+    } else {
+      showAuthAlert(data.error || 'Invalid credentials.');
     }
-
+  } catch (err) {
+    showAuthAlert(`Connection error: ${err.message}`);
+  }
+}
     function initSession() {
       const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
       const btnLogin = document.getElementById('btn-open-login');
