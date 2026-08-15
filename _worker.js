@@ -1,8 +1,92 @@
+// Helper for SHA-256 password hashing using Web Crypto
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // 1. AI API Endpoint: /api/chat
+    // 1. Student Registration Endpoint: /api/auth/register
+    if (url.pathname === "/api/auth/register" && request.method === "POST") {
+      try {
+        const { fullName, email, password, classLevel } = await request.json();
+        if (!fullName || !email || !password) {
+          return new Response(JSON.stringify({ error: "Missing required registration fields." }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
+        const passHash = await hashPassword(password);
+        const userId = "u_" + Date.now();
+
+        if (env.DB) {
+          await env.DB.prepare(
+            "INSERT INTO users (id, email, password_hash, full_name, class_level, stream) VALUES (?, ?, ?, ?, ?, ?)"
+          ).bind(userId, email, passHash, fullName, classLevel || "class-11", "Science").run();
+        }
+
+        return new Response(JSON.stringify({ 
+          success: true, 
+          user: { id: userId, email, fullName, classLevel: classLevel || "class-11" } 
+        }), {
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: "Registration failed. Email may already exist.", details: err.message }), {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+
+    // 2. Student Login Endpoint: /api/auth/login
+    if (url.pathname === "/api/auth/login" && request.method === "POST") {
+      try {
+        const { email, password } = await request.json();
+        if (!email || !password) {
+          return new Response(JSON.stringify({ error: "Email and password are required." }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
+        const passHash = await hashPassword(password);
+        let user = null;
+
+        if (env.DB) {
+          user = await env.DB.prepare(
+            "SELECT id, email, full_name, class_level, stream FROM users WHERE email = ? AND password_hash = ?"
+          ).bind(email, passHash).first();
+        }
+
+        if (!user && env.DB) {
+          return new Response(JSON.stringify({ error: "Invalid email or password." }), {
+            status: 401,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+
+        return new Response(JSON.stringify({ 
+          success: true, 
+          user: user || { email, fullName: email.split("@")[0], classLevel: "class-11" } 
+        }), {
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: "Login failed", details: err.message }), {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+
+    // 3. AI API Endpoint: /api/chat
     if (url.pathname === "/api/chat" && request.method === "POST") {
       try {
         const body = await request.json();
@@ -41,7 +125,7 @@ Guidelines:
 
         const fullPrompt = `${systemPrompt}\n\nStudent Question:\n${prompt}`;
 
-        // High-capacity free tier models (1,500 requests/day quota pool)
+        // High-capacity free tier models
         const activeModels = [
           "gemini-2.5-flash-lite",
           "gemini-3.5-flash-lite",
@@ -84,10 +168,9 @@ Guidelines:
               }
               if (text) {
                 finalReply = text;
-                break; // Successfully generated answer!
+                break;
               }
             } else if (intRes.status === 429) {
-              // If this specific model hit a rate limit, rotate to the next model in the pool
               lastError = "Rate limit on " + model;
               continue;
             } else {
@@ -120,7 +203,7 @@ Guidelines:
       }
     }
 
-    // 2. Serve all static files (index.html, curriculum.json, notes.json)
+    // 4. Serve all static files (index.html, curriculum.json, notes.json)
     return env.ASSETS.fetch(request);
   }
 };
