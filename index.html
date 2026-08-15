@@ -224,8 +224,8 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 2.5rem 1rem 2rem;
-      max-width: 800px;
+      padding: 2.5rem 1rem 1.5rem;
+      max-width: 850px;
       margin: 0 auto;
     }
 
@@ -256,9 +256,81 @@
     }
 
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Search Bar */
+    .search-box-wrap {
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.9rem 1.25rem 0.9rem 2.75rem;
+      border: 2px solid var(--border);
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      outline: none;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+      background: #ffffff;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .search-results-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 0.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      z-index: 50;
+      max-height: 350px;
+      overflow-y: auto;
+      display: none;
+      text-align: left;
+    }
+
+    .search-result-item {
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .search-result-item:hover {
+      background: var(--primary-light);
+    }
+
+    .search-result-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .search-result-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
     /* Class Switcher */
@@ -606,6 +678,13 @@
       color: #0f172a;
     }
 
+    .qa-ans {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-top: 0.4rem;
+    }
+
     .qa-tag {
       font-size: 0.72rem;
       background: #e0e7ff;
@@ -628,7 +707,7 @@
 
     .glossary-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 0.75rem;
       margin-top: 0.75rem;
     }
@@ -1222,7 +1301,7 @@
       <div class="brand-group" onclick="showView('curriculum')">
         <div class="logo-badge">GS</div>
         <div class="brand-name">GyanSetu AI</div>
-        <span class="stream-tag">Science Stream</span>
+        <span class="stream-tag">NEB 11 & 12</span>
       </div>
 
       <!-- Navigation Switcher -->
@@ -1290,8 +1369,8 @@
         <div class="form-group">
           <label>Choose Class</label>
           <select id="reg-class" class="form-control">
-            <option value="class-11">Class 11 (Science)</option>
-            <option value="class-12">Class 12 (Science)</option>
+            <option value="class-11">Class 11</option>
+            <option value="class-12">Class 12</option>
           </select>
         </div>
         <div class="form-group">
@@ -1339,9 +1418,16 @@
 
       <!-- Hero -->
       <section class="hero">
-        <div class="hero-pill">✨ NEB Curriculum-Aligned AI Study Engine</div>
-        <h1>Master NEB Class 11 & 12 Science with <span>Targeted AI Tutoring</span></h1>
-        <p>Concept breakdowns, step-by-step numerical calculations, past exam answer formulations, and chapter quizzes aligned specifically with the NEB syllabus.</p>
+        <div class="hero-pill">✨ Official CDC Curriculum-Aligned AI Study Platform</div>
+        <h1>Master NEB Class 11 & 12 with <span>Lesson-Aware AI Tutoring</span></h1>
+        <p>Comprehensive coverage of Compulsory English, अनिवार्य नेपाली, Physics, Chemistry, Mathematics, and Computer Science.</p>
+
+        <!-- Search Bar -->
+        <div class="search-box-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="curriculum-search-input" class="search-input" placeholder="Search any lesson, poem, story, grammar rule or formula (e.g. Selfish Giant, आमाको सपना, पदवर्ग, Projectile)..." oninput="handleCurriculumSearch(this.value)">
+          <div class="search-results-dropdown" id="search-results-dropdown"></div>
+        </div>
 
         <!-- Class Switcher -->
         <div class="class-switcher-wrap">
@@ -1357,7 +1443,7 @@
         <div class="section-head">
           <div>
             <h2 id="subjects-heading">Class 11 Subjects</h2>
-            <p>Select a subject to explore units, chapters, and study modules.</p>
+            <p>Select any subject to explore CDC units, lessons, stories, poems, and grammar.</p>
           </div>
         </div>
         <div class="subject-grid" id="subject-grid"></div>
@@ -1382,13 +1468,13 @@
       <div class="chapter-study-header">
         <div class="breadcrumbs">
           <span onclick="showView('curriculum')">Syllabus</span> &gt;
-          <span id="study-bc-subject">Physics</span> &gt;
-          <span id="study-bc-unit">Mechanics</span>
+          <span id="study-bc-subject">Subject</span> &gt;
+          <span id="study-bc-unit">Unit</span>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
           <div>
-            <h1 class="chapter-hero-title" id="study-chapter-title">Chapter Title</h1>
-            <p id="study-chapter-meta" style="color: var(--text-muted); font-size: 0.88rem;">NEB Class 11 Science • High-Weightage Chapter</p>
+            <h1 class="chapter-hero-title" id="study-chapter-title">Lesson Title</h1>
+            <p id="study-chapter-meta" style="color: var(--text-muted); font-size: 0.88rem;">Official CDC Curriculum • High-Weightage Study Module</p>
           </div>
           <button class="status-check-btn" id="study-master-btn" onclick="toggleCurrentChapterMastery()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
             ○ Mark Mastered
@@ -1396,66 +1482,68 @@
         </div>
       </div>
 
-      <!-- Study Tabs -->
-      <div class="study-tabs-nav">
-        <button class="study-tab-btn active" id="tab-study-concepts" onclick="switchStudyTab('concepts')">📖 Summary & Concepts</button>
-        <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')">📐 Formulas & Laws</button>
-        <button class="study-tab-btn" id="tab-study-pastpapers" onclick="switchStudyTab('pastpapers')">📝 NEB Exam Questions</button>
-        <button class="study-tab-btn" id="tab-study-ai" onclick="switchStudyTab('ai')">⚡ AI Doubt Solver</button>
+      <!-- Adaptive Study Tabs -->
+      <div class="study-tabs-nav" id="study-tabs-nav-bar">
+        <button class="study-tab-btn active" id="tab-study-concepts" onclick="switchStudyTab('concepts')">📖 Summary & Overview</button>
+        <button class="study-tab-btn" id="tab-study-themes" onclick="switchStudyTab('themes')">🎭 Themes & Characters</button>
+        <button class="study-tab-btn" id="tab-study-grammar" onclick="switchStudyTab('grammar')">✍️ Grammar & Vocab</button>
+        <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')" style="display: none;">📐 Formulas & Laws</button>
+        <button class="study-tab-btn" id="tab-study-pastpapers" onclick="switchStudyTab('pastpapers')">📝 NEB Model Board Q&A</button>
+        <button class="study-tab-btn" id="tab-study-ai" onclick="switchStudyTab('ai')">⚡ Ask Lesson AI</button>
       </div>
 
-      <!-- Study Tab 1: Concepts -->
+      <!-- Study Tab 1: Concepts / Summary -->
       <div id="study-panel-concepts" class="study-content-panel">
-        <h3>1. Core Concept Overview</h3>
+        <h3 id="panel-concept-heading">1. Core Lesson Summary & Overview</h3>
         <div id="study-concepts-body">
-          <p>Loading curated NEB concept notes...</p>
+          <p>Loading curated CDC notes...</p>
         </div>
         <div class="bilingual-box">
           💡 <strong>Nepali-English Concept Note (नेपाली-English सारांश):</strong>
-          <p id="study-bilingual-note" style="margin-top: 0.35rem; margin-bottom: 0.75rem;">Loading bilingual explanation...</p>
-
-          <strong style="font-size: 0.82rem; color: #854d0e;">📖 Key Scientific Glossary (पारिभाषिक शब्दावली):</strong>
-          <div class="glossary-grid" id="glossary-container">
-            <div class="glossary-item"><strong>Vector:</strong> सदिश राशि (Magnitude + Direction)</div>
-            <div class="glossary-item"><strong>Displacement:</strong> विस्थापन (Shortest distance)</div>
-            <div class="glossary-item"><strong>Velocity:</strong> वेग (Rate of displacement)</div>
-            <div class="glossary-item"><strong>Acceleration:</strong> प्रवेग (Rate of change of velocity)</div>
-          </div>
+          <p id="study-bilingual-note" style="margin-top: 0.35rem; margin-bottom: 0.75rem;">Loading explanation...</p>
         </div>
       </div>
 
-      <!-- Study Tab 2: Formulas -->
+      <!-- Study Tab 2: Themes & Characters -->
+      <div id="study-panel-themes" class="study-content-panel" style="display: none;">
+        <h3>2. Themes, Character Sketches & Literary Elements</h3>
+        <div id="study-themes-body"></div>
+      </div>
+
+      <!-- Study Tab 3: Grammar & Vocabulary -->
+      <div id="study-panel-grammar" class="study-content-panel" style="display: none;">
+        <h3>3. Grammar Rules, Language Skills & Vocabulary</h3>
+        <div id="study-grammar-body"></div>
+      </div>
+
+      <!-- Study Tab 4: Formulas (For Science) -->
       <div id="study-panel-formulas" class="study-content-panel" style="display: none;">
-        <h3>2. Essential Formulas & SI Units</h3>
-        <div id="study-formulas-body">
-          <p>Loading formulas...</p>
-        </div>
+        <h3>Essential Formulas & Laws</h3>
+        <div id="study-formulas-body"></div>
       </div>
 
-      <!-- Study Tab 3: Past Papers -->
+      <!-- Study Tab 5: Past Papers & Model Board Q&A -->
       <div id="study-panel-pastpapers" class="study-content-panel" style="display: none;">
-        <h3>3. NEB Model & Past Exam Questions</h3>
-        <div id="study-pastpapers-body">
-          <p>Loading model questions...</p>
-        </div>
+        <h3>4. NEB Model Exam Questions & Structured Study Answers</h3>
+        <div id="study-pastpapers-body"></div>
       </div>
 
-      <!-- Study Tab 4: LIVE AI DOUBT SOLVER -->
+      <!-- Study Tab 6: LIVE AI DOUBT SOLVER -->
       <div id="study-panel-ai" class="study-content-panel" style="display: none;">
-        <h3>4. Live GyanSetu AI Tutor</h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">Ask any conceptual doubt, request a 7-step numerical solution, or ask for a simple Nepali-English explanation grounded in this chapter.</p>
+        <h3>5. Live GyanSetu AI Tutor (Lesson-Aware)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Ask specific questions about this lesson's plot, themes, character motivation, grammar rules, or get a structured NEB board exam answer.</p>
         
         <div class="ai-chat-box">
-          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">Quick Question Starters:</div>
-          <div class="ai-prompt-templates">
-            <span class="template-chip" onclick="setAiPrompt('Explain the core concept and physical significance of this chapter in simple terms with a real-life example.')">💡 Explain Core Concept</span>
-            <span class="template-chip" onclick="setAiPrompt('Give me a high-frequency NEB board numerical problem for this chapter and solve it using the complete 7-step method.')">🔢 Solve 7-Step Numerical</span>
-            <span class="template-chip" onclick="setAiPrompt('Generate a standard 2-mark short answer question and model answer strictly formatted for the NEB board exam.')">📝 2-Mark Board Question</span>
-            <span class="template-chip" onclick="setAiPrompt('यस अध्यायको मुख्य कुराहरू र महत्त्वपूर्ण फर्मुलाहरू सरल नेपाली-English भाषामा बुझाइदिनुहोस्।')">🇳🇵 Explain in Simple Nepali</span>
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">Quick Question Starters for this Lesson:</div>
+          <div class="ai-prompt-templates" id="ai-dynamic-prompt-chips">
+            <span class="template-chip" onclick="setAiPrompt('Explain the main theme and central message of this lesson in simple terms.')">💡 Main Theme & Message</span>
+            <span class="template-chip" onclick="setAiPrompt('Give me a character sketch and psychological analysis of the main characters in this lesson.')">👤 Character Analysis</span>
+            <span class="template-chip" onclick="setAiPrompt('Generate a standard 5-mark NEB board exam question and model answer for this lesson.')">📝 5-Mark Board Answer</span>
+            <span class="template-chip" onclick="setAiPrompt('यस पाठको मुख्य भाव, सन्देश र महत्त्वपूर्ण व्याकरण सरल नेपाली भाषामा बुझाइदिनुहोस्।')">🇳🇵 Explain in Simple Nepali</span>
           </div>
 
           <div class="ai-input-row">
-            <textarea id="ai-user-prompt" class="ai-textarea" placeholder="Type your specific question or numerical problem here..."></textarea>
+            <textarea id="ai-user-prompt" class="ai-textarea" placeholder="Ask any doubt or exam question specifically about this lesson..."></textarea>
             <button class="btn-ai-submit" id="btn-ask-gemini" onclick="submitAiQuestion()">
               <span id="ai-btn-text">Ask AI</span> ⚡
             </button>
@@ -1464,7 +1552,7 @@
           <!-- Loading Indicator -->
           <div class="ai-loading-indicator" id="ai-loading">
             <div class="spinner"></div>
-            <span>GyanSetu AI is analyzing the NEB syllabus and formulating your solution...</span>
+            <span>GyanSetu AI is analyzing the CDC syllabus and formulating your solution...</span>
           </div>
 
           <!-- Formatted AI Response Box -->
@@ -1472,13 +1560,13 @@
 
           <!-- Quality Control Disclaimer & Report Button -->
           <div id="ai-footer-bar" style="margin-top:0.75rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.78rem; color:var(--text-muted);">
-            <span>⚠️ AI answers should be verified with official NEB CDC textbooks.</span>
+            <span>⚠️ AI answers are for study guidance; always verify with official CDC textbooks.</span>
             <button class="btn-small" onclick="openReportModal()" style="font-size:0.75rem; color:#b91c1c; border-color:#fca5a5;">🚩 Report Inaccuracy</button>
           </div>
         </div>
       </div>
 
-      <!-- Back / Navigation footer inside chapter -->
+      <!-- Navigation footer inside chapter -->
       <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
         <button class="btn-small" onclick="showView('curriculum')">← Back to Curriculum</button>
         <button class="btn-small ai" onclick="showView('dashboard')">View Progress in Dashboard →</button>
@@ -1490,13 +1578,13 @@
       <div class="section-head">
         <div>
           <h2>NEB Board Exam Revision Strategy</h2>
-          <p>High-yield weightage matrix and 30-day master preparation timeline.</p>
+          <p>High-yield weightage matrix across all core subjects and 30-day master preparation timeline.</p>
         </div>
       </div>
 
       <div class="revision-matrix-card">
-        <h3 style="color: var(--primary); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">📊 Official NEB Science Marks Distribution</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted);">Total Theory: 75 Marks | Practical: 25 Marks per subject</p>
+        <h3 style="color: var(--primary); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">📊 Official NEB Marks Distribution</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Total Theory: 75 Marks | Internal / Practical: 25 Marks per subject</p>
 
         <table class="weightage-table">
           <thead>
@@ -1509,9 +1597,21 @@
           </thead>
           <tbody>
             <tr>
+              <td><strong>Compulsory English</strong> (Eng.003/004)</td>
+              <td>Reading Comprehension, Literature (Stories/Poems), Free Writing & Contextual Grammar</td>
+              <td><strong>75 Theory Marks</strong></td>
+              <td>Structure paragraphs cleanly; focus on literary themes & grammar rules.</td>
+            </tr>
+            <tr>
+              <td><strong>अनिवार्य नेपाली</strong> (Nep.001/002)</td>
+              <td>कविता, कथा, निबन्ध व्याख्या, विवेचनात्मक उत्तर, शब्दनिर्माण, पदवर्ग र व्यावहारिक लेखन</td>
+              <td><strong>७५ पूर्णाङ्क</strong></td>
+              <td>वर्णविन्यास शुद्ध लेख्नुहोस्; बुँदाटिपोट र सारांश लेखनको ढाँचा मिलाउनुहोस्।</td>
+            </tr>
+            <tr>
               <td><strong>Physics</strong> (Phy.101/201)</td>
               <td>Mechanics, Electricity & Magnetism, Wave Optics</td>
-              <td><strong>45+ / 75 Marks</strong></td>
+              <td><strong>50+ / 75 Marks</strong></td>
               <td>Master derivation steps & numerical SI units.</td>
             </tr>
             <tr>
@@ -1546,47 +1646,36 @@
       <div class="planner-timeline">
         <div class="plan-card">
           <h4>Week 1: High-Yield Foundations <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 1-7</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-1" onchange="saveTaskState('task-1')"> <label for="task-1">Physics: Vectors & Kinematics</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-2" onchange="saveTaskState('task-2')"> <label for="task-2">Chemistry: Mole Concept & Stoichiometry</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-3" onchange="saveTaskState('task-3')"> <label for="task-3">Maths: Limits, Continuity & Matrices</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-4" onchange="saveTaskState('task-4')"> <label for="task-4">CS: Number Systems & Logic Gates</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-1" onchange="saveTaskState('task-1')"> <label for="task-1">English: Short Stories (Selfish Giant, Neighbours)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-2" onchange="saveTaskState('task-2')"> <label for="task-2">नेपाली: वीर पुर्खा / आमाको सपना (कविता व्याख्या)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-3" onchange="saveTaskState('task-3')"> <label for="task-3">Physics: Vectors & Kinematics</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-4" onchange="saveTaskState('task-4')"> <label for="task-4">Chemistry: Stoichiometry & Volumetric Analysis</label></div>
         </div>
 
         <div class="plan-card">
           <h4>Week 2: Core Analytical Powers <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 8-14</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-5" onchange="saveTaskState('task-5')"> <label for="task-5">Physics: Dynamics, Work, Energy & Power</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-6" onchange="saveTaskState('task-6')"> <label for="task-6">Chemistry: Atomic Structure & Bonding</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-7" onchange="saveTaskState('task-7')"> <label for="task-7">Maths: Differentiation & Applications</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-8" onchange="saveTaskState('task-8')"> <label for="task-8">CS: C Control Statements (if-else, loops)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-5" onchange="saveTaskState('task-5')"> <label for="task-5">English: Essay Writing & Modal Verbs</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-6" onchange="saveTaskState('task-6')"> <label for="task-6">नेपाली: गाउँको माया / विरहिणी दमयन्ती (कथा सारांश)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-7" onchange="saveTaskState('task-7')"> <label for="task-7">Maths: Limits, Continuity & Differentiation</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-8" onchange="saveTaskState('task-8')"> <label for="task-8">CS: C Control Statements & DBMS</label></div>
         </div>
 
         <div class="plan-card">
-          <h4>Week 3: High-Weightage Deep Dive <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 15-21</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-9" onchange="saveTaskState('task-9')"> <label for="task-9">Physics: Electricity, Capacitance & Circuits</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-10" onchange="saveTaskState('task-10')"> <label for="task-10">Chemistry: Organic Fundamentals & Alkanes</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-11" onchange="saveTaskState('task-11')"> <label for="task-11">Maths: Integration & Definite Integrals</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-12" onchange="saveTaskState('task-12')"> <label for="task-12">CS: Functions, Pointers & 1D Arrays</label></div>
+          <h4>Week 3: Deep Dives & Grammar <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 15-21</span></h4>
+          <div class="plan-task-item"><input type="checkbox" id="task-9" onchange="saveTaskState('task-9')"> <label for="task-9">English: Critical Thinking & Reported Speech</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-10" onchange="saveTaskState('task-10')"> <label for="task-10">नेपाली: पदवर्ग, शब्दनिर्माण, व्यावसायिक पत्र</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-11" onchange="saveTaskState('task-11')"> <label for="task-11">Physics: Electricity & Magnetism</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-12" onchange="saveTaskState('task-12')"> <label for="task-12">Chemistry: Organic Fundamentals & Alcohols</label></div>
         </div>
 
         <div class="plan-card">
           <h4>Week 4: Mock Tests & Board Drills <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 22-30</span></h4>
           <div class="plan-task-item"><input type="checkbox" id="task-13" onchange="saveTaskState('task-13')"> <label for="task-13">Complete 3 Full Timed Mock Exams</label></div>
           <div class="plan-task-item"><input type="checkbox" id="task-14" onchange="saveTaskState('task-14')"> <label for="task-14">Review All Weak-Topic AI Summaries</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-15" onchange="saveTaskState('task-15')"> <label for="task-15">Final Formula & Derivation Sheet Review</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-15" onchange="saveTaskState('task-15')"> <label for="task-15">Final Formula & Literary Device Sheet Review</label></div>
           <div class="plan-task-item"><input type="checkbox" id="task-16" onchange="saveTaskState('task-16')"> <label for="task-16">Past 5 Years Question Bank Speed Drill</label></div>
         </div>
       </div>
-
-      <div class="bilingual-box" style="margin-bottom: 3rem;">
-        <h3>💡 Top 5 NEB Board Exam Marking Secrets (परीक्षार्थीहरूका लागि महत्त्वपूर्ण सुझावहरू):</h3>
-        <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.8;">
-          <li><strong>Step-Marking in Numericals:</strong> Always write the <em>Given Data</em> and <em>Formula</em> first. Even if the final calculation has an arithmetic error, you get 70% of the marks for steps and units.</li>
-          <li><strong>Diagrams:</strong> In Physics (Optics, Instruments) and Chemistry (Laboratory Preparation), pencil diagrams with clear labels carry 1.5 to 2 separate marks.</li>
-          <li><strong>Bilingual Flexibility:</strong> In NEB board papers, conceptual keywords in English with Nepali sentences are fully accepted by board examiners.</li>
-          <li><strong>Time Management:</strong> Allocate 1 minute per mark (e.g., maximum 8 minutes for a 8-mark question; maximum 2 minutes for a 2-mark short answer).</li>
-        </ol>
-      </div>
-
     </div>
 
     <!-- VIEW 4: TIMED MOCK EXAM SIMULATOR -->
@@ -1594,7 +1683,7 @@
       <div class="exam-header">
         <div>
           <h2 style="font-size: 1.5rem; font-weight: 800;">NEB Model Mock Examination</h2>
-          <p style="color: var(--text-muted); font-size: 0.88rem;">Timed Board Preparation • Multi-Subject Science Evaluation</p>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Timed Board Preparation • Multi-Subject Evaluation</p>
         </div>
         <div class="timer-badge">
           <span>⏱️</span> <span id="exam-timer-display">10:00</span>
@@ -1622,20 +1711,20 @@
       <div class="dashboard-header">
         <div class="dash-greeting">
           <h2 id="dash-student-greeting">Namaste, Student 👋</h2>
-          <p id="dash-student-class">Class 11 Science • NEB Board Exam Target: 2027</p>
+          <p id="dash-student-class">Class 11 • NEB Board Exam Target: 2027</p>
         </div>
         <div class="resume-card">
           <div>
             <div style="font-size: 0.75rem; opacity: 0.85; text-transform: uppercase; font-weight: 700;">Continue Studying</div>
-            <div id="dash-resume-chapter" style="font-weight: 700; font-size: 1.05rem; margin-top: 0.15rem;">Physics: Kinematics</div>
+            <div id="dash-resume-chapter" style="font-weight: 700; font-size: 1.05rem; margin-top: 0.15rem;">English: The Selfish Giant</div>
           </div>
-          <button class="btn-resume" onclick="openChapterStudy('p11-02', 'c11-physics')">Resume Study</button>
+          <button class="btn-resume" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">Resume Study</button>
         </div>
       </div>
 
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="label">Chapters Mastered</div>
+          <div class="label">Lessons Mastered</div>
           <div class="value" id="stat-chapters-mastered">0</div>
         </div>
         <div class="stat-card">
@@ -1656,7 +1745,7 @@
         <div class="section-head">
           <div>
             <h2>Syllabus Coverage</h2>
-            <p>Track your completion across all 4 NEB Science subjects.</p>
+            <p>Track your completion across all 6 NEB subjects.</p>
           </div>
         </div>
         <div id="subject-progress-container"></div>
@@ -1664,12 +1753,12 @@
 
       <div class="weak-topic-alert">
         <h3>⚡ Recommended Priority Revision Topics</h3>
-        <p>Based on your test scores and high-weightage NEB board exam areas:</p>
+        <p>High-weightage CDC board exam focus areas:</p>
         <div class="weak-pills" id="weak-topics-pills-container">
-          <span class="weak-pill" onclick="openChapterStudy('p11-01', 'c11-physics')">Vectors: Parallelogram Law</span>
-          <span class="weak-pill" onclick="openChapterStudy('ch11-01', 'c11-chemistry')">Stoichiometry: Mole & Limiting Reagents</span>
-          <span class="weak-pill" onclick="openChapterStudy('m11-07', 'c11-mathematics')">Calculus: Trigonometric Limits</span>
-          <span class="weak-pill" onclick="openChapterStudy('cs11-05', 'c11-computer')">C Programming: Loops & Syntax</span>
+          <span class="weak-pill" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">English: Selfish Giant Themes</span>
+          <span class="weak-pill" onclick="openChapterStudy('nep11-p01', 'c11-nepali')">नेपाली: वीर पुर्खा कविता व्याख्या</span>
+          <span class="weak-pill" onclick="openChapterStudy('p11-02', 'c11-physics')">Physics: Projectile Motion</span>
+          <span class="weak-pill" onclick="openChapterStudy('ch11-01', 'c11-chemistry')">Chemistry: Stoichiometry</span>
         </div>
       </div>
 
@@ -1680,7 +1769,7 @@
   <!-- Footer -->
   <footer>
     <p><strong>GyanSetu AI</strong> — Independent Educational Study Platform for NEB Class 11 & 12.</p>
-    <p>Curriculum coverage: Physics, Chemistry, Mathematics, Computer Science (Science Stream).</p>
+    <p>Subjects: Compulsory English, अनिवार्य नेपाली, Physics, Chemistry, Mathematics, Computer Science.</p>
     <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8;">&copy; 2026 GyanSetu AI. All rights reserved.</p>
   </footer>
 
@@ -1689,13 +1778,27 @@
     let curriculumData = null;
     let notesData = {};
     let currentClassId = 'class-11';
-    let currentSubjectId = 'c11-physics';
+    let currentSubjectId = 'c11-english';
     let currentLanguage = 'bilingual';
     let activeChapter = null;
     let isAiCooldownActive = false;
 
     // Mock Exam Questions
     const mockQuestions = [
+      {
+        subject: "English",
+        q: "In 'The Selfish Giant' by Oscar Wilde, what brought Spring back into the Giant's garden?",
+        opts: ["The Giant's gold coins", "The return of the children", "A magical spell", "The North Wind leaving"],
+        ans: 1,
+        exp: "The return of the children into the garden caused the trees to blossom and brought Spring back, symbolizing the life-giving power of love and innocence."
+      },
+      {
+        subject: "Nepali",
+        q: "'वीर पुर्खा' कविताका रचनाकार को हुन्?",
+        opts: ["गोपालप्रसाद रिमाल", "वासुदेव त्रिपाठी", "माधवप्रसाद घिमिरे", "सुधा त्रिपाठी"],
+        ans: 1,
+        exp: "'वीर पुर्खा' कविता प्रा. डा. वासुदेव त्रिपाठीद्वारा रचित राष्ट्रभक्तिपूर्ण कविता हो।"
+      },
       {
         subject: "Physics",
         q: "What is the maximum horizontal range of a projectile fired with speed $u$ at an angle of $45^\\circ$?",
@@ -1709,26 +1812,67 @@
         opts: ["$0.25\\text{ mol}$", "$0.50\\text{ mol}$", "$1.00\\text{ mol}$", "$2.00\\text{ mol}$"],
         ans: 1,
         exp: "Molar mass of $\\text{CaCO}_3 = 40 + 12 + 3(16) = 100\\text{ g/mol}$. Number of moles $n = \\frac{50}{100} = 0.50\\text{ mol}$."
-      },
-      {
-        subject: "Mathematics",
-        q: "Evaluate the standard limit: $\\lim_{x \\to 0} \\frac{\\sin x}{x}$ (where $x$ is in radians).",
-        opts: ["$0$", "$1$", "$\\infty$", "Undefined"],
-        ans: 1,
-        exp: "By standard calculus trigonometric limit theorem, $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$."
-      },
-      {
-        subject: "Computer Science",
-        q: "Which of the following is a post-tested loop in C Programming?",
-        opts: ["for loop", "while loop", "do-while loop", "if-else statement"],
-        ans: 2,
-        exp: "The `do-while` loop executes its body at least once before testing the loop condition at the end (post-tested)."
       }
     ];
 
     let userExamAnswers = {};
     let examTimeRemaining = 600;
     let examTimerInterval = null;
+
+    // Search Engine
+    function handleCurriculumSearch(query) {
+      const dropdown = document.getElementById('search-results-dropdown');
+      const q = query.trim().toLowerCase();
+      if (!q || !curriculumData) {
+        dropdown.style.display = 'none';
+        return;
+      }
+
+      let matches = [];
+      curriculumData.classes.forEach(cls => {
+        cls.subjects.forEach(sub => {
+          (sub.chapters || []).forEach(ch => {
+            const inTitle = ch.name.toLowerCase().includes(q);
+            const inUnit = (ch.unit || '').toLowerCase().includes(q);
+            const inTopics = (ch.topics || []).some(t => t.toLowerCase().includes(q));
+
+            if (inTitle || inUnit || inTopics) {
+              matches.push({
+                clsId: cls.id,
+                clsName: cls.name,
+                subId: sub.id,
+                subName: sub.name,
+                chapter: ch
+              });
+            }
+          });
+        });
+      });
+
+      if (matches.length === 0) {
+        dropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem;">No matching lessons or topics found. Try another keyword.</div>';
+        dropdown.style.display = 'block';
+        return;
+      }
+
+      dropdown.innerHTML = '';
+      matches.slice(0, 8).forEach(m => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+        item.onclick = () => {
+          selectClass(m.clsId);
+          openChapterStudy(m.chapter.id, m.subId);
+          dropdown.style.display = 'none';
+          document.getElementById('curriculum-search-input').value = '';
+        };
+        item.innerHTML = `
+          <div class="search-result-title">${m.chapter.name}</div>
+          <div class="search-result-meta">${m.clsName} • ${m.subName} • ${m.chapter.unit || 'Core'}</div>
+        `;
+        dropdown.appendChild(item);
+      });
+      dropdown.style.display = 'block';
+    }
 
     // Language Change Handler
     function changeLanguage(lang) {
@@ -1771,11 +1915,11 @@
             details
           })
         });
-        alert('Thank you! Your feedback has been recorded for review.');
+        alert('Thank you! Your feedback has been recorded for academic review.');
         closeReportModal();
         document.getElementById('report-details').value = '';
       } catch (err) {
-        alert('Report logged locally. Thank you!');
+        alert('Report recorded. Thank you!');
         closeReportModal();
       }
     }
@@ -1793,32 +1937,22 @@
       document.getElementById('nav-btn-mock').classList.toggle('active', viewName === 'mock');
       document.getElementById('nav-btn-dash').classList.toggle('active', viewName === 'dashboard');
 
-      if (viewName === 'planner') {
-        loadTaskStates();
-      }
-      if (viewName === 'mock') {
-        startMockExam();
-      }
-      if (viewName === 'dashboard') {
-        updateDashboard();
-      }
+      if (viewName === 'planner') loadTaskStates();
+      if (viewName === 'mock') startMockExam();
+      if (viewName === 'dashboard') updateDashboard();
     }
 
     // Task Checklist State Handler
     function saveTaskState(taskId) {
       const checkbox = document.getElementById(taskId);
-      if (checkbox) {
-        localStorage.setItem(`gyansetu_plan_${taskId}`, checkbox.checked ? '1' : '0');
-      }
+      if (checkbox) localStorage.setItem(`gyansetu_plan_${taskId}`, checkbox.checked ? '1' : '0');
     }
 
     function loadTaskStates() {
       for (let i = 1; i <= 16; i++) {
         const id = `task-${i}`;
         const cb = document.getElementById(id);
-        if (cb) {
-          cb.checked = localStorage.getItem(`gyansetu_plan_${id}`) === '1';
-        }
+        if (cb) cb.checked = localStorage.getItem(`gyansetu_plan_${id}`) === '1';
       }
     }
 
@@ -1998,9 +2132,9 @@
         const payload = {
           prompt: prompt,
           classId: currentClassId,
-          subjectName: activeChapter ? activeChapter.subjectName : 'Science',
+          subjectName: activeChapter ? activeChapter.subjectName : 'English',
           chapterName: activeChapter ? activeChapter.name : 'General',
-          mode: 'Exam & Concept Tutor',
+          mode: 'Lesson Study & Exam Preparation',
           language: langMap[currentLanguage] || 'English & Simple Nepali'
         };
 
@@ -2057,27 +2191,76 @@
       document.getElementById('study-bc-subject').textContent = sub.name;
       document.getElementById('study-bc-unit').textContent = chapter.unit || 'Core Unit';
       document.getElementById('study-chapter-title').textContent = chapter.name;
-      document.getElementById('study-chapter-meta').textContent = `${cls.name} Science • ${sub.name} (${sub.code || ''}) • Unit: ${chapter.unit || 'Core'}`;
+      document.getElementById('study-chapter-meta').textContent = `${cls.name} • ${sub.name} (${sub.code || ''}) • Unit: ${chapter.unit || 'Core'}`;
       
       document.getElementById('dash-resume-chapter').textContent = `${sub.name}: ${chapter.name}`;
       document.getElementById('ai-response-box').style.display = 'none';
       document.getElementById('ai-user-prompt').value = '';
 
+      const isLanguageSubject = sub.id.includes('english') || sub.id.includes('nepali');
+      
+      // Adapt study tabs for Literature / Language vs Science
+      document.getElementById('tab-study-themes').style.display = isLanguageSubject ? 'block' : 'none';
+      document.getElementById('tab-study-grammar').style.display = isLanguageSubject ? 'block' : 'none';
+      document.getElementById('tab-study-formulas').style.display = isLanguageSubject ? 'none' : 'block';
+
       const note = notesData[chapter.id] || {
         title: chapter.name,
-        concepts: `Conceptual overview for ${chapter.name} aligned with the NEB syllabus. Focus on fundamental principles, definitions, and applications.`,
-        bilingual: `${chapter.name} को मुख्य अवधारणाहरू र NEB बोर्ड परीक्षाका लागि आवश्यक प्रश्नोत्तरहरू।`,
-        formulas: [
-          { math: "Core Equations & Laws", desc: `Fundamental formulas for ${chapter.name}` }
-        ],
+        concepts: `Comprehensive conceptual breakdown and learning objectives for ${chapter.name} aligned with the CDC NEB curriculum.`,
+        bilingual: `${chapter.name} को मुख्य अवधारणाहरू, सारांश र NEB बोर्ड परीक्षाका लागि आवश्यक प्रश्नोत्तरहरू।`,
+        themes: ["Core Curriculum Concept", "Analytical Understanding"],
+        characters: [],
+        grammar_vocab: [],
+        formulas: [{ math: "Core Laws & Principles", desc: `Fundamental principles for ${chapter.name}` }],
         pastPapers: [
-          { q: `Explain the core concept and applications of ${chapter.name}.`, type: "4 Marks • NEB Board" }
+          { q: `Explain the central idea and significance of ${chapter.name}.`, type: "5 Marks • NEB Board Answer", ans: `In ${chapter.name}, students learn key concepts prescribed by the CDC syllabus.` }
         ]
       };
 
-      document.getElementById('study-concepts-body').innerHTML = `<p>${note.concepts}</p>`;
+      // 1. Concepts Tab
+      document.getElementById('study-concepts-body').innerHTML = `<p style="font-size:0.95rem; line-height:1.7;">${note.concepts}</p>`;
       document.getElementById('study-bilingual-note').textContent = note.bilingual;
 
+      // 2. Themes & Characters Tab
+      const themesBody = document.getElementById('study-themes-body');
+      themesBody.innerHTML = '';
+      if (note.themes && note.themes.length > 0) {
+        let thHtml = '<h4 style="color:var(--primary); margin-bottom:0.5rem;">🌟 Central Themes & Philosophical Ideas:</h4><ul style="margin-left:1.5rem; margin-bottom:1.25rem;">';
+        note.themes.forEach(th => thHtml += `<li>${th}</li>`);
+        thHtml += '</ul>';
+        themesBody.innerHTML += thHtml;
+      }
+      if (note.characters && note.characters.length > 0) {
+        let chHtml = '<h4 style="color:var(--primary); margin-bottom:0.5rem;">👤 Key Characters & Role Analysis:</h4><div class="glossary-grid">';
+        note.characters.forEach(c => {
+          chHtml += `<div class="glossary-item"><strong>${c.name}:</strong> ${c.traits}</div>`;
+        });
+        chHtml += '</div>';
+        themesBody.innerHTML += chHtml;
+      }
+      if (note.literary_devices && note.literary_devices.length > 0) {
+        let ldHtml = '<h4 style="color:var(--primary); margin-top:1.25rem; margin-bottom:0.5rem;">🎭 Literary Devices & Figures of Speech:</h4><div class="glossary-grid">';
+        note.literary_devices.forEach(ld => {
+          ldHtml += `<div class="glossary-item"><strong>${ld.device}:</strong> ${ld.example}</div>`;
+        });
+        ldHtml += '</div>';
+        themesBody.innerHTML += ldHtml;
+      }
+
+      // 3. Grammar & Vocab Tab
+      const gramBody = document.getElementById('study-grammar-body');
+      gramBody.innerHTML = '';
+      if (note.grammar_vocab && note.grammar_vocab.length > 0) {
+        let gHtml = '<div class="glossary-grid">';
+        note.grammar_vocab.forEach(g => {
+          if (g.word) gHtml += `<div class="glossary-item"><strong>${g.word}:</strong> ${g.meaning}</div>`;
+          if (g.rule) gHtml += `<div class="glossary-item" style="grid-column: 1/-1;"><strong>${g.rule}:</strong> <em>${g.example}</em></div>`;
+        });
+        gHtml += '</div>';
+        gramBody.innerHTML = gHtml;
+      }
+
+      // 4. Formulas Tab (For Science)
       const fBody = document.getElementById('study-formulas-body');
       fBody.innerHTML = '';
       (note.formulas || []).forEach(f => {
@@ -2087,12 +2270,16 @@
         fBody.appendChild(fDiv);
       });
 
+      // 5. Past Papers Tab
       const ppBody = document.getElementById('study-pastpapers-body');
       ppBody.innerHTML = '';
       (note.pastPapers || []).forEach(p => {
         const pDiv = document.createElement('div');
         pDiv.className = 'qa-box';
-        pDiv.innerHTML = `<div class="qa-q"><span class="qa-tag">${p.type}</span> ${p.q}</div>`;
+        pDiv.innerHTML = `
+          <div class="qa-q"><span class="qa-tag">${p.type}</span> ${p.q}</div>
+          ${p.ans ? `<div class="qa-ans"><strong>Model Answer:</strong> ${p.ans}</div>` : ''}
+        `;
         ppBody.appendChild(pDiv);
       });
 
@@ -2114,7 +2301,7 @@
     }
 
     function switchStudyTab(tabKey) {
-      const tabs = ['concepts', 'formulas', 'pastpapers', 'ai'];
+      const tabs = ['concepts', 'themes', 'grammar', 'formulas', 'pastpapers', 'ai'];
       tabs.forEach(t => {
         const btn = document.getElementById(`tab-study-${t}`);
         const panel = document.getElementById(`study-panel-${t}`);
@@ -2312,7 +2499,7 @@
     function updateDashboard() {
       const user = JSON.parse(localStorage.getItem('gyansetu_user') || '{"name":"Student","classId":"class-11"}');
       document.getElementById('dash-student-greeting').textContent = `Namaste, ${user.name} 👋`;
-      document.getElementById('dash-student-class').textContent = `${user.classId === 'class-11' ? 'Class 11' : 'Class 12'} Science • NEB Board Exam Target: 2027`;
+      document.getElementById('dash-student-class').textContent = `${user.classId === 'class-11' ? 'Class 11' : 'Class 12'} • NEB Board Exam Target: 2027`;
 
       const mastered = getMasteredChapters();
       document.getElementById('stat-chapters-mastered').textContent = mastered.length;
@@ -2347,7 +2534,7 @@
             row.innerHTML = `
               <div class="progress-labels">
                 <span>${sub.icon || '📚'} ${sub.name}</span>
-                <span>${completed}/${total} Chapters (${pct}%)</span>
+                <span>${completed}/${total} Lessons (${pct}%)</span>
               </div>
               <div class="progress-bar-bg">
                 <div class="progress-bar-fill" style="width: ${pct}%;"></div>
@@ -2371,6 +2558,16 @@
       } catch (err) {
         console.warn('Data loaded with fallbacks.');
       }
+      
+      if (curriculumData && curriculumData.classes && curriculumData.classes.length > 0) {
+        const cls = curriculumData.classes.find(c => c.id === currentClassId);
+        if (cls && cls.subjects && cls.subjects.length > 0) {
+          if (!cls.subjects.find(s => s.id === currentSubjectId)) {
+            currentSubjectId = cls.subjects[0].id;
+          }
+        }
+      }
+
       renderSubjects();
       renderChapters();
       updateDashboard();
@@ -2424,8 +2621,8 @@
             </div>
           </div>
           <div class="subject-meta">
-            <span>NEB Curriculum</span>
-            <span>${count > 0 ? count + ' Chapters' : 'Active'}</span>
+            <span>CDC Syllabus</span>
+            <span>${count > 0 ? count + ' Lessons' : 'Active'}</span>
           </div>
         `;
         grid.appendChild(card);
@@ -2440,14 +2637,14 @@
       if (!sub) return;
 
       document.getElementById('viewer-subject-title').textContent = `${cls.name} — ${sub.name}`;
-      document.getElementById('viewer-subject-code').textContent = `Official NEB Subject Code: ${sub.code || 'N/A'}`;
+      document.getElementById('viewer-subject-code').textContent = `Official Code: ${sub.code || 'N/A'}`;
       
       const container = document.getElementById('chapters-container');
       container.innerHTML = '';
 
       const chapters = sub.chapters || [];
       const mastered = getMasteredChapters();
-      document.getElementById('chapter-count').textContent = `${chapters.length} Chapters in Syllabus`;
+      document.getElementById('chapter-count').textContent = `${chapters.length} Lessons & Modules in Syllabus`;
 
       chapters.forEach((ch, idx) => {
         const isMastered = mastered.includes(ch.id);
@@ -2464,7 +2661,7 @@
             <div class="chapter-title">${idx + 1}. ${ch.name}</div>
           </div>
           <div class="chapter-actions">
-            <button class="btn-small" onclick="openChapterStudy('${ch.id}', '${sub.id}')">📖 Notes</button>
+            <button class="btn-small" onclick="openChapterStudy('${ch.id}', '${sub.id}')">📖 Learn</button>
             <button class="btn-small ai" onclick="openChapterStudy('${ch.id}', '${sub.id}'); switchStudyTab('ai');">⚡ Ask AI</button>
           </div>
         `;
