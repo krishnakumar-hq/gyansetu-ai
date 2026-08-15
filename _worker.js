@@ -62,12 +62,29 @@ Guidelines:
         }
 
         const intData = await intRes.json();
-        const reply = intData.output_text || 
-                      (intData.outputs && intData.outputs.find(o => o.type === "text" || o.text)?.text) || 
-                      (intData.outputs && intData.outputs[0]?.text) || 
-                      "No response generated.";
+        
+        // Extract text from the Interactions API steps response
+        let replyText = "";
+        if (intData.steps && Array.isArray(intData.steps)) {
+          for (const step of intData.steps) {
+            if (step.type === "model_output" && Array.isArray(step.content)) {
+              for (const part of step.content) {
+                if (part.text) {
+                  replyText += part.text;
+                }
+              }
+            }
+          }
+        }
 
-        return new Response(JSON.stringify({ reply }), {
+        if (!replyText) {
+          replyText = intData.output_text || 
+                      (intData.outputs && intData.outputs[0]?.text) || 
+                      (intData.candidates && intData.candidates[0]?.content?.parts?.[0]?.text) ||
+                      JSON.stringify(intData);
+        }
+
+        return new Response(JSON.stringify({ reply: replyText }), {
           headers: { "Content-Type": "application/json" }
         });
 
