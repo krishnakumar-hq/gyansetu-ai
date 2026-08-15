@@ -41,60 +41,74 @@ Guidelines:
 
         const fullPrompt = `${systemPrompt}\n\nStudent Question:\n${prompt}`;
 
-        const intRes = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-goog-api-key": apiKey
-          },
-          body: JSON.stringify({
-            model: "gemini-3.7-flash",
-            input: fullPrompt
-          })
-        });
+        // High-capacity free tier models (1,500 requests/day quota pool)
+        const activeModels = [
+          "gemini-2.5-flash-lite",
+          "gemini-3.5-flash-lite",
+          "gemini-3.1-flash-lite",
+          "gemini-3.6-flash",
+          "gemini-3.7-flash"
+        ];
 
-        // Handle Free-Tier Rate Limits (429 Too Many Requests)
-        if (intRes.status === 429) {
-          return new Response(JSON.stringify({ 
-            error: "⏱️ Free tier rate limit reached. Please wait 10 seconds before asking your next question." 
-          }), {
-            status: 429,
-            headers: { "Content-Type": "application/json" }
-          });
+        let finalReply = null;
+        let lastError = "";
+
+        for (const model of activeModels) {
+          try {
+            const intRes = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": apiKey
+              },
+              body: JSON.stringify({
+                model: model,
+                input: fullPrompt
+              })
+            });
+
+            if (intRes.ok) {
+              const intData = await intRes.json();
+              let text = "";
+              if (intData.steps && Array.isArray(intData.steps)) {
+                for (const step of intData.steps) {
+                  if (step.type === "model_output" && Array.isArray(step.content)) {
+                    for (const part of step.content) {
+                      if (part.text) text += part.text;
+                    }
+                  }
+                }
+              }
+              if (!text) {
+                text = intData.output_text || (intData.outputs && intData.outputs[0]?.text);
+              }
+              if (text) {
+                finalReply = text;
+                break; // Successfully generated answer!
+              }
+            } else if (intRes.status === 429) {
+              // If this specific model hit a rate limit, rotate to the next model in the pool
+              lastError = "Rate limit on " + model;
+              continue;
+            } else {
+              lastError = await intRes.text();
+            }
+          } catch (e) {
+            lastError = e.message;
+          }
         }
 
-        if (!intRes.ok) {
-          const errText = await intRes.text();
-          return new Response(JSON.stringify({ error: `Gemini API error: ${intRes.status}`, details: errText }), {
+        if (!finalReply) {
+          return new Response(JSON.stringify({ 
+            error: "⏱️ AI capacity is busy right now. Please wait 15 seconds and try again.", 
+            details: lastError 
+          }), {
             status: 502,
             headers: { "Content-Type": "application/json" }
           });
         }
 
-        const intData = await intRes.json();
-        
-        // Extract text from the Interactions API steps response
-        let replyText = "";
-        if (intData.steps && Array.isArray(intData.steps)) {
-          for (const step of intData.steps) {
-            if (step.type === "model_output" && Array.isArray(step.content)) {
-              for (const part of step.content) {
-                if (part.text) {
-                  replyText += part.text;
-                }
-              }
-            }
-          }
-        }
-
-        if (!replyText) {
-          replyText = intData.output_text || 
-                      (intData.outputs && intData.outputs[0]?.text) || 
-                      (intData.candidates && intData.candidates[0]?.content?.parts?.[0]?.text) ||
-                      "No response generated.";
-        }
-
-        return new Response(JSON.stringify({ reply: replyText }), {
+        return new Response(JSON.stringify({ reply: finalReply }), {
           headers: { "Content-Type": "application/json" }
         });
 
