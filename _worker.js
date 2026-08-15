@@ -234,6 +234,24 @@ Guidelines:
     }
 
     // 5. Serve all static files (index.html, curriculum.json, notes.json)
-    return env.ASSETS.fetch(request);
+    return env.ASSETS.fetch(request);// 4. Feedback & Quality Control Endpoint: /api/feedback
+    if (url.pathname === "/api/feedback" && request.method === "POST") {
+      try {
+        const { userEmail, chapterId, reportType, details } = await request.json();
+        console.log(`[Feedback Report] From: ${userEmail || 'Anonymous'}, Type: ${reportType}, Chapter: ${chapterId}, Details: ${details}`);
+        
+        return new Response(JSON.stringify({ 
+          success: true, 
+          message: "Thank you for helping maintain high academic accuracy! Your report has been logged." 
+        }), {
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: "Failed to record feedback" }), {
+          status: 500,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
   }
 };
