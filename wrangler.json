@@ -4,12 +4,5 @@
   "compatibility_date": "2026-08-01",
   "assets": {
     "directory": "."
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "gyansetu-db",
-      "database_id": "58277f31-efde-495d-9dd3-a2401dc37433"
-    }
-  ]
+  }
 }
