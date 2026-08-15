@@ -41,56 +41,33 @@ Guidelines:
 
         const fullPrompt = `${systemPrompt}\n\nStudent Question:\n${prompt}`;
 
-        // Production models for Interactions API
-        const activeModels = [
-          "gemini-3.5-flash",
-          "gemini-3.5-flash-lite",
-          "gemini-3.6-flash",
-          "gemini-3-flash"
-        ];
+        const intRes = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey
+          },
+          body: JSON.stringify({
+            model: "gemini-3.7-flash",
+            input: fullPrompt
+          })
+        });
 
-        let finalReply = null;
-        let lastErrorText = "";
-
-        for (const model of activeModels) {
-          try {
-            const intRes = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "x-goog-api-key": apiKey
-              },
-              body: JSON.stringify({
-                model: model,
-                input: fullPrompt
-              })
-            });
-
-            if (intRes.ok) {
-              const intData = await intRes.json();
-              const textOut = intData.output_text || 
-                              (intData.outputs && intData.outputs.find(o => o.type === "text" || o.text)?.text) || 
-                              (intData.outputs && intData.outputs[0]?.text);
-              if (textOut) {
-                finalReply = textOut;
-                break;
-              }
-            } else {
-              lastErrorText = await intRes.text();
-            }
-          } catch (e) {
-            lastErrorText = e.message;
-          }
-        }
-
-        if (!finalReply) {
-          return new Response(JSON.stringify({ error: "Gemini API error", details: lastErrorText }), {
+        if (!intRes.ok) {
+          const errText = await intRes.text();
+          return new Response(JSON.stringify({ error: `Gemini API error: ${intRes.status}`, details: errText }), {
             status: 502,
             headers: { "Content-Type": "application/json" }
           });
         }
 
-        return new Response(JSON.stringify({ reply: finalReply }), {
+        const intData = await intRes.json();
+        const reply = intData.output_text || 
+                      (intData.outputs && intData.outputs.find(o => o.type === "text" || o.text)?.text) || 
+                      (intData.outputs && intData.outputs[0]?.text) || 
+                      "No response generated.";
+
+        return new Response(JSON.stringify({ reply }), {
           headers: { "Content-Type": "application/json" }
         });
 
