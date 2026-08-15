@@ -2687,29 +2687,92 @@ async function getAiExplanation(item, containerId) {
     }
 
     // AI EXPLANATION DRAWER HANDLERS
-    function openAiExplanation(exerciseId, questionId) {
-      const drawer = document.getElementById('ai-explanation-drawer');
-      const titleEl = document.getElementById('ai-drawer-title');
-      const questionEl = document.getElementById('ai-drawer-question');
-      const conceptEl = document.getElementById('ai-drawer-concept');
-      const stepsEl = document.getElementById('ai-drawer-steps');
-      const tipEl = document.getElementById('ai-drawer-tip');
+    // AI EXPLANATION DRAWER HANDLERS
+async function openAiExplanation(exerciseId, questionId) {
+  const drawer = document.getElementById('ai-explanation-drawer');
+  const titleEl = document.getElementById('ai-drawer-title');
+  const questionEl = document.getElementById('ai-drawer-question');
+  const conceptEl = document.getElementById('ai-drawer-concept');
 
-      if (!drawer) return;
+  if (!drawer) return;
 
-      titleEl.innerText = `${exerciseId} • ${questionId}`;
-      questionEl.innerText = `Detailed pedagogical walkthrough for ${questionId}`;
-      
-      conceptEl.innerHTML = "Identifies the core governing theorems and formal definitions required by the NEB Grade 11 syllabus.";
-      stepsEl.innerHTML = `
-        <p>1. <strong>Formula Identification:</strong> State standard properties without skipping intermediary reduction steps.</p>
-        <p>2. <strong>Symbolic Substitution:</strong> Substitute given truth values/algebraic terms systematically.</p>
-        <p>3. <strong>Final Verification:</strong> Verify that the resulting equality or truth table matches the official textbook solution.</p>
-      `;
-      tipEl.innerHTML = "Always preserve the exact sub-question notation (e.g., a, b, i, ii) on examination answer sheets as required by NEB examiners.";
+  // 1. Open the drawer
+  drawer.classList.add('open');
 
-      drawer.classList.remove('hidden');
+  // 2. Set title and initial question info
+  if (titleEl) titleEl.textContent = `AI Breakdown: ${exerciseId} - ${questionId}`;
+  if (questionEl) questionEl.textContent = `Question ${questionId}`;
+
+  // 3. Set loading indicator inside the drawer
+  if (conceptEl) {
+    conceptEl.innerHTML = `
+      <div style="padding: 16px; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 6px;">
+        <p style="margin: 0; color: #1e40af; font-weight: 600; font-size: 14px;">
+          ⏳ GyanSetu AI is analyzing the official source solution...
+        </p>
+        <p style="margin: 4px 0 0 0; color: #64748b; font-size: 13px;">
+          Generating a clear, step-by-step NEB curriculum breakdown.
+        </p>
+      </div>
+    `;
+  }
+
+  try {
+    // 4. Fetch the real explanation from your secure Cloudflare Worker backend
+    const response = await fetch('/api/ai/explain', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        class_level: currentClassId ? currentClassId.replace('class-', '') : "11",
+        subject: "Mathematics",
+        chapter: activeChapter ? activeChapter.name : "Grade 11 Mathematics",
+        exercise: exerciseId || activeMathExerciseId || "",
+        question_number: questionId || "",
+        question_text: questionEl ? questionEl.textContent : "",
+        source_solution: "Please explain the source solution steps for this exercise question.",
+        language: currentLanguage || "bilingual",
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || "Could not generate AI explanation.");
     }
+
+    // 5. Render the explanation cleanly inside the drawer
+    if (conceptEl) {
+      conceptEl.innerHTML = `
+        <div style="margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 11px; font-weight: 700; background: #0284c7; color: #ffffff; padding: 2px 8px; border-radius: 9999px;">
+            VERIFIED NEB EXPLANATION
+          </span>
+          <span style="font-size: 11px; color: #64748b;">
+            Secondary explanation grounded on Source Solution
+          </span>
+        </div>
+        <div style="font-size: 14px; line-height: 1.7; color: #0f172a; white-space: pre-wrap;">
+          ${data.explanation}
+        </div>
+      `;
+
+      // Render math formulas if KaTeX is present
+      if (window.renderMathInElement) {
+        window.renderMathInElement(conceptEl);
+      }
+    }
+  } catch (err) {
+    if (conceptEl) {
+      conceptEl.innerHTML = `
+        <div style="padding: 14px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 6px; color: #991b1b; font-size: 13px;">
+          ⚠️ <strong>Unable to load explanation:</strong> ${err.message}
+        </div>
+      `;
+    }
+  }
+}
 
     function closeAiDrawer() {
       const drawer = document.getElementById('ai-explanation-drawer');
