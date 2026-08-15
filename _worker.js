@@ -39,28 +39,44 @@ Guidelines:
 4. For Nepali/bilingual requests, provide natural Nepali-English explanations easy for Nepali high school students.
 5. Maintain an encouraging academic tone. Do not claim official government affiliation.`;
 
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        // Active Gemini models list for new Google AI Studio accounts
+        const supportedModels = ["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-1.5-flash-8b", "gemini-1.5-pro"];
+        let geminiRes = null;
+        let lastErrorText = "";
 
-        const geminiRes = await fetch(apiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: "user",
-                parts: [{ text: `${systemPrompt}\n\nStudent Question:\n${prompt}` }]
+        for (const model of supportedModels) {
+          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+          
+          const res = await fetch(apiUrl, {
+            method: "POST",
+            headers: { 
+              "Content-Type": "application/json",
+              "x-goog-api-key": apiKey
+            },
+            body: JSON.stringify({
+              contents: [
+                {
+                  role: "user",
+                  parts: [{ text: `${systemPrompt}\n\nStudent Question:\n${prompt}` }]
+                }
+              ],
+              generationConfig: {
+                temperature: 0.4,
+                maxOutputTokens: 1024
               }
-            ],
-            generationConfig: {
-              temperature: 0.4,
-              maxOutputTokens: 1024
-            }
-          })
-        });
+            })
+          });
 
-        if (!geminiRes.ok) {
-          const errText = await geminiRes.text();
-          return new Response(JSON.stringify({ error: `Gemini API error: ${geminiRes.status}`, details: errText }), {
+          if (res.ok) {
+            geminiRes = res;
+            break;
+          } else {
+            lastErrorText = await res.text();
+          }
+        }
+
+        if (!geminiRes) {
+          return new Response(JSON.stringify({ error: "Gemini API error across models", details: lastErrorText }), {
             status: 502,
             headers: { "Content-Type": "application/json" }
           });
