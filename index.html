@@ -1897,7 +1897,72 @@
   </div>
 
   <!-- Script -->
-  <script>
+  <script>/**
+ * Requests a step-by-step explanation from the secure Cloudflare backend
+ */
+async function getAiExplanation(item, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.innerHTML = `
+    <div style="padding: 12px; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px; margin-top: 12px;">
+      <span style="font-size: 14px; color: #475569;">
+        ⏳ <strong>GyanSetu AI:</strong> Analyzing source solution and generating step-by-step breakdown...
+      </span>
+    </div>
+  `;
+
+  try {
+    const response = await fetch('/api/ai/explain', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        class_level: item.class_level || currentClassId.replace('class-', ''),
+        subject: item.subject || "Mathematics",
+        chapter: item.chapter || (activeChapter ? activeChapter.name : ""),
+        exercise: item.exercise || "",
+        question_number: item.question_number || "",
+        question_text: item.question_text || "",
+        source_solution: item.source_solution || "",
+        language: currentLanguage || "English",
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || "Failed to retrieve AI explanation.");
+    }
+
+    container.innerHTML = `
+      <div style="margin-top: 16px; padding: 14px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-size: 12px; font-weight: bold; background: #0284c7; color: white; padding: 2px 8px; border-radius: 12px;">
+            AI EXPLANATION
+          </span>
+          <span style="font-size: 11px; color: #64748b;">
+            Secondary explanation grounded on Source Solution
+          </span>
+        </div>
+        <div style="font-size: 14px; line-height: 1.6; color: #0f172a; white-space: pre-wrap;">
+          ${data.explanation}
+        </div>
+      </div>
+    `;
+
+    if (window.renderMathInElement) {
+      window.renderMathInElement(container);
+    }
+  } catch (err) {
+    container.innerHTML = `
+      <div style="padding: 12px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 4px; margin-top: 12px; color: #991b1b; font-size: 13px;">
+        ⚠️ <strong>Unable to generate explanation:</strong> ${err.message}
+      </div>
+    `;
+  }
+}
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-english';
     let currentLanguage = 'bilingual';
