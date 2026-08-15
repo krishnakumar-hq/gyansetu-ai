@@ -2204,8 +2204,9 @@ async function handleLogin(e) {
       return JSON.parse(localStorage.getItem('gyansetu_mastered') || '[]');
     }
 
-    function toggleChapterMastery(chapterId) {
+   async function toggleChapterMastery(chapterId) {
       let list = getMasteredChapters();
+      const isAdding = !list.includes(chapterId);
       if (list.includes(chapterId)) {
         list = list.filter(id => id !== chapterId);
       } else {
@@ -2214,6 +2215,26 @@ async function handleLogin(e) {
       localStorage.setItem('gyansetu_mastered', JSON.stringify(list));
       renderChapters();
       updateDashboard();
+
+      // Cloud Sync to D1 Database
+      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
+      if (user && user.email && isAdding) {
+        try {
+          await fetch('/api/progress/sync', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              userEmail: user.email,
+              type: 'mastery',
+              classLevel: currentClassId,
+              subjectId: currentSubjectId,
+              chapterId: chapterId
+            })
+          });
+        } catch (e) {
+          console.log('Offline progress stored locally');
+        }
+      }
     }
 
     // Dashboard Data Updater
