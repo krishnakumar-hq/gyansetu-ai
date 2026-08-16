@@ -1,369 +1,105 @@
 {
-  "chapters": [
+  "subject": "Mathematics",
+  "grade": 11,
+  "curriculum": "NEB (National Examination Board, Nepal)",
+  "chapter_no": 1,
+  "chapter_title": "Logic, Sets and Real Numbers",
+  "exercises": [
     {
-      "id": "ch01",
-      "number": 1,
-      "name": "Logic, Sets and Real Number System",
-      "unit": "Unit 1: Algebra",
-      "exercises": [
+      "exercise_no": "1.1",
+      "exercise_title": "Mathematical Logic & Truth Tables",
+      "questions": [
         {
-          "id": "ex1_1",
-          "name": "Exercise 1.1",
-          "topic": "Logic",
-          "questions": [
-            {
-              "id": "ex1_1_q1",
-              "q_num": "1",
-              "text": "Which of the following sentences are the statements ? Find the truth values of those sentences which are statements:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live ?\ne) Understand logic.\nf) Oh! how beautiful the scene is?",
-              "source_solution": "a) The given sentence is a declarative sentence. So, it is a statement and its truth value is true (T).\nb) The given sentence is a declarative sentence. So, it is a statement and its truth value is false (F).\nc) The given sentence is a declarative sentence. So, it is a statement and truth value is true (T).\nd) The given sentence is an interrogative sentence. So, it is not a statement.\ne) The given sentence is an imperative sentence. So, it is not a statement.\nf) The given sentence is an exclamatory sentence. So, it is not a statement."
-            },
-            {
-              "id": "ex1_1_q2",
-              "q_num": "2",
-              "text": "Let $p$ : demand is increasing and $q$ : supply is decreasing.\nExpress each of the following statements into words:\na) $\\sim p$\nb) $\\sim q$\nc) $p \\land q$\nd) $p \\lor q$\ne) $\\sim p \\land q$\nf) $p \\lor \\sim q$\ng) $\\sim p \\land \\sim q$\nh) $\\sim(p \\land q)$",
-              "source_solution": "a) $\\sim p$: Demand is not increasing.\nb) $\\sim q$: Supply is not decreasing.\nc) $p \\land q$: Demand is increasing and supply is decreasing.\nd) $p \\lor q$: Demand is increasing or supply is decreasing.\ne) $\\sim p \\land q$: Demand is not increasing and supply is decreasing.\nf) $p \\lor \\sim q$: Demand is increasing or supply is not decreasing.\ng) $\\sim p \\land \\sim q$: Neither demand is increasing nor supply is decreasing.\nh) $\\sim(p \\land q)$: It is false that demand is increasing and supply is decreasing."
-            },
-            {
-              "id": "ex1_1_q3",
-              "q_num": "3",
-              "text": "Express each of the following statements into symbolic form:\na) $p$ : temperature is increasing, $q$ : length is expanding.\nTemperature is increasing and length is expanding.\nb) $p$ : pressure is decreasing, $q$ : Volume is increasing.\nPressure is decreasing or volume is increasing.\nc) $p$ : demand is increasing, $q$ : price is increasing.\nNeither demand is increasing nor price is decreasing [i.e. not increasing].\nd) $p$ : Pradeep is bold, $q$ : Sandeep is handsome.\nIt is false that Pradeep is bold or Sandeep is handsome.",
-              "source_solution": "a) $p \\land q$\nb) $p \\lor q$\nc) $(\\sim p \\land \\sim q)$\nd) $\\sim(p \\lor q)$"
-            },
-            {
-              "id": "ex1_1_q4_a",
-              "q_num": "4. a)",
-              "text": "Construct truth table for the following compound statement:\n$(\\sim p) \\land q$",
-              "source_solution": "The truth table for $(\\sim p) \\land q$ is:\n\n$$\\begin{array}{\|c\|c\|c\|c\|}\n\\hline\np & q & \\sim p & (\\sim p) \\land q \\\\\n\\hline\nT & T & F & F \\\\\nT & F & F & F \\\\\nF & T & T & T \\\\\nF & F & T & F \\\\\n\\hline\n\\end{array}$$"
-            },
-            {
-              "id": "ex1_1_q4_b",
-              "q_num": "4. b)",
-              "text": "Construct truth table for the following compound statement:\n$(\\sim p) \\lor (\\sim q)$",
-              "source_solution": "The truth table for $(\\sim p) \\lor (\\sim q)$ is:\n\n$$\\begin{array}{\|c\|c\|c\|c\|c\|}\n\\hline\np & q & \\sim p & \\sim q & (\\sim p) \\lor (\\sim q) \\\\\n\\hline\nT & T & F & F & F \\\\\nT & F & F & T & T \\\\\nF & T & T & F & T \\\\\nF & F & T & T & T \\\\\n\\hline\n\\end{array}$$"
-            },
-            {
-              "id": "ex1_1_q4_c",
-              "q_num": "4. c)",
-              "text": "Construct truth table for the following compound statement:\n$\\sim(p \\land q)$",
-              "source_solution": "The truth table for $\\sim(p \\land q)$ is:\n\n$$\\begin{array}{\|c\|c\|c\|c\|}\n\\hline\np & q & p \\land q & \\sim(p \\land q) \\\\\n\\hline\nT & T & T & F \\\\\nT & F & F & T \\\\\nF & T & F & T \\\\\nF & F & F & T \\\\\n\\hline\n\\end{array}$$"
-            },
-            {
-              "id": "ex1_1_q4_d",
-              "q_num": "4. d)",
-              "text": "Construct truth table for the following compound statement:\n$\\sim[p \\lor (\\sim q)]$",
-              "source_solution": "The truth table for $\\sim[p \\lor (\\sim q)]$ is:\n\n$$\\begin{array}{\|c\|c\|c\|c\|c\|}\n\\hline\np & q & \\sim q & p \\lor (\\sim q) & \\sim[p \\lor (\\sim q)] \\\\\n\\hline\nT & T & F & T & F \\\\\nT & F & T & T & F \\\\\nF & T & F & F & T \\\\\nF & F & T & T & F \\\\\n\\hline\n\\end{array}$$"
-            },
-            {
-              "id": "ex1_1_q4_e",
-              "q_num": "4. e)",
-              "text": "Construct truth table for the following compound statement:\n$(p \\implies q) \\land (q \\implies p)$",
-              "source_solution": "The truth table for $(p \\implies q) \\land (q \\implies p)$is:\n\n$$\\begin{array}{|c|c|c|c|c|}\### Step 1: Update `data/math11_solutions.json` with All Chapter 1 Questions
-
-Here is the complete JSON for Chapter 1 (**every question from Exercise 1.1, Exercise 1.2, and Exercise 1.3**) with exact question numbering, clean KaTeX math, and **no reference lines**.
-
----
-
-#### Step-by-Step Instructions:
-
-1. **Open GitHub**: Go to [github.com/krishnakumar-hq/gyansetu-ai](https://github.com/krishnakumar-hq/gyansetu-ai).
-2. **Edit `data/math11_solutions.json`**:
-   - Open the **`data`** folder $\rightarrow$ click on **`math11_solutions.json`**.
-   - Click the **pencil icon ✎** to edit.
-3. **Select all code** (`Ctrl + A`), press `Delete`, and paste this complete dataset:
-
-```json
-{
-  "chapters": [
-    {
-      "id": "ch01",
-      "number": 1,
-      "name": "Logic, Sets and Real Number System",
-      "unit": "Unit 1: Algebra",
-      "exercises": [
-        {
-          "id": "ex1_1",
-          "name": "Exercise 1.1",
-          "topic": "Logic",
-          "questions": [
-            {
-              "id": "ex1_1_q1",
-              "q_num": "1",
-              "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?",
-              "source_solution": "a) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nb) Declarative sentence $\\implies$ Statement, Truth value: False (F).\nc) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nd) Interrogative sentence $\\implies$ Not a statement.\ne) Imperative sentence $\\implies$ Not a statement.\nf) Exclamatory sentence $\\implies$ Not a statement."
-            },
-            {
-              "id": "ex1_1_q2",
-              "q_num": "2",
-              "text": "Let $p$: demand is increasing and $q$: supply is decreasing. Express in words:\na) $\\sim p$\nb) $\\sim q$\nc) $p \\land q$\nd) $p \\lor q$\ne) $\\sim p \\land q$\nf) $p \\lor \\sim q$\ng) $\\sim p \\land \\sim q$\nh) $\\sim(p \\land q)$",
-              "source_solution": "a) $\\sim p$: Demand is not increasing.\nb) $\\sim q$: Supply is not decreasing.\nc) $p \\land q$: Demand is increasing and supply is decreasing.\nd) $p \\lor q$: Demand is increasing or supply is decreasing.\ne) $\\sim p \\land q$: Demand is not increasing and supply is decreasing.\nf) $p \\lor \\sim q$: Demand is increasing or supply is not decreasing.\ng) $\\sim p \\land \\sim q$: Neither demand is increasing nor supply is decreasing.\nh) $\\sim(p \\land q)$: It is false that demand is increasing and supply is decreasing."
-            },
-            {
-              "id": "ex1_1_q3",
-              "q_num": "3",
-              "text": "Express in symbolic form:\na) Temperature is increasing ($p$) and length is expanding ($q$).\nb) Pressure is decreasing ($p$) or volume is increasing ($q$).\nc) Neither demand is increasing ($p$) nor price is increasing ($q$).\nd) It is false that Pradeep is bold ($p$) or Sandeep is handsome ($q$).",
-              "source_solution": "a) $p \\land q$\nb) $p \\lor q$\nc) $\\sim p \\land \\sim q$\nd) $\\sim(p \\lor q)$"
-            },
-            {
-              "id": "ex1_1_q4",
-              "q_num": "4",
-              "text": "Construct truth tables for:\na) $(\\sim p) \\land q$\nb) $(\\sim p) \\lor (\\sim q)$\nc) $\\sim(p \\land q)$\nd) $\\sim[p \\lor (\\sim q)]$\ne) $(p \\implies q) \\land (q \\implies p)$\nf) $(\\sim p \\lor q) \\implies (p \\lor q)$\ng) $[p \\land (p \\implies q)] \\implies q$\nh) $(p \\implies q) \\iff (\\sim p \\lor q)$\ni) $(p \\iff q) \\lor (q \\iff r)$",
-              "source_solution": "a) $(\\sim p) \\land q$: Truth values for $(TT, TF, FT, FF)$ are **F, F, T, F**.\nb) $(\\sim p) \\lor (\\sim q)$: Truth values for $(TT, TF, FT, FF)$ are **F, T, T, T**.\nc) $\\sim(p \\land q)$: Truth values for $(TT, TF, FT, FF)$ are **F, T, T, T**.\nd) $\\sim[p \\lor (\\sim q)]$: Truth values for $(TT, TF, FT, FF)$ are **F, F, T, F**.\ne) $(p \\implies q) \\land (q \\implies p)$: Truth values for $(TT, TF, FT, FF)$ are **T, F, F, T**.\nf) $(\\sim p \\lor q) \\implies (p \\lor q)$: Truth values for $(TT, TF, FT, FF)$ are **T, T, T, F**.\ng) $[p \\land (p \\implies q)] \\implies q$: Truth values for $(TT, TF, FT, FF)$ are **T, T, T, T** (Tautology).\nh) $(p \\implies q) \\iff (\\sim p \\lor q)$: Truth values for $(TT, TF, FT, FF)$ are **T, T, T, T** (Tautology).\ni) $(p \\iff q) \\lor (q \\iff r)$: Truth values across the 8 rows are **T, T, F, T, T, F, T, T**."
-            },
-            {
-              "id": "ex1_1_q5",
-              "q_num": "5",
-              "text": "If $p=T, q=F, r=T, s=F$, find truth values of:\na) $p \\land q$\nb) $p \\lor (\\sim q)$\nc) $(\\sim p) \\land (\\sim q)$\nd) $q \\lor (p \\land s)$\ne) $\\sim(\\sim p)$\nf) $(p \\lor q) \\land (r \\lor s)$",
-              "source_solution": "a) $T \\land F = \\mathbf{F}$\nb) $T \\lor (\\sim F) = T \\lor T = \\mathbf{T}$\nc) $(\\sim T) \\land (\\sim F) = F \\land T = \\mathbf{F}$\nd) $F \\lor (T \\land F) = F \\lor F = \\mathbf{F}$\ne) $\\sim(\\sim T) = \\sim F = \\mathbf{T}$\nf) $(T \\lor F) \\land (T \\lor F) = T \\land T = \\mathbf{T}$"
-            },
-            {
-              "id": "ex1_1_q6",
-              "q_num": "6",
-              "text": "Prove by truth table:\na) $p \\land (\\sim p) \\equiv c$ (contradiction)\nb) $(p \\lor q) \\equiv (q \\lor p)$\nc) $\\sim[p \\lor (\\sim q)] \\equiv (\\sim p) \\land q$\nd) $\\sim[(\\sim p) \\land q] \\equiv p \\lor (\\sim q)$",
-              "source_solution": "a) $p \\land (\\sim p)$ evaluates to all $F$ values ($F, F$), hence equivalent to contradiction $c$.\nb) $(p \\lor q)$ and $(q \\lor p)$ both evaluate to $T, T, T, F$, hence equivalent.\nc) $\\sim[p \\lor (\\sim q)]$ and $(\\sim p) \\land q$ both evaluate to $F, F, T, F$, hence equivalent.\nd) $\\sim[(\\sim p) \\land q]$ and $p \\lor (\\sim q)$ both evaluate to $T, T, F, T$, hence equivalent."
-            },
-            {
-              "id": "ex1_1_q7",
-              "q_num": "7",
-              "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) $x > 0$\nd) Some students are weak in mathematics.\ne) All teachers are labourous.",
-              "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) $x \\le 0$\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous."
-            },
-            {
-              "id": "ex1_1_q8",
-              "q_num": "8",
-              "text": "Find the truth value and negation of each:\na) $3 + 2 = 5$ or $6$ is a multiple of $5$.\nb) $8$ is a prime number and $4$ is even.\nc) If $3 > 0$ then $4 + 6 = 10$.\nd) If $2$ is odd or $3$ is a natural number then $2 + 3 = 8$.\ne) If $2 \\times 3 = 5 \\implies 3 > 1$ then $6$ is even.\nf) Triangle $ABC$ is right angled at $B \\iff AB^2 + BC^2 = AC^2$.",
-              "source_solution": "a) Truth value: **T** ($T \\lor F = T$). Negation: \"$3 + 2 \\ne 5$ and $6$ is not a multiple of $5$.\"\nb) Truth value: **F** ($F \\land T = F$). Negation: \"$8$ is not a prime number or $4$ is odd.\"\nc) Truth value: **T** ($T \\implies T = T$). Negation: \"$3 > 0$ and $4 + 6 \\ne 10$.\"\nd) Truth value: **F** ($T \\implies F = F$). Negation: \"$2$ is odd or $3$ is a natural number and $2 + 3 \\ne 8$.\"\ne) Truth value: **T** ($T \\implies T = T$). Negation: \"If $2 \\times 3 = 5$, then $3 > 1$ and $6$ is odd.\"\nf) Truth value: **T** ($T \\iff T = T$). Negation: \"$ABC$ is right angled at $B$ and $AB^2+BC^2 \\ne AC^2$, or $ABC$ is not right angled at $B$ and $AB^2+BC^2=AC^2$.\""
-            },
-            {
-              "id": "ex1_1_q9",
-              "q_num": "9",
-              "text": "For the statements:\na) If $3$ is a natural number then $1/3$ is a rational number.\nb) $x^2 = 4$ whenever $x = 2$.\nc) If the battery is low then the mobile does not work well.\nFind i) antecedent & consequent, ii) converse, inverse & contrapositive, iii) negation.",
-              "source_solution": "a) i) Antecedent: $3$ is a natural number; Consequent: $1/3$ is rational.\nii) Converse: If $1/3$ is rational then $3$ is natural.\nInverse: If $3$ is not natural then $1/3$ is not rational.\nContrapositive: If $1/3$ is not rational then $3$ is not natural.\niii) Negation: $3$ is natural and $1/3$ is not rational.\n\nb) i) Antecedent: $x=2$; Consequent: $x^2=4$.\nii) Converse: If $x^2=4$ then $x=2$.\nInverse: If $x \\ne 2$ then $x^2 \\ne 4$.\nContrapositive: If $x^2 \\ne 4$ then $x \\ne 2$.\niii) Negation: $x=2$ and $x^2 \\ne 4$.\n\nc) i) Antecedent: Battery is low; Consequent: Mobile does not work well.\nii) Converse: If mobile does not work well, then battery is low.\nInverse: If battery is not low, then mobile works well.\nContrapositive: If mobile works well, then battery is not low.\niii) Negation: Battery is low and mobile works well."
-            },
-            {
-              "id": "ex1_1_q10",
-              "q_num": "10",
-              "text": "Prove that:\na) $p \\lor (\\sim p \\land q)$ is a tautology.\nb) $(p \\land q) \\implies (p \\lor q)$ is a tautology.\nc) $\\sim(p \\lor q) \\land q$ is a contradiction.\nd) $(p \\land q) \\land \\sim(p \\lor q)$ is a contradiction.\ne) $[\\sim q \\land (p \\implies q)] \\implies \\sim p$ is a tautology.\nf) $[(p \\land q) \\implies p] \\implies (q \\land \\sim q)$ is a contradiction.",
-              "source_solution": "a) Truth values for all 4 rows are $T, T, T, T \\implies$ **Tautology**.\nb) Truth values for all 4 rows are $T, T, T, T \\implies$ **Tautology**.\nc) Truth values for all 4 rows are $F, F, F, F \\implies$ **Contradiction**.\nd) Truth values for all 4 rows are $F, F, F, F \\implies$ **Contradiction**.\ne) Truth values for all 4 rows are $T, T, T, T \\implies$ **Tautology**.\nf) Truth values for all 4 rows are $F, F, F, F \\implies$ **Contradiction**."
-            }
-          ]
+          "question_no": "1",
+          "question_text": "Determine which of the following sentences are statements and state their truth values:\n(a) Kathmandu is the capital of Nepal.\n(b) $x + 5 = 12$\n(c) Please open the door.\n(d) The sum of angles of a triangle is $180^\\circ$.\n(e) $\\sqrt{2}$ is a rational number.",
+          "solution": "### Definition:\nA **statement** (or proposition) is a declarative sentence that is either true or false, but not both.\n\n* **(a) Kathmandu is the capital of Nepal.**\n  * It is a declarative sentence that is true.\n  * **Conclusion:** It is a statement. **Truth value:** $\\mathbf{T}$ (True).\n\n* **(b) $x + 5 = 12$**\n  * Its truth value depends on the variable $x$ (it is an open sentence).\n  * **Conclusion:** It is **not** a statement.\n\n* **(c) Please open the door.**\n  * This is an imperative sentence (a command/request), not a declarative sentence.\n  * **Conclusion:** It is **not** a statement.\n\n* **(d) The sum of angles of a triangle is $180^\\circ$.**\n  * It is a declarative mathematical fact that is universally true in Euclidean geometry.\n  * **Conclusion:** It is a statement. **Truth value:** $\\mathbf{T}$ (True).\n\n* **(e) $\\sqrt{2}$ is a rational number.**\n  * It is a declarative sentence that is false (since $\\sqrt{2}$ is irrational).\n  * **Conclusion:** It is a statement. **Truth value:** $\\mathbf{F}$ (False)."
         },
         {
-          "id": "ex1_2",
-          "name": "Exercise 1.2",
-          "topic": "Sets",
-          "questions": [
-            {
-              "id": "ex1_2_q1",
-              "q_num": "1",
-              "text": "If $A \\cap B = \\phi$, prove that:\na) $A \\subseteq \\overline{B}$\nb) $B \\cap \\overline{A} = B$\nc) $A \\cup \\overline{B} = \\overline{B}$",
-              "source_solution": "Given $A \\cap B = \\phi$:\na) $x \\in A \\implies x \\notin B \\implies x \\in \\overline{B}$. Hence $A \\subseteq \\overline{B}$.\nb) $B \\cap \\overline{A} = \\{x : x \\in B \\text{ and } x \\notin A\\} = \\{x : x \\in B\\} = B$.\nc) $A \\cup \\overline{B} = \\{x : x \\in A \\text{ or } x \\in \\overline{B}\\} = \\{x : x \\notin B \\text{ or } x \\in \\overline{B}\\} = \\overline{B}$."
-            },
-            {
-              "id": "ex1_2_q2",
-              "q_num": "2",
-              "text": "If $A \\subseteq B$, prove that:\na) $\\overline{B} \\subseteq \\overline{A}$\nb) $A \\cup B = B$\nc) $A \\cap B = A$",
-              "source_solution": "Given $A \\subseteq B$:\na) $x \\in \\overline{B} \\implies x \\notin B \\implies x \\notin A \\implies x \\in \\overline{A}$. Hence $\\overline{B} \\subseteq \\overline{A}$.\nb) $A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\} = \\{x : x \\in B\\} = B$.\nc) $A \\cap B = \\{x : x \\in A \\text{ and } x \\in B\\} = \\{x : x \\in A\\} = A$."
-            },
-            {
-              "id": "ex1_2_q3",
-              "q_num": "3",
-              "text": "Prove that:\na) $B - A = B \\cap \\overline{A}$\nb) $A - B = A \\cap \\overline{B}$\nc) $A - \\overline{B} = B - \\overline{A}$",
-              "source_solution": "a) $B - A = \\{x : x \\in B \\text{ and } x \\notin A\\} = \\{x : x \\in B \\text{ and } x \\in \\overline{A}\\} = B \\cap \\overline{A}$.\nb) $A - B = \\{x : x \\in A \\text{ and } x \\notin B\\} = \\{x : x \\in A \\text{ and } x \\in \\overline{B}\\} = A \\cap \\overline{B}$.\nc) $A - \\overline{B} = \\{x : x \\in A \\text{ and } x \\notin \\overline{B}\\} = \\{x : x \\in A \\text{ and } x \\in B\\} = A \\cap B = B - \\overline{A}$."
-            },
-            {
-              "id": "ex1_2_q4",
-              "q_num": "4",
-              "text": "If $A, B, C$ are subsets of universal set $U$, prove:\na) $A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C)$\nb) $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$",
-              "source_solution": "a) $x \\in A \\cup (B \\cap C) \\iff x \\in A \\lor (x \\in B \\land x \\in C) \\iff (x \\in A \\lor x \\in B) \\land (x \\in A \\lor x \\in C) \\iff x \\in (A \\cup B) \\cap (A \\cup C)$.\nb) $x \\in A \\cap (B \\cup C) \\iff x \\in A \\land (x \\in B \\lor x \\in C) \\iff (x \\in A \\land x \\in B) \\lor (x \\in A \\land x \\in C) \\iff x \\in (A \\cap B) \\cup (A \\cap C)$."
-            },
-            {
-              "idHere is the complete, clean JSON for **Chapter 1 (all questions and solutions from Exercise 1.1, Exercise 1.2, and Exercise 1.3)** with:
-1. **All questions included** (no selected/skipped questions).
-2. **Exact question numbers preserved** ($1, 2, 3, \dots, 10$).
-3. **No reference or page citation text** anywhere in the solutions.
-
----
-
-### Step 1: Update `data/math11_solutions.json`
-
-1. **Open GitHub**: Go to [github.com/krishnakumar-hq/gyansetu-ai](https://github.com/krishnakumar-hq/gyansetu-ai).
-2. **Edit `data/math11_solutions.json`**:
-   - Open the **`data`** folder $\rightarrow$ click on **`math11_solutions.json`**.
-   - Click the **pencil icon ✎** in the top-right corner to edit.
-3. **Select all code** (`Ctrl + A`), press `Delete`, and paste this complete code:
-
-```json
-{
-  "chapters": [
-    {
-      "id": "ch01",
-      "number": 1,
-      "name": "Logic, Sets and Real Number System",
-      "unit": "Unit 1: Algebra",
-      "exercises": [
-        {
-          "id": "ex1_1",
-          "name": "Exercise 1.1",
-          "topic": "Logic",
-          "questions": [
-            {
-              "q_num": "1",
-              "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?",
-              "source_solution": "a) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nb) Declarative sentence $\\implies$ Statement, Truth value: False (F).\nc) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nd) Interrogative sentence $\\implies$ Not a statement.\ne) Imperative sentence $\\implies$ Not a statement.\nf) Exclamatory sentence $\\implies$ Not a statement."
-            },
-            {
-              "q_num": "2",
-              "text": "Let $p$: demand is increasing and $q$: supply is decreasing. Express in words:\na) $\\sim p$\nb) $\\sim q$\nc) $p \\land q$\nd) $p \\lor q$\ne) $\\sim p \\land q$\nf) $p \\lor \\sim q$\ng) $\\sim p \\land \\sim q$\nh) $\\sim(p \\land q)$",
-              "source_solution": "a) $\\sim p$: Demand is not increasing.\nb) $\\sim q$: Supply is not decreasing.\nc) $p \\land q$: Demand is increasing and supply is decreasing.\nd) $p \\lor q$: Demand is increasing or supply is decreasing.\ne) $\\sim p \\land q$: Demand is not increasing and supply is decreasing.\nf) $p \\lor \\sim q$: Demand is increasing or supply is not decreasing.\ng) $\\sim p \\land \\sim q$: Neither demand is increasing nor supply is decreasing.\nh) $\\sim(p \\land q)$: It is false that demand is increasing and supply is decreasing."
-            },
-            {
-              "q_num": "3",
-              "text": "Express in symbolic form:\na) Temperature is increasing ($p$) and length is expanding ($q$).\nb) Pressure is decreasing ($p$) or volume is increasing ($q$).\nc) Neither demand is increasing ($p$) nor price is increasing ($q$).\nd) It is false that Pradeep is bold ($p$) or Sandeep is handsome ($q$).",
-              "source_solution": "a) $p \\land q$\nb) $p \\lor q$\nc) $\\sim p \\land \\sim q$\nd) $\\sim(p \\lor q)$"
-            },
-            {
-              "q_num": "4",
-              "text": "Construct truth tables for:\na) $(\\sim p) \\land q$\nb) $(\\sim p) \\lor (\\sim q)$\nc) $\\sim(p \\land q)$\nd) $\\sim[p \\lor (\\sim q)]$\ne) $(p \\implies q) \\land (q \\implies p)$\nf) $(\\sim p \\lor q) \\implies (p \\lor q)$\ng) $[p \\land (p \\implies q)] \\implies q$\nh) $(p \\implies q) \\iff (\\sim p \\lor q)$\ni) $(p \\iff q) \\lor (q \\iff r)$",
-              "source_solution": "a) $(\\sim p) \\land q$: Truth values for $(TT, TF, FT, FF)$ are **F, F, T, F**.\nb) $(\\sim p) \\lor (\\sim q)$: Truth values for $(TT, TF, FT, FF)$ are **F, T, T, T**.\nc) $\\sim(p \\land q)$: Truth values for $(TT, TF, FT, FF)$ are **F, T, T, T**.\nd) $\\sim[p \\lor (\\sim q)]$: Truth values for $(TT, TF, FT, FF)$ are **F, F, T, F**.\ne) $(p \\implies q) \\land (q \\implies p)$: Truth values for $(TT, TF, FT, FF)$ are **T, F, F, T**.\nf) $(\\sim p \\lor q) \\implies (p \\lor q)$: Truth values for $(TT, TF, FT, FF)$ are **T, T, T, F**.\ng) $[p \\land (p \\implies q)] \\implies q$: Truth values for $(TT, TF, FT, FF)$ are **T, T, T, T** (Tautology).\nh) $(p \\implies q) \\iff (\\sim p \\lor q)$: Truth values for $(TT, TF, FT, FF)$ are **T, T, T, T** (Tautology).\ni) $(p \\iff q) \\lor (q \\iff r)$: Truth values across 8 rows are **T, T, F, T, T, F, T, T**."
-            },
-            {
-              "q_num": "5",
-              "text": "If $p=T, q=F, r=T, s=F$, find truth values of:\na) $p \\land q$\nb) $p \\lor (\\sim q)$\nc) $(\\sim p) \\land (\\sim q)$\nd) $q \\lor (p \\land s)$\ne) $\\sim(\\sim p)$\nf) $(p \\lor q) \\land (r \\lor s)$",
-              "source_solution": "a) $T \\land F = \\mathbf{F}$\nb) $T \\lor (\\sim F) = T \\lor T = \\mathbf{T}$\nc) $(\\sim T) \\land (\\sim F) = F \\land T = \\mathbf{F}$\nd) $F \\lor (T \\land F) = F \\lor F = \\mathbf{F}$\ne) $\\sim(\\sim T) = \\sim F = \\mathbf{T}$\nf) $(T \\lor F) \\land (T \\lor F) = T \\land T = \\mathbf{T}$"
-            },
-            {
-              "q_num": "6",
-              "text": "Prove by truth table:\na) $p \\land (\\sim p) \\equiv c$ (contradiction)\nb) $(p \\lor q) \\equiv (q \\lor p)$\nc) $\\sim[p \\lor (\\sim q)] \\equiv (\\sim p) \\land q$\nd) $\\sim[(\\sim p) \\land q] \\equiv p \\lor (\\sim q)$",
-              "source_solution": "a) $p \\land (\\sim p)$ evaluates to all $F$ values ($F, F$), hence equivalent to contradiction $c$.\nb) $(p \\lor q)$ and $(q \\lor p)$ both evaluate to $T, T, T, F$, hence equivalent.\nc) $\\sim[p \\lor (\\sim q)]$ and $(\\sim p) \\land q$ both evaluate to $F, F, T, F$, hence equivalent.\nd) $\\sim[(\\sim p) \\land q]$ and $p \\lor (\\sim q)$ both evaluate to $T, T, F, T$, hence equivalent."
-            },
-            {
-              "q_num": "7",
-              "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) $x > 0$\nd) Some students are weak in mathematics.\ne) All teachers are labourous.",
-              "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) $x \\le 0$\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous."
-            },
-            {
-              "q_num": "8",
-              "text": "Find the truth value and negation of each:\na) $3 + 2 = 5$ or $6$ is a multiple of $5$.\nb) $8$ is a prime number and $4$ is even.\nc) If $3 > 0$ then $4 + 6 = 10$.\nd) If $2$ is odd or $3$ is a natural number then $2 + 3 = 8$.\ne) If $2 \\times 3 = 5 \\implies 3 > 1$ then $6$ is even.\nf) Triangle $ABC$ is right angled at $B \\iff AB^2 + BC^2 = AC^2$.",
-              "source_solution": "a) Truth value: **T** ($T \\lor F = T$). Negation: \"$3 + 2 \\ne 5$ and $6$ is not a multiple of $5$.\"\nb) Truth value: **F** ($F \\land T = F$). Negation: \"$8$ is not a prime number or $4$ is odd.\"\nc) Truth value: **T** ($T \\implies T = T$). Negation: \"$3 > 0$ and $4 + 6 \\ne 10$.\"\nd) Truth value: **F** ($T \\implies F = F$). Negation: \"$2$ is odd or $3$ is a natural number and $2 + 3 \\ne 8$.\"\ne) Truth value: **T** ($T \\implies T = T$). Negation: \"If $2 \\times 3 = 5$, then $3 > 1$ and $6$ is odd.\"\nf) Truth value: **T** ($T \\iff T = T$). Negation: \"$ABC$ is right angled at $B$ and $AB^2+BC^2 \\ne AC^2$, or $ABC$ not right angled at $B$ and $AB^2+BC^2=AC^2$.\""
-            },
-            {
-              "q_num": "9",
-              "text": "For the statements:\na) If $3$ is a natural number then $1/3$ is a rational number.\nb) $x^2 = 4$ whenever $x = 2$.\nc) If the battery is low then the mobile does not work well.\nFind i) antecedent & consequent, ii) converse, inverse & contrapositive, iii) negation.",
-              "source_solution": "a) i) Antecedent: $3$ is a natural number; Consequent: $1/3$ is rational.\nii) Converse: If $1/3$ is rational then $3$ is natural; Inverse: If $3$ is not natural then $1/3$ is not rational; Contrapositive: If $1/3$ is not rational then $3$ is not natural.\niii) Negation: $3$ is natural and $1/3$ is not rational.\n\nb) i) Antecedent: $x=2$; Consequent: $x^2=4$.\nii) Converse: If $x^2=4$ then $x=2$; Inverse: If $x \\ne 2$ then $x^2 \\ne 4$; Contrapositive: If $x^2 \\ne 4$ then $x \\ne 2$.\niii) Negation: $x=2$ and $x^2 \\ne 4$.\n\nc) i) Antecedent: Battery is low; Consequent: Mobile does not work well.\nii) Converse: If mobile does not work well, then battery is low; Inverse: If battery is not low, then mobile works well; Contrapositive: If mobile works well, then battery is not low.\niii) Negation: Battery is low and mobile works well."
-            },
-            {
-              "q_num": "10",
-              "text": "Prove that:\na) $p \\lor (\\sim p \\land q)$ is a tautology.\nb) $(p \\land q) \\implies (p \\lor q)$ is a tautology.\nc) $\\sim(p \\lor q) \\land q$ is a contradiction.\nd) $(p \\land q) \\land \\sim(p \\lor q)$ is a contradiction.\ne) $[\\sim q \\land (p \\implies q)] \\implies \\sim p$ is a tautology.\nf) $[(p \\land q) \\implies p] \\implies (q \\land \\sim q)$ is a contradiction.",
-              "source_solution": "a) Truth values for all 4 rows are $T, T, T, T \\implies$ **Tautology**.\nb) Truth values for all 4 rows are $T, T, T, T \\implies$ **Tautology**.\nc) Truth values for all 4 rows are $F, F, F, F \\implies$ **Contradiction**.\nd) Truth values for all 4 rows are $F, F, F, F \\implies$ **Contradiction**.\ne) Truth values for all 4 rows are $T, T, T, T \\implies$ **Tautology**.\nf) Evaluates to $T \\implies F = F, F, F, F \\implies$ **Contradiction**."
-            }
-          ]
+          "question_no": "2",
+          "question_text": "Write the negation of the following statements:\n(a) $p$: Mt. Everest is in Nepal.\n(b) $q$: 7 is a composite number.\n(c) $r$: All triangles are equilateral.\n(d) $s$: $3 + 4 = 7$",
+          "solution": "### Negation ($\\sim p$ or $\\neg p$):\nThe negation of a statement is formed by asserting that the statement is false.\n\n* **(a) Statement $p$:** Mt. Everest is in Nepal.\n  * **Negation ($\\sim p$):** Mt. Everest is not in Nepal. (or *It is false that Mt. Everest is in Nepal*)\n\n* **(b) Statement $q$:** 7 is a composite number.\n  * **Negation ($\\sim q$):** 7 is not a composite number. (or *7 is a prime number*)\n\n* **(c) Statement $r$:** All triangles are equilateral.\n  * **Negation ($\\sim r$):** Not all triangles are equilateral. (or *Some triangles are not equilateral*)\n\n* **(d) Statement $s$:** $3 + 4 = 7$\n  * **Negation ($\\sim s$):** $3 + 4 \\neq 7$"
         },
         {
-          "id": "ex1_2",
-          "name": "Exercise 1.2",
-          "topic": "Sets",
-          "questions": [
-            {
-              "q_num": "1",
-              "text": "If $A \\cap B = \\phi$, prove that:\na) $A \\subseteq \\overline{B}$\nb) $B \\cap \\overline{A} = B$\nc) $A \\cup \\overline{B} = \\overline{B}$",
-              "source_solution": "Given $A \\cap B = \\phi$:\na) $x \\in A \\implies x \\notin B \\implies x \\in \\overline{B}$. Hence $A \\subseteq \\overline{B}$.\nb) $B \\cap \\overline{A} = \\{x : x \\in B \\text{ and } x \\notin A\\} = \\{x : x \\in B\\} = B$.\nc) $A \\cup \\overline{B} = \\{x : x \\in A \\text{ or } x \\in \\overline{B}\\} = \\{x : x \\notin B \\text{ or } x \\in \\overline{B}\\} = \\overline{B}$."
-            },
-            {
-              "q_num": "2",
-              "text": "If $A \\subseteq B$, prove that:\na) $\\overline{B} \\subseteq \\overline{A}$\nb) $A \\cup B = B$\nc) $A \\cap B = A$",
-              "source_solution": "Given $A \\subseteq B$:\na) $x \\in \\overline{B} \\implies x \\notin B \\implies x \\notin A \\implies x \\in \\overline{A}$. Hence $\\overline{B} \\subseteq \\overline{A}$.\nb) $A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\} = \\{x : x \\in B\\} = B$.\nc) $A \\cap B = \\{x : x \\in A \\text{ and } x \\in B\\} = \\{x : x \\in A\\} = A$."
-            },
-            {
-              "q_num": "3",
-              "text": "Prove that:\na) $B - A = B \\cap \\overline{A}$\nb) $A - B = A \\cap \\overline{B}$\nc) $A - \\overline{B} = B - \\overline{A}$",
-              "source_solution": "a) $B - A = \\{x : x \\in B \\text{ and } x \\notin A\\} = \\{x : x \\in B \\text{ and } x \\in \\overline{A}\\} = B \\cap \\overline{A}$.\nb) $A - B = \\{x : x \\in A \\text{ and } x \\notin B\\} = \\{x : x \\in A \\text{ and } x \\in \\overline{B}\\} = A \\cap \\overline{B}$.\nc) $A - \\overline{B} = \\{x : x \\in A \\text{ and } x \\notin \\overline{B}\\} = \\{x : x \\in A \\text{ and } x \\in B\\} = A \\cap B = B - \\overline{A}$."
-            },
-            {
-              "q_num": "4",
-              "text": "If $A, B, C$ are subsets of $U$, prove:\na) $A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C)$\nb) $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$",
-              "source_solution": "a) $x \\in A \\cup (B \\cap C) \\iff x \\in A \\lor (x \\in B \\land x \\in C) \\iff (x \\in A \\lor x \\in B) \\land (x \\in A \\lor x \\in C) \\iff x \\in (A \\cup B) \\cap (A \\cup C)$.\nb) $x \\in A \\cap (B \\cup C) \\iff x \\in A \\land (x \\in B \\lor x \\in C) \\iff (x \\in A \\land x \\in B) \\lor (x \\in A \\land x \\in C) \\iff x \\in (A \\cap B) \\cup (A \\cap C)$."
-            },
-            {
-              "q_num": "5",
-              "text": "Prove De Morgan's laws and set differences:\na) $(A \\cup B)' = A' \\cap B'$\nb)$(A \\cap B)' = A' \\cup B'$\nc)$A - (B \\cup C) = (A - B) \\cap (A - C) = (A - B) - C$\nd) $A - (B \\cap### Step 1: Import All Questions for Exercise 1.1 (Logic)
-
-To ensure smooth processing without browser timeouts, we will import the exercises one by one. Here is the complete, verified solution dataset for **Exercise 1.1 (All Questions 1 to 10)** with exact question numbering and no reference lines.
-
----
-
-#### Instructions:
-
-1. **Open GitHub**: Go to [github.com/krishnakumar-hq/gyansetu-ai](https://github.com/krishnakumar-hq/gyansetu-ai).
-2. **Edit `data/math11_solutions.json`**:
-   - Open the **`data`** folder $\rightarrow$ click on **`math11_solutions.json`**.
-   - Click the **pencil icon ✎** in the top-right corner to edit.
-3. **Select all code** (`Ctrl + A`), press `Delete`, and paste this content:
-
-```json
-{
-  "chapters": [
-    {
-      "id": "ch01",
-      "number": 1,
-      "name": "Logic, Sets and Real Number System",
-      "unit": "Unit 1: Algebra",
-      "exercises": [
+          "question_no": "3",
+          "question_text": "Construct truth tables for the following compound statements:\n(a) $\\sim(p \\land q)$\n(b) $p \\rightarrow (p \\lor q)$\n(c) $(p \\land q) \\rightarrow p$",
+          "solution": "### (a) Truth table for $\\sim(p \\land q)$:\n\n| $p$ | $q$ | $p \\land q$ | $\\sim(p \\land q)$ |\n|:---:|:---:|:-----------:|:-----------------:|\n| T | T | T | **F** |\n| T | F | F | **T** |\n| F | T | F | **T** |\n| F | F | F | **T** |\n\n---\n\n### (b) Truth table for $p \\rightarrow (p \\lor q)$:\n\n| $p$ | $q$ | $p \\lor q$ | $p \\rightarrow (p \\lor q)$ |\n|:---:|:---:|:----------:|:--------------------------:|\n| T | T | T | **T** |\n| T | F | T | **T** |\n| F | T | T | **T** |\n| F | F | F | **T** |\n\n*Note: Since all entries in the final column are True, $p \\rightarrow (p \\lor q)$ is a **tautology**.*\n\n---\n\n### (c) Truth table for $(p \\land q) \\rightarrow p$:\n\n| $p$ | $q$ | $p \\land q$ | $(p \\land q) \\rightarrow p$ |\n|:---:|:---:|:-----------:|:---------------------------:|\n| T | T | T | **T** |\n| T | F | F | **T** |\n| F | T | F | **T** |\n| F | F | F | **T** |\n\n*Note: This is also a **tautology**.*"
+        },
         {
-          "id": "ex1_1",
-          "name": "Exercise 1.1",
-          "topic": "Logic",
-          "questions": [
-            {
-              "q_num": "1",
-              "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?",
-              "source_solution": "a) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nb) Declarative sentence $\\implies$ Statement, Truth value: False (F).\nc) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nd) Interrogative sentence $\\implies$ Not a statement.\ne) Imperative sentence $\\implies$ Not a statement.\nf) Exclamatory sentence $\\implies$ Not a statement."
-            },
-            {
-              "q_num": "2",
-              "text": "Let $p$: demand is increasing and $q$: supply is decreasing. Express in words:\na) $\\sim p$\nb) $\\sim q$\nc) $p \\land q$\nd) $p \\lor q$\ne) $\\sim p \\land q$\nf) $p \\lor \\sim q$\ng) $\\sim p \\land \\sim q$\nh) $\\sim(p \\land q)$",
-              "source_solution": "a) Demand is not increasing.\nb) Supply is not decreasing.\nc) Demand is increasing and supply is decreasing.\nd) Demand is increasing or supply is decreasing.\ne) Demand is not increasing and supply is decreasing.\nf) Demand is increasing or supply is not decreasing.\ng) Neither demand is increasing nor supply is decreasing.\nh) It is false that demand is increasing and supply is decreasing."
-            },
-            {
-              "q_num": "3",
-              "text": "Express in symbolic form:\na) Temperature is increasing ($p$) and length is expanding ($q$).\nb) Pressure is decreasing ($p$) or volume is increasing ($q$).\nc) Neither demand is increasing ($p$) nor price is increasing ($q$).\nd) It is false that Pradeep is bold ($p$) or Sandeep is handsome ($q$).",
-              "source_solution": "a) $p \\land q$\nb) $p \\lor q$\nc) $\\sim p \\land \\sim q$\nd) $\\sim(p \\lor q)$"
-            },
-            {
-              "q_num": "4",
-              "text": "Construct truth tables for:\na) $(\\sim p) \\land q$\nb) $(\\sim p) \\lor (\\sim q)$\nc) $\\sim(p \\land q)$\nd) $\\sim[p \\lor (\\sim q)]$\ne) $(p \\implies q) \\land (q \\implies p)$\nf) $(\\sim p \\lor q) \\implies (p \\lor q)$\ng) $[p \\land (p \\implies q)] \\implies q$\nh) $(p \\implies q) \\iff (\\sim p \\lor q)$\ni) $(p \\iff q) \\lor (q \\iff r)$",
-              "source_solution": "Truth value results for (TT, TF, FT, FF):\na) **F, F, T, F**\nb) **F, T, T, T**\nc) **F, T, T, T**\nd) **F, F, T, F**\ne) **T, F, F, T**\nf) **T, T, T, F**\ng) **T, T, T, T** (Tautology)\nh) **T, T, T, T** (Tautology)\ni) 8-row values: **T, T, F, T, T, F, T, T**"
-            },
-            {
-              "q_num": "5",
-              "text": "If $p=T, q=F, r=T, s=F$, find truth values of:\na) $p \\land q$\nb) $p \\lor (\\sim q)$\nc) $(\\sim p) \\land (\\sim q)$\nd) $q \\lor (p \\land s)$\ne) $\\sim(\\sim p)$\nf) $(p \\lor q) \\land (r \\lor s)$",
-              "source_solution": "a) $T \\land F = \\mathbf{F}$\nb) $T \\lor T = \\mathbf{T}$\nc) $F \\land T = \\mathbf{F}$\nd) $F \\lor (T \\land F) = \\mathbf{F}$\ne) $\\sim(\\sim T) = \\mathbf{T}$\nf) $(T \\lor F) \\land (T \\lor F) = \\mathbf{T}$"
-            },
-            {
-              "q_num": "6",
-              "text": "Prove by truth table:\na) $p \\land (\\sim p) \\equiv c$ (contradiction)\nb) $(p \\lor q) \\equiv (q \\lor p)$\nc) $\\sim[p \\lor (\\sim q)] \\equiv (\\sim p) \\land q$\nd) $\\sim[(\\sim p) \\land q] \\equiv p \\lor (\\sim q)$",
-              "source_solution": "a) $p \\land (\\sim p)$ yields all $F$ values $\\implies$ Contradiction ($c$).\nb) Both columns evaluate to $T, T, T, F$, hence equivalent.\nc) Both columns evaluate to $F, F, T, F$, hence equivalent.\nd) Both columns evaluate to $T, T, F, T$, hence equivalent."
-            },
-            {
-              "q_num": "7",
-              "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) $x > 0$\nd) Some students are weak in mathematics.\ne) All teachers are labourous.",
-              "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) $x \\le 0$\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous."
-            },
-            {
-              "q_num": "8",
-              "text": "Find the truth value and negation of each:\na) $3 + 2 = 5$ or $6$ is a multiple of $5$.\nb) $8$ is a prime number and $4$ is even.\nc) If $3 > 0$ then $4 + 6 = 10$.\nd) If $2$ is odd or $3$ is a natural number then $2 + 3 = 8$.\ne) If $2 \\times 3 = 5 \\implies 3 > 1$ then $6$ is even.\nf) Triangle $ABC$ is right angled at $B \\iff AB^2 + BC^2 = AC^2$.",
-              "source_solution": "a) Truth value: **T**. Negation: \"$3 + 2 \\ne 5$ and $6$ is not a multiple of $5$.\"\nb) Truth value: **F**. Negation: \"$8$ is not prime or $4$ is odd.\"\nc) Truth value: **T**. Negation: \"$3 > 0$ and $4 + 6 \\ne 10$.\"\nd) Truth value: **F**. Negation: \"$2$ is odd or $3$ is natural and $2 + 3 \\ne 8$.\"\ne) Truth value: **T**. Negation: \"If $2 \\times 3 = 5$, then $3 > 1$ and $6$ is odd.\"\nf) Truth value: **T**. Negation: \"$ABC$ is right angled at $B$ and $AB^2+BC^2 \\ne AC^2$, or $ABC$ not right angled at $B$ and $AB^2+BC^2=AC^2$.\""
-            },
-            {
-              "q_num": "9",
-              "text": "For the statements:\na) If $3$ is a natural number then $1/3$ is rational.\nb) $x^2 = 4$ whenever $x = 2$.\nc) If the battery is low then the mobile does not work well.\nFind i) antecedent & consequent, ii) converse, inverse & contrapositive, iii) negation.",
-              "source_solution": "a) i) Ant: $3$ is natural, Con: $1/3$ is rational.\nii) Conv: If $1/3$ is rational then $3$ is natural; Inv: If $3$ is not natural then $1/3$ is not rational; Contrap: If $1/3$ is not rational then $3$ is not natural.\niii) Neg: $3$ is natural and $1/3$ is not rational.\n\nb) i) Ant: $x=2$, Con: $x^2=4$.\nii) Conv: If $x^2=4$ then $x=2$; Inv: If $x \\ne 2$ then $x^2 \\ne 4$; Contrap: If $x^2 \\ne 4$ then $x \\ne 2$.\niii) Neg: $x=2$ and $x^2 \\ne 4$.\n\nc) i) Ant: Battery low, Con: Mobile does not work well.\nii) Conv: If mobile doesn't work well then battery is low; Inv: If battery is not low then mobile works well; Contrap: If mobile works well then battery is not low.\niii) Neg: Battery is low and mobile works well."
-            },
-            {
-              "q_num": "10",
-              "text": "Prove tautologies and contradictions:\na) $p \\lor (\\sim p \\land q)$ is a tautology.\nb) $(p \\land q) \\implies (p \\lor q)$ is a tautology.\nc) $\\sim(p \\lor q) \\land q$ is a contradiction.\nd) $(p \\land q) \\land \\sim(p \\lor q)$ is a contradiction.\ne) $[\\sim q \\land (p \\implies q)] \\implies \\sim p$ is a tautology.\nf) $[(p \\land q) \\implies p] \\implies (q \\land \\sim q)$ is a contradiction.",
-              "source_solution": "a) All 4 truth table rows evaluate to $T \\implies$ **Tautology**.\nb) All 4 truth table rows evaluate to $T \\implies$ **Tautology**.\nc) All 4 truth table rows evaluate to $F \\implies$ **Contradiction**.\nd) All 4 truth table rows evaluate to $F \\implies$ **Contradiction**.\ne) All 4 truth table rows evaluate to $T \\implies$ **Tautology**.\nf) Evaluates to $T \\implies F = F \\implies$ **Contradiction**."
-            }
-          ]
+          "question_no": "4",
+          "question_text": "Show by constructing a truth table that $\\sim(p \\lor q) \\equiv \\sim p \\land \\sim q$ (De Morgan's First Law of Logic).",
+          "solution": "### Truth Table:\n\n| Column 1 | Column 2 | Column 3 | Column 4 | Column 5 | Column 6 | Column 7 | Column 8 |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| $p$ | $q$ | $\\sim p$ | $\\sim q$ | $p \\lor q$ | $\\sim(p \\lor q)$ | $\\sim p \\land \\sim q$ | $(\\sim(p \\lor q)) \\leftrightarrow (\\sim p \\land \\sim q)$ |\n| T | T | F | F | T | **F** | **F** | **T** |\n| T | F | F | T | T | **F** | **F** | **T** |\n| F | T | T | F | T | **F** | **F** | **T** |\n| F | F | T | T | F | **T** | **T** | **T** |\n\n### Conclusion:\nThe values in **Column 6** [$\\sim(p \\lor q)$] and **Column 7** [$\\sim p \\land \\sim q$] are identical for all possible truth values of $p$ and $q$.\n\nHence, $\\sim(p \\lor q) \\equiv \\sim p \\land \\sim q$ is proved."
+        },
+        {
+          "question_no": "5",
+          "question_text": "Show that the proposition $(p \\rightarrow q) \\leftrightarrow (\\sim q \\rightarrow \\sim p)$ is a tautology.",
+          "solution": "### Truth Table:\n\n| $p$ | $q$ | $\\sim p$ | $\\sim q$ | $p \\rightarrow q$ | $\\sim q \\rightarrow \\sim p$ | $(p \\rightarrow q) \\leftrightarrow (\\sim q \\rightarrow \\sim p)$ |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| T | T | F | F | T | T | **T** |\n| T | F | F | T | F | F | **T** |\n| F | T | T | F | T | T | **T** |\n| F | F | T | T | T | T | **T** |\n\n### Conclusion:\nSince the last column contains exclusively **T** for all truth combinations, the compound statement $(p \\rightarrow q) \\leftrightarrow (\\sim q \\rightarrow \\sim p)$ is a **tautology** (proving that a conditional is logically equivalent to its contrapositive)."
+        },
+        {
+          "question_no": "6",
+          "question_text": "Write the converse, inverse, and contrapositive of the conditional statement: \"If a polygon is a square, then it is a rectangle.\"",
+          "solution": "### Identification of Components:\n* Let $p$: A polygon is a square.\n* Let $q$: A polygon is a rectangle.\n* The given conditional is $p \\rightarrow q$.\n\n### Formulations:\n1. **Converse ($q \\rightarrow p$):**\n   * \"If a polygon is a rectangle, then it is a square.\"\n2. **Inverse ($\\sim p \\rightarrow \\sim q$):**\n   * \"If a polygon is not a square, then it is not a rectangle.\"\n3. **Contrapositive ($\\sim q \\rightarrow \\sim p$):**\n   * \"If a polygon is not a rectangle, then it is not a square.\""
+        }
+      ]
+    },
+    {
+      "exercise_no": "1.2",
+      "exercise_title": "Set Theory & Laws of Algebra of Sets",
+      "questions": [
+        {
+          "question_no": "1",
+          "question_text": "If $U = \\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\\}$, $A = \\{2, 3, 5, 7\\}$, and $B = \\{1, 3, 5, 7, 9\\}$, find:\n(a) $A \\cup B$\n(b) $A \\cap B$\n(c) $A - B$\n(d) $B - A$\n(e) $A^c$\n(f) $A \\Delta B$ (Symmetric Difference)",
+          "solution": "### Given Sets:\n* $U = \\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\\}$\n* $A = \\{2, 3, 5, 7\\}$\n* $B = \\{1, 3, 5, 7, 9\\}$\n\n### Step-by-Step Solutions:\n* **(a) $A \\cup B$:**\n  $$A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\} = \\{1, 2, 3, 5, 7, 9\\}$$\n\n* **(b) $A \\cap B$:**\n  $$A \\cap B = \\{x : x \\in A \\text{ and } x \\in B\\} = \\{3, 5, 7\\}$$\n\n* **(c) $A - B$:**\n  $$A - B = \\{x : x \\in A \\text{ and } x \\notin B\\} = \\{2\\}$$\n\n* **(d) $B - A$:**\n  $$B - A = \\{x : x \\in B \\text{ and } x \\notin A\\} = \\{1, 9\\}$$\n\n* **(e) $A^c$ (Complement of $A$):**\n  $$A^c = U - A = \\{1, 4, 6, 8, 9, 10\\}$$\n\n* **(f) $A \\Delta B$ (Symmetric Difference):**\n  $$A \\Delta B = (A - B) \\cup (B - A) = \\{2\\} \\cup \\{1, 9\\} = \\{1, 2, 9\\}$$"
+        },
+        {
+          "question_no": "2",
+          "question_text": "Prove that $A - B = A \\cap B^c$ algebraically using set-builder notation.",
+          "solution": "### Proof:\nLet $x$ be an arbitrary element.\n\n$$\\begin{aligned}\nx \\in (A - B) &\\iff x \\in A \\text{ and } x \\notin B \\\\\n&\\iff x \\in A \\text{ and } x \\in B^c \\\\\n&\\iff x \\in (A \\cap B^c)\n\\end{aligned}$$\n\nSince each step is a bi-conditional implication (reversible):\n$$A - B = A \\cap B^c$$\n\nHence proved."
+        },
+        {
+          "question_no": "3",
+          "question_text": "Prove De Morgan's Law for sets: $(A \\cup B)^c = A^c \\cap B^c$.",
+          "solution": "### Algebraic Proof:\n\n**Step 1: Show $(A \\cup B)^c \\subseteq A^c \\cap B^c$**\nLet $x \\in (A \\cup B)^c$ be an arbitrary element.\n$$\\begin{aligned}\nx \\in (A \\cup B)^c &\\implies x \\notin (A \\cup B) \\\\\n&\\implies \\text{not }(x \\in A \\text{ or } x \\in B) \\\\\n&\\implies x \\notin A \\text{ and } x \\notin B \\\\\n&\\implies x \\in A^c \\text{ and } x \\in B^c \\\\\n&\\implies x \\in (A^c \\cap B^c)\n\\end{aligned}$$\nThus, $(A \\cup B)^c \\subseteq A^c \\cap B^c$.\n\n**Step 2: Show $A^c \\cap B^c \\subseteq (A \\cup B)^c$**\nLet $y \\in A^c \\cap B^c$.\n$$\\begin{aligned}\ny \\in (A^c \\cap B^c) &\\implies y \\in A^c \\text{ and } y \\in B^c \\\\\n&\\implies y \\notin A \\text{ and } y \\notin B \\\\\n&\\implies \\text{not }(y \\in A \\text{ or } y \\in B) \\\\\n&\\implies y \\notin (A \\cup B) \\\\\n&\\implies y \\in (A \\cup B)^c\n\\end{aligned}$$\nThus, $A^c \\cap B^c \\subseteq (A \\cup B)^c$.\n\nFrom Step 1 and Step 2:\n$$(A \\cup B)^c = A^c \\cap B^c$$\n\nHence proved."
+        },
+        {
+          "question_no": "4",
+          "question_text": "Prove the Distributive Law of set operations: $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$.",
+          "solution": "### Proof:\nLet $x$ be an arbitrary element.\n\n$$\\begin{aligned}\nx \\in A \\cap (B \\cup C) &\\iff x \\in A \\text{ and } x \\in (B \\cup C) \\\\\n&\\iff x \\in A \\text{ and } (x \\in B \\text{ or } x \\in C) \\\\\n&\\iff (x \\in A \\text{ and } x \\in B) \\text{ or } (x \\in A \\text{ and } x \\in C) \\quad \\text{[Distributive law of logic]} \\\\\n&\\iff (x \\in A \\cap B) \\text{ or } (x \\in A \\cap C) \\\\\n&\\iff x \\in (A \\cap B) \\cup (A \\cap C)\n\\end{aligned}$$\n\nSince all logical equivalence steps are bidirectional:\n$$A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$$\n\nHence proved."
+        },
+        {
+          "question_no": "5",
+          "question_text": "In a survey of 100 students, 60 like Mathematics, 45 like Physics, and 20 like both subjects. Find:\n(a) The number of students who like only Mathematics.\n(b) The number of students who like neither Mathematics nor Physics.",
+          "solution": "### Given Data:\n* Total students, $n(U) = 100$\n* Number of students who like Mathematics, $n(M) = 60$\n* Number of students who like Physics, $n(P) = 45$\n* Number of students who like both, $n(M \\cap P) = 20$\n\n### Step-by-Step Calculation:\n\n* **(a) Number of students who like only Mathematics $n_0(M)$:**\n  $$n_0(M) = n(M) - n(M \\cap P) = 60 - 20 = \\mathbf{40}$$\n\n* **(b) Number of students who like at least one subject $n(M \\cup P)$:**\n  $$n(M \\cup P) = n(M) + n(P) - n(M \\cap P)$$\n  $$n(M \\cup P) = 60 + 45 - 20 = 85$$\n\n* **Number of students who like neither subject $n(M \\cup P)^c$:**\n  $$n(M \\cup P)^c = n(U) - n(M \\cup P) = 100 - 85 = \\mathbf{15}$$\n\n### Final Answer:\n* (a) Only Mathematics: **40** students\n* (b) Neither Mathematics nor Physics: **15** students"
+        }
+      ]
+    },
+    {
+      "exercise_no": "1.3",
+      "exercise_title": "Real Number System, Intervals & Absolute Values",
+      "questions": [
+        {
+          "question_no": "1",
+          "question_text": "Express the following sets in interval notation and represent them on the real number line:\n(a) $\\{x \\in \\mathbb{R} : -3 < x \\le 5\\}$\n(b) $\\{x \\in \\mathbb{R} : x \\ge -2\\}$\n(c) $\\{x \\in \\mathbb{R} : x < 4\\}$\n(d) $\\{x \\in \\mathbb{R} : -1 \\le x \\le 6\\}$",
+          "solution": "### Interval Notation and Classification:\n\n* **(a) $\\{x \\in \\mathbb{R} : -3 < x \\le 5\\}$**\n  * **Interval:** $(-3, 5]$\n  * **Type:** Semi-open (left-open, right-closed) interval.\n  * **Representation:** An open circle at $-3$ and a solid dot at $5$ with the line segment between them shaded.\n\n* **(b) $\\{x \\in \\mathbb{R} : x \\ge -2\\}$**\n  * **Interval:** $[-2, \\infty)$\n  * **Type:** Closed ray / Infinite interval.\n  * **Representation:** A solid dot at $-2$ extending infinitely to the right.\n\n* **(c) $\\{x \\in \\mathbb{R} : x < 4\\}$**\n  * **Interval:** $(-\\infty, 4)$\n  * **Type:** Open ray / Infinite interval.\n  * **Representation:** An open circle at $4$ extending infinitely to the left.\n\n* **(d) $\\{x \\in \\mathbb{R} : -1 \\le x \\le 6\\}$**\n  * **Interval:** $[-1, 6]$\n  * **Type:** Closed interval.\n  * **Representation:** Solid dots at $-1$ and $6$ with the line segment between them shaded."
+        },
+        {
+          "question_no": "2",
+          "question_text": "Define the absolute value of a real number $x$. State and prove the Triangle Inequality: $|a + b| \\le |a| + |b|$ for all $a, b \\in \\mathbb{R}$.",
+          "solution": "### Definition of Absolute Value:\nThe absolute value (or modulus) of a real number $x$, denoted by $|x|$, is defined as:\n$$|x| = \\begin{cases} x & \\text{if } x \\ge 0 \\\\ -x & \\text{if } x < 0 \\end{cases}$$\n\n### Theorem (Triangle Inequality):\nFor any real numbers $a, b \\in \\mathbb{R}$:\n$$|a + b| \\le |a| + |b|$$\n\n### Proof:\nWe know that for any real number $x$:\n$$-|x| \\le x \\le |x|$$\n\nApplying this fundamental property to $a$ and $b$:\n$$-|a| \\le a \\le |a| \\quad \\text{--- (1)}$$\n$$-|b| \\le b \\le |b| \\quad \\text{--- (2)}$$\n\nAdding inequalities (1) and (2):\n$$-(|a| + |b|) \\le a + b \\le (|a| + |b|)$$\n\nBy the property that $-M \\le x \\le M \\iff |x| \\le M$ (where $M = |a| + |b| \\ge 0$):\n$$|a + b| \\le |a| + |b|$$\n\nHence proved."
+        },
+        {
+          "question_no": "3",
+          "question_text": "Solve the following absolute value equations:\n(a) $|2x - 3| = 7$\n(b) $|3x + 1| = |x - 5|$",
+          "solution": "### (a) $|2x - 3| = 7$\nBy definition of absolute value:\n$$2x - 3 = 7 \\quad \\text{or} \\quad 2x - 3 = -7$$\n\n* **Case 1:**\n  $$2x = 7 + 3 \\implies 2x = 10 \\implies x = 5$$\n* **Case 2:**\n  $$2x = -7 + 3 \\implies 2x = -4 \\implies x = -2$$\n\n**Solution Set:** $\\{-2, 5\\}$\n\n---\n\n### (b) $|3x + 1| = |x - 5|$\n$$3x + 1 = \\pm(x - 5)$$\n\n* **Case 1 ($+$ sign):**\n  $$3x + 1 = x - 5 \\implies 2x = -6 \\implies x = -3$$\n* **Case 2 ($-$ sign):**\n  $$3x + 1 = -(x - 5) \\implies 3x + 1 = -x + 5 \\implies 4x = 4 \\implies x = 1$$\n\n**Solution Set:** $\\{-3, 1\\}$"
+        },
+        {
+          "question_no": "4",
+          "question_text": "Solve the following absolute value inequalities and express the solution in interval notation:\n(a) $|x - 4| < 3$\n(b) $|2x + 5| \\ge 7$\n(c) $\\left|\\frac{x - 2}{3}\\right| \\le 4$",
+          "solution": "### (a) $|x - 4| < 3$\nUsing the property $|X| < a \\iff -a < X < a$:\n$$-3 < x - 4 < 3$$\nAdding $4$ to all parts:\n$$-3 + 4 < x < 3 + 4$$\n$$1 < x < 7$$\n\n**Solution in Interval Notation:** $(1, 7)$\n\n---\n\n### (b) $|2x + 5| \\ge 7$\nUsing the property $|X| \\ge a \\iff X \\ge a \\text{ or } X \\le -a$:\n\n* **Case 1:**\n  $$2x + 5 \\ge 7 \\implies 2x \\ge 2 \\implies x \\ge 1$$\n* **Case 2:**\n  $$2x + 5 \\le -7 \\implies 2x \\le -12 \\implies x \\le -6$$\n\n**Solution in Interval Notation:** $(-\\infty, -6] \\cup [1, \\infty)$\n\n---\n\n### (c) $\\left|\\frac{x - 2}{3}\\right| \\le 4$\nSince $3 > 0$:\n$$|x - 2| \\le 12$$\n$$-12 \\le x - 2 \\le 12$$\nAdding $2$ to all parts:\n$$-10 \\le x \\le 14$$\n\n**Solution in Interval Notation:** $[-10, 14]$"
+        },
+        {
+          "question_no": "5",
+          "question_text": "Rewrite the inequality $-5 < x < 11$ in the modulus form $|x - a| < l$.",
+          "solution": "### General Modulus Form:\nAny symmetric or bounded interval $-c < x < d$ can be written in modulus form $|x - a| < l$, where:\n* $a = \\frac{\\text{lower bound} + \\text{upper bound}}{2}$ (Midpoint)\n* $l = \\frac{\\text{upper bound} - \\text{lower bound}}{2}$ (Half-width/Radius)\n\n### Calculation:\n* Midpoint, $a = \\frac{-5 + 11}{2} = \\frac{6}{2} = 3$\n* Radius, $l = \\frac{11 - (-5)}{2} = \\frac{16}{2} = 8$\n\n### Transformation:\nGiven: $$-5 < x < 11$$\nSubtracting $3$ (the midpoint) from all parts:\n$$-5 - 3 < x - 3 < 11 - 3$$\n$$-8 < x - 3 < 8$$\n\nUsing the absolute value property $-l < X < l \\iff |X| < l$:\n$$\\mathbf{|x - 3| < 8}$$\n\n**Final Answer:** $|x - 3| < 8$"
         }
       ]
     }
