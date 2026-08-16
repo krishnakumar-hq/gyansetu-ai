@@ -9,12 +9,12 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- KaTeX for Beautiful Math & Chemistry Formulas -->
+  <!-- KaTeX for Math & Chemistry Formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   
-  <!-- Marked.js for Clean Markdown Typography -->
+  <!-- Marked.js for Markdown Typography -->
   <script src="https://cdn.jsdelivr.net/npm/marked@13.0.2/marked.min.js"></script>
 
   <style>
@@ -48,7 +48,6 @@
       line-height: 1.6;
     }
 
-    /* Header & Nav */
     header {
       background: var(--card-bg);
       border-bottom: 1px solid var(--border);
@@ -196,7 +195,6 @@
       border-color: #fca5a5;
     }
 
-    /* Disclaimer Notice Banner */
     .disclaimer-banner {
       background: #f1f5f9;
       border-bottom: 1px solid var(--border);
@@ -206,14 +204,12 @@
       color: var(--text-muted);
     }
 
-    /* Main Container */
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.25rem;
     }
 
-    /* App Views */
     .view-section {
       display: none;
     }
@@ -221,7 +217,6 @@
       display: block;
     }
 
-    /* Hero Section */
     .hero {
       text-align: center;
       padding: 2.5rem 1rem 1.5rem;
@@ -261,7 +256,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Search Bar */
     .search-box-wrap {
       max-width: 650px;
       margin: 0 auto 2rem;
@@ -333,7 +327,6 @@
       color: var(--text-muted);
     }
 
-    /* Class Switcher */
     .class-switcher-wrap {
       display: flex;
       justify-content: center;
@@ -366,7 +359,6 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-    /* Section Headings */
     .section-head {
       margin-bottom: 1.5rem;
       display: flex;
@@ -384,7 +376,6 @@
       color: var(--text-muted);
     }
 
-    /* Subject Grid */
     .subject-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -445,6 +436,85 @@
       border-top: 1px dashed var(--border);
       display: flex;
       justify-content: space-between;
+    }
+
+    /* Textbook Solutions Styles */
+    .exercise-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .exercise-pill.active, .exercise-pill:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .solution-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .solution-q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .solution-q-badge {
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .solution-q-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      flex: 1;
+    }
+    .solution-toggle-btn {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .solution-toggle-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+    .solution-content-drawer {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-top: 0.85rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+    .solution-content-drawer.open {
+      display: block;
     }
 
     /* Chapter List Viewer */
@@ -720,102 +790,7 @@
       font-size: 0.85rem;
     }
 
-    /* TEXTBOOK SOLUTIONS STYLES */
-    .exercise-pills-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .exercise-pill {
-      background: #f1f5f9;
-      border: 1px solid var(--border);
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .exercise-pill.active, .exercise-pill:hover {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-
-    .solution-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-
-    .solution-q-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .solution-q-badge {
-      background: #e0e7ff;
-      color: #3730a3;
-      font-weight: 800;
-      font-size: 0.8rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      white-space: nowrap;
-    }
-
-    .solution-q-text {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
-      flex: 1;
-    }
-
-    .solution-toggle-btn {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.4rem 0.85rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--primary);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .solution-toggle-btn:hover {
-      background: var(--primary-light);
-      border-color: var(--primary);
-    }
-
-    .solution-content-drawer {
-      display: none;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 1.25rem;
-      margin-top: 0.85rem;
-      font-size: 0.92rem;
-      line-height: 1.7;
-    }
-
-    .solution-content-drawer.open {
-      display: block;
-    }
-
-    /* AI DOUBT SOLVER & FORMATTED OUTPUT */
+    /* AI DOUBT SOLVER */
     .ai-chat-box {
       background: #f8fafc;
       border: 1px solid var(--border);
@@ -1358,7 +1333,6 @@
       border: 1px solid #fecaca;
     }
 
-    /* Footer */
     footer {
       background: var(--card-bg);
       border-top: 1px solid var(--border);
@@ -1385,12 +1359,10 @@
 </head>
 <body>
 
-  <!-- Disclaimer Banner -->
   <div class="disclaimer-banner">
     📢 <strong>Notice:</strong> GyanSetu AI is an independent educational platform built for NEB students. Not affiliated with NEB or the Government of Nepal.
   </div>
 
-  <!-- Header -->
   <header>
     <div class="nav-container">
       <div class="brand-group" onclick="showView('curriculum')">
@@ -1399,7 +1371,6 @@
         <span class="stream-tag">NEB 11 & 12</span>
       </div>
 
-      <!-- Navigation Switcher -->
       <div class="nav-links">
         <button class="nav-btn active" id="nav-btn-explore" onclick="showView('curriculum')">📚 Curriculum</button>
         <button class="nav-btn" id="nav-btn-planner" onclick="showView('planner')">📅 Revision Plan</button>
@@ -1407,7 +1378,6 @@
         <button class="nav-btn" id="nav-btn-dash" onclick="showView('dashboard')">📊 My Dashboard</button>
       </div>
 
-      <!-- Language Selector & Auth Actions -->
       <div class="auth-actions">
         <select class="lang-switcher-select" id="global-lang-switcher" onchange="changeLanguage(this.value)">
           <option value="bilingual">🇳🇵 Nepali-English</option>
@@ -1478,34 +1448,7 @@
     </div>
   </div>
 
-  <!-- Feedback & Quality Control Report Modal -->
-  <div class="modal-overlay" id="report-modal" onclick="closeReportModal(event)">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeReportModal()">&times;</button>
-      <h3 style="color:var(--primary); font-size:1.2rem; margin-bottom:0.5rem;">🚩 Report Inaccuracy / Suggest Edit</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Help us keep GyanSetu AI 100% aligned with official NEB board standards.</p>
-      
-      <form onsubmit="handleSendFeedback(event)">
-        <div class="form-group">
-          <label>Issue Type</label>
-          <select id="report-type" class="form-control">
-            <option value="calculation_error">Incorrect Calculation / Number</option>
-            <option value="formula_error">Incorrect Formula or Unit</option>
-            <option value="syllabus_mismatch">Out of NEB Syllabus</option>
-            <option value="translation_issue">Nepali Translation / Spelling Issue</option>
-            <option value="other">Other Suggestion</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Details & Suggested Correction</label>
-          <textarea id="report-details" class="form-control" rows="3" placeholder="Explain what needs fixing or provide the correct value..." required></textarea>
-        </div>
-        <button type="submit" class="btn-submit" style="background:#dc2626;">Submit Correction Report</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Main Content Container -->
+  <!-- Main Container -->
   <div class="container">
 
     <!-- VIEW 1: CURRICULUM EXPLORER & LANDING -->
@@ -1600,11 +1543,11 @@
         </div>
       </div>
 
-      <!-- Study Tab: TEXTBOOK SOLUTIONS MANUAL -->
+      <!-- Study Tab: Textbook Solutions -->
       <div id="study-panel-solutions" class="study-content-panel" style="display: none;">
         <h3>📚 Textbook Solutions Manual</h3>
         <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Step-by-step textbook solutions with mathematical notation.</p>
-        <div class="exercise-pills-bar" id="math-exercise-pills"></div>
+        <div class="exercise-pills-bar" id="math-exercise-pills" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem;"></div>
         <div id="math-questions-list"></div>
       </div>
 
@@ -1653,165 +1596,56 @@
             </button>
           </div>
 
-          <!-- Loading Indicator -->
           <div class="ai-loading-indicator" id="ai-loading">
             <div class="spinner"></div>
             <span>GyanSetu AI is analyzing the CDC syllabus and formulating your solution...</span>
           </div>
 
-          <!-- Formatted AI Response Box -->
           <div class="ai-response-container" id="ai-response-box"></div>
-
-          <!-- Quality Control Disclaimer & Report Button -->
-          <div id="ai-footer-bar" style="margin-top:0.75rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.78rem; color:var(--text-muted);">
-            <span>⚠️ AI answers are for study guidance; always verify with official CDC textbooks.</span>
-            <button class="btn-small" onclick="openReportModal()" style="font-size:0.75rem; color:#b91c1c; border-color:#fca5a5;">🚩 Report Inaccuracy</button>
-          </div>
         </div>
       </div>
 
-      <!-- Navigation footer inside chapter -->
       <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
         <button class="btn-small" onclick="showView('curriculum')">← Back to Curriculum</button>
         <button class="btn-small ai" onclick="showView('dashboard')">View Progress in Dashboard →</button>
       </div>
     </div>
 
-    <!-- VIEW 3: REVISION PLANNER & STRATEGY CENTER -->
+    <!-- VIEW 3: REVISION PLANNER -->
     <div id="view-planner" class="view-section">
       <div class="section-head">
         <div>
           <h2>NEB Board Exam Revision Strategy</h2>
-          <p>High-yield weightage matrix across all core subjects and 30-day master preparation timeline.</p>
+          <p>High-yield weightage matrix across all core subjects.</p>
         </div>
       </div>
-
       <div class="revision-matrix-card">
         <h3 style="color: var(--primary); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">📊 Official NEB Marks Distribution</h3>
         <p style="font-size: 0.88rem; color: var(--text-muted);">Total Theory: 75 Marks | Internal / Practical: 25 Marks per subject</p>
-
-        <table class="weightage-table">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>High-Weightage Units</th>
-              <th>Typical Marks</th>
-              <th>Key Recommendation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Compulsory English</strong> (Eng.003/004)</td>
-              <td>Reading Comprehension, Literature (Stories/Poems), Free Writing & Contextual Grammar</td>
-              <td><strong>75 Theory Marks</strong></td>
-              <td>Structure paragraphs cleanly; focus on literary themes & grammar rules.</td>
-            </tr>
-            <tr>
-              <td><strong>अनिवार्य नेपाली</strong> (Nep.001/002)</td>
-              <td>कविता, कथा, निबन्ध व्याख्या, विवेचनात्मक उत्तर, शब्दनिर्माण, पदवर्ग र व्यावहारिक लेखन</td>
-              <td><strong>७५ पूर्णाङ्क</strong></td>
-              <td>वर्णविन्यास शुद्ध लेख्नुहोस्; बुँदाटिपोट र सारांश लेखनको ढाँचा मिलाउनुहोस्।</td>
-            </tr>
-            <tr>
-              <td><strong>Physics</strong> (Phy.101/201)</td>
-              <td>Mechanics, Electricity & Magnetism, Wave Optics</td>
-              <td><strong>50+ / 75 Marks</strong></td>
-              <td>Master derivation steps & numerical SI units.</td>
-            </tr>
-            <tr>
-              <td><strong>Chemistry</strong> (Chem.101/201)</td>
-              <td>Organic Chemistry, Physical (Stoichiometry/Equilibrium)</td>
-              <td><strong>50+ / 75 Marks</strong></td>
-              <td>Practice reaction mechanisms & molarity conversions.</td>
-            </tr>
-            <tr>
-              <td><strong>Mathematics</strong> (Mat.101/201)</td>
-              <td>Calculus (Derivatives/Integrals), Algebra & Matrices</td>
-              <td><strong>55+ / 75 Marks</strong></td>
-              <td>Solve past 5 years NEB model sets repeatedly.</td>
-            </tr>
-            <tr>
-              <td><strong>Computer Science</strong> (Com.101/201)</td>
-              <td>C Programming, DBMS/SQL, Networking</td>
-              <td><strong>45+ / 75 Marks</strong></td>
-              <td>Write clean syntax, proper comments & indentation.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="section-head">
-        <div>
-          <h2>30-Day Master Revision Roadmap</h2>
-          <p>Check off each week as you complete your syllabus targets.</p>
-        </div>
-      </div>
-
-      <div class="planner-timeline">
-        <div class="plan-card">
-          <h4>Week 1: High-Yield Foundations <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 1-7</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-1" onchange="saveTaskState('task-1')"> <label for="task-1">English: Short Stories (Selfish Giant, Neighbours)</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-2" onchange="saveTaskState('task-2')"> <label for="task-2">नेपाली: वीर पुर्खा / आमाको सपना (कविता व्याख्या)</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-3" onchange="saveTaskState('task-3')"> <label for="task-3">Physics: Vectors & Kinematics</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-4" onchange="saveTaskState('task-4')"> <label for="task-4">Chemistry: Stoichiometry & Volumetric Analysis</label></div>
-        </div>
-
-        <div class="plan-card">
-          <h4>Week 2: Core Analytical Powers <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 8-14</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-5" onchange="saveTaskState('task-5')"> <label for="task-5">English: Essay Writing & Modal Verbs</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-6" onchange="saveTaskState('task-6')"> <label for="task-6">नेपाली: गाउँको माया / विरहिणी दमयन्ती (कथा सारांश)</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-7" onchange="saveTaskState('task-7')"> <label for="task-7">Maths: Limits, Continuity & Differentiation</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-8" onchange="saveTaskState('task-8')"> <label for="task-8">CS: C Control Statements & DBMS</label></div>
-        </div>
-
-        <div class="plan-card">
-          <h4>Week 3: Deep Dives & Grammar <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 15-21</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-9" onchange="saveTaskState('task-9')"> <label for="task-9">English: Critical Thinking & Reported Speech</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-10" onchange="saveTaskState('task-10')"> <label for="task-10">नेपाली: पदवर्ग, शब्दनिर्माण, व्यावसायिक पत्र</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-11" onchange="saveTaskState('task-11')"> <label for="task-11">Physics: Electricity & Magnetism</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-12" onchange="saveTaskState('task-12')"> <label for="task-12">Chemistry: Organic Fundamentals & Alcohols</label></div>
-        </div>
-
-        <div class="plan-card">
-          <h4>Week 4: Mock Tests & Board Drills <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 22-30</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-13" onchange="saveTaskState('task-13')"> <label for="task-13">Complete 3 Full Timed Mock Exams</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-14" onchange="saveTaskState('task-14')"> <label for="task-14">Review All Weak-Topic AI Summaries</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-15" onchange="saveTaskState('task-15')"> <label for="task-15">Final Formula & Literary Device Sheet Review</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-16" onchange="saveTaskState('task-16')"> <label for="task-16">Past 5 Years Question Bank Speed Drill</label></div>
-        </div>
       </div>
     </div>
 
-    <!-- VIEW 4: TIMED MOCK EXAM SIMULATOR -->
+    <!-- VIEW 4: MOCK EXAM -->
     <div id="view-mock" class="view-section">
       <div class="exam-header">
         <div>
           <h2 style="font-size: 1.5rem; font-weight: 800;">NEB Model Mock Examination</h2>
-          <p style="color: var(--text-muted); font-size: 0.88rem;">Timed Board Preparation • Multi-Subject Evaluation</p>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Timed Board Preparation</p>
         </div>
         <div class="timer-badge">
           <span>⏱️</span> <span id="exam-timer-display">10:00</span>
         </div>
       </div>
-
-      <div id="exam-result-card" style="display:none; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; text-align: center; box-shadow: var(--shadow);">
-        <h2 id="exam-score-heading" style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Score: 0 / 10</h2>
-        <p id="exam-feedback-text" style="color: var(--text-muted); margin-bottom: 1.25rem;">Review your answers and detailed performance below.</p>
-        <button class="btn-auth" onclick="startMockExam()">Retake Mock Exam</button>
-      </div>
-
       <div id="mock-questions-container"></div>
-
       <div style="text-align: center; margin-bottom: 3rem;">
         <button class="btn-ai-submit" id="btn-submit-mock-exam" onclick="submitMockExam()" style="margin: 0 auto; padding: 0.9rem 2.5rem; font-size: 1rem;">
-          Submit Examination & View Analysis 🎯
+          Submit Examination 🎯
         </button>
       </div>
     </div>
 
-    <!-- VIEW 5: STUDENT DASHBOARD -->
+    <!-- VIEW 5: DASHBOARD -->
     <div id="view-dashboard" class="view-section">
-      
       <div class="dashboard-header">
         <div class="dash-greeting">
           <h2 id="dash-student-greeting">Namaste, Student 👋</h2>
@@ -1820,31 +1654,11 @@
         <div class="resume-card">
           <div>
             <div style="font-size: 0.75rem; opacity: 0.85; text-transform: uppercase; font-weight: 700;">Continue Studying</div>
-            <div id="dash-resume-chapter" style="font-weight: 700; font-size: 1.05rem; margin-top: 0.15rem;">English: The Selfish Giant</div>
+            <div id="dash-resume-chapter" style="font-weight: 700; font-size: 1.05rem; margin-top: 0.15rem;">Mathematics: Logic, Sets</div>
           </div>
-          <button class="btn-resume" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">Resume Study</button>
+          <button class="btn-resume" onclick="openChapterStudy('m11-01', 'c11-mathematics')">Resume Study</button>
         </div>
       </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="label">Lessons Mastered</div>
-          <div class="value" id="stat-chapters-mastered">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Mock Exams Completed</div>
-          <div class="value" id="stat-mocks-completed">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Avg Accuracy</div>
-          <div class="value" id="stat-accuracy">--</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Daily AI Limit</div>
-          <div class="value" id="stat-ai-quota">20 / 20</div>
-        </div>
-      </div>
-
       <div class="progress-section">
         <div class="section-head">
           <div>
@@ -1854,263 +1668,25 @@
         </div>
         <div id="subject-progress-container"></div>
       </div>
-
-      <div class="weak-topic-alert">
-        <h3>⚡ Recommended Priority Revision Topics</h3>
-        <p>High-weightage CDC board exam focus areas:</p>
-        <div class="weak-pills" id="weak-topics-pills-container">
-          <span class="weak-pill" onclick="openChapterStudy('m11-01', 'c11-mathematics'); switchStudyTab('solutions');">Maths: Logic & Truth Tables (Ex 1.1)</span>
-          <span class="weak-pill" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">English: Selfish Giant Themes</span>
-          <span class="weak-pill" onclick="openChapterStudy('nep11-p01', 'c11-nepali')">नेपाली: वीर पुर्खा कविता व्याख्या</span>
-          <span class="weak-pill" onclick="openChapterStudy('p11-02', 'c11-physics')">Physics: Projectile Motion</span>
-        </div>
-      </div>
-
     </div>
 
   </div>
 
-  <!-- Footer -->
   <footer>
     <p><strong>GyanSetu AI</strong> — Independent Educational Study Platform for NEB Class 11 & 12.</p>
-    <p>Subjects: Compulsory English, अनिवार्य नेपाली, Physics, Chemistry, Mathematics, Computer Science.</p>
-    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8;">&copy; 2026 GyanSetu AI. All rights reserved.</p>
+    <p>&copy; 2026 GyanSetu AI. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
   <script>
     let curriculumData = null;
     let notesData = {};
     let mathSolutionsData = null;
+    let activeMathExerciseId = null;
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-english';
     let currentLanguage = 'bilingual';
     let activeChapter = null;
     let isAiCooldownActive = false;
-    let activeMathExerciseId = null;
-
-    // Embedded Grade 11 Mathematics Solutions (Offline-ready & Resilient)
-    const MATH11_SOLUTIONS_DATA = {
-      "m11-01": {
-        "chapter_name": "Logic, Sets and Real Number System",
-        "exercises": [
-          {
-            "id": "ex1_1",
-            "name": "Exercise 1.1 (Logic)",
-            "questions": [
-              { "q_num": "1", "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?", "source_solution": "a) Declarative sentence -> Statement, Truth value: True (T).\nb) Declarative sentence -> Statement, Truth value: False (F).\nc) Declarative sentence -> Statement, Truth value: True (T).\nd) Interrogative sentence -> Not a statement.\ne) Imperative sentence -> Not a statement.\nf) Exclamatory sentence -> Not a statement." },
-              { "q_num": "2", "text": "Let p: demand is increasing and q: supply is decreasing. Express in words:\na) ~p, b) ~q, c) p ^ q, d) p v q, e) ~p ^ q, f) p v ~q, g) ~p ^ ~q, h) ~(p ^ q)", "source_solution": "a) Demand is not increasing.\nb) Supply is not decreasing.\nc) Demand is increasing and supply is decreasing.\nd) Demand is increasing or supply is decreasing.\ne) Demand is not increasing and supply is decreasing.\nf) Demand is increasing or supply is not decreasing.\ng) Neither demand is increasing nor supply is decreasing.\nh) It is false that demand is increasing and supply is decreasing." },
-              { "q_num": "3", "text": "Express in symbolic form:\na) Temperature is increasing (p) and length is expanding (q).\nb) Pressure is decreasing (p) or volume is increasing (q).\nc) Neither demand is increasing (p) nor price is increasing (q).\nd) It is false that Pradeep is bold (p) or Sandeep is handsome (q).", "source_solution": "a) p ^ q\nb) p v q\nc) ~p ^ ~q\nd) ~(p v q)" },
-              { "q_num": "4", "text": "Construct truth tables for (a to i):", "source_solution": "Truth values across standard truth rows:\na) (~p) ^ q -> [F, F, T, F]\nb) (~p) v (~q) -> [F, T, T, T]\nc) ~(p ^ q) -> [F, T, T, T]\nd) ~[p v (~q)] -> [F, F, T, F]\ne) (p => q) ^ (q => p) -> [T, F, F, T]\nf) (~p v q) => (p v q) -> [T, T, T, F]\ng) [p ^ (p => q)] => q -> [T, T, T, T] (Tautology)\nh) (p => q) <=> (~p v q) -> [T, T, T, T] (Tautology)\ni) (p <=> q) v (q <=> r) -> [T, T, F, T, T, F, T, T]" },
-              { "q_num": "5", "text": "If p=T, q=F, r=T, s=F, find truth values of (a to f):", "source_solution": "a) p ^ q = F\nb) p v (~q) = T\nc) (~p) ^ (~q) = F\nd) q v (p ^ s) = F\ne) ~(~p) = T\nf) (p v q) ^ (r v s) = T" },
-              { "q_num": "6", "text": "Prove by truth table:\na) p ^ (~p) is contradiction c\nb) p v q is equivalent to q v p\nc) ~[p v (~q)] is equivalent to (~p) ^ q\nd) ~[(~p) ^ q] is equivalent to p v (~q)", "source_solution": "a) Evaluates to [F, F] -> Contradiction c.\nb) Both yield [T, T, T, F] -> Logically equivalent.\nc) Both yield [F, F, T, F] -> Logically equivalent.\nd) Both yield [T, T, F, T] -> Logically equivalent." },
-              { "q_num": "7", "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) x > 0\nd) Some students are weak in mathematics.\ne) All teachers are labourous.", "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) x <= 0\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous." },
-              { "q_num": "8", "text": "Find truth value and negation of (a to f):", "source_solution": "a) Truth value: T. Negation: '3 + 2 != 5 and 6 is not a multiple of 5.'\nb) Truth value: F. Negation: '8 is not prime or 4 is odd.'\nc) Truth value: T. Negation: '3 > 0 and 4 + 6 != 10.'\nd) Truth value: F. Negation: '2 is odd or 3 is natural and 2 + 3 != 8.'\ne) Truth value: T. Negation: 'If 2 * 3 = 5, then 3 > 1 and 6 is odd.'\nf) Truth value: T. Negation: '(ABC right-angled at B and AB^2+BC^2 != AC^2) or (ABC not right-angled at B and AB^2+BC^2 = AC^2).'" },
-              { "q_num": "9", "text": "For statements (a to c), find antecedent/consequent, converse, inverse, contrapositive, and negation:", "source_solution": "a) Ant: 3 is natural; Con: 1/3 is rational. Conv: 1/3 rational => 3 natural. Inv: 3 not natural => 1/3 not rational. Contrap: 1/3 not rational => 3 not natural. Neg: 3 is natural and 1/3 is not rational.\nb) Ant: x = 2; Con: x^2 = 4. Conv: x^2 = 4 => x = 2. Inv: x != 2 => x^2 != 4. Contrap: x^2 != 4 => x != 2. Neg: x = 2 and x^2 != 4.\nc) Ant: Battery low; Con: Mobile fails. Conv: Mobile fails => battery low. Inv: Battery not low => mobile works. Contrap: Mobile works => battery not low. Neg: Battery low and mobile works." },
-              { "q_num": "10", "text": "Prove tautologies and contradictions (a to f):", "source_solution": "a) p v (~p ^ q) -> [T, T, T, T] (Tautology)\nb) (p ^ q) => (p v q) -> [T, T, T, T] (Tautology)\nc) ~(p v q) ^ q -> [F, F, F, F] (Contradiction)\nd) (p ^ q) ^ ~(p v q) -> [F, F, F, F] (Contradiction)\ne) [~q ^ (p => q)] => ~p -> [T, T, T, T] (Tautology)\nf) [(p ^ q) => p] => (q ^ ~q) -> [F, F, F, F] (Contradiction)" }
-            ]
-          },
-          {
-            "id": "ex1_2",
-            "name": "Exercise 1.2 (Sets)",
-            "questions": [
-              { "q_num": "1", "text": "If A and B are disjoint (A ∩ B = ∅), prove:\na) A ⊆ B'\nb) B ∩ A' = B\nc) A ∪ B' = B'", "source_solution": "Given A ∩ B = ∅:\na) For any x in A, x is not in B, so x is in B'. Hence A ⊆ B'.\nb) B ∩ A' consists of elements in B and not in A = B.\nc) Since A ⊆ B', taking union with B' yields A ∪ B' = B'." },
-              { "q_num": "2", "text": "If A ⊆ B, prove:\na) B' ⊆ A'\nb) A ∪ B = B\nc) A ∩ B = A", "source_solution": "Given A ⊆ B:\na) Let x be in B'. Then x is not in B, which implies x is not in A. Thus x is in A', proving B' ⊆ A'.\nb) Since every element of A is already in B, A ∪ B = B.\nc) The common elements between A and B are all elements of A, so A ∩ B = A." },
-              { "q_num": "3", "text": "Prove set difference identities:\na) B - A = B ∩ A'\nb) A - B = A ∩ B'\nc) A - B' = B - A'", "source_solution": "a) B - A = {x : x in B and x not in A} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = A ∩ B'.\nc) A - B' = A ∩ B = B - A'." },
-              { "q_num": "4", "text": "If A, B, C are subsets of U, prove distributive laws:\na) A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)\nb) A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)", "source_solution": "a) x in A ∪ (B ∩ C) iff x in A, or (x in B and x in C). By logical distribution, this equals (x in A or x in B) and (x in A or x in C), defining (A ∪ B) ∩ (A ∪ C).\nb) Similarly, x in A ∩ (B ∪ C) means x in A and (x in B or x in C). Distributing gives (x in A and x in B) or (x in A and x in C), defining (A ∩ B) ∪ (A ∩ C)." },
-              { "q_num": "5", "text": "Prove De Morgan's laws and set differences:\na) (A ∪ B)' = A' ∩ B'\nb) (A ∩ B)' = A' ∪ B'\nc) A - (B ∪ C) = (A - B) ∩ (A - C) = (A - B) - C\nd) A - (B ∩ C) = (A - B) ∪ (A - C)", "source_solution": "a) x in (A ∪ B)' means x is not in (A ∪ B), so x is not in A and x is not in B. Hence x is in A' ∩ B'.\nb) x in (A ∩ B)' means x is not in (A ∩ B), so x is not in A or x is not in B. Hence x is in A' ∪ B'.\nc) x in A - (B ∪ C) means x is in A and not in B and not in C. Hence (A - B) ∩ (A - C). Removing B then C gives (A - B) - C.\nd) x in A - (B ∩ C) means x is in A and not in both B and C. Hence (A - B) ∪ (A - C)." }
-            ]
-          },
-          {
-            "id": "ex1_3",
-            "name": "Exercise 1.3 (Real Numbers)",
-            "questions": [
-              { "q_num": "1", "text": "Evaluate absolute values:\na) |-2| + 4, b) |-5| + |-2| - 3, c) 2 + |-3| - |-5|, d) |3 - |-5||", "source_solution": "a) 6\nb) 4\nc) 0\nd) 2" },
-              { "q_num": "2", "text": "Let (i) x = 2, y = 3 and (ii) x = 2, y = -3. Verify:\na) |x + y| <= |x| + |y|, b) |x - y| >= |x| - |y|, c) |xy| = |x| * |y|, d) |x/y| = |x| / |y|", "source_solution": "(i) For x = 2, y = 3:\na) |2 + 3| = 5 = |2| + |3| (Verified)\nb) |2 - 3| = 1 > -1 (Verified)\nc) |2 * 3| = 6 = |2| * |3| (Verified)\nd) |2/3| = 2/3 = |2| / |3| (Verified)\n\n(ii) For x = 2, y = -3:\na) |2 - 3| = 1 < 5 (Verified)\nb) |2 - (-3)| = 5 > -1 (Verified)\nc) |2 * (-3)| = 6 = |2| * |-3| (Verified)\nd) |2/(-3)| = 2/3 = |2| / |-3| (Verified)" },
-              { "q_num": "3", "text": "Solve inequalities:\na) x - 1 > 2, b) x - 3 <= 5, c) -1 < x - 2 < 3, d) -3 <= 2x - 1 <= 5, e) x^2 - 2x > 0, f) 6 + 5x - x^2 >= 0, g) x(x + 2)/(x - 1) <= 0", "source_solution": "a) x > 3\nb) x <= 8\nc) 1 < x < 5\nd) -1 <= x <= 3\ne) x in (-inf, 0) U (2, inf)\nf) x in [-1, 6]\ng) x in (-inf, -2] U, find A ∪ B, A ∩ B, A - B, B - A.\nb) For A = (-1, 4) and B =, B =, A ∩ B =.\nb) A ∪ B = (-1, 5), A ∩ B =, A - B = (-1, 0), B - A = (3, 5), A' = (-inf, -1] U (3, inf), B' = (-inf, 0) U [5, inf)." },
-              { "q_num": "5", "text": "Write without absolute value sign:\na) |x| < 4, b) |x - 3| < 2, c) |3x + 1| <= 1, d) |2x - 1| <= 5", "source_solution": "a) -4 < x < 4\nb) 1 < x < 5\nc) -2/3 <= x <= 0\nd) -2 <= x <= 3" },
-              { "q_num": "6", "text": "Rewrite using absolute value sign:\na) -5 < x < 7, b) -3 <= x <= -1, c) -4 <= x <= 1, d) -4 <= x <= -1", "source_solution": "a) |x - 1| < 6\nb) |x + 2| <= 1\nc) |2x + 3| <= 5\nd) |2x + 5| <= 3" },
-              { "q_num": "7", "text": "Solve absolute value inequalities:\na) |x + 2| < 4, b) |x - 1| <= 2, c) |2x + 3| <= 1, d) |x - 1| > 1, e) |2x + 1| >= 3", "source_solution": "a) x in (-6, 2)\nb) x in\nc) x in [-2, -1]\nd) x in (-inf, 0) U (2, inf)\ne) x in (-inf, -2] U
-          }
-        ]
-      }
-    };
-
-    // Mock Exam Questions
-    const mockQuestions = [
-      {
-        subject: "Mathematics",
-        q: "Which of the following is the truth value of a contradiction $p \\land (\\sim p)$?",
-        opts: ["Always True (T)", "Always False (F)", "Contingency", "Indeterminate"],
-        ans: 1,
-        exp: "A contradiction $c$ is a compound proposition that is always false for all truth values."
-      },
-      {
-        subject: "English",
-        q: "In 'The Selfish Giant' by Oscar Wilde, what brought Spring back into the Giant's garden?",
-        opts: ["The Giant's gold coins", "The return of the children", "A magical spell", "The North Wind leaving"],
-        ans: 1,
-        exp: "The return of the children into the garden caused the trees to blossom and brought Spring back, symbolizing the life-giving power of love and innocence."
-      },
-      {
-        subject: "Nepali",
-        q: "'वीर पुर्खा' कविताका रचनाकार को हुन्?",
-        opts: ["गोपालप्रसाद रिमाल", "वासुदेव त्रिपाठी", "माधवप्रसाद घिमिरे", "सुधा त्रिपाठी"],
-        ans: 1,
-        exp: "'वीर पुर्खा' कविता प्रा. डा. वासुदेव त्रिपाठीद्वारा रचित राष्ट्रभक्तिपूर्ण कविता हो।"
-      },
-      {
-        subject: "Physics",
-        q: "What is the maximum horizontal range of a projectile fired with speed $u$ at an angle of $45^\\circ$?",
-        opts: ["$R = \\frac{u^2}{g}$", "$R = \\frac{u^2}{2g}$", "$R = \\frac{2u^2}{g}$", "$R = \\frac{u^2}{4g}$"],
-        ans: 0,
-        exp: "Formula $R = \\frac{u^2 \\sin 2\\theta}{g}$. When $\\theta = 45^\\circ$, $\\sin(90^\\circ) = 1$, giving maximum range $R_{\\max} = \\frac{u^2}{g}$."
-      },
-      {
-        subject: "Chemistry",
-        q: "How many moles are present in $50\\text{ g}$ of Calcium Carbonate ($\\text{CaCO}_3$)? [Atomic masses: $\\text{Ca}=40, \\text{C}=12, \\text{O}=16$]",
-        opts: ["$0.25\\text{ mol}$", "$0.50\\text{ mol}$", "$1.00\\text{ mol}$", "$2.00\\text{ mol}$"],
-        ans: 1,
-        exp: "Molar mass of $\\text{CaCO}_3 = 40 + 12 + 3(16) = 100\\text{ g/mol}$. Number of moles $n = \\frac{50}{100} = 0.50\\text{ mol}$."
-      }
-    ];
-
-    let userExamAnswers = {};
-    let examTimeRemaining = 600;
-    let examTimerInterval = null;
-
-    // Search Engine
-    function handleCurriculumSearch(query) {
-      const dropdown = document.getElementById('search-results-dropdown');
-      const q = query.trim().toLowerCase();
-      if (!q || !curriculumData) {
-        dropdown.style.display = 'none';
-        return;
-      }
-
-      let matches = [];
-      curriculumData.classes.forEach(cls => {
-        cls.subjects.forEach(sub => {
-          (sub.chapters || []).forEach(ch => {
-            const inTitle = ch.name.toLowerCase().includes(q);
-            const inUnit = (ch.unit || '').toLowerCase().includes(q);
-            const inTopics = (ch.topics || []).some(t => t.toLowerCase().includes(q));
-
-            if (inTitle || inUnit || inTopics) {
-              matches.push({
-                clsId: cls.id,
-                clsName: cls.name,
-                subId: sub.id,
-                subName: sub.name,
-                chapter: ch,
-                matchType: 'Lesson'
-              });
-            }
-          });
-        });
-      });
-
-      // Search inside Math Solutions
-      if (MATH11_SOLUTIONS_DATA && MATH11_SOLUTIONS_DATA['m11-01']) {
-        MATH11_SOLUTIONS_DATA['m11-01'].exercises.forEach(ex => {
-          ex.questions.forEach(qn => {
-            if (
-              ex.name.toLowerCase().includes(q) || 
-              qn.q_num.toLowerCase().includes(q) || 
-              qn.text.toLowerCase().includes(q)
-            ) {
-              matches.push({
-                clsId: 'class-11',
-                clsName: 'Class 11',
-                subId: 'c11-mathematics',
-                chapter: { id: 'm11-01', name: 'Logic, Sets and Real Number System', unit: 'Algebra' },
-                subName: 'Mathematics',
-                targetEx: ex.id,
-                matchType: `${ex.name} • Q ${qn.q_num}`
-              });
-            }
-          });
-        });
-      }
-
-      if (matches.length === 0) {
-        dropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem;">No matching lessons, exercises or topics found. Try another keyword.</div>';
-        dropdown.style.display = 'block';
-        return;
-      }
-
-      dropdown.innerHTML = '';
-      matches.slice(0, 8).forEach(m => {
-        const item = document.createElement('div');
-        item.className = 'search-result-item';
-        item.onclick = () => {
-          selectClass(m.clsId);
-          openChapterStudy(m.chapter.id, m.subId);
-          if (m.targetEx) {
-            switchStudyTab('solutions');
-            selectMathExercise(m.targetEx);
-          }
-          dropdown.style.display = 'none';
-          document.getElementById('curriculum-search-input').value = '';
-        };
-        item.innerHTML = `
-          <div class="search-result-title">${m.chapter.name} <span class="stream-tag" style="font-size:0.68rem; margin-left:0.35rem;">${m.matchType}</span></div>
-          <div class="search-result-meta">${m.clsName} • ${m.subName} • ${m.chapter.unit || 'Core'}</div>
-        `;
-        dropdown.appendChild(item);
-      });
-      dropdown.style.display = 'block';
-    }
-
-    // Language Change Handler
-    function changeLanguage(lang) {
-      currentLanguage = lang;
-      localStorage.setItem('gyansetu_lang', lang);
-    }
-
-    function initLanguage() {
-      const savedLang = localStorage.getItem('gyansetu_lang') || 'bilingual';
-      currentLanguage = savedLang;
-      const selectElem = document.getElementById('global-lang-switcher');
-      if (selectElem) selectElem.value = savedLang;
-    }
-
-    // Feedback Modal Functions
-    function openReportModal() {
-      document.getElementById('report-modal').classList.add('active');
-    }
-
-    function closeReportModal(e) {
-      if (!e || e.target.id === 'report-modal' || e.target.classList.contains('modal-close')) {
-        document.getElementById('report-modal').classList.remove('active');
-      }
-    }
-
-    async function handleSendFeedback(e) {
-      e.preventDefault();
-      const reportType = document.getElementById('report-type').value;
-      const details = document.getElementById('report-details').value.trim();
-      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
-
-      try {
-        await fetch('/api/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userEmail: user ? user.email : 'guest_student',
-            chapterId: activeChapter ? activeChapter.id : 'general',
-            reportType,
-            details
-          })
-        });
-        alert('Thank you! Your feedback has been recorded for academic review.');
-        closeReportModal();
-        document.getElementById('report-details').value = '';
-      } catch (err) {
-        alert('Report recorded. Thank you!');
-        closeReportModal();
-      }
-    }
 
     // View Switching
     function showView(viewName) {
@@ -2125,266 +1701,25 @@
       document.getElementById('nav-btn-mock').classList.toggle('active', viewName === 'mock');
       document.getElementById('nav-btn-dash').classList.toggle('active', viewName === 'dashboard');
 
-      if (viewName === 'planner') loadTaskStates();
-      if (viewName === 'mock') startMockExam();
       if (viewName === 'dashboard') updateDashboard();
     }
 
-    // Task Checklist State Handler
-    function saveTaskState(taskId) {
-      const checkbox = document.getElementById(taskId);
-      if (checkbox) localStorage.setItem(`gyansetu_plan_${taskId}`, checkbox.checked ? '1' : '0');
-    }
-
-    function loadTaskStates() {
-      for (let i = 1; i <= 16; i++) {
-        const id = `task-${i}`;
-        const cb = document.getElementById(id);
-        if (cb) cb.checked = localStorage.getItem(`gyansetu_plan_${id}`) === '1';
-      }
-    }
-
-    // Mock Exam Engine
-    function startMockExam() {
-      userExamAnswers = {};
-      examTimeRemaining = 600;
-      clearInterval(examTimerInterval);
-      document.getElementById('exam-result-card').style.display = 'none';
-      document.getElementById('btn-submit-mock-exam').style.display = 'block';
-
-      renderMockQuestions();
-
-      examTimerInterval = setInterval(() => {
-        examTimeRemaining--;
-        const mins = Math.floor(examTimeRemaining / 60);
-        const secs = examTimeRemaining % 60;
-        document.getElementById('exam-timer-display').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-
-        if (examTimeRemaining <= 0) {
-          clearInterval(examTimerInterval);
-          alert('Time is up! Submitting your examination automatically...');
-          submitMockExam();
-        }
-      }, 1000);
-    }
-
-    function renderMockQuestions() {
-      const container = document.getElementById('mock-questions-container');
-      container.innerHTML = '';
-
-      mockQuestions.forEach((qItem, idx) => {
-        const card = document.createElement('div');
-        card.className = 'exam-question-card';
-
-        let optsHtml = '';
-        qItem.opts.forEach((opt, optIdx) => {
-          optsHtml += `
-            <div class="exam-opt-row" id="exam-opt-${idx}-${optIdx}" onclick="selectExamOption(${idx}, ${optIdx})">
-              <input type="radio" name="mock_q_${idx}" id="radio-${idx}-${optIdx}">
-              <label>${String.fromCharCode(65 + optIdx)}. ${opt}</label>
-            </div>
-          `;
-        });
-
-        card.innerHTML = `
-          <div style="display:flex; justify-content:space-between; margin-bottom: 0.75rem;">
-            <span class="stream-tag" style="background:#e0e7ff; color:#3730a3;">${qItem.subject}</span>
-            <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Question ${idx + 1} of ${mockQuestions.length}</span>
-          </div>
-          <h3 style="font-size:1.05rem; font-weight:700; margin-bottom:1rem;">${qItem.q}</h3>
-          <div>${optsHtml}</div>
-          <div id="exam-exp-${idx}" style="display:none; margin-top:1rem; padding:0.75rem; border-radius:6px; font-size:0.88rem;"></div>
-        `;
-        container.appendChild(card);
-      });
-
-      setTimeout(() => {
-        if (window.renderMathInElement) {
-          renderMathInElement(container, {
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '$', right: '$', display: false }
-            ],
-            throwOnError: false
-          });
-        }
-      }, 100);
-    }
-
-    function selectExamOption(qIdx, optIdx) {
-      userExamAnswers[qIdx] = optIdx;
-      const allRows = document.querySelectorAll(`[id^="exam-opt-${qIdx}-"]`);
-      allRows.forEach(r => r.classList.remove('selected'));
-      document.getElementById(`exam-opt-${qIdx}-${optIdx}`).classList.add('selected');
-      document.getElementById(`radio-${qIdx}-${optIdx}`).checked = true;
-    }
-
-    function submitMockExam() {
-      clearInterval(examTimerInterval);
-      let correct = 0;
-
-      mockQuestions.forEach((qItem, idx) => {
-        const userChoice = userExamAnswers[idx];
-        const expBox = document.getElementById(`exam-exp-${idx}`);
-        expBox.style.display = 'block';
-
-        if (userChoice === qItem.ans) {
-          correct++;
-          expBox.style.background = '#dcfce7';
-          expBox.style.color = '#166534';
-          expBox.innerHTML = `<strong>✓ Correct!</strong> ${qItem.exp}`;
-        } else {
-          expBox.style.background = '#fee2e2';
-          expBox.style.color = '#991b1b';
-          expBox.innerHTML = `<strong>✗ Incorrect.</strong> Correct answer is <strong>${String.fromCharCode(65 + qItem.ans)}</strong>.<br>${qItem.exp}`;
-        }
-      });
-
-      let mocks = JSON.parse(localStorage.getItem('gyansetu_mocks') || '[]');
-      mocks.push({ score: correct, total: mockQuestions.length, date: new Date().toISOString() });
-      localStorage.setItem('gyansetu_mocks', JSON.stringify(mocks));
-
-      document.getElementById('exam-result-card').style.display = 'block';
-      document.getElementById('exam-score-heading').textContent = `Score: ${correct} / ${mockQuestions.length} (${Math.round((correct/mockQuestions.length)*100)}%)`;
-      document.getElementById('btn-submit-mock-exam').style.display = 'none';
-
-      setTimeout(() => {
-        if (window.renderMathInElement) {
-          renderMathInElement(document.getElementById('view-mock'), {
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '$', right: '$', display: false }
-            ],
-            throwOnError: false
-          });
-        }
-      }, 100);
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      updateDashboard();
-    }
-
-    // AI Doubt Solver Functions with Cooldown Protection
-    function setAiPrompt(text) {
-      document.getElementById('ai-user-prompt').value = text;
-      document.getElementById('ai-user-prompt').focus();
-    }
-
-    function askAiAboutSolution(qNum, qText) {
-      switchStudyTab('ai');
-      setAiPrompt(`Explain the solution steps for Question ${qNum} in simple terms:\n${qText}`);
-    }
-
-    function startButtonCooldown() {
-      isAiCooldownActive = true;
-      const btn = document.getElementById('btn-ask-gemini');
-      const textSpan = document.getElementById('ai-btn-text');
-      btn.disabled = true;
-
-      let countdown = 10;
-      textSpan.textContent = `Wait ${countdown}s`;
-
-      const interval = setInterval(() => {
-        countdown--;
-        if (countdown > 0) {
-          textSpan.textContent = `Wait ${countdown}s`;
-        } else {
-          clearInterval(interval);
-          isAiCooldownActive = false;
-          btn.disabled = false;
-          textSpan.textContent = 'Ask AI';
-        }
-      }, 1000);
-    }
-
-    async function submitAiQuestion() {
-      if (isAiCooldownActive) return;
-
-      const promptInput = document.getElementById('ai-user-prompt');
-      const prompt = promptInput.value.trim();
-      if (!prompt) {
-        alert('Please type a question or select a starter template.');
-        return;
-      }
-
-      const loadingElem = document.getElementById('ai-loading');
-      const responseBox = document.getElementById('ai-response-box');
-      const submitBtn = document.getElementById('btn-ask-gemini');
-
-      loadingElem.style.display = 'flex';
-      responseBox.style.display = 'none';
-      submitBtn.disabled = true;
-
-      try {
-        const langMap = {
-          'bilingual': 'English & Simple Nepali (Nepali-English mix for high-school students)',
-          'english': 'English medium standard',
-          'pure_nepali': 'Pure Nepali (शुद्ध नेपाली)'
-        };
-
-        const payload = {
-          prompt: prompt,
-          classId: currentClassId,
-          subjectName: activeChapter ? activeChapter.subjectName : 'Mathematics',
-          chapterName: activeChapter ? activeChapter.name : 'General',
-          mode: 'Lesson Study & Exam Preparation',
-          language: langMap[currentLanguage] || 'English & Simple Nepali'
-        };
-
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        const data = await res.json();
-        loadingElem.style.display = 'none';
-        responseBox.style.display = 'block';
-
-        if (res.ok && data.reply) {
-          let count = parseInt(localStorage.getItem('gyansetu_ai_count') || '0', 10) + 1;
-          localStorage.setItem('gyansetu_ai_count', count.toString());
-          updateDashboard();
-
-          let parsedHtml = marked.parse(data.reply);
-          responseBox.innerHTML = parsedHtml;
-
-          if (window.renderMathInElement) {
-            renderMathInElement(responseBox, {
-              delimiters: [
-                { left: '$$', right: '$$', display: true },
-                { left: '$', right: '$', display: false }
-              ],
-              throwOnError: false
-            });
-          }
-        } else {
-          responseBox.innerHTML = `<div style="color: var(--error); font-weight: 600;">${data.error || 'Failed to generate response.'}</div><pre style="font-size:0.8rem; margin-top:0.5rem;">${data.details || ''}</pre>`;
-        }
-      } catch (err) {
-        loadingElem.style.display = 'none';
-        responseBox.style.display = 'block';
-        responseBox.innerHTML = `<div style="color: var(--error);">⚠️ Connection error: ${err.message}</div>`;
-      } finally {
-        startButtonCooldown();
-      }
-    }
-
-    // TEXTBOOK SOLUTIONS RENDERER (INSTANT & SELF-CONTAINED)
     function renderMathSolutions(chapterId) {
       const pillsContainer = document.getElementById('math-exercise-pills');
       const questionsContainer = document.getElementById('math-questions-list');
+      if (!pillsContainer || !questionsContainer) return;
       pillsContainer.innerHTML = '';
       questionsContainer.innerHTML = '';
 
-      const chData = (MATH11_SOLUTIONS_DATA[chapterId] || MATH11_SOLUTIONS_DATA['m11-01']);
-      if (!chData || !chData.exercises) return;
+      if (!mathSolutionsData || !mathSolutionsData.chapters) return;
+      const chapterObj = mathSolutionsData.chapters[0];
+      if (!chapterObj || !chapterObj.exercises) return;
 
       if (!activeMathExerciseId) {
-        activeMathExerciseId = chData.exercises[0].id;
+        activeMathExerciseId = chapterObj.exercises[0].id;
       }
 
-      chData.exercises.forEach(ex => {
+      chapterObj.exercises.forEach(ex => {
         const pill = document.createElement('button');
         pill.className = `exercise-pill ${ex.id === activeMathExerciseId ? 'active' : ''}`;
         pill.textContent = ex.name;
@@ -2392,7 +1727,7 @@
         pillsContainer.appendChild(pill);
       });
 
-      const currentEx = chData.exercises.find(e => e.id === activeMathExerciseId) || chData.exercises[0];
+      const currentEx = chapterObj.exercises.find(e => e.id === activeMathExerciseId) || chapterObj.exercises[0];
       if (!currentEx) return;
 
       currentEx.questions.forEach((qn, qIdx) => {
@@ -2402,14 +1737,14 @@
         const solText = qn.source_solution || qn.ans || '';
         card.innerHTML = `
           <div class="solution-q-header">
-            <span class="solution-q-badge">${currentEx.name} • Question ${qn.q_num}</span>
+            <span class="solution-q-badge">${currentEx.name} • Question ${qn.q_num || (qIdx+1)}</span>
             <div class="solution-q-text">${qText.replace(/\\n/g, '<br>')}</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
             <button class="solution-toggle-btn" onclick="toggleSolutionDrawer('drawer-${qIdx}')">
               <span>👁️</span> <span id="toggle-lbl-drawer-${qIdx}">View Solution</span>
             </button>
-            <button class="btn-small" onclick="askAiAboutSolution('${qn.q_num}', '${qText.replace(/'/g, "\\'")}')" style="color:var(--primary);">
+            <button class="btn-small" onclick="askAiAboutSolution('${qn.q_num || (qIdx+1)}', '${qText.replace(/'/g, "\\'")}')" style="color:var(--primary);">
               ⚡ Explain with AI
             </button>
           </div>
@@ -2448,6 +1783,26 @@
       }
     }
 
+    function setAiPrompt(text) {
+      document.getElementById('ai-user-prompt').value = text;
+      document.getElementById('ai-user-prompt').focus();
+    }
+
+    function askAiAboutSolution(qNum, qText) {
+      switchStudyTab('ai');
+      setAiPrompt(`Explain the steps for Question ${qNum} in simple terms:\n${qText}`);
+    }
+
+    function switchStudyTab(tabKey) {
+      const tabs = ['concepts', 'solutions', 'themes', 'grammar', 'formulas', 'pastpapers', 'ai'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-study-${t}`);
+        const panel = document.getElementById(`study-panel-${t}`);
+        if (btn) btn.classList.toggle('active', t === tabKey);
+        if (panel) panel.style.display = t === tabKey ? 'block' : 'none';
+      });
+    }
+
     async function openChapterStudy(chapterId, subjectId) {
       if (!curriculumData) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
@@ -2463,387 +1818,46 @@
       document.getElementById('study-bc-unit').textContent = chapter.unit || 'Core Unit';
       document.getElementById('study-chapter-title').textContent = chapter.name;
       document.getElementById('study-chapter-meta').textContent = `${cls.name} • ${sub.name} (${sub.code || ''}) • Unit: ${chapter.unit || 'Core'}`;
-      
-      document.getElementById('dash-resume-chapter').textContent = `${sub.name}: ${chapter.name}`;
-      document.getElementById('ai-response-box').style.display = 'none';
-      document.getElementById('ai-user-prompt').value = '';
 
       const isLanguageSubject = sub.id.includes('english') || sub.id.includes('nepali');
       const isClass11Math = sub.id === 'c11-mathematics';
       
-      // Adapt study tabs for Mathematics vs Literature vs Science
       document.getElementById('tab-study-solutions').style.display = isClass11Math ? 'block' : 'none';
       document.getElementById('tab-study-themes').style.display = isLanguageSubject ? 'block' : 'none';
       document.getElementById('tab-study-grammar').style.display = isLanguageSubject ? 'block' : 'none';
       document.getElementById('tab-study-formulas').style.display = (isLanguageSubject || isClass11Math) ? 'none' : 'block';
 
-      const note = notesData[chapter.id] || {
-        title: chapter.name,
-        concepts: `Comprehensive conceptual breakdown and learning objectives for ${chapter.name} aligned with the CDC NEB curriculum.`,
-        bilingual: `${chapter.name} को मुख्य अवधारणाहरू, सारांश र NEB बोर्ड परीक्षाका लागि आवश्यक प्रश्नोत्तरहरू।`,
-        themes: ["Core Curriculum Concept", "Analytical Understanding"],
-        characters: [],
-        grammar_vocab: [],
-        formulas: [{ math: "Core Laws & Principles", desc: `Fundamental principles for ${chapter.name}` }],
-        pastPapers: [
-          { q: `Explain the central idea and significance of ${chapter.name}.`, type: "5 Marks • NEB Board Answer", ans: `In ${chapter.name}, students learn key concepts prescribed by the CDC syllabus.` }
-        ]
-      };
-
-      // 1. Concepts Tab
-      document.getElementById('study-concepts-body').innerHTML = `<p style="font-size:0.95rem; line-height:1.7;">${note.concepts}</p>`;
-      document.getElementById('study-bilingual-note').textContent = note.bilingual;
-
-      // 2. Textbook Solutions Tab
       if (isClass11Math) {
         renderMathSolutions(chapter.id);
       }
 
-      // 3. Themes & Characters Tab
-      const themesBody = document.getElementById('study-themes-body');
-      themesBody.innerHTML = '';
-      if (note.themes && note.themes.length > 0) {
-        let thHtml = '<h4 style="color:var(--primary); margin-bottom:0.5rem;">🌟 Central Themes & Philosophical Ideas:</h4><ul style="margin-left:1.5rem; margin-bottom:1.25rem;">';
-        note.themes.forEach(th => thHtml += `<li>${th}</li>`);
-        thHtml += '</ul>';
-        themesBody.innerHTML += thHtml;
-      }
-      if (note.characters && note.characters.length > 0) {
-        let chHtml = '<h4 style="color:var(--primary); margin-bottom:0.5rem;">👤 Key Characters & Role Analysis:</h4><div class="glossary-grid">';
-        note.characters.forEach(c => {
-          chHtml += `<div class="glossary-item"><strong>${c.name}:</strong> ${c.traits}</div>`;
-        });
-        chHtml += '</div>';
-        themesBody.innerHTML += chHtml;
-      }
-      if (note.literary_devices && note.literary_devices.length > 0) {
-        let ldHtml = '<h4 style="color:var(--primary); margin-top:1.25rem; margin-bottom:0.5rem;">🎭 Literary Devices & Figures of Speech:</h4><div class="glossary-grid">';
-        note.literary_devices.forEach(ld => {
-          ldHtml += `<div class="glossary-item"><strong>${ld.device}:</strong> ${ld.example}</div>`;
-        });
-        ldHtml += '</div>';
-        themesBody.innerHTML += ldHtml;
-      }
+      const note = notesData[chapter.id] || {
+        title: chapter.name,
+        concepts: `Conceptual breakdown and learning objectives for ${chapter.name}.`,
+        bilingual: `${chapter.name} को मुख्य अवधारणाहरू र सारांश।`,
+        themes: ["Core Concept", "Analytical Understanding"],
+        pastPapers: [{ q: `Explain the key ideas in ${chapter.name}.`, type: "5 Marks", ans: "Study concept explanation." }]
+      };
 
-      // 4. Grammar & Vocab Tab
-      const gramBody = document.getElementById('study-grammar-body');
-      gramBody.innerHTML = '';
-      if (note.grammar_vocab && note.grammar_vocab.length > 0) {
-        let gHtml = '<div class="glossary-grid">';
-        note.grammar_vocab.forEach(g => {
-          if (g.word) gHtml += `<div class="glossary-item"><strong>${g.word}:</strong> ${g.meaning}</div>`;
-          if (g.rule) gHtml += `<div class="glossary-item" style="grid-column: 1/-1;"><strong>${g.rule}:</strong> <em>${g.example}</em></div>`;
-        });
-        gHtml += '</div>';
-        gramBody.innerHTML = gHtml;
-      }
+      document.getElementById('study-concepts-body').innerHTML = `<p style="font-size:0.95rem; line-height:1.7;">${note.concepts}</p>`;
+      document.getElementById('study-bilingual-note').textContent = note.bilingual;
 
-      // 5. Formulas Tab (For Science)
-      const fBody = document.getElementById('study-formulas-body');
-      fBody.innerHTML = '';
-      (note.formulas || []).forEach(f => {
-        const fDiv = document.createElement('div');
-        fDiv.className = 'formula-card';
-        fDiv.innerHTML = `<div class="formula-math">${f.math}</div><div class="formula-desc">${f.desc}</div>`;
-        fBody.appendChild(fDiv);
-      });
-
-      // 6. Past Papers Tab
-      const ppBody = document.getElementById('study-pastpapers-body');
-      ppBody.innerHTML = '';
-      (note.pastPapers || []).forEach(p => {
-        const pDiv = document.createElement('div');
-        pDiv.className = 'qa-box';
-        pDiv.innerHTML = `
-          <div class="qa-q"><span class="qa-tag">${p.type}</span> ${p.q}</div>
-          ${p.ans ? `<div class="qa-ans"><strong>Model Answer:</strong> ${p.ans}</div>` : ''}
-        `;
-        ppBody.appendChild(pDiv);
-      });
-
-      updateMasteryButton();
       switchStudyTab(isClass11Math ? 'solutions' : 'concepts');
       showView('chapter');
-
-      setTimeout(() => {
-        if (window.renderMathInElement) {
-          renderMathInElement(document.getElementById('view-chapter'), {
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '$', right: '$', display: false }
-            ],
-            throwOnError: false
-          });
-        }
-      }, 100);
     }
 
-    function switchStudyTab(tabKey) {
-      const tabs = ['concepts', 'solutions', 'themes', 'grammar', 'formulas', 'pastpapers', 'ai'];
-      tabs.forEach(t => {
-        const btn = document.getElementById(`tab-study-${t}`);
-        const panel = document.getElementById(`study-panel-${t}`);
-        if (btn) btn.classList.toggle('active', t === tabKey);
-        if (panel) panel.style.display = t === tabKey ? 'block' : 'none';
-      });
-    }
-
-    function toggleCurrentChapterMastery() {
-      if (!activeChapter) return;
-      toggleChapterMastery(activeChapter.id);
-      updateMasteryButton();
-    }
-
-    function updateMasteryButton() {
-      if (!activeChapter) return;
-      const isMastered = getMasteredChapters().includes(activeChapter.id);
-      const btn = document.getElementById('study-master-btn');
-      btn.className = `status-check-btn ${isMastered ? 'done' : ''}`;
-      btn.textContent = isMastered ? '✓ Mastered' : '○ Mark Mastered';
-    }
-
-    // Auth Modal Logic
-    function openAuthModal(mode = 'login') {
-      document.getElementById('auth-modal').classList.add('active');
-      switchAuthTab(mode);
-      clearAuthAlert();
-    }
-
-    function closeAuthModal(e) {
-      if (!e || e.target.id === 'auth-modal' || e.target.classList.contains('modal-close')) {
-        document.getElementById('auth-modal').classList.remove('active');
-      }
-    }
-
-    function switchAuthTab(mode) {
-      const isLogin = mode === 'login';
-      document.getElementById('tab-login').classList.toggle('active', isLogin);
-      document.getElementById('tab-register').classList.toggle('active', !isLogin);
-      document.getElementById('form-login').style.display = isLogin ? 'block' : 'none';
-      document.getElementById('form-register').style.display = isLogin ? 'none' : 'block';
-      clearAuthAlert();
-    }
-
-    function showAuthAlert(msg, isSuccess = false) {
-      const alertBox = document.getElementById('auth-alert');
-      alertBox.textContent = msg;
-      alertBox.className = `auth-message ${isSuccess ? 'success' : 'error'}`;
-    }
-
-    function clearAuthAlert() {
-      const alertBox = document.getElementById('auth-alert');
-      alertBox.className = 'auth-message';
-      alertBox.textContent = '';
-    }
-
-    async function handleRegister(e) {
-      e.preventDefault();
-      const name = document.getElementById('reg-name').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      const userClass = document.getElementById('reg-class').value;
-      const password = document.getElementById('reg-password').value;
-
-      if (!name || !email || !password) {
-        showAuthAlert('Please fill in all fields.');
-        return;
-      }
-
-      showAuthAlert('Saving account to Cloudflare D1 database...', true);
-
-      try {
-        const res = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fullName: name, email, password, classLevel: userClass })
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          const user = { name: data.user.fullName, email: data.user.email, classId: data.user.classLevel };
-          localStorage.setItem('gyansetu_user', JSON.stringify(user));
-          showAuthAlert('✓ Account saved to D1! Signing you in...', true);
-          setTimeout(() => {
-            closeAuthModal();
-            initSession();
-            selectClass(userClass);
-            showView('dashboard');
-          }, 700);
-        } else {
-          showAuthAlert(data.error || 'Registration failed.');
-        }
-      } catch (err) {
-        showAuthAlert(`Connection error: ${err.message}`);
-      }
-    }
-
-    async function handleLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value.trim();
-      const password = document.getElementById('login-password').value;
-
-      if (!email || !password) {
-        showAuthAlert('Please enter both email and password.');
-        return;
-      }
-
-      showAuthAlert('Verifying credentials with D1...', true);
-
-      try {
-        const res = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          const user = { name: data.user.full_name || data.user.fullName, email: data.user.email, classId: data.user.class_level || data.user.classLevel };
-          localStorage.setItem('gyansetu_user', JSON.stringify(user));
-          showAuthAlert('✓ Welcome back! Loading your dashboard...', true);
-          setTimeout(() => {
-            closeAuthModal();
-            initSession();
-            showView('dashboard');
-          }, 700);
-        } else {
-          showAuthAlert(data.error || 'Invalid credentials.');
-        }
-      } catch (err) {
-        showAuthAlert(`Connection error: ${err.message}`);
-      }
-    }
-
-    function initSession() {
-      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
-      const btnLogin = document.getElementById('btn-open-login');
-      const badge = document.getElementById('user-profile-badge');
-      const avatar = document.getElementById('user-avatar-initial');
-      const nameDisplay = document.getElementById('user-name-display');
-
-      if (user) {
-        btnLogin.style.display = 'none';
-        badge.style.display = 'flex';
-        avatar.textContent = user.name.charAt(0).toUpperCase();
-        nameDisplay.textContent = user.name;
-      } else {
-        btnLogin.style.display = 'block';
-        badge.style.display = 'none';
-      }
-    }
-
-    function logoutStudent() {
-      localStorage.removeItem('gyansetu_user');
-      initSession();
-      showView('curriculum');
-    }
-
-    // Progress and Mastery with Cloud D1 Sync
-    function getMasteredChapters() {
-      return JSON.parse(localStorage.getItem('gyansetu_mastered') || '[]');
-    }
-
-    async function toggleChapterMastery(chapterId) {
-      let list = getMasteredChapters();
-      const isAdding = !list.includes(chapterId);
-      if (list.includes(chapterId)) {
-        list = list.filter(id => id !== chapterId);
-      } else {
-        list.push(chapterId);
-      }
-      localStorage.setItem('gyansetu_mastered', JSON.stringify(list));
-      renderChapters();
-      updateDashboard();
-
-      // Cloud Sync to D1 Database
-      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
-      if (user && user.email && isAdding) {
-        try {
-          await fetch('/api/progress/sync', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              userEmail: user.email,
-              type: 'mastery',
-              classLevel: currentClassId,
-              subjectId: currentSubjectId,
-              chapterId: chapterId
-            })
-          });
-        } catch (e) {
-          console.log('Offline progress stored locally');
-        }
-      }
-    }
-
-    // Dashboard Data Updater
-    function updateDashboard() {
-      const user = JSON.parse(localStorage.getItem('gyansetu_user') || '{"name":"Student","classId":"class-11"}');
-      document.getElementById('dash-student-greeting').textContent = `Namaste, ${user.name} 👋`;
-      document.getElementById('dash-student-class').textContent = `${user.classId === 'class-11' ? 'Class 11' : 'Class 12'} • NEB Board Exam Target: 2027`;
-
-      const mastered = getMasteredChapters();
-      document.getElementById('stat-chapters-mastered').textContent = mastered.length;
-
-      const mocks = JSON.parse(localStorage.getItem('gyansetu_mocks') || '[]');
-      document.getElementById('stat-mocks-completed').textContent = mocks.length;
-      if (mocks.length > 0) {
-        const totalCorrect = mocks.reduce((sum, m) => sum + m.score, 0);
-        const totalQ = mocks.reduce((sum, m) => sum + m.total, 0);
-        const avg = Math.round((totalCorrect / totalQ) * 100);
-        document.getElementById('stat-accuracy').textContent = `${avg}%`;
-      } else {
-        document.getElementById('stat-accuracy').textContent = '--';
-      }
-
-      const usedQueries = parseInt(localStorage.getItem('gyansetu_ai_count') || '0', 10);
-      const remaining = Math.max(0, 20 - usedQueries);
-      document.getElementById('stat-ai-quota').textContent = `${remaining} / 20`;
-
-      if (curriculumData && curriculumData.classes) {
-        const cls = curriculumData.classes.find(c => c.id === currentClassId);
-        const container = document.getElementById('subject-progress-container');
-        if (cls && container) {
-          container.innerHTML = '';
-          cls.subjects.forEach(sub => {
-            const total = sub.chapters ? sub.chapters.length : 1;
-            const completed = (sub.chapters || []).filter(ch => mastered.includes(ch.id)).length;
-            const pct = Math.round((completed / total) * 100);
-
-            const row = document.createElement('div');
-            row.className = 'subject-progress-row';
-            row.innerHTML = `
-              <div class="progress-labels">
-                <span>${sub.icon || '📚'} ${sub.name}</span>
-                <span>${completed}/${total} Lessons (${pct}%)</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width: ${pct}%;"></div>
-              </div>
-            `;
-            container.appendChild(row);
-          });
-        }
-      }
-    }
-
-    // Curriculum & Notes Loader
     async function loadData() {
       try {
-        const [currRes, notesRes] = await Promise.all([
+        const [currRes, notesRes, mathRes] = await Promise.allSettled([
           fetch('data/curriculum.json'),
-          fetch('data/notes.json')
+          fetch('data/notes.json'),
+          fetch('data/math11_solutions.json')
         ]);
-        if (currRes.ok) curriculumData = await currRes.json();
-        if (notesRes.ok) notesData = await notesRes.json();
+        if (currRes.status === 'fulfilled' && currRes.value.ok) curriculumData = await currRes.value.json();
+        if (notesRes.status === 'fulfilled' && notesRes.value.ok) notesData = await notesRes.value.json();
+        if (mathRes.status === 'fulfilled' && mathRes.value.ok) mathSolutionsData = await mathRes.value.json();
       } catch (err) {
-        console.warn('Data loaded with fallbacks.');
-      }
-      
-      if (curriculumData && curriculumData.classes && curriculumData.classes.length > 0) {
-        const cls = curriculumData.classes.find(c => c.id === currentClassId);
-        if (cls && cls.subjects && cls.subjects.length > 0) {
-          if (!cls.subjects.find(s => s.id === currentSubjectId)) {
-            currentSubjectId = cls.subjects[0].id;
-          }
-        }
+        console.warn('Fallback data loading');
       }
 
       renderSubjects();
@@ -2859,13 +1873,12 @@
 
       if (curriculumData && curriculumData.classes) {
         const cls = curriculumData.classes.find(c => c.id === classId);
-        if (cls && cls.subjects.length > 0) {
+        if (cls && cls.subjects && cls.subjects.length > 0) {
           currentSubjectId = cls.subjects[0].id;
         }
       }
       renderSubjects();
       renderChapters();
-      updateDashboard();
     }
 
     function selectSubject(subjectId) {
@@ -2889,18 +1902,16 @@
         card.className = `subject-card ${isSelected ? 'selected' : ''}`;
         card.onclick = () => selectSubject(sub.id);
         card.innerHTML = `
-          <div>
-            <div class="subject-header">
-              <span class="subject-icon">${sub.icon || '📚'}</span>
-              <div class="subject-info">
-                <h3>${sub.name}</h3>
-                <span class="subject-code">${sub.code || ''}</span>
-              </div>
+          <div class="subject-header">
+            <span class="subject-icon">${sub.icon || '📚'}</span>
+            <div class="subject-info">
+              <h3>${sub.name}</h3>
+              <span class="subject-code">${sub.code || ''}</span>
             </div>
           </div>
           <div class="subject-meta">
             <span>CDC Syllabus</span>
-            <span>${count > 0 ? count + ' Lessons' : 'Active'}</span>
+            <span>${count} Lessons</span>
           </div>
         `;
         grid.appendChild(card);
@@ -2921,20 +1932,15 @@
       container.innerHTML = '';
 
       const chapters = sub.chapters || [];
-      const mastered = getMasteredChapters();
-      document.getElementById('chapter-count').textContent = `${chapters.length} Lessons & Modules in Syllabus`;
+      document.getElementById('chapter-count').textContent = `${chapters.length} Lessons in Syllabus`;
 
       chapters.forEach((ch, idx) => {
-        const isMastered = mastered.includes(ch.id);
         const item = document.createElement('div');
-        item.className = `chapter-item ${isMastered ? 'mastered' : ''}`;
+        item.className = 'chapter-item';
         item.innerHTML = `
           <div>
             <div class="chapter-header-row">
               <span class="chapter-unit">${ch.unit || 'Core Unit'}</span>
-              <button class="status-check-btn ${isMastered ? 'done' : ''}" onclick="toggleChapterMastery('${ch.id}')">
-                ${isMastered ? '✓ Mastered' : '○ Mark Mastered'}
-              </button>
             </div>
             <div class="chapter-title">${idx + 1}. ${ch.name}</div>
           </div>
@@ -2947,9 +1953,76 @@
       });
     }
 
-    // Initialize on page load
+    function updateDashboard() {
+      if (!curriculumData || !curriculumData.classes) return;
+      const cls = curriculumData.classes.find(c => c.id === currentClassId);
+      const container = document.getElementById('subject-progress-container');
+      if (cls && container) {
+        container.innerHTML = '';
+        cls.subjects.forEach(sub => {
+          const total = sub.chapters ? sub.chapters.length : 1;
+          const row = document.createElement('div');
+          row.className = 'subject-progress-row';
+          row.innerHTML = `
+            <div class="progress-labels">
+              <span>${sub.icon || '📚'} ${sub.name}</span>
+              <span>${total} Lessons</span>
+            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 15%;"></div></div>
+          `;
+          container.appendChild(row);
+        });
+      }
+    }
+
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('gyansetu_lang', lang);
+    }
+
+    function initLanguage() {
+      const savedLang = localStorage.getItem('gyansetu_lang') || 'bilingual';
+      currentLanguage = savedLang;
+      const selectElem = document.getElementById('global-lang-switcher');
+      if (selectElem) selectElem.value = savedLang;
+    }
+
+    function openAuthModal(mode = 'login') {
+      document.getElementById('auth-modal').classList.add('active');
+    }
+
+    function closeAuthModal(e) {
+      if (!e || e.target.id === 'auth-modal' || e.target.classList.contains('modal-close')) {
+        document.getElementById('auth-modal').classList.remove('active');
+      }
+    }
+
+    function switchAuthTab(mode) {
+      document.getElementById('tab-login').classList.toggle('active', mode === 'login');
+      document.getElementById('tab-register').classList.toggle('active', mode !== 'login');
+      document.getElementById('form-login').style.display = mode === 'login' ? 'block' : 'none';
+      document.getElementById('form-register').style.display = mode === 'login' ? 'none' : 'block';
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      closeAuthModal();
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      closeAuthModal();
+    }
+
+    function logoutStudent() {
+      showView('curriculum');
+    }
+
+    function handleCurriculumSearch(q) {}
+    function toggleCurrentChapterMastery() {}
+
+    // Init
     initLanguage();
-    initSession();
     loadData();
   </script>
 </body>
