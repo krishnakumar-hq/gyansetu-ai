@@ -815,18 +815,6 @@
       display: block;
     }
 
-    .solution-source-tag {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.75rem;
-      padding-top: 0.5rem;
-      border-top: 1px dashed #cbd5e1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
     /* AI DOUBT SOLVER & FORMATTED OUTPUT */
     .ai-chat-box {
       background: #f8fafc;
@@ -1612,12 +1600,10 @@
         </div>
       </div>
 
-      <!-- Study Tab: TEXTBOOK SOLUTIONS MANUAL (Sukunda Publication) -->
+      <!-- Study Tab: TEXTBOOK SOLUTIONS MANUAL -->
       <div id="study-panel-solutions" class="study-content-panel" style="display: none;">
-        <h3>📚 Textbook Solutions Manual (Step-by-Step)</h3>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">
-          Primary solution steps from <em>A Complete Manual to Basic Mathematics Grade XI (Sukunda Pustak Bhawan)</em>.
-        </p>
+        <h3>📚 Textbook Solutions Manual</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Step-by-step textbook solutions with mathematical notation.</p>
         <div class="exercise-pills-bar" id="math-exercise-pills"></div>
         <div id="math-questions-list"></div>
       </div>
@@ -1903,6 +1889,53 @@
     let isAiCooldownActive = false;
     let activeMathExerciseId = null;
 
+    // Embedded Grade 11 Mathematics Solutions (Offline-ready & Resilient)
+    const MATH11_SOLUTIONS_DATA = {
+      "m11-01": {
+        "chapter_name": "Logic, Sets and Real Number System",
+        "exercises": [
+          {
+            "id": "ex1_1",
+            "name": "Exercise 1.1 (Logic)",
+            "questions": [
+              { "q_num": "1", "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?", "source_solution": "a) Declarative sentence -> Statement, Truth value: True (T).\nb) Declarative sentence -> Statement, Truth value: False (F).\nc) Declarative sentence -> Statement, Truth value: True (T).\nd) Interrogative sentence -> Not a statement.\ne) Imperative sentence -> Not a statement.\nf) Exclamatory sentence -> Not a statement." },
+              { "q_num": "2", "text": "Let p: demand is increasing and q: supply is decreasing. Express in words:\na) ~p, b) ~q, c) p ^ q, d) p v q, e) ~p ^ q, f) p v ~q, g) ~p ^ ~q, h) ~(p ^ q)", "source_solution": "a) Demand is not increasing.\nb) Supply is not decreasing.\nc) Demand is increasing and supply is decreasing.\nd) Demand is increasing or supply is decreasing.\ne) Demand is not increasing and supply is decreasing.\nf) Demand is increasing or supply is not decreasing.\ng) Neither demand is increasing nor supply is decreasing.\nh) It is false that demand is increasing and supply is decreasing." },
+              { "q_num": "3", "text": "Express in symbolic form:\na) Temperature is increasing (p) and length is expanding (q).\nb) Pressure is decreasing (p) or volume is increasing (q).\nc) Neither demand is increasing (p) nor price is increasing (q).\nd) It is false that Pradeep is bold (p) or Sandeep is handsome (q).", "source_solution": "a) p ^ q\nb) p v q\nc) ~p ^ ~q\nd) ~(p v q)" },
+              { "q_num": "4", "text": "Construct truth tables for (a to i):", "source_solution": "Truth values across standard truth rows:\na) (~p) ^ q -> [F, F, T, F]\nb) (~p) v (~q) -> [F, T, T, T]\nc) ~(p ^ q) -> [F, T, T, T]\nd) ~[p v (~q)] -> [F, F, T, F]\ne) (p => q) ^ (q => p) -> [T, F, F, T]\nf) (~p v q) => (p v q) -> [T, T, T, F]\ng) [p ^ (p => q)] => q -> [T, T, T, T] (Tautology)\nh) (p => q) <=> (~p v q) -> [T, T, T, T] (Tautology)\ni) (p <=> q) v (q <=> r) -> [T, T, F, T, T, F, T, T]" },
+              { "q_num": "5", "text": "If p=T, q=F, r=T, s=F, find truth values of (a to f):", "source_solution": "a) p ^ q = F\nb) p v (~q) = T\nc) (~p) ^ (~q) = F\nd) q v (p ^ s) = F\ne) ~(~p) = T\nf) (p v q) ^ (r v s) = T" },
+              { "q_num": "6", "text": "Prove by truth table:\na) p ^ (~p) is contradiction c\nb) p v q is equivalent to q v p\nc) ~[p v (~q)] is equivalent to (~p) ^ q\nd) ~[(~p) ^ q] is equivalent to p v (~q)", "source_solution": "a) Evaluates to [F, F] -> Contradiction c.\nb) Both yield [T, T, T, F] -> Logically equivalent.\nc) Both yield [F, F, T, F] -> Logically equivalent.\nd) Both yield [T, T, F, T] -> Logically equivalent." },
+              { "q_num": "7", "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) x > 0\nd) Some students are weak in mathematics.\ne) All teachers are labourous.", "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) x <= 0\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous." },
+              { "q_num": "8", "text": "Find truth value and negation of (a to f):", "source_solution": "a) Truth value: T. Negation: '3 + 2 != 5 and 6 is not a multiple of 5.'\nb) Truth value: F. Negation: '8 is not prime or 4 is odd.'\nc) Truth value: T. Negation: '3 > 0 and 4 + 6 != 10.'\nd) Truth value: F. Negation: '2 is odd or 3 is natural and 2 + 3 != 8.'\ne) Truth value: T. Negation: 'If 2 * 3 = 5, then 3 > 1 and 6 is odd.'\nf) Truth value: T. Negation: '(ABC right-angled at B and AB^2+BC^2 != AC^2) or (ABC not right-angled at B and AB^2+BC^2 = AC^2).'" },
+              { "q_num": "9", "text": "For statements (a to c), find antecedent/consequent, converse, inverse, contrapositive, and negation:", "source_solution": "a) Ant: 3 is natural; Con: 1/3 is rational. Conv: 1/3 rational => 3 natural. Inv: 3 not natural => 1/3 not rational. Contrap: 1/3 not rational => 3 not natural. Neg: 3 is natural and 1/3 is not rational.\nb) Ant: x = 2; Con: x^2 = 4. Conv: x^2 = 4 => x = 2. Inv: x != 2 => x^2 != 4. Contrap: x^2 != 4 => x != 2. Neg: x = 2 and x^2 != 4.\nc) Ant: Battery low; Con: Mobile fails. Conv: Mobile fails => battery low. Inv: Battery not low => mobile works. Contrap: Mobile works => battery not low. Neg: Battery low and mobile works." },
+              { "q_num": "10", "text": "Prove tautologies and contradictions (a to f):", "source_solution": "a) p v (~p ^ q) -> [T, T, T, T] (Tautology)\nb) (p ^ q) => (p v q) -> [T, T, T, T] (Tautology)\nc) ~(p v q) ^ q -> [F, F, F, F] (Contradiction)\nd) (p ^ q) ^ ~(p v q) -> [F, F, F, F] (Contradiction)\ne) [~q ^ (p => q)] => ~p -> [T, T, T, T] (Tautology)\nf) [(p ^ q) => p] => (q ^ ~q) -> [F, F, F, F] (Contradiction)" }
+            ]
+          },
+          {
+            "id": "ex1_2",
+            "name": "Exercise 1.2 (Sets)",
+            "questions": [
+              { "q_num": "1", "text": "If A and B are disjoint (A ∩ B = ∅), prove:\na) A ⊆ B'\nb) B ∩ A' = B\nc) A ∪ B' = B'", "source_solution": "Given A ∩ B = ∅:\na) For any x in A, x is not in B, so x is in B'. Hence A ⊆ B'.\nb) B ∩ A' consists of elements in B and not in A = B.\nc) Since A ⊆ B', taking union with B' yields A ∪ B' = B'." },
+              { "q_num": "2", "text": "If A ⊆ B, prove:\na) B' ⊆ A'\nb) A ∪ B = B\nc) A ∩ B = A", "source_solution": "Given A ⊆ B:\na) Let x be in B'. Then x is not in B, which implies x is not in A. Thus x is in A', proving B' ⊆ A'.\nb) Since every element of A is already in B, A ∪ B = B.\nc) The common elements between A and B are all elements of A, so A ∩ B = A." },
+              { "q_num": "3", "text": "Prove set difference identities:\na) B - A = B ∩ A'\nb) A - B = A ∩ B'\nc) A - B' = B - A'", "source_solution": "a) B - A = {x : x in B and x not in A} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = A ∩ B'.\nc) A - B' = A ∩ B = B - A'." },
+              { "q_num": "4", "text": "If A, B, C are subsets of U, prove distributive laws:\na) A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)\nb) A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)", "source_solution": "a) x in A ∪ (B ∩ C) iff x in A, or (x in B and x in C). By logical distribution, this equals (x in A or x in B) and (x in A or x in C), defining (A ∪ B) ∩ (A ∪ C).\nb) Similarly, x in A ∩ (B ∪ C) means x in A and (x in B or x in C). Distributing gives (x in A and x in B) or (x in A and x in C), defining (A ∩ B) ∪ (A ∩ C)." },
+              { "q_num": "5", "text": "Prove De Morgan's laws and set differences:\na) (A ∪ B)' = A' ∩ B'\nb) (A ∩ B)' = A' ∪ B'\nc) A - (B ∪ C) = (A - B) ∩ (A - C) = (A - B) - C\nd) A - (B ∩ C) = (A - B) ∪ (A - C)", "source_solution": "a) x in (A ∪ B)' means x is not in (A ∪ B), so x is not in A and x is not in B. Hence x is in A' ∩ B'.\nb) x in (A ∩ B)' means x is not in (A ∩ B), so x is not in A or x is not in B. Hence x is in A' ∪ B'.\nc) x in A - (B ∪ C) means x is in A and not in B and not in C. Hence (A - B) ∩ (A - C). Removing B then C gives (A - B) - C.\nd) x in A - (B ∩ C) means x is in A and not in both B and C. Hence (A - B) ∪ (A - C)." }
+            ]
+          },
+          {
+            "id": "ex1_3",
+            "name": "Exercise 1.3 (Real Numbers)",
+            "questions": [
+              { "q_num": "1", "text": "Evaluate absolute values:\na) |-2| + 4, b) |-5| + |-2| - 3, c) 2 + |-3| - |-5|, d) |3 - |-5||", "source_solution": "a) 6\nb) 4\nc) 0\nd) 2" },
+              { "q_num": "2", "text": "Let (i) x = 2, y = 3 and (ii) x = 2, y = -3. Verify:\na) |x + y| <= |x| + |y|, b) |x - y| >= |x| - |y|, c) |xy| = |x| * |y|, d) |x/y| = |x| / |y|", "source_solution": "(i) For x = 2, y = 3:\na) |2 + 3| = 5 = |2| + |3| (Verified)\nb) |2 - 3| = 1 > -1 (Verified)\nc) |2 * 3| = 6 = |2| * |3| (Verified)\nd) |2/3| = 2/3 = |2| / |3| (Verified)\n\n(ii) For x = 2, y = -3:\na) |2 - 3| = 1 < 5 (Verified)\nb) |2 - (-3)| = 5 > -1 (Verified)\nc) |2 * (-3)| = 6 = |2| * |-3| (Verified)\nd) |2/(-3)| = 2/3 = |2| / |-3| (Verified)" },
+              { "q_num": "3", "text": "Solve inequalities:\na) x - 1 > 2, b) x - 3 <= 5, c) -1 < x - 2 < 3, d) -3 <= 2x - 1 <= 5, e) x^2 - 2x > 0, f) 6 + 5x - x^2 >= 0, g) x(x + 2)/(x - 1) <= 0", "source_solution": "a) x > 3\nb) x <= 8\nc) 1 < x < 5\nd) -1 <= x <= 3\ne) x in (-inf, 0) U (2, inf)\nf) x in [-1, 6]\ng) x in (-inf, -2] U, find A ∪ B, A ∩ B, A - B, B - A.\nb) For A = (-1, 4) and B =, B =, A ∩ B =.\nb) A ∪ B = (-1, 5), A ∩ B =, A - B = (-1, 0), B - A = (3, 5), A' = (-inf, -1] U (3, inf), B' = (-inf, 0) U [5, inf)." },
+              { "q_num": "5", "text": "Write without absolute value sign:\na) |x| < 4, b) |x - 3| < 2, c) |3x + 1| <= 1, d) |2x - 1| <= 5", "source_solution": "a) -4 < x < 4\nb) 1 < x < 5\nc) -2/3 <= x <= 0\nd) -2 <= x <= 3" },
+              { "q_num": "6", "text": "Rewrite using absolute value sign:\na) -5 < x < 7, b) -3 <= x <= -1, c) -4 <= x <= 1, d) -4 <= x <= -1", "source_solution": "a) |x - 1| < 6\nb) |x + 2| <= 1\nc) |2x + 3| <= 5\nd) |2x + 5| <= 3" },
+              { "q_num": "7", "text": "Solve absolute value inequalities:\na) |x + 2| < 4, b) |x - 1| <= 2, c) |2x + 3| <= 1, d) |x - 1| > 1, e) |2x + 1| >= 3", "source_solution": "a) x in (-6, 2)\nb) x in\nc) x in [-2, -1]\nd) x in (-inf, 0) U (2, inf)\ne) x in (-inf, -2] U
+          }
+        ]
+      }
+    };
+
     // Mock Exam Questions
     const mockQuestions = [
       {
@@ -1978,26 +2011,24 @@
       });
 
       // Search inside Math Solutions
-      if (mathSolutionsData && mathSolutionsData.chapters) {
-        mathSolutionsData.chapters.forEach(ch => {
-          (ch.exercises || []).forEach(ex => {
-            (ex.questions || []).forEach(qn => {
-              if (
-                ex.name.toLowerCase().includes(q) || 
-                qn.q_num.toLowerCase().includes(q) || 
-                qn.text.toLowerCase().includes(q)
-              ) {
-                matches.push({
-                  clsId: 'class-11',
-                  clsName: 'Class 11',
-                  subId: 'c11-mathematics',
-                  chapter: { id: 'm11-01', name: ch.name, unit: ch.unit },
-                  subName: 'Mathematics',
-                  targetEx: ex.id,
-                  matchType: `${ex.name} • Q ${qn.q_num}`
-                });
-              }
-            });
+      if (MATH11_SOLUTIONS_DATA && MATH11_SOLUTIONS_DATA['m11-01']) {
+        MATH11_SOLUTIONS_DATA['m11-01'].exercises.forEach(ex => {
+          ex.questions.forEach(qn => {
+            if (
+              ex.name.toLowerCase().includes(q) || 
+              qn.q_num.toLowerCase().includes(q) || 
+              qn.text.toLowerCase().includes(q)
+            ) {
+              matches.push({
+                clsId: 'class-11',
+                clsName: 'Class 11',
+                subId: 'c11-mathematics',
+                chapter: { id: 'm11-01', name: 'Logic, Sets and Real Number System', unit: 'Algebra' },
+                subName: 'Mathematics',
+                targetEx: ex.id,
+                matchType: `${ex.name} • Q ${qn.q_num}`
+              });
+            }
           });
         });
       }
@@ -2339,55 +2370,52 @@
       }
     }
 
-    // TEXTBOOK SOLUTIONS RENDERER
+    // TEXTBOOK SOLUTIONS RENDERER (INSTANT & SELF-CONTAINED)
     function renderMathSolutions(chapterId) {
       const pillsContainer = document.getElementById('math-exercise-pills');
       const questionsContainer = document.getElementById('math-questions-list');
       pillsContainer.innerHTML = '';
       questionsContainer.innerHTML = '';
 
-      if (!mathSolutionsData || !mathSolutionsData.chapters) return;
-      const chapterObj = mathSolutionsData.chapters.find(c => c.id === 'ch01');
-      if (!chapterObj || !chapterObj.exercises) return;
+      const chData = (MATH11_SOLUTIONS_DATA[chapterId] || MATH11_SOLUTIONS_DATA['m11-01']);
+      if (!chData || !chData.exercises) return;
 
       if (!activeMathExerciseId) {
-        activeMathExerciseId = chapterObj.exercises[0].id;
+        activeMathExerciseId = chData.exercises[0].id;
       }
 
-      chapterObj.exercises.forEach(ex => {
+      chData.exercises.forEach(ex => {
         const pill = document.createElement('button');
         pill.className = `exercise-pill ${ex.id === activeMathExerciseId ? 'active' : ''}`;
-        pill.textContent = `${ex.name} (${ex.topic})`;
+        pill.textContent = ex.name;
         pill.onclick = () => selectMathExercise(ex.id);
         pillsContainer.appendChild(pill);
       });
 
-      const currentEx = chapterObj.exercises.find(e => e.id === activeMathExerciseId) || chapterObj.exercises[0];
+      const currentEx = chData.exercises.find(e => e.id === activeMathExerciseId) || chData.exercises[0];
       if (!currentEx) return;
 
       currentEx.questions.forEach((qn, qIdx) => {
         const card = document.createElement('div');
         card.className = 'solution-card';
+        const qText = qn.text || qn.q || '';
+        const solText = qn.source_solution || qn.ans || '';
         card.innerHTML = `
           <div class="solution-q-header">
-            <span class="solution-q-badge">${currentEx.name} • Q ${qn.q_num}</span>
-            <div class="solution-q-text">${qn.text.replace(/\\n/g, '<br>')}</div>
+            <span class="solution-q-badge">${currentEx.name} • Question ${qn.q_num}</span>
+            <div class="solution-q-text">${qText.replace(/\\n/g, '<br>')}</div>
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">
             <button class="solution-toggle-btn" onclick="toggleSolutionDrawer('drawer-${qIdx}')">
               <span>👁️</span> <span id="toggle-lbl-drawer-${qIdx}">View Solution</span>
             </button>
-            <button class="btn-small" onclick="askAiAboutSolution('${qn.q_num}', '${qn.text.replace(/'/g, "\\'")}')" style="color:var(--primary);">
+            <button class="btn-small" onclick="askAiAboutSolution('${qn.q_num}', '${qText.replace(/'/g, "\\'")}')" style="color:var(--primary);">
               ⚡ Explain with AI
             </button>
           </div>
           <div class="solution-content-drawer" id="drawer-${qIdx}">
-            <strong style="color:var(--primary); font-size:0.85rem;">Source Solution (Sukunda Manual):</strong>
-            <div style="margin-top:0.4rem;">${qn.source_solution.replace(/\\n/g, '<br>')}</div>
-            <div class="solution-source-tag">
-              <span>📖 Reference: Sukunda Basic Mathematics Grade XI (Page ${currentEx.source_page})</span>
-              <span>Exact Question ${qn.q_num}</span>
-            </div>
+            <strong style="color:var(--primary); font-size:0.85rem;">Step-by-Step Solution:</strong>
+            <div style="margin-top:0.4rem;">${solText.replace(/\\n/g, '<br>')}</div>
           </div>
         `;
         questionsContainer.appendChild(card);
@@ -2408,7 +2436,7 @@
 
     function selectMathExercise(exId) {
       activeMathExerciseId = exId;
-      renderMathSolutions('ch01');
+      renderMathSolutions('m11-01');
     }
 
     function toggleSolutionDrawer(drawerId) {
@@ -2799,14 +2827,12 @@
     // Curriculum & Notes Loader
     async function loadData() {
       try {
-        const [currRes, notesRes, mathRes] = await Promise.all([
+        const [currRes, notesRes] = await Promise.all([
           fetch('data/curriculum.json'),
-          fetch('data/notes.json'),
-          fetch('data/math11_solutions.json')
+          fetch('data/notes.json')
         ]);
         if (currRes.ok) curriculumData = await currRes.json();
         if (notesRes.ok) notesData = await notesRes.json();
-        if (mathRes.ok) mathSolutionsData = await mathRes.json();
       } catch (err) {
         console.warn('Data loaded with fallbacks.');
       }
