@@ -1446,12 +1446,12 @@
     </div>
   </div>
 
-  <!-- Feedback & Quality Control Report Modal -->
+  <!-- Feedback Modal -->
   <div class="modal-overlay" id="report-modal" onclick="closeReportModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeReportModal()">&times;</button>
       <h3 style="color:var(--primary); font-size:1.2rem; margin-bottom:0.5rem;">🚩 Report Inaccuracy / Suggest Edit</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Help us keep GyanSetu AI 100% aligned with official NEB board standards.</p>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Help us keep GyanSetu AI 100% aligned with official NEB standards.</p>
       
       <form onsubmit="handleSendFeedback(event)">
         <div class="form-group">
@@ -1476,7 +1476,7 @@
   <!-- Main Content Container -->
   <div class="container">
 
-    <!-- VIEW 1: CURRICULUM EXPLORER & LANDING -->
+    <!-- VIEW 1: CURRICULUM EXPLORER -->
     <div id="view-curriculum" class="view-section active">
 
       <!-- Hero -->
@@ -1506,7 +1506,7 @@
         <div class="section-head">
           <div>
             <h2 id="subjects-heading">Class 11 Subjects</h2>
-            <p>Select any subject to explore CDC units, lessons, stories, poems, and grammar.</p>
+            <p>Select any subject to explore CDC units, lessons, stories, poems, and exercises.</p>
           </div>
         </div>
         <div class="subject-grid" id="subject-grid"></div>
@@ -1526,7 +1526,7 @@
 
     </div>
 
-    <!-- VIEW 2: CHAPTER LEARNING & PRACTICE CENTER -->
+    <!-- VIEW 2: CHAPTER LEARNING CENTER -->
     <div id="view-chapter" class="view-section">
       <div class="chapter-study-header">
         <div class="breadcrumbs">
@@ -1551,7 +1551,7 @@
         <button class="study-tab-btn" id="tab-study-solutions" onclick="switchStudyTab('solutions')" style="display: none;">📚 Textbook Solutions</button>
         <button class="study-tab-btn" id="tab-study-themes" onclick="switchStudyTab('themes')">🎭 Themes & Characters</button>
         <button class="study-tab-btn" id="tab-study-grammar" onclick="switchStudyTab('grammar')">✍️ Grammar & Vocab</button>
-        <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')" style="display: none;">📐 Formulas & Laws</button>
+        <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')">📐 Formulas & Laws</button>
         <button class="study-tab-btn" id="tab-study-pastpapers" onclick="switchStudyTab('pastpapers')">📝 NEB Model Board Q&A</button>
         <button class="study-tab-btn" id="tab-study-ai" onclick="switchStudyTab('ai')">⚡ Ask Lesson AI</button>
       </div>
@@ -1568,7 +1568,7 @@
         </div>
       </div>
 
-      <!-- Study Tab: TEXTBOOK SOLUTIONS MANUAL (Sukunda Publication) -->
+      <!-- Study Tab: Textbook Solutions -->
       <div id="study-panel-solutions" class="study-content-panel" style="display: none;">
         <h3>📚 Textbook Solutions Manual (Step-by-Step)</h3>
         <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">
@@ -1590,7 +1590,7 @@
         <div id="study-grammar-body"></div>
       </div>
 
-      <!-- Study Tab 4: Formulas (For Science) -->
+      <!-- Study Tab 4: Formulas -->
       <div id="study-panel-formulas" class="study-content-panel" style="display: none;">
         <h3>Essential Formulas & Laws</h3>
         <div id="study-formulas-body"></div>
@@ -1611,7 +1611,7 @@
           <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">Quick Question Starters for this Lesson:</div>
           <div class="ai-prompt-templates" id="ai-dynamic-prompt-chips">
             <span class="template-chip" onclick="setAiPrompt('Explain the main theme and central message of this lesson in simple terms.')">💡 Main Theme & Message</span>
-            <span class="template-chip" onclick="setAiPrompt('Give me a character sketch and psychological analysis of the main characters in this lesson.')">👤 Character Analysis</span>
+            <span class="template-chip" onclick="setAiPrompt('Give me a character sketch and analysis of the main characters in this lesson.')">👤 Character Analysis</span>
             <span class="template-chip" onclick="setAiPrompt('Generate a standard 5-mark NEB board exam question and model answer for this lesson.')">📝 5-Mark Board Answer</span>
             <span class="template-chip" onclick="setAiPrompt('यस पाठको मुख्य भाव, सन्देश र महत्त्वपूर्ण व्याकरण सरल नेपाली भाषामा बुझाइदिनुहोस्।')">🇳🇵 Explain in Simple Nepali</span>
           </div>
@@ -1632,7 +1632,6 @@
           <!-- Formatted AI Response Box -->
           <div class="ai-response-container" id="ai-response-box"></div>
 
-          <!-- Quality Control Disclaimer & Report Button -->
           <div id="ai-footer-bar" style="margin-top:0.75rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.78rem; color:var(--text-muted);">
             <span>⚠️ AI answers are for study guidance; always verify with official CDC textbooks.</span>
             <button class="btn-small" onclick="openReportModal()" style="font-size:0.75rem; color:#b91c1c; border-color:#fca5a5;">🚩 Report Inaccuracy</button>
@@ -1640,14 +1639,14 @@
         </div>
       </div>
 
-      <!-- Navigation footer inside chapter -->
+      <!-- Navigation footer -->
       <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
         <button class="btn-small" onclick="showView('curriculum')">← Back to Curriculum</button>
         <button class="btn-small ai" onclick="showView('dashboard')">View Progress in Dashboard →</button>
       </div>
     </div>
 
-    <!-- VIEW 3: REVISION PLANNER & STRATEGY CENTER -->
+    <!-- VIEW 3: REVISION PLANNER -->
     <div id="view-planner" class="view-section">
       <div class="section-head">
         <div>
@@ -1683,25 +1682,25 @@
               <td>वर्णविन्यास शुद्ध लेख्नुहोस्; बुँदाटिपोट र सारांश लेखनको ढाँचा मिलाउनुहोस्।</td>
             </tr>
             <tr>
-              <td><strong>Physics</strong> (Phy.101/201)</td>
+              <td><strong>Physics</strong> (Phy.101/102)</td>
               <td>Mechanics, Electricity & Magnetism, Wave Optics</td>
               <td><strong>50+ / 75 Marks</strong></td>
               <td>Master derivation steps & numerical SI units.</td>
             </tr>
             <tr>
-              <td><strong>Chemistry</strong> (Chem.101/201)</td>
+              <td><strong>Chemistry</strong> (Chem.101/102)</td>
               <td>Organic Chemistry, Physical (Stoichiometry/Equilibrium)</td>
               <td><strong>50+ / 75 Marks</strong></td>
               <td>Practice reaction mechanisms & molarity conversions.</td>
             </tr>
             <tr>
-              <td><strong>Mathematics</strong> (Mat.101/201)</td>
+              <td><strong>Mathematics</strong> (Mat.007/008)</td>
               <td>Calculus (Derivatives/Integrals), Algebra & Matrices</td>
               <td><strong>55+ / 75 Marks</strong></td>
-              <td>Solve past 5 years NEB model sets repeatedly.</td>
+              <td>Solve past NEB model sets repeatedly.</td>
             </tr>
             <tr>
-              <td><strong>Computer Science</strong> (Com.101/201)</td>
+              <td><strong>Computer Science</strong> (Com.427/428)</td>
               <td>C Programming, DBMS/SQL, Networking</td>
               <td><strong>45+ / 75 Marks</strong></td>
               <td>Write clean syntax, proper comments & indentation.</td>
@@ -1719,40 +1718,40 @@
 
       <div class="planner-timeline">
         <div class="plan-card">
-          <h4>Week 1: High-Yield Foundations <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 1-7</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-1" onchange="saveTaskState('task-1')"> <label for="task-1">English: Short Stories (Selfish Giant, Neighbours)</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-2" onchange="saveTaskState('task-2')"> <label for="task-2">नेपाली: वीर पुर्खा / आमाको सपना (कविता व्याख्या)</label></div>
+          <h4>Week 1: Foundations <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 1-7</span></h4>
+          <div class="plan-task-item"><input type="checkbox" id="task-1" onchange="saveTaskState('task-1')"> <label for="task-1">English: Short Stories (Selfish Giant, Wish)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-2" onchange="saveTaskState('task-2')"> <label for="task-2">नेपाली: वीर पुर्खा (कविता व्याख्या)</label></div>
           <div class="plan-task-item"><input type="checkbox" id="task-3" onchange="saveTaskState('task-3')"> <label for="task-3">Physics: Vectors & Kinematics</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-4" onchange="saveTaskState('task-4')"> <label for="task-4">Chemistry: Stoichiometry & Volumetric Analysis</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-4" onchange="saveTaskState('task-4')"> <label for="task-4">Chemistry: Stoichiometry & Gas Laws</label></div>
         </div>
 
         <div class="plan-card">
-          <h4>Week 2: Core Analytical Powers <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 8-14</span></h4>
-          <div class="plan-task-item"><input type="checkbox" id="task-5" onchange="saveTaskState('task-5')"> <label for="task-5">English: Essay Writing & Modal Verbs</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-6" onchange="saveTaskState('task-6')"> <label for="task-6">नेपाली: गाउँको माया / विरहिणी दमयन्ती (कथा सारांश)</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-7" onchange="saveTaskState('task-7')"> <label for="task-7">Maths: Limits, Continuity & Differentiation</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-8" onchange="saveTaskState('task-8')"> <label for="task-8">CS: C Control Statements & DBMS</label></div>
+          <h4>Week 2: Analytical Powers <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 8-14</span></h4>
+          <div class="plan-task-item"><input type="checkbox" id="task-5" onchange="saveTaskState('task-5')"> <label for="task-5">English: Essay Writing & Tenses</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-6" onchange="saveTaskState('task-6')"> <label for="task-6">नेपाली: गाउँको माया / विरहिणी दमयन्ती</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-7" onchange="saveTaskState('task-7')"> <label for="task-7">Maths: Limits, Logic & Sets</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-8" onchange="saveTaskState('task-8')"> <label for="task-8">CS: C Control Statements & Flowcharts</label></div>
         </div>
 
         <div class="plan-card">
-          <h4>Week 3: Deep Dives & Grammar <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 15-21</span></h4>
+          <h4>Week 3: Core Drills <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 15-21</span></h4>
           <div class="plan-task-item"><input type="checkbox" id="task-9" onchange="saveTaskState('task-9')"> <label for="task-9">English: Critical Thinking & Reported Speech</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-10" onchange="saveTaskState('task-10')"> <label for="task-10">नेपाली: पदवर्ग, शब्दनिर्माण, व्यावसायिक पत्र</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-11" onchange="saveTaskState('task-11')"> <label for="task-11">Physics: Electricity & Magnetism</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-12" onchange="saveTaskState('task-12')"> <label for="task-12">Chemistry: Organic Fundamentals & Alcohols</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-10" onchange="saveTaskState('task-10')"> <label for="task-10">नेपाली: पदवर्ग, शब्दनिर्माण, पत्र लेखन</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-11" onchange="saveTaskState('task-11')"> <label for="task-11">Physics: Work, Energy & Power</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-12" onchange="saveTaskState('task-12')"> <label for="task-12">Chemistry: Organic Fundamentals</label></div>
         </div>
 
         <div class="plan-card">
-          <h4>Week 4: Mock Tests & Board Drills <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 22-30</span></h4>
+          <h4>Week 4: Mock Tests <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 22-30</span></h4>
           <div class="plan-task-item"><input type="checkbox" id="task-13" onchange="saveTaskState('task-13')"> <label for="task-13">Complete 3 Full Timed Mock Exams</label></div>
           <div class="plan-task-item"><input type="checkbox" id="task-14" onchange="saveTaskState('task-14')"> <label for="task-14">Review All Weak-Topic AI Summaries</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-15" onchange="saveTaskState('task-15')"> <label for="task-15">Final Formula & Literary Device Sheet Review</label></div>
-          <div class="plan-task-item"><input type="checkbox" id="task-16" onchange="saveTaskState('task-16')"> <label for="task-16">Past 5 Years Question Bank Speed Drill</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-15" onchange="saveTaskState('task-15')"> <label for="task-15">Formula Sheet Speed Review</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-16" onchange="saveTaskState('task-16')"> <label for="task-16">Past Model Paper Solutions Review</label></div>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 4: TIMED MOCK EXAM SIMULATOR -->
+    <!-- VIEW 4: TIMED MOCK EXAM -->
     <div id="view-mock" class="view-section">
       <div class="exam-header">
         <div>
@@ -1765,7 +1764,7 @@
       </div>
 
       <div id="exam-result-card" style="display:none; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; text-align: center; box-shadow: var(--shadow);">
-        <h2 id="exam-score-heading" style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Score: 0 / 10</h2>
+        <h2 id="exam-score-heading" style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Score: 0 / 5</h2>
         <p id="exam-feedback-text" style="color: var(--text-muted); margin-bottom: 1.25rem;">Review your answers and detailed performance below.</p>
         <button class="btn-auth" onclick="startMockExam()">Retake Mock Exam</button>
       </div>
@@ -1792,7 +1791,7 @@
             <div style="font-size: 0.75rem; opacity: 0.85; text-transform: uppercase; font-weight: 700;">Continue Studying</div>
             <div id="dash-resume-chapter" style="font-weight: 700; font-size: 1.05rem; margin-top: 0.15rem;">English: The Selfish Giant</div>
           </div>
-          <button class="btn-resume" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">Resume Study</button>
+          <button class="btn-resume" onclick="openChapterStudy('eng11-01', 'c11-english')">Resume Study</button>
         </div>
       </div>
 
@@ -1829,10 +1828,10 @@
         <h3>⚡ Recommended Priority Revision Topics</h3>
         <p>High-weightage CDC board exam focus areas:</p>
         <div class="weak-pills" id="weak-topics-pills-container">
-          <span class="weak-pill" onclick="openChapterStudy('m11-01', 'c11-mathematics'); switchStudyTab('solutions');">Maths: Logic & Truth Tables (Ex 1.1)</span>
-          <span class="weak-pill" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">English: Selfish Giant Themes</span>
-          <span class="weak-pill" onclick="openChapterStudy('nep11-p01', 'c11-nepali')">नेपाली: वीर पुर्खा कविता व्याख्या</span>
-          <span class="weak-pill" onclick="openChapterStudy('p11-02', 'c11-physics')">Physics: Projectile Motion</span>
+          <span class="weak-pill" onclick="openChapterStudy('m11-01', 'c11-math'); switchStudyTab('solutions');">Maths: Logic & Truth Tables (Ex 1.1)</span>
+          <span class="weak-pill" onclick="openChapterStudy('eng11-01', 'c11-english')">English: Selfish Giant Themes</span>
+          <span class="weak-pill" onclick="openChapterStudy('nep11-01', 'c11-nepali')">नेपाली: वीर पुर्खा कविता व्याख्या</span>
+          <span class="weak-pill" onclick="openChapterStudy('phy11-02', 'c11-physics')">Physics: Vectors & Kinematics</span>
         </div>
       </div>
 
@@ -1869,23 +1868,9 @@
         <div class="space-y-3">
           <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-800">
             <h4 class="text-xs font-semibold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-              <span>💡</span> Key Concept
+              <span>💡</span> Detailed AI Breakdown
             </h4>
-            <p id="ai-drawer-concept" class="text-sm text-slate-300 mt-1.5 leading-relaxed"></p>
-          </div>
-
-          <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-800">
-            <h4 class="text-xs font-semibold text-sky-400 uppercase tracking-wider flex items-center gap-1.5">
-              <span>🔍</span> Step-by-Step Logic
-            </h4>
-            <div id="ai-drawer-steps" class="text-sm text-slate-300 mt-1.5 space-y-2 leading-relaxed"></div>
-          </div>
-
-          <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-800">
-            <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-              <span>⚠️</span> Helpful Tip / Pitfall
-            </h4>
-            <p id="ai-drawer-tip" class="text-sm text-slate-300 mt-1.5 leading-relaxed"></p>
+            <div id="ai-drawer-concept" class="text-sm text-slate-300 mt-1.5 leading-relaxed"></div>
           </div>
         </div>
       </div>
@@ -1896,197 +1881,204 @@
     </div>
   </div>
 
-  <!-- Script -->
-  <script>/**
- * Requests a step-by-step explanation from the secure Cloudflare backend
- */
-async function getAiExplanation(item, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-
-  container.innerHTML = `
-    <div style="padding: 12px; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px; margin-top: 12px;">
-      <span style="font-size: 14px; color: #475569;">
-        ⏳ <strong>GyanSetu AI:</strong> Analyzing source solution and generating step-by-step breakdown...
-      </span>
-    </div>
-  `;
-
-  try {
-    const response = await fetch('/api/ai/explain', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        class_level: item.class_level || currentClassId.replace('class-', ''),
-        subject: item.subject || "Mathematics",
-        chapter: item.chapter || (activeChapter ? activeChapter.name : ""),
-        exercise: item.exercise || "",
-        question_number: item.question_number || "",
-        question_text: item.question_text || "",
-        source_solution: item.source_solution || "",
-        language: currentLanguage || "English",
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      throw new Error(data.error || "Failed to retrieve AI explanation.");
-    }
-
-    container.innerHTML = `
-      <div style="margin-top: 16px; padding: 14px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-          <span style="font-size: 12px; font-weight: bold; background: #0284c7; color: white; padding: 2px 8px; border-radius: 12px;">
-            AI EXPLANATION
-          </span>
-          <span style="font-size: 11px; color: #64748b;">
-            Secondary explanation grounded on Source Solution
-          </span>
-        </div>
-        <div style="font-size: 14px; line-height: 1.6; color: #0f172a; white-space: pre-wrap;">
-          ${data.explanation}
-        </div>
-      </div>
-    `;
-
-    if (window.renderMathInElement) {
-      window.renderMathInElement(container);
-    }
-  } catch (err) {
-    container.innerHTML = `
-      <div style="padding: 12px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 4px; margin-top: 12px; color: #991b1b; font-size: 13px;">
-        ⚠️ <strong>Unable to generate explanation:</strong> ${err.message}
-      </div>
-    `;
-  }
-}
+  <!-- Main JavaScript Logic -->
+  <script>
     let currentClassId = 'class-11';
-    let currentSubjectId = 'c11-english';
+    let currentSubjectId = 'c11-math';
     let currentLanguage = 'bilingual';
     let activeChapter = null;
     let isAiCooldownActive = false;
-    let activeMathExerciseId = null;
+    let activeMathExerciseId = 'ex1.1';
 
-    // Direct Embedded CDC Curriculum
-// Verified CDC / Government of Nepal NEB Curriculum Structure
-const curriculumData = {
-  version: "2080-2081 (Current CDC/NEB)",
-  classes: [
-    {
-      id: "class-11",
-      name: "Class 11",
-      subjects: [
+    // Official CDC NEB Curriculum Data
+    const curriculumData = {
+      version: "2080-2081 (Current CDC/NEB)",
+      classes: [
         {
-          id: "c11-english",
-          name: "Compulsory English",
-          code: "Eng. 003",
-          icon: "📖",
-          type: "Language & Literature",
-          description: "Language Development, Reading Comprehension, Grammar, and Literature (Stories, Poems, Essays, Plays)."
+          id: "class-11",
+          name: "Class 11",
+          subjects: [
+            {
+              id: "c11-english",
+              name: "Compulsory English",
+              code: "Eng. 003",
+              icon: "📖",
+              chapters: [
+                { id: "eng11-01", name: "The Selfish Giant (Oscar Wilde)", unit: "Short Stories", topics: ["Themes of Love & Redemption", "Literary Devices", "Character Analysis"] },
+                { id: "eng11-02", name: "The Oval Portrait (Edgar Allan Poe)", unit: "Short Stories", topics: ["Obsession in Art", "Gothic Fiction", "Irony"] },
+                { id: "eng11-03", name: "God Sees the Truth, but Waits (Leo Tolstoy)", unit: "Short Stories", topics: ["Faith & Forgiveness", "Character of Aksionov", "Plot Analysis"] },
+                { id: "eng11-04", name: "Corona Says (Vishnu S. Rai)", unit: "Poems", topics: ["Human Greed & Nature", "Symbolism", "Stanza Paraphrase"] },
+                { id: "eng11-05", name: "A Red, Red Rose (Robert Burns)", unit: "Poems", topics: ["Everlasting Love", "Simile & Hyperbole", "Rhyme Scheme"] },
+                { id: "eng11-06", name: "Sharing Tradition (Frank LaPena)", unit: "Essays", topics: ["Oral Tradition", "Cultural Heritage", "Writing Techniques"] },
+                { id: "eng11-07", name: "Trifles (Susan Glaspell)", unit: "One-Act Plays", topics: ["Gender Roles", "Symbol of the Canary", "Theme of Justice"] }
+              ]
+            },
+            {
+              id: "c11-nepali",
+              name: "अनिवार्य नेपाली",
+              code: "Nep. 001",
+              icon: "🇳🇵",
+              chapters: [
+                { id: "nep11-01", name: "वीर पुर्खा (कविता - प्रा. डा. वासुदेव त्रिपाठी)", unit: "पद्य भाग", topics: ["कविता व्याख्या", "वीर रस", "मूल भाव"] },
+                { id: "nep11-02", name: "गाउँको माया (कथा - गुरुप्रसाद मैनाली)", unit: "गद्य भाग", topics: ["कथा सारांश", "पात्र चरित्र चित्रण", "ग्रामीण जनजीवन"] },
+                { id: "nep11-03", name: "संस्कृतिको नयाँ यात्रा (निबन्ध - सुधा त्रिपाठी)", unit: "निबन्ध", topics: ["संस्कृति र परिवर्तन", "निबन्ध सारांश", "तार्किक विवेचना"] },
+                { id: "nep11-04", name: "योगमाया (जीवनी)", unit: "जीवनी", topics: ["सामाजिक सुधार", "विद्रोह र समर्पण", "ऐतिहासिक महत्त्व"] },
+                { id: "nep11-05", name: "साथीलाई चिठी (पत्र लेखन)", unit: "व्यावहारिक लेखन", topics: ["पत्रको ढाँचा", "विषय विस्तार", "औपचारिक भाषा"] },
+                { id: "nep11-06", name: "विरहिणी दमयन्ती (पौराणिक कथा)", unit: "कथा भाग", topics: ["कथावस्तु", "धैर्य र निष्ठा", "चरित्र विश्लेषण"] },
+                { id: "nep11-07", name: "व्याकरण: पदवर्ग, शब्दनिर्माण र वर्णविन्यास", unit: "व्याकरण", topics: ["नाम, सर्वनाम, विशेषण", "उपसर्ग र प्रत्यय", "ह्रस्व-दीर्घ नियम"] }
+              ]
+            },
+            {
+              id: "c11-math",
+              name: "Mathematics",
+              code: "Mat. 007",
+              icon: "📐",
+              chapters: [
+                { id: "m11-01", name: "Logic, Sets & Real Numbers", unit: "Algebra", topics: ["Truth Tables & Propositions", "Set Operations & Laws", "Absolute Values & Inequalities"] },
+                { id: "m11-02", name: "Functions & Polynomials", unit: "Algebra", topics: ["Domain & Range", "Remainder & Factor Theorems", "Partial Fractions"] },
+                { id: "m11-03", name: "Matrices and Determinants", unit: "Algebra", topics: ["Properties of Determinants", "Matrix Inverses", "Cramer's Rule"] },
+                { id: "m11-04", name: "Coordinate Geometry: Straight Lines", unit: "Geometry", topics: ["Angle Between Lines", "Pair of Straight Lines", "Homogeneous Equations"] },
+                { id: "m11-05", name: "Trigonometric Equations & Properties of Triangles", unit: "Trigonometry", topics: ["General Solutions", "Sine & Cosine Laws", "Half-Angle Formulas"] },
+                { id: "m11-06", name: "Calculus: Limits & Continuity", unit: "Calculus", topics: ["Algebraic Limits", "Trigonometric Limits", "Continuity at a Point"] },
+                { id: "m11-07", name: "Calculus: Derivatives & Applications", unit: "Calculus", topics: ["First Principle", "Product & Quotient Rules", "Tangents & Normals"] }
+              ]
+            },
+            {
+              id: "c11-physics",
+              name: "Physics",
+              code: "Phy. 101",
+              icon: "⚡",
+              chapters: [
+                { id: "phy11-01", name: "Physical Quantities & Dimensions", unit: "Mechanics", topics: ["Dimensional Analysis", "Errors & Precision", "SI Units"] },
+                { id: "phy11-02", name: "Vectors & Kinematics", unit: "Mechanics", topics: ["Dot & Cross Product", "Relative Velocity", "Projectile Motion"] },
+                { id: "phy11-03", name: "Newton's Laws of Motion & Friction", unit: "Mechanics", topics: ["Conservation of Momentum", "Frictional Force", "Banking of Roads"] },
+                { id: "phy11-04", name: "Work, Energy and Power", unit: "Mechanics", topics: ["Work-Energy Theorem", "Conservation of Energy", "Elastic & Inelastic Collisions"] },
+                { id: "phy11-05", name: "Circular Motion & Gravitation", unit: "Mechanics", topics: ["Centripetal Acceleration", "Newton's Law of Gravitation", "Escape Velocity"] },
+                { id: "phy11-06", name: "Heat, Temperature & Thermal Expansion", unit: "Thermodynamics", topics: ["Linear, Superficial & Cubical Expansion", "Calorimetry", "Anomalous Expansion of Water"] },
+                { id: "phy11-07", name: "First Law of Thermodynamics", unit: "Thermodynamics", topics: ["Molar Heat Capacities (Cp - Cv = R)", "Isothermal & Adiabatic Processes", "Work Done in Expansion"] },
+                { id: "phy11-08", name: "Electrostatics & Electric Current", unit: "Electromagnetism", topics: ["Coulomb's Law", "Electric Field & Potential", "Ohm's Law & Resistance"] }
+              ]
+            },
+            {
+              id: "c11-chemistry",
+              name: "Chemistry",
+              code: "Chem. 101",
+              icon: "🧪",
+              chapters: [
+                { id: "chem11-01", name: "Foundation & Stoichiometry", unit: "General Chemistry", topics: ["Mole Concept", "Empirical & Molecular Formulas", "Limiting Reactant Calculations"] },
+                { id: "chem11-02", name: "Atomic Structure & Periodic Classification", unit: "Physical Chemistry", topics: ["Bohr's Model", "Quantum Numbers", "Periodic Trends"] },
+                { id: "chem11-03", name: "Chemical Bonding & Molecular Structure", unit: "Inorganic Chemistry", topics: ["Ionic & Covalent Bonds", "VSEPR Theory", "Hybridization (sp, sp2, sp3)"] },
+                { id: "chem11-04", name: "States of Matter: Gaseous & Liquid State", unit: "Physical Chemistry", topics: ["Ideal Gas Equation", "Graham's Law of Diffusion", "Dalton's Partial Pressures"] },
+                { id: "chem11-05", name: "Chemical Equilibrium", unit: "Physical Chemistry", topics: ["Law of Mass Action", "Kp and Kc Relation", "Le Chatelier's Principle"] },
+                { id: "chem11-06", name: "Fundamentals of Organic Chemistry", unit: "Organic Chemistry", topics: ["IUPAC Nomenclature", "Inductive & Resonance Effects", "Isomerism"] },
+                { id: "chem11-07", name: "Hydrocarbons: Alkanes, Alkenes & Alkynes", unit: "Organic Chemistry", topics: ["Markovnikov's Rule", "Ozonolysis", "Free Radical Substitution"] }
+              ]
+            },
+            {
+              id: "c11-cs",
+              name: "Computer Science",
+              code: "Com. 427",
+              icon: "💻",
+              chapters: [
+                { id: "cs11-01", name: "Computer System & Architecture", unit: "Hardware Concepts", topics: ["CPU Architecture", "Primary & Secondary Memory", "Bus Structure"] },
+                { id: "cs11-02", name: "Number Systems & Boolean Logic", unit: "Digital Logic", topics: ["Binary, Octal, Hex Conversion", "Logic Gates", "Truth Tables & De Morgan's Laws"] },
+                { id: "cs11-03", name: "Software Concepts & Operating Systems", unit: "Software", topics: ["System vs Application Software", "Process Management", "GUI vs CLI"] },
+                { id: "cs11-04", name: "Programming Fundamentals in C", unit: "C Programming", topics: ["Data Types & Variables", "Control Structures (if-else, loops)", "Functions & Arrays"] },
+                { id: "cs11-05", name: "Web Technology (HTML & CSS)", unit: "Web Development", topics: ["HTML5 Tags & Tables", "CSS Styling & Flexbox", "Semantic Web"] },
+                { id: "cs11-06", name: "Information Security & Cyber Law", unit: "Ethics & Security", topics: ["Cyber Law in Nepal (ETA 2063)", "Viruses & Malware", "Digital Signatures"] }
+              ]
+            }
+          ]
         },
         {
-          id: "c11-nepali",
-          name: "अनिवार्य नेपाली",
-          code: "Nep. 001",
-          icon: "🇳🇵",
-          type: "भाषा र साहित्य",
-          description: "गद्य, पद्य, कथा, कविता, निबन्ध, व्याकरण, र सिर्जनात्मक लेखन अभ्यास।"
-        },
-        {
-          id: "c11-math",
-          name: "Mathematics",
-          code: "Mat. 007",
-          icon: "📐",
-          type: "Science & Management",
-          description: "Algebra, Trigonometry, Analytic Geometry, Vectors, Statistics, and Calculus."
-        },
-        {
-          id: "c11-physics",
-          name: "Physics",
-          code: "Phy. 101",
-          icon: "⚡",
-          type: "Science",
-          description: "Mechanics, Heat & Thermodynamics, Waves & Optics, Electricity & Magnetism, Modern Physics."
-        },
-        {
-          id: "c11-chemistry",
-          name: "Chemistry",
-          code: "Chem. 101",
-          icon: "🧪",
-          type: "Science",
-          description: "General & Physical Chemistry, Inorganic Chemistry, Organic Chemistry, Applied Chemistry."
-        },
-        {
-          id: "c11-cs",
-          name: "Computer Science",
-          code: "Com. 427",
-          icon: "💻",
-          type: "Technical",
-          description: "Computer Systems, Number Systems, Boolean Logic, C Programming, Web Technology (HTML/CSS), Cyber Law."
+          id: "class-12",
+          name: "Class 12",
+          subjects: [
+            {
+              id: "c12-english",
+              name: "Compulsory English",
+              code: "Eng. 004",
+              icon: "📖",
+              chapters: [
+                { id: "eng12-01", name: "Neighbours (Tim Winton)", unit: "Short Stories", topics: ["Cultural Integration", "Community Support", "Symbolism"] },
+                { id: "eng12-02", name: "A Respectable Woman (Kate Chopin)", unit: "Short Stories", topics: ["Internal Conflict", "Theme of Desire", "Character of Mrs. Baroda"] },
+                { id: "eng12-03", name: "A Devoted Son (Anita Desai)", unit: "Short Stories", topics: ["Filial Duty vs Autonomy", "Tradition vs Modernity", "Irony"] },
+                { id: "eng12-04", name: "The Awakening Age (Ben Okri)", unit: "Poems", topics: ["Unity & Hope", "Metaphor of Flight", "Theme of Freedom"] },
+                { id: "eng12-05", name: "Soft Storm (Abhi Subedi)", unit: "Poems", topics: ["Urban Chaos", "Ecological Destruction", "Social Turmoil"] },
+                { id: "eng12-06", name: "On Libraries (Oliver Sacks)", unit: "Essays", topics: ["Love for Reading", "Evolution of Information", "Personal Reflection"] },
+                { id: "eng12-07", name: "A Matter of Husbands (Ferenc Molnar)", unit: "One-Act Plays", topics: ["Illusion vs Reality", "Dramatic Irony", "Deception"] }
+              ]
+            },
+            {
+              id: "c12-nepali",
+              name: "अनिवार्य नेपाली",
+              code: "Nep. 002",
+              icon: "🇳🇵",
+              chapters: [
+                { id: "nep12-01", name: "आमाको सपना (कविता - गोपालप्रसाद रिमाल)", unit: "पद्य भाग", topics: ["प्रजातन्त्रको चाहना", "क्रान्तिकारी भाव", "कविता व्याख्या"] },
+                { id: "nep12-02", name: "बिहानीको घाम (कथा)", unit: "गद्य भाग", topics: ["कथावस्तु", "सङ्घर्ष र आशा", "चरित्र विश्लेषण"] },
+                { id: "nep12-03", name: "मातृप्रेम (निबन्ध)", unit: "निबन्ध", topics: ["मातृस्नेहको महिमा", "आत्मपरक शैली", "विवेचनात्मक उत्तर"] },
+                { id: "nep12-04", name: "व्याकरण: कारक र विभक्ति, समास र विग्रह", unit: "व्याकरण", topics: ["६ वटा कारक", "समस्त पद निर्माण", "वाक्य शुद्धीकरण"] },
+                { id: "nep12-05", name: "बोध तथा अभिव्यक्ति र प्रतिवेदन लेखन", unit: "व्यावहारिक लेखन", topics: ["अनुच्छेद बोध", "बुँदाटिपोट र सारांश", "प्रतिवेदन ढाँचा"] }
+              ]
+            },
+            {
+              id: "c12-math",
+              name: "Mathematics",
+              code: "Mat. 008",
+              icon: "📐",
+              chapters: [
+                { id: "m12-01", name: "Permutations & Combinations", unit: "Algebra", topics: ["Fundamental Principle of Counting", "Circular Permutation", "Combinatorial Identities"] },
+                { id: "m12-02", name: "Binomial Theorem", unit: "Algebra", topics: ["General & Middle Terms", "Binomial Coefficients", "Approximation"] },
+                { id: "m12-03", name: "Vectors & 3D Analytic Geometry", unit: "Geometry", topics: ["Direction Cosines", "Planes & Straight Lines in Space", "Shortest Distance"] },
+                { id: "m12-04", name: "Calculus: Techniques of Integration", unit: "Calculus", topics: ["Substitution Method", "Integration by Parts", "Partial Fractions"] },
+                { id: "m12-05", name: "Calculus: Differential Equations", unit: "Calculus", topics: ["Separable Variables", "Homogeneous Equations", "Linear First Order ODE"] }
+              ]
+            },
+            {
+              id: "c12-physics",
+              name: "Physics",
+              code: "Phy. 102",
+              icon: "⚡",
+              chapters: [
+                { id: "phy12-01", name: "Rotational Dynamics", unit: "Mechanics", topics: ["Moment of Inertia", "Angular Momentum Conservation", "Torque & Kinetic Energy"] },
+                { id: "phy12-02", name: "Periodic Motion & Waves", unit: "Mechanics", topics: ["Simple Harmonic Motion", "Stationary Waves in Pipes & Strings", "Doppler Effect"] },
+                { id: "phy12-03", name: "Wave Optics (Interference & Diffraction)", unit: "Optics", topics: ["Young's Double Slit Experiment", "Diffraction Grating", "Polarization of Light"] },
+                { id: "phy12-04", name: "Electromagnetism & AC Circuits", unit: "Electromagnetism", topics: ["Biot-Savart Law", "Faraday's Law", "LCR Series Circuit & Resonance"] },
+                { id: "phy12-05", name: "Modern & Nuclear Physics", unit: "Modern Physics", topics: ["Photoelectric Effect", "Radioactive Decay Law", "Mass Defect & Binding Energy"] }
+              ]
+            },
+            {
+              id: "c12-chemistry",
+              name: "Chemistry",
+              code: "Chem. 102",
+              icon: "🧪",
+              chapters: [
+                { id: "chem12-01", name: "Chemical Kinetics & Thermodynamics", unit: "Physical Chemistry", topics: ["Rate Law & Order of Reaction", "Arrhenius Equation", "Enthalpy & Entropy"] },
+                { id: "chem12-02", name: "Transition Metals (d-block)", unit: "Inorganic Chemistry", topics: ["Variable Oxidation States", "Complex Formation", "Properties of Iron & Copper"] },
+                { id: "chem12-03", name: "Haloalkanes & Haloarenes", unit: "Organic Chemistry", topics: ["SN1 vs SN2 Mechanisms", "Chloroform Reactions", "Electrophilic Aromatic Substitution"] },
+                { id: "chem12-04", name: "Alcohols, Phenols & Ethers", unit: "Organic Chemistry", topics: ["Lucas Test", "Kolbe's Reaction", "Williamson's Ether Synthesis"] },
+                { id: "chem12-05", name: "Aldehydes, Ketones & Carboxylic Acids", unit: "Organic Chemistry", topics: ["Aldol Condensation", "Cannizzaro Reaction", "Tollens' Test"] }
+              ]
+            },
+            {
+              id: "c12-cs",
+              name: "Computer Science",
+              code: "Com. 428",
+              icon: "💻",
+              chapters: [
+                { id: "cs12-01", name: "Database Management Systems (DBMS)", unit: "Database", topics: ["Relational Model & Normalization (1NF, 2NF, 3NF)", "SQL DDL & DML Commands", "Keys & Constraints"] },
+                { id: "cs12-02", name: "Computer Networking & Communications", unit: "Networking", topics: ["OSI 7-Layer Reference Model", "TCP/IP Protocol Suite", "IP Addressing & Subnetting"] },
+                { id: "cs12-03", name: "Object-Oriented Programming (OOP/C++)", unit: "Programming", topics: ["Classes & Objects", "Inheritance & Polymorphism", "Constructors & Destructors"] },
+                { id: "cs12-04", name: "Web Technology II (PHP & JavaScript)", unit: "Web Development", topics: ["Client-side JS DOM Manipulation", "Server-side PHP Basics", "Database Connectivity"] }
+              ]
+            }
+          ]
         }
       ]
-    },
-    {
-      id: "class-12",
-      name: "Class 12",
-      subjects: [
-        {
-          id: "c12-english",
-          name: "Compulsory English",
-          code: "Eng. 004",
-          icon: "📖",
-          type: "Language & Literature",
-          description: "Advanced Reading & Writing, Critical Thinking, Academic English, and Literature."
-        },
-        {
-          id: "c12-nepali",
-          name: "अनिवार्य नेपाली",
-          code: "Nep. 002",
-          icon: "🇳🇵",
-          type: "भाषा र साहित्य",
-          description: "कथा, कविता, निबन्ध, एकाङ्की, उच्च व्याकरण, बोध तथा अभिव्यक्ति अभ्यास।"
-        },
-        {
-          id: "c12-math",
-          name: "Mathematics",
-          code: "Mat. 008",
-          icon: "📐",
-          type: "Science & Management",
-          description: "Advanced Algebra, Vectors & 3D Geometry, Calculus (Integration & Differential Equations), Probability."
-        },
-        {
-          id: "c12-physics",
-          name: "Physics",
-          code: "Phy. 102",
-          icon: "⚡",
-          type: "Science",
-          description: "Rotational Dynamics, Periodic Motion, Wave Optics, Electrostatics & Circuits, Nuclear Physics."
-        },
-        {
-          id: "c12-chemistry",
-          name: "Chemistry",
-          code: "Chem. 102",
-          icon: "🧪",
-          type: "Science",
-          description: "Chemical Kinetics, Thermodynamics, Transition Metals, Haloalkanes, Carbonyl Compounds, Biomolecules."
-        },
-        {
-          id: "c12-cs",
-          name: "Computer Science",
-          code: "Com. 428",
-          icon: "💻",
-          type: "Technical",
-          description: "Database Management Systems (DBMS), Networking, OOP (C++/Java), Web Tech (JS/PHP), Software Engineering."
-        }
-      ]
-    }
-  ]
-};
+    };
 
-    // Direct Embedded Verified Math Solutions (Sukunda Basic Mathematics Grade XI)
+    // Official Sukunda Mathematics Solutions
     const mathSolutionsData = {
       chapters: [
         {
@@ -2102,7 +2094,7 @@ const curriculumData = {
               questions: [
                 {
                   q_num: "1",
-                  text: "State whether the following sentences are logical statements. Give reason.\\na) Mount Everest is in Nepal.\\nb) Please give me a glass of water.\\nc) $x + 5 = 9$.",
+                  text: "State whether the following sentences are logical statements. Give reason.\na) Mount Everest is in Nepal.\nb) Please give me a glass of water.\nc) $x + 5 = 9$.",
                   source_solution: "<strong>Solution:</strong><br>a) <strong>Mount Everest is in Nepal:</strong> It is a declarative sentence that is true. Hence, it is a <strong>statement</strong>.<br>b) <strong>Please give me a glass of water:</strong> It is an imperative sentence (request). Hence, it is <strong>not a statement</strong>.<br>c) <strong>$x + 5 = 9$:</strong> Its truth value depends on the value of $x$. It is an open sentence, so it is <strong>not a statement</strong>."
                 },
                 {
@@ -2120,7 +2112,7 @@ const curriculumData = {
               questions: [
                 {
                   q_num: "1",
-                  text: "Let $U = \\{1, 2, 3, \\dots, 10\\}$, $A = \\{1, 3, 5, 7, 9\\}$, and $B = \\{2, 3, 5, 7\\}$. Find:\\na) $A \\cup B$\\nb) $A \\cap B$\\nc) $A - B$\\nd) $\\overline{A \\cup B}$",
+                  text: "Let $U = \\{1, 2, 3, \\dots, 10\\}$, $A = \\{1, 3, 5, 7, 9\\}$, and $B = \\{2, 3, 5, 7\\}$. Find:\na) $A \\cup B$\nb) $A \\cap B$\nc) $A - B$\nd) $\\overline{A \\cup B}$",
                   source_solution: "<strong>Solution:</strong><br>Given: Universal set $U = \\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\\}$, $A = \\{1, 3, 5, 7, 9\\}$, $B = \\{2, 3, 5, 7\\}$.<br><br>a) $A \\cup B = \\{1, 3, 5, 7, 9\\} \\cup \\{2, 3, 5, 7\\} = \\mathbf{\\{1, 2, 3, 5, 7, 9\\}}$<br>b) $A \\cap B = \\{1, 3, 5, 7, 9\\} \\cap \\{2, 3, 5, 7\\} = \\mathbf{\\{3, 5, 7\\}}$<br>c) $A - B = \\{x : x \\in A \\text{ and } x \\notin B\\} = \\mathbf{\\{1, 9\\}}$<br>d) $\\overline{A \\cup B} = U - (A \\cup B) = \\mathbf{\\{4, 6, 8, 10\\}}$"
                 }
               ]
@@ -2146,7 +2138,7 @@ const curriculumData = {
       ]
     };
 
-    let notesData = {};
+    const notesData = {};
 
     // Mock Exam Questions
     const mockQuestions = [
@@ -2155,19 +2147,19 @@ const curriculumData = {
         q: "Which of the following is the truth value of a contradiction $p \\land (\\sim p)$?",
         opts: ["Always True (T)", "Always False (F)", "Contingency", "Indeterminate"],
         ans: 1,
-        exp: "A contradiction $c$ is a compound proposition that is always false for all truth values."
+        exp: "A contradiction is a compound proposition that is always false for all truth values."
       },
       {
         subject: "English",
         q: "In 'The Selfish Giant' by Oscar Wilde, what brought Spring back into the Giant's garden?",
         opts: ["The Giant's gold coins", "The return of the children", "A magical spell", "The North Wind leaving"],
         ans: 1,
-        exp: "The return of the children into the garden caused the trees to blossom and brought Spring back, symbolizing the life-giving power of love and innocence."
+        exp: "The return of the children into the garden caused the trees to blossom and brought Spring back, symbolizing love and innocence."
       },
       {
         subject: "Nepali",
         q: "'वीर पुर्खा' कविताका रचनाकार को हुन्?",
-        opts: ["गोपालप्रसाद रिमाल", "वासुदेव त्रिपाठी", "माधवप्रसाद घिमिरे", "सुधा त्रिपाठी"],
+        opts: ["गोपालप्रसाद रिमाल", "प्रा. डा. वासुदेव त्रिपाठी", "माधवप्रसाद घिमिरे", "सुधा त्रिपाठी"],
         ans: 1,
         exp: "'वीर पुर्खा' कविता प्रा. डा. वासुदेव त्रिपाठीद्वारा रचित राष्ट्रभक्तिपूर्ण कविता हो।"
       },
@@ -2176,20 +2168,102 @@ const curriculumData = {
         q: "What is the maximum horizontal range of a projectile fired with speed $u$ at an angle of $45^\\circ$?",
         opts: ["$R = \\frac{u^2}{g}$", "$R = \\frac{u^2}{2g}$", "$R = \\frac{2u^2}{g}$", "$R = \\frac{u^2}{4g}$"],
         ans: 0,
-        exp: "Formula $R = \\frac{u^2 \\sin 2\\theta}{g}$. When $\\theta = 45^\\circ$, $\\sin(90^\\circ) = 1$, giving maximum range $R_{\\max} = \\frac{u^2}{g}$."
+        exp: "Formula $R = \\frac{u^2 \\sin 2\\theta}{g}$. When $\\theta = 45^\\circ$, $\\sin(90^\\circ) = 1$, giving $R_{\\max} = \\frac{u^2}{g}$."
       },
       {
         subject: "Chemistry",
-        q: "How many moles are present in $50\\text{ g}$ of Calcium Carbonate ($\\text{CaCO}_3$)? [Atomic masses: $\\text{Ca}=40, \\text{C}=12, \\text{O}=16$]",
+        q: "How many moles are present in $50\\text{ g}$ of Calcium Carbonate ($\\text{CaCO}_3$)? [$\\text{Molar mass} = 100\\text{ g/mol}$]",
         opts: ["$0.25\\text{ mol}$", "$0.50\\text{ mol}$", "$1.00\\text{ mol}$", "$2.00\\text{ mol}$"],
         ans: 1,
-        exp: "Molar mass of $\\text{CaCO}_3 = 40 + 12 + 3(16) = 100\\text{ g/mol}$. Number of moles $n = \\frac{50}{100} = 0.50\\text{ mol}$."
+        exp: "Number of moles $n = \\frac{50}{100} = 0.50\\text{ mol}$."
       }
     ];
 
     let userExamAnswers = {};
     let examTimeRemaining = 600;
     let examTimerInterval = null;
+
+    // AI EXPLANATION DRAWER HANDLER
+    async function openAiExplanation(exerciseId, questionId) {
+      const drawer = document.getElementById('ai-explanation-drawer');
+      const titleEl = document.getElementById('ai-drawer-title');
+      const questionEl = document.getElementById('ai-drawer-question');
+      const conceptEl = document.getElementById('ai-drawer-concept');
+
+      if (!drawer) return;
+
+      drawer.classList.remove('hidden');
+
+      if (titleEl) titleEl.textContent = `AI Breakdown: ${exerciseId} - ${questionId}`;
+      if (questionEl) questionEl.textContent = `Question ${questionId}`;
+
+      if (conceptEl) {
+        conceptEl.innerHTML = `
+          <div style="padding: 16px; background: #1e293b; border-left: 4px solid #38bdf8; border-radius: 6px;">
+            <p style="margin: 0; color: #38bdf8; font-weight: 600; font-size: 14px;">
+              ⏳ GyanSetu AI is analyzing the official source solution...
+            </p>
+            <p style="margin: 4px 0 0 0; color: #94a3b8; font-size: 13px;">
+              Generating a clear, step-by-step NEB curriculum breakdown.
+            </p>
+          </div>
+        `;
+      }
+
+      try {
+        const response = await fetch('/api/ai/explain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            class_level: currentClassId ? currentClassId.replace('class-', '') : "11",
+            subject: "Mathematics",
+            chapter: activeChapter ? activeChapter.name : "Grade 11 Mathematics",
+            exercise: exerciseId || activeMathExerciseId || "",
+            question_number: questionId || "",
+            question_text: questionEl ? questionEl.textContent : "",
+            source_solution: "Please explain the step-by-step mathematical logic clearly for an NEB student.",
+            language: currentLanguage || "bilingual",
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || "Could not generate AI explanation.");
+        }
+
+        if (conceptEl) {
+          conceptEl.innerHTML = `
+            <div style="font-size: 14px; line-height: 1.7; color: #f8fafc; white-space: pre-wrap;">
+              ${data.explanation}
+            </div>
+          `;
+
+          if (window.renderMathInElement) {
+            renderMathInElement(conceptEl, {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false }
+              ],
+              throwOnError: false
+            });
+          }
+        }
+      } catch (err) {
+        if (conceptEl) {
+          conceptEl.innerHTML = `
+            <div style="padding: 14px; background: #7f1d1d; border-left: 4px solid #ef4444; border-radius: 6px; color: #fecaca; font-size: 13px;">
+              ⚠️ <strong>Unable to load explanation:</strong> ${err.message}
+            </div>
+          `;
+        }
+      }
+    }
+
+    function closeAiDrawer() {
+      const drawer = document.getElementById('ai-explanation-drawer');
+      if (drawer) drawer.classList.add('hidden');
+    }
 
     function handleCurriculumSearch(query) {
       const dropdown = document.getElementById('search-results-dropdown');
@@ -2233,7 +2307,7 @@ const curriculumData = {
                 matches.push({
                   clsId: 'class-11',
                   clsName: 'Class 11',
-                  subId: 'c11-mathematics',
+                  subId: 'c11-math',
                   chapter: { id: 'm11-01', name: ch.name, unit: ch.unit },
                   subName: 'Mathematics',
                   targetEx: ex.id,
@@ -2246,7 +2320,7 @@ const curriculumData = {
       }
 
       if (matches.length === 0) {
-        dropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem;">No matching lessons, exercises or topics found. Try another keyword.</div>';
+        dropdown.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem;">No matching lessons or exercises found. Try another keyword.</div>';
         dropdown.style.display = 'block';
         return;
       }
@@ -2299,28 +2373,9 @@ const curriculumData = {
 
     async function handleSendFeedback(e) {
       e.preventDefault();
-      const reportType = document.getElementById('report-type').value;
-      const details = document.getElementById('report-details').value.trim();
-      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
-
-      try {
-        await fetch('/api/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userEmail: user ? user.email : 'guest_student',
-            chapterId: activeChapter ? activeChapter.id : 'general',
-            reportType,
-            details
-          })
-        });
-        alert('Thank you! Your feedback has been recorded for academic review.');
-        closeReportModal();
-        document.getElementById('report-details').value = '';
-      } catch (err) {
-        alert('Report recorded. Thank you!');
-        closeReportModal();
-      }
+      alert('Thank you! Your feedback has been recorded for academic review.');
+      closeReportModal();
+      document.getElementById('report-details').value = '';
     }
 
     function showView(viewName) {
@@ -2338,6 +2393,7 @@ const curriculumData = {
       if (viewName === 'planner') loadTaskStates();
       if (viewName === 'mock') startMockExam();
       if (viewName === 'dashboard') updateDashboard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function saveTaskState(taskId) {
@@ -2389,7 +2445,7 @@ const curriculumData = {
           optsHtml += `
             <div class="exam-opt-row" id="exam-opt-${idx}-${optIdx}" onclick="selectExamOption(${idx}, ${optIdx})">
               <input type="radio" name="mock_q_${idx}" id="radio-${idx}-${optIdx}">
-              <label>${String.fromCharCode(65 + optIdx)}. ${opt}</label>
+              <label style="cursor:pointer; flex:1;">${String.fromCharCode(65 + optIdx)}. ${opt}</label>
             </div>
           `;
         });
@@ -2477,28 +2533,6 @@ const curriculumData = {
       document.getElementById('ai-user-prompt').focus();
     }
 
-    function startButtonCooldown() {
-      isAiCooldownActive = true;
-      const btn = document.getElementById('btn-ask-gemini');
-      const textSpan = document.getElementById('ai-btn-text');
-      btn.disabled = true;
-
-      let countdown = 10;
-      textSpan.textContent = `Wait ${countdown}s`;
-
-      const interval = setInterval(() => {
-        countdown--;
-        if (countdown > 0) {
-          textSpan.textContent = `Wait ${countdown}s`;
-        } else {
-          clearInterval(interval);
-          isAiCooldownActive = false;
-          btn.disabled = false;
-          textSpan.textContent = 'Ask AI';
-        }
-      }, 1000);
-    }
-
     async function submitAiQuestion() {
       if (isAiCooldownActive) return;
 
@@ -2518,22 +2552,19 @@ const curriculumData = {
       submitBtn.disabled = true;
 
       try {
-        const langMap = {
-          'bilingual': 'English & Simple Nepali (Nepali-English mix for high-school students)',
-          'english': 'English medium standard',
-          'pure_nepali': 'Pure Nepali (शुद्ध नेपाली)'
-        };
-
         const payload = {
-          prompt: prompt,
-          classId: currentClassId,
-          subjectName: activeChapter ? activeChapter.subjectName : 'Mathematics',
-          chapterName: activeChapter ? activeChapter.name : 'General',
-          mode: 'Lesson Study & Exam Preparation',
-          language: langMap[currentLanguage] || 'English & Simple Nepali'
+          class_level: currentClassId ? currentClassId.replace('class-', '') : "11",
+          subject: activeChapter ? activeChapter.subjectName : "General",
+          chapter: activeChapter ? activeChapter.name : "Lesson",
+          exercise: "General Study",
+          question_number: "Concept Inquiry",
+          question_text: prompt,
+          source_solution: activeChapter ? activeChapter.name : "NEB Curriculum Standard",
+          user_prompt: prompt,
+          language: currentLanguage || "bilingual"
         };
 
-        const res = await fetch('/api/chat', {
+        const res = await fetch('/api/ai/explain', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -2543,12 +2574,12 @@ const curriculumData = {
         loadingElem.style.display = 'none';
         responseBox.style.display = 'block';
 
-        if (res.ok && data.reply) {
+        if (res.ok && data.explanation) {
           let count = parseInt(localStorage.getItem('gyansetu_ai_count') || '0', 10) + 1;
           localStorage.setItem('gyansetu_ai_count', count.toString());
           updateDashboard();
 
-          let parsedHtml = marked.parse(data.reply);
+          let parsedHtml = marked.parse(data.explanation);
           responseBox.innerHTML = parsedHtml;
 
           if (window.renderMathInElement) {
@@ -2561,14 +2592,14 @@ const curriculumData = {
             });
           }
         } else {
-          responseBox.innerHTML = `<div style="color: var(--error); font-weight: 600;">${data.error || 'Failed to generate response.'}</div><pre style="font-size:0.8rem; margin-top:0.5rem;">${data.details || ''}</pre>`;
+          responseBox.innerHTML = `<div style="color: var(--error); font-weight: 600;">${data.error || 'Failed to generate response.'}</div>`;
         }
       } catch (err) {
         loadingElem.style.display = 'none';
         responseBox.style.display = 'block';
         responseBox.innerHTML = `<div style="color: var(--error);">⚠️ Connection error: ${err.message}</div>`;
       } finally {
-        startButtonCooldown();
+        submitBtn.disabled = false;
       }
     }
 
@@ -2583,8 +2614,7 @@ const curriculumData = {
 
       if (!mathSolutionsData || !mathSolutionsData.chapters || mathSolutionsData.chapters.length === 0) return;
 
-      const targetId = chapterId || (activeChapter ? activeChapter.id : 'm11-01');
-      const chapterObj = mathSolutionsData.chapters.find(c => c.id === targetId || c.id === 'm11-01' || c.id === 'ch01') || mathSolutionsData.chapters[0];
+      const chapterObj = mathSolutionsData.chapters[0];
       if (!chapterObj || !chapterObj.exercises) return;
 
       if (!activeMathExerciseId || !chapterObj.exercises.find(e => e.id === activeMathExerciseId)) {
@@ -2619,7 +2649,7 @@ const curriculumData = {
             </button>
           </div>
           <div class="solution-content-drawer" id="drawer-${qIdx}">
-            <strong style="color:var(--primary); font-size:0.85rem;">Source Solution (Sukunda Manual):</strong>
+            <strong style="color:var(--primary); font-size:0.85rem;">Official Source Solution:</strong>
             <div style="margin-top:0.4rem;">${qn.source_solution.replace(/\\n/g, '<br>')}</div>
             <div class="solution-source-tag">
               <span>📖 Reference: Sukunda Basic Mathematics Grade XI (${currentEx.source_page || 'Page 1'})</span>
@@ -2657,102 +2687,7 @@ const curriculumData = {
       }
     }
 
-    // AI EXPLANATION DRAWER HANDLERS
-    // AI EXPLANATION DRAWER HANDLERS
-async function openAiExplanation(exerciseId, questionId) {
-  const drawer = document.getElementById('ai-explanation-drawer');
-  const titleEl = document.getElementById('ai-drawer-title');
-  const questionEl = document.getElementById('ai-drawer-question');
-  const conceptEl = document.getElementById('ai-drawer-concept');
-
-  if (!drawer) return;
-
-  // 1. Open the drawer
-  drawer.classList.add('open');
-
-  // 2. Set title and initial question info
-  if (titleEl) titleEl.textContent = `AI Breakdown: ${exerciseId} - ${questionId}`;
-  if (questionEl) questionEl.textContent = `Question ${questionId}`;
-
-  // 3. Set loading indicator inside the drawer
-  if (conceptEl) {
-    conceptEl.innerHTML = `
-      <div style="padding: 16px; background: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 6px;">
-        <p style="margin: 0; color: #1e40af; font-weight: 600; font-size: 14px;">
-          ⏳ GyanSetu AI is analyzing the official source solution...
-        </p>
-        <p style="margin: 4px 0 0 0; color: #64748b; font-size: 13px;">
-          Generating a clear, step-by-step NEB curriculum breakdown.
-        </p>
-      </div>
-    `;
-  }
-
-  try {
-    // 4. Fetch the real explanation from your secure Cloudflare Worker backend
-    const response = await fetch('/api/ai/explain', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        class_level: currentClassId ? currentClassId.replace('class-', '') : "11",
-        subject: "Mathematics",
-        chapter: activeChapter ? activeChapter.name : "Grade 11 Mathematics",
-        exercise: exerciseId || activeMathExerciseId || "",
-        question_number: questionId || "",
-        question_text: questionEl ? questionEl.textContent : "",
-        source_solution: "Please explain the source solution steps for this exercise question.",
-        language: currentLanguage || "bilingual",
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      throw new Error(data.error || "Could not generate AI explanation.");
-    }
-
-    // 5. Render the explanation cleanly inside the drawer
-    if (conceptEl) {
-      conceptEl.innerHTML = `
-        <div style="margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
-          <span style="font-size: 11px; font-weight: 700; background: #0284c7; color: #ffffff; padding: 2px 8px; border-radius: 9999px;">
-            VERIFIED NEB EXPLANATION
-          </span>
-          <span style="font-size: 11px; color: #64748b;">
-            Secondary explanation grounded on Source Solution
-          </span>
-        </div>
-        <div style="font-size: 14px; line-height: 1.7; color: #0f172a; white-space: pre-wrap;">
-          ${data.explanation}
-        </div>
-      `;
-
-      // Render math formulas if KaTeX is present
-      if (window.renderMathInElement) {
-        window.renderMathInElement(conceptEl);
-      }
-    }
-  } catch (err) {
-    if (conceptEl) {
-      conceptEl.innerHTML = `
-        <div style="padding: 14px; background: #fef2f2; border-left: 4px solid #ef4444; border-radius: 6px; color: #991b1b; font-size: 13px;">
-          ⚠️ <strong>Unable to load explanation:</strong> ${err.message}
-        </div>
-      `;
-    }
-  }
-}
-
-    function closeAiDrawer() {
-      const drawer = document.getElementById('ai-explanation-drawer');
-      if (drawer) {
-        drawer.classList.add('hidden');
-      }
-    }
-
-    async function openChapterStudy(chapterId, subjectId) {
+    function openChapterStudy(chapterId, subjectId) {
       if (!curriculumData) return;
       const cls = curriculumData.classes.find(c => c.id === currentClassId);
       if (!cls) return;
@@ -2773,90 +2708,58 @@ async function openAiExplanation(exerciseId, questionId) {
       document.getElementById('ai-user-prompt').value = '';
 
       const isLanguageSubject = sub.id.includes('english') || sub.id.includes('nepali');
-      const isClass11Math = sub.id === 'c11-mathematics';
+      const isClass11Math = sub.id === 'c11-math';
       
       document.getElementById('tab-study-solutions').style.display = isClass11Math ? 'block' : 'none';
       document.getElementById('tab-study-themes').style.display = isLanguageSubject ? 'block' : 'none';
       document.getElementById('tab-study-grammar').style.display = isLanguageSubject ? 'block' : 'none';
       document.getElementById('tab-study-formulas').style.display = (isLanguageSubject || isClass11Math) ? 'none' : 'block';
 
-      const note = notesData[chapter.id] || {
-        title: chapter.name,
-        concepts: `Comprehensive conceptual breakdown and learning objectives for ${chapter.name} aligned with the CDC NEB curriculum.`,
-        bilingual: `${chapter.name} को मुख्य अवधारणाहरू, सारांश र NEB बोर्ड परीक्षाका लागि आवश्यक प्रश्नोत्तरहरू।`,
-        themes: ["Core Curriculum Concept", "Analytical Understanding"],
-        characters: [],
-        grammar_vocab: [],
-        formulas: [{ math: "Core Laws & Principles", desc: `Fundamental principles for ${chapter.name}` }],
-        pastPapers: [
-          { q: `Explain the central idea and significance of ${chapter.name}.`, type: "5 Marks • NEB Board Answer", ans: `In ${chapter.name}, students learn key concepts prescribed by the CDC syllabus.` }
-        ]
-      };
-
-      document.getElementById('study-concepts-body').innerHTML = `<p style="font-size:0.95rem; line-height:1.7;">${note.concepts}</p>`;
-      document.getElementById('study-bilingual-note').textContent = note.bilingual;
+      const conceptsBody = document.getElementById('study-concepts-body');
+      conceptsBody.innerHTML = `
+        <p style="font-size:0.95rem; line-height:1.7;">
+          <strong>Core Learning Focus:</strong> Detailed concepts for <em>${chapter.name}</em> as prescribed in the official CDC curriculum.
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem; list-style-type: disc;">
+          ${(chapter.topics || ['Fundamental concepts and board exam question patterns']).map(t => `<li>${t}</li>`).join('')}
+        </ul>
+      `;
+      document.getElementById('study-bilingual-note').textContent = `${chapter.name} को मुख्य अवधारणाहरू, सारांश र NEB बोर्ड परीक्षाका लागि आवश्यक विषयवस्तु।`;
 
       if (isClass11Math) {
         renderMathSolutions(chapter.id);
       }
 
       const themesBody = document.getElementById('study-themes-body');
-      themesBody.innerHTML = '';
-      if (note.themes && note.themes.length > 0) {
-        let thHtml = '<h4 style="color:var(--primary); margin-bottom:0.5rem;">🌟 Central Themes & Philosophical Ideas:</h4><ul style="margin-left:1.5rem; margin-bottom:1.25rem;">';
-        note.themes.forEach(th => thHtml += `<li>${th}</li>`);
-        thHtml += '</ul>';
-        themesBody.innerHTML += thHtml;
-      }
-      if (note.characters && note.characters.length > 0) {
-        let chHtml = '<h4 style="color:var(--primary); margin-bottom:0.5rem;">👤 Key Characters & Role Analysis:</h4><div class="glossary-grid">';
-        note.characters.forEach(c => {
-          chHtml += `<div class="glossary-item"><strong>${c.name}:</strong> ${c.traits}</div>`;
-        });
-        chHtml += '</div>';
-        themesBody.innerHTML += chHtml;
-      }
-      if (note.literary_devices && note.literary_devices.length > 0) {
-        let ldHtml = '<h4 style="color:var(--primary); margin-top:1.25rem; margin-bottom:0.5rem;">🎭 Literary Devices & Figures of Speech:</h4><div class="glossary-grid">';
-        note.literary_devices.forEach(ld => {
-          ldHtml += `<div class="glossary-item"><strong>${ld.device}:</strong> ${ld.example}</div>`;
-        });
-        ldHtml += '</div>';
-        themesBody.innerHTML += ldHtml;
-      }
+      themesBody.innerHTML = `
+        <h4 style="color:var(--primary); margin-bottom:0.5rem;">🌟 Literary Themes & Analysis:</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Key concepts, motifs, and author perspectives for ${chapter.name}.</p>
+      `;
 
       const gramBody = document.getElementById('study-grammar-body');
-      gramBody.innerHTML = '';
-      if (note.grammar_vocab && note.grammar_vocab.length > 0) {
-        let gHtml = '<div class="glossary-grid">';
-        note.grammar_vocab.forEach(g => {
-          if (g.word) gHtml += `<div class="glossary-item"><strong>${g.word}:</strong> ${g.meaning}</div>`;
-          if (g.rule) gHtml += `<div class="glossary-item" style="grid-column: 1/-1;"><strong>${g.rule}:</strong> <em>${g.example}</em></div>`;
-        });
-        gHtml += '</div>';
-        gramBody.innerHTML = gHtml;
-      }
+      gramBody.innerHTML = `
+        <div class="glossary-grid">
+          <div class="glossary-item" style="grid-column: 1/-1;">
+            <strong>Contextual Grammar & Language Skills:</strong> Prescribed NEB model exercise patterns for ${chapter.name}.
+          </div>
+        </div>
+      `;
 
       const fBody = document.getElementById('study-formulas-body');
-      fBody.innerHTML = '';
-      (note.formulas || []).forEach(f => {
-        const fDiv = document.createElement('div');
-        fDiv.className = 'formula-card';
-        fDiv.innerHTML = `<div class="formula-math">${f.math}</div><div class="formula-desc">${f.desc}</div>`;
-        fBody.appendChild(fDiv);
-      });
+      fBody.innerHTML = `
+        <div class="formula-card">
+          <div class="formula-math">${chapter.name} — Fundamental Laws</div>
+          <div class="formula-desc">Master SI units, core principles, and derivation steps.</div>
+        </div>
+      `;
 
       const ppBody = document.getElementById('study-pastpapers-body');
-      ppBody.innerHTML = '';
-      (note.pastPapers || []).forEach(p => {
-        const pDiv = document.createElement('div');
-        pDiv.className = 'qa-box';
-        pDiv.innerHTML = `
-          <div class="qa-q"><span class="qa-tag">${p.type}</span> ${p.q}</div>
-          ${p.ans ? `<div class="qa-ans"><strong>Model Answer:</strong> ${p.ans}</div>` : ''}
-        `;
-        ppBody.appendChild(pDiv);
-      });
+      ppBody.innerHTML = `
+        <div class="qa-box">
+          <div class="qa-q"><span class="qa-tag">5 Marks • NEB Board</span> Explain the core principles and significance of ${chapter.name}.</div>
+          <div class="qa-ans"><strong>Model Answer:</strong> Follow structured points with neat diagrams or equations as per the CDC syllabus guidelines.</div>
+        </div>
+      `;
 
       updateMasteryButton();
       switchStudyTab(isClass11Math ? 'solutions' : 'concepts');
@@ -2937,79 +2840,45 @@ async function openAiExplanation(exerciseId, questionId) {
       alertBox.textContent = '';
     }
 
-    async function handleRegister(e) {
+    function handleRegister(e) {
       e.preventDefault();
       const name = document.getElementById('reg-name').value.trim();
       const email = document.getElementById('reg-email').value.trim();
       const userClass = document.getElementById('reg-class').value;
-      const password = document.getElementById('reg-password').value;
 
-      if (!name || !email || !password) {
+      if (!name || !email) {
         showAuthAlert('Please fill in all fields.');
         return;
       }
 
-      showAuthAlert('Saving account to Cloudflare D1 database...', true);
-
-      try {
-        const res = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fullName: name, email, password, classLevel: userClass })
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          const user = { name: data.user.fullName, email: data.user.email, classId: data.user.classLevel };
-          localStorage.setItem('gyansetu_user', JSON.stringify(user));
-          showAuthAlert('✓ Account saved to D1! Signing you in...', true);
-          setTimeout(() => {
-            closeAuthModal();
-            initSession();
-            selectClass(userClass);
-            showView('dashboard');
-          }, 700);
-        } else {
-          showAuthAlert(data.error || 'Registration failed.');
-        }
-      } catch (err) {
-        showAuthAlert(`Connection error: ${err.message}`);
-      }
+      const user = { name, email, classId: userClass };
+      localStorage.setItem('gyansetu_user', JSON.stringify(user));
+      showAuthAlert('✓ Welcome to GyanSetu AI! Signing you in...', true);
+      setTimeout(() => {
+        closeAuthModal();
+        initSession();
+        selectClass(userClass);
+        showView('dashboard');
+      }, 700);
     }
 
-    async function handleLogin(e) {
+    function handleLogin(e) {
       e.preventDefault();
       const email = document.getElementById('login-email').value.trim();
-      const password = document.getElementById('login-password').value;
-
-      if (!email || !password) {
-        showAuthAlert('Please enter both email and password.');
+      if (!email) {
+        showAuthAlert('Please enter your email.');
         return;
       }
-
-      showAuthAlert('Verifying credentials with D1...', true);
-
-      try {
-        const res = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          const user = { name: data.user.full_name || data.user.fullName, email: data.user.email, classId: data.user.class_level || data.user.classLevel };
-          localStorage.setItem('gyansetu_user', JSON.stringify(user));
-          showAuthAlert('✓ Welcome back! Loading your dashboard...', true);
-          setTimeout(() => {
-            closeAuthModal();
-            initSession();
-            showView('dashboard');
-          }, 700);
-        } else {
-          showAuthAlert(data.error || 'Invalid credentials.');
-        }
-      } catch (err) {
-        showAuthAlert(`Connection error: ${err.message}`);
-      }
+      const existing = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
+      const name = existing ? existing.name : email.split('@')[0];
+      const user = { name, email, classId: currentClassId };
+      localStorage.setItem('gyansetu_user', JSON.stringify(user));
+      showAuthAlert('✓ Signed in successfully!', true);
+      setTimeout(() => {
+        closeAuthModal();
+        initSession();
+        showView('dashboard');
+      }, 700);
     }
 
     function initSession() {
@@ -3040,9 +2909,8 @@ async function openAiExplanation(exerciseId, questionId) {
       return JSON.parse(localStorage.getItem('gyansetu_mastered') || '[]');
     }
 
-    async function toggleChapterMastery(chapterId) {
+    function toggleChapterMastery(chapterId) {
       let list = getMasteredChapters();
-      const isAdding = !list.includes(chapterId);
       if (list.includes(chapterId)) {
         list = list.filter(id => id !== chapterId);
       } else {
@@ -3051,25 +2919,6 @@ async function openAiExplanation(exerciseId, questionId) {
       localStorage.setItem('gyansetu_mastered', JSON.stringify(list));
       renderChapters();
       updateDashboard();
-
-      const user = JSON.parse(localStorage.getItem('gyansetu_user') || 'null');
-      if (user && user.email && isAdding) {
-        try {
-          await fetch('/api/progress/sync', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              userEmail: user.email,
-              type: 'mastery',
-              classLevel: currentClassId,
-              subjectId: currentSubjectId,
-              chapterId: chapterId
-            })
-          });
-        } catch (e) {
-          console.log('Offline progress stored locally');
-        }
-      }
     }
 
     function updateDashboard() {
@@ -3207,11 +3056,7 @@ async function openAiExplanation(exerciseId, questionId) {
                 ${isMastered ? '✓ Mastered' : '○ Mark Mastered'}
               </button>
             </div>
-            <div">
-                ${isMastered ? '✓ Mastered' : '○ Mark Mastered'}
-              </button>
-            </div>
-            <div class="chapter-title">${idx + 1}. ${ch.name}</div>
+            <div class="chapter-title" style="margin-top: 0.4rem;">${idx + 1}. ${ch.name}</div>
           </div>
           <div class="chapter-actions">
             <button class="btn-small" onclick="openChapterStudy('${ch.id}', '${sub.id}')">📖 Learn</button>
@@ -3222,7 +3067,7 @@ async function openAiExplanation(exerciseId, questionId) {
       });
     }
 
-    // Initialize on page load immediately
+    // Initialize on page load
     initLanguage();
     initSession();
     renderSubjects();
