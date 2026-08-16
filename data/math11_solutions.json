@@ -8,115 +8,7 @@
       "exercises": [
         {
           "id": "ex1_1",
-          "name": "Exercise 1.1",
-          "topic": "Logic",
-          "questions": [
-            {
-              "q_num": "1",
-              "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?",
-              "source_solution": "a) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nb) Declarative sentence $\\implies$ Statement, Truth value: False (F).\nc) Declarative sentence $\\implies$ Statement, Truth value: True (T).\nd) Interrogative sentence $\\implies$ Not a statement.\ne) Imperative sentence $\\implies$ Not a statement.\nf) Exclamatory sentence $\\implies$ Not a statement."
-            },
-            {
-              "q_num": "2",
-              "text": "Let $p$: demand is increasing and $q$: supply is decreasing. Express in words:\na) $\\sim p$\nb) $\\sim q$\nc) $p \\land q$\nd) $p \\lor q$\ne) $\\sim p \\land q$\nf) $p \\lor \\sim q$\ng) $\\sim p \\land \\sim q$\nh) $\\sim(p \\land q)$",
-              "source_solution": "a) Demand is not increasing.\nb) Supply is not decreasing.\nc) Demand is increasing and supply is decreasing.\nd) Demand is increasing or supply is decreasing.\ne) Demand is not increasing and supply is decreasing.\nf) Demand is increasing or supply is not decreasing.\ng) Neither demand is increasing nor supply is decreasing.\nh) It is false that demand is increasing and supply is decreasing."
-            },
-            {
-              "q_num": "3",
-              "text": "Express in symbolic form:\na) Temperature is increasing ($p$) and length is expanding ($q$).\nb) Pressure is decreasing ($p$) or volume is increasing ($q$).\nc) Neither demand is increasing ($p$) nor price is increasing ($q$).\nd) It is false that Pradeep is bold ($p$) or Sandeep is handsome ($q$).",
-              "source_solution": "a) $p \\land q$\nb) $p \\lor q$\nc) $\\sim p \\land \\sim q$\nd) $\\sim(p \\lor q)$"
-            },
-            {
-              "q_num": "4",
-              "text": "Construct truth tables for:\na) $(\\sim p) \\land q$\nb) $(\\sim p) \\lor (\\sim q)$\nc) $\\sim(p \\land q)$\nd) $\\sim[p \\lor (\\sim q)]$\ne) $(p \\implies q) \\land (q \\implies p)$\nf) $(\\sim p \\lor q) \\implies (p \\lor q)$\ng) $[p \\land (p \\implies q)] \\implies q$\nh) $(p \\implies q) \\iff (\\sim p \\lor q)$\ni) $(p \\iff q) \\lor (q \\iff r)$",
-              "source_solution": "Truth values across standard truth rows:\na) $(\\sim p) \\land q \\implies$ **F, F, T, F**\nb) $(\\sim p) \\lor (\\sim q) \\implies$ **F, T, T, T**\nc) $\\sim(p \\land q) \\implies$ **F, T, T, T**\nd) $\\sim[p \\lor (\\sim q)] \\implies$ **F, F, T, F**\ne) $(p \\implies q) \\land (q \\implies p) \\implies$ **T, F, F, T**\nf) $(\\sim p \\lor q) \\implies (p \\lor q) \\implies$ **T, T, T, F**\ng) $[p \\land (p \\implies q)] \\implies q \\implies$ **T, T, T, T** (Tautology)\nh) $(p \\implies q) \\iff (\\sim p \\lor q) \\implies$ **T, T, T, T** (Tautology)\ni) $(p \\iff q) \\lor (q \\iff r) \\implies$ **T, T, F, T, T, F, T, T**"
-            },
-            {
-              "q_num": "5",
-              "text": "If $p=T, q=F, r=T, s=F$, find truth values of:\na) $p \\land q$\nb) $p \\lor (\\sim q)$\nc) $(\\sim p) \\land (\\sim q)$\nd) $q \\lor (p \\land s)$\ne) $\\sim(\\sim p)$\nf) $(p \\lor q) \\land (r \\lor s)$",
-              "source_solution": "a) $T \\land F = \\mathbf{F}$\nb) $T \\lor T = \\mathbf{T}$\nc) $F \\land T = \\mathbf{F}$\nd) $F \\lor (T \\land F) = \\mathbf{F}$\ne) $\\sim(\\sim T) = \\mathbf{T}$\nf) $(T \\lor F) \\land (T \\lor F) = \\mathbf{T}$"
-            },
-            {
-              "q_num": "6",
-              "text": "Prove by truth table:\na) $p \\land (\\sim p) \\equiv c$ (contradiction)\nb) $(p \\lor q) \\equiv (q \\lor p)$\nc) $\\sim[p \\lor (\\sim q)] \\equiv (\\sim p) \\land q$\nd) $\\sim[(\\sim p) \\land q] \\equiv p \\lor (\\sim q)$",
-              "source_solution": "a) $p \\land (\\sim p)$ yields all $F$ values $\\implies$ Contradiction ($c$).\nb) Both expressions produce $[T, T, T, F]$, hence logically equivalent.\nc) Both expressions produce $[F, F, T, F]$, hence logically equivalent.\nd) Both expressions produce $[T, T, F, T]$, hence logically equivalent."
-            },
-            {
-              "q_num": "7",
-              "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) $x > 0$\nd) Some students are weak in mathematics.\ne) All teachers are labourous.",
-              "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) $x \\le 0$\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous."
-            },
-            {
-              "q_num": "8",
-              "text": "Find the truth value and negation of each:\na) $3 + 2 = 5$ or $6$ is a multiple of $5$.\nb) $8$ is a prime number and $4$ is even.\nc) If $3 > 0$ then $4 + 6 = 10$.\nd) If $2$ is odd or $3$ is a natural number then $2 + 3 = 8$.\ne) If $2 \\times 3 = 5 \\implies 3 > 1$ then $6$ is even.\nf) Triangle $ABC$ is right angled at $B \\iff AB^2 + BC^2 = AC^2$.",
-              "source_solution": "a) Truth value: **T**. Negation: \"$3 + 2 \\ne 5$ and $6$ is not a multiple of $5$.\"\nb) Truth value: **F**. Negation: \"$8$ is not prime or $4$ is odd.\"\nc) Truth value: **T**. Negation: \"$3 > 0$ and $4 + 6 \\ne 10$.\"\nd) Truth value: **F**. Negation: \"$2$ is odd or $3$ is natural and $2 + 3 \\ne 8$.\"\ne) Truth value: **T**. Negation: \"If $2 \\times 3 = 5$, then $3 > 1$ and $6$ is odd.\"\nf) Truth value: **T**. Negation: \"$ABC$ is right angled at $B$ and $AB^2+BC^2 \\ne AC^2$, or $ABC$ not right angled at $B$ and $AB^2+BC^2=AC^2$.\""
-            },
-            {
-              "q_num": "9",
-              "text": "For the statements:\na) If $3$ is a natural number then $1/3$ is a rational number.\nb) $x^2 = 4$ whenever $x = 2$.\nc) If the battery is low then the mobile does not work well.\nFind i) antecedent & consequent, ii) converse, inverse & contrapositive, iii) negation.",
-              "source_solution": "a) i) Ant: $3$ is natural, Con: $1/3$ is rational.\nii) Conv: If $1/3$ is rational then $3$ is natural; Inv: If $3$ is not natural then $1/3$ is not rational; Contrap: If $1/3$ is not rational then $3$ is not natural.\niii) Neg: $3$ is natural and $1/3$ is not rational.\n\nb) i) Ant: $x=2$, Con: $x^2=4$.\nii) Conv: If $x^2=4$ then $x=2$; Inv: If $x \\ne 2$ then $x^2 \\ne 4$; Contrap: If $x^2 \\ne 4$ then $x \\ne 2$.\niii) Neg: $x=2$ and $x^2 \\ne 4$.\n\nc) i) Ant: Battery low, Con: Mobile does not work well.\nii) Conv: If mobile doesn't work well then battery is low; Inv: If battery is not low then mobile works well; Contrap: If mobile works well then battery is not low.\niii) Neg: Battery is low and mobile works well."
-            },
-            {
-              "q_num": "10",
-              "text": "Prove tautologies and contradictions:\na) $p \\lor (\\sim p \\land q)$ is a tautology.\nb) $(p \\land q) \\implies (p \\lor q)$ is a tautology.\nc) $\\sim(p \\lor q) \\land q$ is a contradiction.\nd) $(p \\land q) \\land \\sim(p \\lor q)$ is a contradiction.\ne) $[\\sim q \\land (p \\implies q)] \\implies \\sim p$ is a tautology.\nf) $[(p \\land q) \\implies p] \\implies (q \\land \\sim q)$ is a contradiction.",
-              "source_solution": "a) Truth values for all rows: $[T, T, T, T] \\implies$ **Tautology**.\nb) Truth values for all rows: $[T, T, T, T] \\implies$ **Tautology**.\nc) Truth values for all rows: $[F, F, F, F] \\implies$ **Contradiction**.\nd) Truth values for all rows: $[F, F, F, F] \\implies$ **Contradiction**.\ne) Truth values for all rows: $[T, T, T, T] \\implies$ **Tautology**.\nf) Evaluates to $T \\implies F = F \\implies$ **Contradiction**."
-            }
-          ]
-        },
-        {
-          "id": "ex1_2",
-          "name": "Exercise 1.2",
-          "topic": "Sets",
-          "questions": [
-            {
-              "q_num": "1",
-              "text": "If $A \\cap B = \\phi$, prove that:\na) $A \\subseteq \\overline{B}$\nb) $B \\cap \\overline{A} = B$\nc) $A \\cup \\overline{B} = \\overline{B}$",
-              "source_solution": "Given $A \\cap B = \\phi$ (disjoint sets):\na) Let $x \\in A \\implies x \\notin B \\implies x \\in \\overline{B}$. Hence $A \\subseteq \\overline{B}$.\nb) $B \\cap \\overline{A} = \\{x : x \\in B \\text{ and } x \\notin A\\} = \\{x : x \\in B\\} = B$.\nc) $A \\cup \\overline{B} = \\{x : x \\in A \\text{ or } x \\in \\overline{B}\\} = \\{x : x \\notin B \\text{ or } x \\in \\overline{B}\\} = \\overline{B}$."
-            },
-            {
-              "q_num": "2",
-              "text": "If $A \\subseteq B$, prove that:\na) $\\overline{B} \\subseteq \\overline{A}$\nb) $A \\cup B = B$\nc) $A \\cap B = A$",
-              "source_solution": "Given $A \\subseteq B$:\na) $x \\in \\overline{B} \\implies x \\notin B \\implies x \\notin A \\implies x \\in \\overline{A}$. Hence $\\overline{B} \\subseteq \\overline{A}$.\nb) $A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\} = \\{x : x \\in B \\text{ or } x \\in B\\} = B$.\nc) $A \\cap B = \\{x : x \\in A \\text{ and } x \\in B\\} = \\{x : x \\in A\\} = A$."
-            },
-            {
-              "q_num": "3",
-              "text": "Prove that:\na) $B - A = B \\cap \\overline{A}$\nb) $A - B = A \\cap \\overline{B}$\nc) $A - \\overline{B} = B - \\overline{A}$",
-              "source_solution": "a) $B - A = \\{x : x \\in B \\text{ and } x \\notin A\\} = \\{x : x \\in B \\text{ and } x \\in \\overline{A}\\} = B \\cap \\overline{A}$.\nb) $A - B = \\{x : x \\in A \\text{ and } x \\notin B\\} = \\{x : x \\in A \\text{ and } x \\in \\overline{B}\\} = A \\cap \\overline{B}$.\nc) $A - \\overline{B} = \\{x : x \\in A \\text{ and } x \\notin \\overline{B}\\} = \\{x : x \\in A \\text{ and } x \\in B\\} = B - \\overline{A}$."
-            },
-            {
-              "q_num": "4",
-              "text": "If $A, B, C$ are subsets of universal set $U$, prove:\na) $A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C)$\nb) $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$",
-              "source_solution": "a) $x \\in A \\cup (B \\cap C) \\iff x \\in A \\lor (x \\in B \\land x \\in C) \\iff (x \\in A \\lor x \\in B) \\land (x \\in A \\lor x \\in C) \\iff x \\in (A \\cup B) \\cap (A \\cup C)$.\nb) $x \\in A \\cap (B \\cup C) \\iff x \\in A \\land (x \\in B \\lor x \\in C) \\iff (x \\in A \\land x \\in B) \\lor (x \\in A \\land x \\in C) \\iff x \\in (A \\cap B) \\cup (A \\cap C)$."
-            },
-            {
-              "q_num": "5",
-              "text": "Prove De Morgan's laws and set differences:\na) $(A \\cup B)' = A' \\cap B'$\nb) $(A \\cap B)' = A' \\cup B'$\nc) $A - (B \\cup C) = (A - B) \\cap (A - C) = (A - B) - C$\nd) $A - (B \\cap C) = (A - B) \\cup (A - C)$",
-              "source_solution": "a) $x \\### Step 2: Complete All Chapter 1 Exercises (1.1, 1.2, and 1.3)
-
-Here is the clean, verified code containing **all questions from Exercise 1.1, 1.2, and 1.3** with exact question numbers and **no reference lines**.
-
----
-
-#### Step-by-Step Instructions:
-
-1. **Open GitHub**: Go to [github.com/krishnakumar-hq/gyansetu-ai](https://github.com/krishnakumar-hq/gyansetu-ai).
-2. **Edit `data/math11_solutions.json`**:
-   - Open the **`data`** folder $\rightarrow$ click on **`math11_solutions.json`**.
-   - Click the **pencil icon ✎** to edit.
-3. **Select all code** (`Ctrl + A`), press `Delete`, and paste this content:
-
-```json
-{
-  "chapters": [
-    {
-      "id": "ch01",
-      "number": 1,
-      "name": "Logic, Sets and Real Number System",
-      "unit": "Unit 1: Algebra",
-      "exercises": [
-        {
-          "id": "ex1_1",
-          "name": "Exercise 1.1",
+          "name": "Exercise 1.1 (Logic)",
           "topic": "Logic",
           "questions": [
             {
@@ -173,23 +65,23 @@ Here is the clean, verified code containing **all questions from Exercise 1.1, 1
         },
         {
           "id": "ex1_2",
-          "name": "Exercise 1.2",
+          "name": "Exercise 1.2 (Sets)",
           "topic": "Sets",
           "questions": [
             {
               "q_num": "1",
               "text": "If A and B are disjoint (A ∩ B = ∅), prove:\na) A ⊆ B'\nb) B ∩ A' = B\nc) A ∪ B' = B'",
-              "source_solution": "Given A ∩ B = ∅:\na) For any x in A, x is not in B, so x is in B'. Hence A ⊆ B'.\nb) B ∩ A' consists of elements in B and not in A. Since no element of B is in A, B ∩ A' = B.\nc) Since A ⊆ B', taking union with B' yields A ∪ B' = B'."
+              "source_solution": "a) For any x in A, x is not in B, so x is in B'. Hence A ⊆ B'.\nb) B ∩ A' consists of elements in B and not in A = B.\nc) Since A ⊆ B', A ∪ B' = B'."
             },
             {
               "q_num": "2",
               "text": "If A ⊆ B, prove:\na) B' ⊆ A'\nb) A ∪ B = B\nc) A ∩ B = A",
-              "source_solution": "Given A ⊆ B:\na) Let x be in B'. Then x is not in B, which implies x is not in A (since all elements of A are in B). Thus x is in A', proving B' ⊆ A'.\nb) Since every element of A is already in B, the union A ∪ B is simply B.\nc) The common elements between A and B are all elements of A, so A ∩ B = A."
+              "source_solution": "a) x in B' implies x not in B implies x not in A, so x in A'. Thus B' ⊆ A'.\nb) All elements of A are in B, so A ∪ B = B.\nc) Common elements between A and B are A, so A ∩ B = A."
             },
             {
               "q_num": "3",
               "text": "Prove set difference identities:\na) B - A = B ∩ A'\nb) A - B = A ∩ B'\nc) A - B' = B - A'",
-              "source_solution": "a) B - A = {x : x in B and x not in A} = {x : x in B and x in A'} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = {x : x in A and x in B'} = A ∩ B'.\nc) A - B' = A ∩ (B')' = A ∩ B = B ∩ A = B - A'."
+              "source_solution": "a) B - A = {x : x in B and x not in A} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = A ∩ B'.\nc) A - B' = A ∩ (B')' = A ∩ B = B ∩ A = B - A'."
             },
             {
               "q_num": "4",
@@ -199,33 +91,2123 @@ Here is the clean, verified code containing **all questions from Exercise 1.1, 1
             {
               "q_num": "5",
               "text": "Prove De Morgan's laws and set differences:\na) (A ∪ B)' = A' ∩ B'\nb) (A ∩ B)' = A' ∪ B'\nc) A - (B ∪ C) = (A - B) ∩ (A - C) = (A - B) - C\nd) A - (B ∩ C) = (A - B) ∪ (A - C)",
-              "source_solution": "a) x in (A ∪ B)' means x is not in (A ∪ B), which means x is not in A and x is not in B. Hence x is in A' ∩ B'.\nb) x in (A ∩ B)' means x is not in (A ∩ B), which means x is not in A or x is not in B. Hence x is in A' ∪ B'.\nc) x in A - (B ∪ C) means x is in A and not in (B or C), which means x is in A and not in B, and x is in A and not in C. Hence (A - B) ∩ (A - C). Also, removing B then removing C gives (A - B) - C.\nd) x in A - (B ∩ C) means x is in A and not in both B and C, which means x is in (A - B) or x is in (A - C). Hence (A - B) ∪ (A - C)."
+              "source_solution": "a) x in (A ∪ B)' iff x not in A and x not in B iff x in A' ∩ B'.\nb) x in (A ∩ B)' iff x not in A or x not in B iff x in A' ∪ B'.\nc) x in A - (B ∪ C) iff x in A and not in B and not in C iff (A - B) ∩ (A - C). Removing B then C gives (A - B) - C.\nd) x in A - (B ∩ C) iff x in A and (not in B or not in C) iff (A - B) ∪ (A - C)."
             }
           ]
         },
         {
           "id": "ex1_3",
-          "name": "Exercise 1.3",
+          "name": "Exercise 1.3 (Real Numbers)",
           "topic": "Real Number System",
           "questions": [
             {
               "q_num": "1",
-              "text": "Evaluate:\na) |-2| + 4\nb) |-5| + |-2| - 3\nc) 2 + |-3| - |-5|\nd) |3 - |-5||",
+              "text": "Evaluate absolute values:\na) |-2| + 4\nb) |-5| + |-2| - 3\nc) 2 + |-3| - |-5|\nd) |3 - |-5||",
               "source_solution": "a) |-2| + 4 = 2 + 4 = 6\nb) |-5| + |-2| - 3 = 5 + 2 - 3 = 4\nc) 2 + |-3| - |-5| = 2 + 3 - 5 = 0\nd) |3 - |-5|| = |3 - 5| = |-2| = 2"
             },
             {
               "q_num": "2",
-              "text### Step 2: Add Exercise 1.2 (Sets)
+              "text": "Let (i) x = 2, y = 3 and (ii) x = 2, y = -3. Verify:\na) |x + y| <= |x| + |y|\nb) |x - y| >= |x| - |y|\nc) |xy| = |x| * |y|\nd) |x/y| = |x| / |y|",
+              "source_solution": "(i) For x = 2, y = 3:\na) |2 + 3| = 5 = |2| + |3| (Verified)\nb) |2 - 3| = 1 > |2| - |3| = -1 (Verified)\nc) |2 * 3| = 6 = |2| * |3| (Verified)\nd) |2/3| = 2/3 = |2| / |3| (Verified)\n\n(ii) For x = 2, y = -3:\na) |2 - 3| = 1 < |2| + |-3| = 5 (Verified)\nb) |2 - (-3)| = 5 > |2| - |-3| = -1 (Verified)\nc) |2 * (-3)| = 6 = |2| * |-3| (Verified)\nd) |2/(-3)| = 2/3 = |2| / |-3| (Verified)"
+            },
+            {
+              "q_num": "3",
+              "text": "Solve inequalities:\na) x - 1 > 2\nb) x - 3 <= 5\nc) -1 < x - 2 < 3\nd) -3 <= 2x - 1 <= 5\ne) x^2 - 2x > 0\nf) 6 + 5x - x^2 >= 0\ng) x(x + 2)/(x - 1) <= 0",
+              "source_solution": "a) x - 1 > 2 => x > 3\nb) x - 3 <= 5 => x <= 8\nc) -1 < x - 2 < 3 => 1 < x < 5\nd) -3 <= 2x - 1 <= 5 => -1 <= x <= 3\ne) x(### Why It Looked Blank & How We Fix It
 
-#### Where to Add It:
-In your file **`data/math11_solutions.json`** on GitHub, inside the `"exercises": [ ... ]` list, right after the closing brace `}` of Exercise 1.1.
+In your screenshot, the **Textbook Solutions** tab opened properly, but the questions were blank because `data/math11_solutions.json` had a missing bracket from a previous edit. 
+
+Here is the complete, working file containing **Exercise 1.1 (Logic)**, **Exercise 1.2 (Sets)**, and **Exercise 1.3 (Real Numbers)** with all questions and **no reference lines**.
 
 ---
 
-#### Step-by-Step Instructions:
+### Step 1: Update `data/math11_solutions.json`
 
-1. **Open GitHub**: Go to **`data/math11_solutions.json`** and click the **pencil icon ✎** to edit.
-2. After the closing `}` of Exercise 1.1, add a comma `,` and paste this **Exercise 1.2** block:
+1. Open GitHub: **[github.com/krishnakumar-hq/gyansetu-ai](https://github.com/krishnakumar-hq/gyansetu-ai)**.
+2. Click the **`data`** folder $\rightarrow$ click **`math11_solutions.json`**.
+3. Click the **pencil icon ✎** in the top-right corner to edit.
+4. Select all code (`Ctrl + A`), press `Delete`, and paste this content:
+
+```json
+{
+  "chapters": [
+    {
+      "id": "ch01",
+      "number": 1,
+      "name": "Logic, Sets and Real Number System",
+      "unit": "Unit 1: Algebra",
+      "exercises": [
+        {
+          "id": "ex1_1",
+          "name": "Exercise 1.1 (Logic)",
+          "topic": "Logic",
+          "questions": [
+            {
+              "q_num": "1",
+              "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?",
+              "source_solution": "a) Declarative sentence -> Statement, Truth value: True (T).\nb) Declarative sentence -> Statement, Truth value: False (F).\nc) Declarative sentence -> Statement, Truth value: True (T).\nd) Interrogative sentence -> Not a statement.\ne) Imperative sentence -> Not a statement.\nf) Exclamatory sentence -> Not a statement."
+            },
+            {
+              "q_num": "2",
+              "text": "Let p: demand is increasing and q: supply is decreasing. Express in words:\na) ~p, b) ~q, c) p ^ q, d) p v q, e) ~p ^ q, f) p v ~q, g) ~p ^ ~q, h) ~(p ^ q)",
+              "source_solution": "a) Demand is not increasing.\nb) Supply is not decreasing.\nc) Demand is increasing and supply is decreasing.\nd) Demand is increasing or supply is decreasing.\ne) Demand is not increasing and supply is decreasing.\nf) Demand is increasing or supply is not decreasing.\ng) Neither demand is increasing nor supply is decreasing.\nh) It is false that demand is increasing and supply is decreasing."
+            },
+            {
+              "q_num": "3",
+              "text": "Express in symbolic form:\na) Temperature is increasing (p) and length is expanding (q).\nb) Pressure is decreasing (p) or volume is increasing (q).\nc) Neither demand is increasing (p) nor price is increasing (q).\nd) It is false that Pradeep is bold (p) or Sandeep is handsome (q).",
+              "source_solution": "a) p ^ q\nb) p v q\nc) ~p ^ ~q\nd) ~(p v q)"
+            },
+            {
+              "q_num": "4",
+              "text": "Construct truth tables for (a to i):",
+              "source_solution": "Truth value results for (TT, TF, FT, FF):\na) (~p) ^ q -> [F, F, T, F]\nb) (~p) v (~q) -> [F, T, T, T]\nc) ~(p ^ q) -> [F, T, T, T]\nd) ~[p v (~q)] -> [F, F, T, F]\ne) (p => q) ^ (q => p) -> [T, F, F, T]\nf) (~p v q) => (p v q) -> [T, T, T, F]\ng) [p ^ (p => q)] => q -> [T, T, T, T] (Tautology)\nh) (p => q) <=> (~p v q) -> [T, T, T, T] (Tautology)\ni) (p <=> q) v (q <=> r) -> [T, T, F, T, T, F, T, T]"
+            },
+            {
+              "q_num": "5",
+              "text": "If p=T, q=F, r=T, s=F, find truth values of (a to f):",
+              "source_solution": "a) p ^ q = F\nb) p v (~q) = T\nc) (~p) ^ (~q) = F\nd) q v (p ^ s) = F\ne) ~(~p) = T\nf) (p v q) ^ (r v s) = T"
+            },
+            {
+              "q_num": "6",
+              "text": "Prove by truth table:\na) p ^ (~p) is contradiction c\nb) p v q is equivalent to q v p\nc) ~[p v (~q)] is equivalent to (~p) ^ q\nd) ~[(~p) ^ q] is equivalent to p v (~q)",
+              "source_solution": "a) Evaluates to [F, F] -> Contradiction c.\nb) Both yield [T, T, T, F] -> Logically equivalent.\nc) Both yield [F, F, T, F] -> Logically equivalent.\nd) Both yield [T, T, F, T] -> Logically equivalent."
+            },
+            {
+              "q_num": "7",
+              "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) x > 0\nd) Some students are weak in mathematics.\ne) All teachers are labourous.",
+              "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) x <= 0\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous."
+            },
+            {
+              "q_num": "8",
+              "text": "Find truth value and negation of (a to f):",
+              "source_solution": "a) Truth value: T. Negation: '3 + 2 != 5 and 6 is not a multiple of 5.'\nb) Truth value: F. Negation: '8 is not prime or 4 is odd.'\nc) Truth value: T. Negation: '3 > 0 and 4 + 6 != 10.'\nd) Truth value: F. Negation: '2 is odd or 3 is natural and 2 + 3 != 8.'\ne) Truth value: T. Negation: 'If 2 * 3 = 5, then 3 > 1 and 6 is odd.'\nf) Truth value: T. Negation: '(ABC right-angled at B and AB^2+BC^2 != AC^2) or (ABC not right-angled at B and AB^2+BC^2 = AC^2).'"
+            },
+            {
+              "q_num": "9",
+              "text": "For the statements (a to c), find antecedent/consequent, converse, inverse, contrapositive, and negation:",
+              "source_solution": "a) Ant: 3 is natural; Con: 1/3 is rational. Conv: 1/3 rational => 3 natural. Inv: 3 not natural => 1/3 not rational. Contrap: 1/3 not rational => 3 not natural. Neg: 3 is natural and 1/3 is not rational.\nb) Ant: x = 2; Con: x^2 = 4. Conv: x^2 = 4 => x = 2. Inv: x != 2 => x^2 != 4. Contrap: x^2 != 4 => x != 2. Neg: x = 2 and x^2 != 4.\nc) Ant: Battery low; Con: Mobile fails. Conv: Mobile fails => battery low. Inv: Battery not low => mobile works. Contrap: Mobile works => battery not low. Neg: Battery low and mobile works."
+            },
+            {
+              "q_num": "10",
+              "text": "Prove tautologies and contradictions (a to f):",
+              "source_solution": "a) p v (~p ^ q) -> [T, T, T, T] (Tautology)\nb) (p ^ q) => (p v q) -> [T, T, T, T] (Tautology)\nc) ~(p v q) ^ q -> [F, F, F, F] (Contradiction)\nd) (p ^ q) ^ ~(p v q) -> [F, F, F, F] (Contradiction)\ne) [~q ^ (p => q)] => ~p -> [T, T, T, T] (Tautology)\nf) [(p ^ q) => p] => (q ^ ~q) -> [F, F, F, F] (Contradiction)"
+            }
+          ]
+        },
+        {
+          "id": "ex1_2",
+          "name": "Exercise 1.2 (Sets)",
+          "topic": "Sets",
+          "questions": [
+            {
+              "q_num": "1",
+              "text": "If A and B are disjoint (A ∩ B = ∅), prove:\na) A ⊆ B'\nb) B ∩ A' = B\nc) A ∪ B' = B'",
+              "source_solution": "Given A ∩ B = ∅:\na) For any x in A, x is not in B, so x is in B'. Hence A ⊆ B'.\nb) B ∩ A' consists of elements in B and not in A = B.\nc) Since A ⊆ B', taking union with B' yields A ∪ B' = B'."
+            },
+            {
+              "q_num": "2",
+              "text": "If A ⊆ B, prove:\na) B' ⊆ A'\nb) A ∪ B = B\nc) A ∩ B = A",
+              "source_solution": "Given A ⊆ B:\na) Let x be in B'. Then x is not in B, which implies x is not in A. Thus x is in A', proving B' ⊆ A'.\nb) Since every element of A is already in B, A ∪ B = B.\nc) The common elements between A and B are all elements of A, so A ∩ B = A."
+            },
+            {
+              "q_num": "3",
+              "text": "Prove set difference identities:\na) B - A = B ∩ A'\nb) A - B = A ∩ B'\nc) A - B' = B - A'",
+              "source_solution": "a) B - A = {x : x in B and x not in A} = {x : x in B and x in A'} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = {x : x in A and x in B'} = A ∩ B'.\nc) A - B' = A ∩ (B')' = A ∩ B = B ∩ A = B - A'."
+            },
+            {
+              "q_num": "4",
+              "text": "If A, B, C are subsets of U, prove distributive laws:\na) A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)\nb) A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+              "source_solution": "a) An element x is in A ∪ (B ∩ C) iff x is in A, or (x is in B and x is in C). By logical distribution, this equals (x in A or x in B) and (x in A or x in C), defining (A ∪ B) ∩ (A ∪ C).\nb) Similarly, x in A ∩ (B ∪ C) means x in A and (x in B or x in C). Distributing gives (x in A and x in B) or (x in A and x in C), defining (A ∩ B) ∪ (A ∩ C)."
+            },
+            {
+              "q_num": "5",
+              "text": "Prove De Morgan's laws and set differences:\na) (A ∪ B)' = A' ∩ B'\nb) (A ∩ B)' = A' ∪ B'\nc) A - (B ∪ C) = (A - B) ∩ (A - C) = (A - B) - C\nd) A - (B ∩ C) = (A - B) ∪ (A - C)",
+              "source_solution": "a) x in (A ∪ B)' means x is not in (A ∪ B), so x is not in A and x is not in B. Hence x is in A' ∩ B'.\nb) x in (A ∩ B)' means x is not in (A ∩ B), so x is not in A or x is not in B. Hence x is in A' ∪ B'.\nc) x in A - (B ∪ C) means x is in A and not in B and not in C. Hence (A - B) ∩ (A - C). Removing B then C gives (A - B) - C.\nd) x in A - (B ∩ C) means x is in A and not in both B and C. Hence (A - B) ∪ (A - C)."
+            }
+          ]
+        },
+        {
+          "id": "ex1_3",
+          "name": "Exercise 1.3 (Real Numbers)",
+          "topic": "Real Number System",
+          "questions": [
+            {
+              "q_num": "1",
+              "text": "Evaluate absolute values:\na) |-2| + 4\nb) |-5| + |-2| - 3\nc) 2 + |-3| - |-5|\nd) |3 - |-5||",
+              "source_solution": "a) |-2| + 4 = 2 + 4 = 6\nb) |-5| + |-2| - 3 = 5 + 2 - 3 = 4\nc) 2 + |-3| - |-5| = 2 + 3 - 5 = 0\nd) |3 - |-5|| = |3 - 5| = |-2| = 2"
+            },
+            {
+              "q_num": "2",
+              "text": "Let (i) x = 2, y = 3 and (ii) x = 2, y = -3. Verify:\na) |x + y| <= |x| + |y|\nb) |x - y| >= |x| - |y|\nc) |xy| = |x| * |y|\nd) |x/y| = |x| / |y|",
+              "source_solution": "(i) For x = 2, y = 3:\na) |2 + 3| = 5 = |2| + |3| (Verified)\nb) |2 - 3| = 1 > |2| - |3| = -1 (Verified)\nc) |2 * 3| = 6 = |2| * |3| (Verified)\nd) |2/3| = 2/3 = |2| / |3| (Verified)\n\n(ii) For x = 2, y = -3:\na) |2 - 3| = 1 < |2| + |-3| = 5 (Verified)\nb) |2 - (-3)| = 5 > |2| - |-3| = -1 (Verified)\nc) |2 * (-3)| = 6 = |2| * |-3| (Verified)\nd) |2/(-3)| = 2/3 = |2| / |-3| (Verified)"
+            },
+            {
+              "q_num": "3",
+              "text": "Solve inequalities:\na) x - 1 > 2\nb) x - 3 <= 5\nc) -1 < x - 2 < 3\nd) -3 <= 2x - 1 <= 5\ne) x^2 - 2x > 0\nf) 6 + 5x - x^2 >= 0\ng) x(x + 2)/(x - 1) <= 0",
+              "source_solution": "a) x - 1 > 2 => x > 3\nb) x - 3 <= 5 => x <= 8\nc) -1 < x - 2 < 3 => 1 < x < 5\nd) -3 <= 2x - 1 <= 5 => -1 <= x <= 3\ne) x(x - 2) > 0 => x in (-inf, 0) U (2, inf)\nf) (x + 1)(x - 6) <= 0 => x in [-1, 6]\ng) Critical values: -2, 0, 1. Testing signs gives: x in (-inf, -2] U [0, 1)"
+            },
+            {
+              "q_num": "4",
+              "text": "a) For A = [-3, 1) and B = [-2, 4], find A ∪ B, A ∩ B, A - B, B - A.\nb) For A = (-1, 4) and B = [3, 5), find A ∪ B, A ∩ B, A - B.\nc) For U = R, A = (-1, 3], B = [0, 5), find A ∪ B, A ∩ B, A - B, B - A, A', B'.",
+              "source_solution": "a) A ∪ B = [-3, 4], A ∩ B = [-2, 1), A - B = [-3, -2), B - A = [1, 4].\nb) A ∪ B = (-1, 5), A ∩ B = [3, 4), A - B = (-1, 3).\nc) A ∪ B = (-1, 5), A ∩ B = [0, 3], A - B = (-1, 0), B - A = (3, 5), A' = (-inf, -1] U (3, inf), B' = (-inf, 0) U### The Fix: Update `index.html` to Display All Exercises Instantly
+
+The reason the question cards were blank in your screenshot is that the page was waiting for an external file to load. 
+
+By updating **`index.html`**, all three exercises (**Exercise 1.1: Logic, Exercise 1.2: Sets, and Exercise 1.3: Real Numbers**) will load **instantly and offline** with interactive filter pills, exact question numbering, clean math, and **no reference lines**.
+
+---
+
+### Step-by-Step Instructions:
+
+1. **Open GitHub**: Go to [github.com/krishnakumar-hq/gyansetu-ai](https://github.com/krishnakumar-hq/gyansetu-ai).
+2. **Edit `index.html`**:
+   - Click on **`index.html`**.
+   - Click the **pencil icon ✎** to edit.
+3. **Select all code** (`Ctrl + A`), press `Delete`, and paste this updated code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GyanSetu AI — NEB Class 11 & 12 Study Companion</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- KaTeX for Beautiful Math & Chemistry Formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  
+  <!-- Marked.js for Clean Markdown Typography -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@13.0.2/marked.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #0ea5e9;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --error: #dc2626;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Header & Nav */
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .logo-badge {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+    }
+
+    .brand-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .stream-tag {
+      font-size: 0.75rem;
+      background: #e2e8f0;
+      color: var(--text-muted);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn.active, .nav-btn:hover {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .lang-switcher-select {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-main);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn-auth {
+      background: var(--primary);
+      color: #ffffff;
+      border: 1px solid var(--primary);
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-auth:hover {
+      background: var(--primary-dark);
+    }
+
+    .user-profile-badge {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--primary-light);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .user-avatar {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .user-name-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid #cbd5e1;
+      color: var(--text-muted);
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-logout:hover {
+      background: #f1f5f9;
+      color: #ef4444;
+      border-color: #fca5a5;
+    }
+
+    /* Disclaimer Notice Banner */
+    .disclaimer-banner {
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    /* App Views */
+    .view-section {
+      display: none;
+    }
+    .view-section.active {
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 2.5rem 1rem 1.5rem;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      margin-bottom: 1.25rem;
+      border: 1px solid #bfdbfe;
+    }
+
+    .hero h1 {
+      font-size: 2.3rem;
+      line-height: 1.25;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Search Bar */
+    .search-box-wrap {
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.9rem 1.25rem 0.9rem 2.75rem;
+      border: 2px solid var(--border);
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      outline: none;
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+      background: #ffffff;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .search-results-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 0.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      z-index: 50;
+      max-height: 350px;
+      overflow-y: auto;
+      display: none;
+      text-align: left;
+    }
+
+    .search-result-item {
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .search-result-item:hover {
+      background: var(--primary-light);
+    }
+
+    .search-result-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .search-result-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Class Switcher */
+    .class-switcher-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .class-switcher {
+      display: inline-flex;
+      background: #e2e8f0;
+      padding: 0.35rem;
+      border-radius: 10px;
+      gap: 0.35rem;
+    }
+
+    .class-btn {
+      border: none;
+      background: transparent;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .class-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Section Headings */
+    .section-head {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-head h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .section-head p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Subject Grid */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .subject-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .subject-card:hover, .subject-card.selected {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .subject-card.selected {
+      background: #f0f7ff;
+      border-width: 2px;
+    }
+
+    .subject-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .subject-icon {
+      font-size: 1.75rem;
+    }
+
+    .subject-info h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .subject-code {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .subject-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Chapter List Viewer */
+    .curriculum-viewer {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 3.5rem;
+    }
+
+    .viewer-header {
+      padding-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .viewer-header h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .chapters-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .chapter-item.mastered {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .chapter-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .chapter-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .chapter-unit {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-check-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .status-check-btn.done {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #86efac;
+      font-weight: 700;
+    }
+
+    .chapter-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .btn-small {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-main);
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.15s ease;
+    }
+
+    .btn-small:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-small.ai {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* CHAPTER STUDY VIEW */
+    .chapter-study-header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .breadcrumbs {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .breadcrumbs span {
+      color: var(--primary);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .chapter-hero-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .study-tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .study-tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px 8px 0 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .study-tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .study-content-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    .study-content-panel h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 0.5rem;
+    }
+
+    .formula-card {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1rem;
+    }
+
+    .formula-math {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 0.25rem;
+    }
+
+    .formula-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .qa-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .qa-q {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .qa-ans {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-top: 0.4rem;
+    }
+
+    .qa-tag {
+      font-size: 0.72rem;
+      background: #e0e7ff;
+      color: #3730a3;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+
+    .bilingual-box {
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #713f12;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .glossary-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    /* TEXTBOOK SOLUTIONS STYLES */
+    .exercise-pills-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .exercise-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .exercise-pill.active, .exercise-pill:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .solution-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .solution-q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .solution-q-badge {
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .solution-q-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      flex: 1;
+    }
+
+    .solution-toggle-btn {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .solution-toggle-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .solution-content-drawer {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-top: 0.85rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .solution-content-drawer.open {
+      display: block;
+    }
+
+    /* AI DOUBT SOLVER & FORMATTED OUTPUT */
+    .ai-chat-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .ai-prompt-templates {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .template-chip {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .template-chip:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .ai-input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .ai-textarea {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      resize: vertical;
+      min-height: 55px;
+    }
+
+    .ai-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .btn-ai-submit {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s ease;
+      height: fit-content;
+    }
+
+    .btn-ai-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-ai-submit:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .ai-response-container {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+      margin-top: 1rem;
+      display: none;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .ai-response-container h1, .ai-response-container h2, .ai-response-container h3, .ai-response-container h4 {
+      color: var(--primary-dark);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ai-response-container p {
+      margin-bottom: 0.85rem;
+    }
+
+    .ai-response-container ul, .ai-response-container ol {
+      margin-left: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .ai-response-container hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.25rem 0;
+    }
+
+    .ai-response-container blockquote {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem;
+    }
+
+    .ai-loading-indicator {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #bfdbfe;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* MOCK EXAM VIEW */
+    .exam-header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .timer-badge {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .exam-question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .exam-opt-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+      cursor: pointer;
+      background: #f8fafc;
+      transition: all 0.15s ease;
+    }
+
+    .exam-opt-row:hover {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+    }
+
+    .exam-opt-row.selected {
+      background: #eff6ff;
+      border-color: var(--primary);
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* REVISION PLANNER STYLES */
+    .revision-matrix-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .weightage-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .weightage-table th, .weightage-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    .weightage-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .planner-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .plan-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .plan-card h4 {
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .plan-task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Dashboard Styles */
+    .dashboard-header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .dash-greeting h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+    }
+
+    .dash-greeting p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .resume-card {
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: #ffffff;
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .btn-resume {
+      background: #ffffff;
+      color: var(--primary);
+      border: none;
+      padding: 0.55rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card .label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .stat-card .value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 0.35rem;
+    }
+
+    .progress-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .subject-progress-row {
+      margin-bottom: 1.25rem;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .progress-bar-bg {
+      background: #e2e8f0;
+      height: 10px;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: var(--primary);
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+
+    .weak-topic-alert {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .weak-topic-alert h3 {
+      color: #92400e;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .weak-topic-alert p {
+      color: #78350f;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .weak-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .weak-pill {
+      background: #ffffff;
+      border: 1px solid #fcd34d;
+      color: #b45309;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+
+    /* Auth Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 420px;
+      padding: 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem 0;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .auth-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .auth-message {
+      font-size: 0.85rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .auth-message.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .auth-message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.25rem 2rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .ai-input-row {
+        flex-direction: column;
+      }
+      .btn-ai-submit {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Disclaimer Banner -->
+  <div class="disclaimer-banner">
+    📢 <strong>Notice:</strong> GyanSetu AI is an independent educational platform built for NEB students. Not affiliated with NEB or the Government of Nepal.
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-group" onclick="showView('curriculum')">
+        <div class="logo-badge">GS</div>
+        <div class="brand-name">GyanSetu AI</div>
+        <span class="stream-tag">NEB 11 & 12</span>
+      </div>
+
+      <!-- Navigation Switcher -->
+      <div class="nav-links">
+        <button class="nav-btn active" id="nav-btn-explore" onclick="showView('curriculum')">📚 Curriculum</button>
+        <button class="nav-btn" id="nav-btn-planner" onclick="showView('planner')">📅 Revision Plan</button>
+        <button class="nav-btn" id="nav-btn-mock" onclick="showView('mock')">⏱️ Mock Exam</button>
+        <button class="nav-btn" id="nav-btn-dash" onclick="showView('dashboard')">📊 My Dashboard</button>
+      </div>
+
+      <!-- Language Selector & Auth Actions -->
+      <div class="auth-actions">
+        <select class="lang-switcher-select" id="global-lang-switcher" onchange="changeLanguage(this.value)">
+          <option value="bilingual">🇳🇵 Nepali-English</option>
+          <option value="english">🇬🇧 English</option>
+          <option value="pure_nepali">🇳🇵 शुद्ध नेपाली</option>
+        </select>
+
+        <button class="btn-auth" id="btn-open-login" onclick="openAuthModal('login')">Sign In</button>
+        
+        <div class="user-profile-badge" id="user-profile-badge">
+          <div class="user-avatar" id="user-avatar-initial">S</div>
+          <span class="user-name-text" id="user-name-display">Student</span>
+          <button class="btn-logout" onclick="logoutStudent()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="auth-modal" onclick="closeAuthModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Create Account</button>
+      </div>
+
+      <div id="auth-alert" class="auth-message"></div>
+
+      <!-- Login Form -->
+      <form id="form-login" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="student@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-submit">Sign In to GyanSetu</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" style="display: none;" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Aayush Shrestha" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="student@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Choose Class</label>
+          <select id="reg-class" class="form-control">
+            <option value="class-11">Class 11</option>
+            <option value="class-12">Class 12</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Create Password (min. 6 chars)</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="••••••••" minlength="6" required>
+        </div>
+        <button type="submit" class="btn-submit">Create Student Account</button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Feedback & Quality Control Report Modal -->
+  <div class="modal-overlay" id="report-modal" onclick="closeReportModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeReportModal()">&times;</button>
+      <h3 style="color:var(--primary); font-size:1.2rem; margin-bottom:0.5rem;">🚩 Report Inaccuracy / Suggest Edit</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Help us keep GyanSetu AI 100% aligned with official NEB board standards.</p>
+      
+      <form onsubmit="handleSendFeedback(event)">
+        <div class="form-group">
+          <label>Issue Type</label>
+          <select id="report-type" class="form-control">
+            <option value="calculation_error">Incorrect Calculation / Number</option>
+            <option value="formula_error">Incorrect Formula or Unit</option>
+            <option value="syllabus_mismatch">Out of NEB Syllabus</option>
+            <option value="translation_issue">Nepali Translation / Spelling Issue</option>
+            <option value="other">Other Suggestion</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Details & Suggested Correction</label>
+          <textarea id="report-details" class="form-control" rows="3" placeholder="Explain what needs fixing or provide the correct value..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" style="background:#dc2626;">Submit Correction Report</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="container">
+
+    <!-- VIEW 1: CURRICULUM EXPLORER & LANDING -->
+    <div id="view-curriculum" class="view-section active">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-pill">✨ Official CDC Curriculum-Aligned AI Study Platform</div>
+        <h1>Master NEB Class 11 & 12 with <span>Lesson-Aware AI Tutoring</span></h1>
+        <p>Comprehensive coverage of Compulsory English, अनिवार्य नेपाली, Physics, Chemistry, Mathematics, and Computer Science.</p>
+
+        <!-- Search Bar -->
+        <div class="search-box-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="curriculum-search-input" class="search-input" placeholder="Search any lesson, exercise (e.g. Exercise 1.1), story, or formula..." oninput="handleCurriculumSearch(this.value)">
+          <div class="search-results-dropdown" id="search-results-dropdown"></div>
+        </div>
+
+        <!-- Class Switcher -->
+        <div class="class-switcher-wrap">
+          <div class="class-switcher">
+            <button class="class-btn active" id="btn-c11" onclick="selectClass('class-11')">Class 11</button>
+            <button class="class-btn" id="btn-c12" onclick="selectClass('class-12')">Class 12</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subjects Section -->
+      <section>
+        <div class="section-head">
+          <div>
+            <h2 id="subjects-heading">Class 11 Subjects</h2>
+            <p>Select any subject to explore CDC units, lessons, stories, poems, and grammar.</p>
+          </div>
+        </div>
+        <div class="subject-grid" id="subject-grid"></div>
+      </section>
+
+      <!-- Chapter Explorer -->
+      <section class="curriculum-viewer" id="curriculum-viewer">
+        <div class="viewer-header">
+          <div>
+            <h3 id="viewer-subject-title">Loading Chapters...</h3>
+            <span id="viewer-subject-code" style="font-size: 0.8rem; color: var(--text-muted);"></span>
+          </div>
+          <span id="chapter-count" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);"></span>
+        </div>
+        <div class="chapters-container" id="chapters-container"></div>
+      </section>
+
+    </div>
+
+    <!-- VIEW 2: CHAPTER LEARNING & PRACTICE CENTER -->
+    <div id="view-chapter" class="view-section">
+      <div class="chapter-study-header">
+        <div class="breadcrumbs">
+          <span onclick="showView('curriculum')">Syllabus</span> &gt;
+          <span id="study-bc-subject">Subject</span> &gt;
+          <span id="study-bc-unit">Unit</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h1 class="chapter-hero-title" id="study-chapter-title">Lesson Title</h1>
+            <p id="study-chapter-meta" style="color: var(--text-muted); font-size: 0.88rem;">Official CDC Curriculum • High-Weightage Study Module</p>
+          </div>
+          <button class="status-check-btn" id="study-master-btn" onclick="toggleCurrentChapterMastery()" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+            ○ Mark Mastered
+          </button>
+        </div>
+      </div>
+
+      <!-- Adaptive Study Tabs -->
+      <div class="study-tabs-nav" id="study-tabs-nav-bar">
+        <button class="study-tab-btn active" id="tab-study-concepts" onclick="switchStudyTab('concepts')">📖 Summary & Overview</button>
+        <button class="study-tab-btn" id="tab-study-solutions" onclick="switchStudyTab('solutions')" style="display: none;">📚 Textbook Solutions</button>
+        <button class="study-tab-btn" id="tab-study-themes" onclick="switchStudyTab('themes')">🎭 Themes & Characters</button>
+        <button class="study-tab-btn" id="tab-study-grammar" onclick="switchStudyTab('grammar')">✍️ Grammar & Vocab</button>
+        <button class="study-tab-btn" id="tab-study-formulas" onclick="switchStudyTab('formulas')" style="display: none;">📐 Formulas & Laws</button>
+        <button class="study-tab-btn" id="tab-study-pastpapers" onclick="switchStudyTab('pastpapers')">📝 NEB Model Board Q&A</button>
+        <button class="study-tab-btn" id="tab-study-ai" onclick="switchStudyTab('ai')">⚡ Ask Lesson AI</button>
+      </div>
+
+      <!-- Study Tab 1: Concepts / Summary -->
+      <div id="study-panel-concepts" class="study-content-panel">
+        <h3 id="panel-concept-heading">1. Core Lesson Summary & Overview</h3>
+        <div id="study-concepts-body">
+          <p>Loading curated CDC notes...</p>
+        </div>
+        <div class="bilingual-box">
+          💡 <strong>Nepali-English Concept Note (नेपाली-English सारांश):</strong>
+          <p id="study-bilingual-note" style="margin-top: 0.35rem; margin-bottom: 0.75rem;">Loading explanation...</p>
+        </div>
+      </div>
+
+      <!-- Study Tab: TEXTBOOK SOLUTIONS MANUAL -->
+      <div id="study-panel-solutions" class="study-content-panel" style="display: none;">
+        <h3>📚 Textbook Solutions Manual</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">Step-by-step textbook solutions with mathematical notation.</p>
+        <div class="exercise-pills-bar" id="math-exercise-pills"></div>
+        <div id="math-questions-list"></div>
+      </div>
+
+      <!-- Study Tab 2: Themes & Characters -->
+      <div id="study-panel-themes" class="study-content-panel" style="display: none;">
+        <h3>2. Themes, Character Sketches & Literary Elements</h3>
+        <div id="study-themes-body"></div>
+      </div>
+
+      <!-- Study Tab 3: Grammar & Vocabulary -->
+      <div id="study-panel-grammar" class="study-content-panel" style="display: none;">
+        <h3>3. Grammar Rules, Language Skills & Vocabulary</h3>
+        <div id="study-grammar-body"></div>
+      </div>
+
+      <!-- Study Tab 4: Formulas (For Science) -->
+      <div id="study-panel-formulas" class="study-content-panel" style="display: none;">
+        <h3>Essential Formulas & Laws</h3>
+        <div id="study-formulas-body"></div>
+      </div>
+
+      <!-- Study Tab 5: Past Papers & Model Board Q&A -->
+      <div id="study-panel-pastpapers" class="study-content-panel" style="display: none;">
+        <h3>4. NEB Model Exam Questions & Structured Study Answers</h3>
+        <div id="study-pastpapers-body"></div>
+      </div>
+
+      <!-- Study Tab 6: LIVE AI DOUBT SOLVER -->
+      <div id="study-panel-ai" class="study-content-panel" style="display: none;">
+        <h3>5. Live GyanSetu AI Tutor (Lesson-Aware)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Ask specific questions about this lesson's plot, themes, character motivation, grammar rules, or get a structured NEB board exam answer.</p>
+        
+        <div class="ai-chat-box">
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem;">Quick Question Starters for this Lesson:</div>
+          <div class="ai-prompt-templates" id="ai-dynamic-prompt-chips">
+            <span class="template-chip" onclick="setAiPrompt('Explain the main theme and central message of this lesson in simple terms.')">💡 Main Theme & Message</span>
+            <span class="template-chip" onclick="setAiPrompt('Give me a character sketch and psychological analysis of the main characters in this lesson.')">👤 Character Analysis</span>
+            <span class="template-chip" onclick="setAiPrompt('Generate a standard 5-mark NEB board exam question and model answer for this lesson.')">📝 5-Mark Board Answer</span>
+            <span class="template-chip" onclick="setAiPrompt('यस पाठको मुख्य भाव, सन्देश र महत्त्वपूर्ण व्याकरण सरल नेपाली भाषामा बुझाइदिनुहोस्।')">🇳🇵 Explain in Simple Nepali</span>
+          </div>
+
+          <div class="ai-input-row">
+            <textarea id="ai-user-prompt" class="ai-textarea" placeholder="Ask any doubt or exam question specifically about this lesson..."></textarea>
+            <button class="btn-ai-submit" id="btn-ask-gemini" onclick="submitAiQuestion()">
+              <span id="ai-btn-text">Ask AI</span> ⚡
+            </button>
+          </div>
+
+          <!-- Loading Indicator -->
+          <div class="ai-loading-indicator" id="ai-loading">
+            <div class="spinner"></div>
+            <span>GyanSetu AI is analyzing the CDC syllabus and formulating your solution...</span>
+          </div>
+
+          <!-- Formatted AI Response Box -->
+          <div class="ai-response-container" id="ai-response-box"></div>
+
+          <!-- Quality Control Disclaimer & Report Button -->
+          <div id="ai-footer-bar" style="margin-top:0.75rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.78rem; color:var(--text-muted);">
+            <span>⚠️ AI answers are for study guidance; always verify with official CDC textbooks.</span>
+            <button class="btn-small" onclick="openReportModal()" style="font-size:0.75rem; color:#b91c1c; border-color:#fca5a5;">🚩 Report Inaccuracy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation footer inside chapter -->
+      <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
+        <button class="btn-small" onclick="showView('curriculum')">← Back to Curriculum</button>
+        <button class="btn-small ai" onclick="showView('dashboard')">View Progress in Dashboard →</button>
+      </div>
+    </div>
+
+    <!-- VIEW 3: REVISION PLANNER & STRATEGY CENTER -->
+    <div id="view-planner" class="view-section">
+      <div class="section-head">
+        <div>
+          <h2>NEB Board Exam Revision Strategy</h2>
+          <p>High-yield weightage matrix across all core subjects and 30-day master preparation timeline.</p>
+        </div>
+      </div>
+
+      <div class="revision-matrix-card">
+        <h3 style="color: var(--primary); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">📊 Official NEB Marks Distribution</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Total Theory: 75 Marks | Internal / Practical: 25 Marks per subject</p>
+
+        <table class="weightage-table">
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>High-Weightage Units</th>
+              <th>Typical Marks</th>
+              <th>Key Recommendation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Compulsory English</strong> (Eng.003/004)</td>
+              <td>Reading Comprehension, Literature (Stories/Poems), Free Writing & Contextual Grammar</td>
+              <td><strong>75 Theory Marks</strong></td>
+              <td>Structure paragraphs cleanly; focus on literary themes & grammar rules.</td>
+            </tr>
+            <tr>
+              <td><strong>अनिवार्य नेपाली</strong> (Nep.001/002)</td>
+              <td>कविता, कथा, निबन्ध व्याख्या, विवेचनात्मक उत्तर, शब्दनिर्माण, पदवर्ग र व्यावहारिक लेखन</td>
+              <td><strong>७५ पूर्णाङ्क</strong></td>
+              <td>वर्णविन्यास शुद्ध लेख्नुहोस्; बुँदाटिपोट र सारांश लेखनको ढाँचा मिलाउनुहोस्।</td>
+            </tr>
+            <tr>
+              <td><strong>Physics</strong> (Phy.101/201)</td>
+              <td>Mechanics, Electricity & Magnetism, Wave Optics</td>
+              <td><strong>50+ / 75 Marks</strong></td>
+              <td>Master derivation steps & numerical SI units.</td>
+            </tr>
+            <tr>
+              <td><strong>Chemistry</strong> (Chem.101/201)</td>
+              <td>Organic Chemistry, Physical (Stoichiometry/Equilibrium)</td>
+              <td><strong>50+ / 75 Marks</strong></td>
+              <td>Practice reaction mechanisms & molarity conversions.</td>
+            </tr>
+            <tr>
+              <td><strong>Mathematics</strong> (Mat.101/201)</td>
+              <td>Calculus (Derivatives/Integrals), Algebra & Matrices</td>
+              <td><strong>55+ / 75 Marks</strong></td>
+              <td>Solve past 5 years NEB model sets repeatedly.</td>
+            </tr>
+            <tr>
+              <td><strong>Computer Science</strong> (Com.101/201)</td>
+              <td>C Programming, DBMS/SQL, Networking</td>
+              <td><strong>45+ / 75 Marks</strong></td>
+              <td>Write clean syntax, proper comments & indentation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>30-Day Master Revision Roadmap</h2>
+          <p>Check off each week as you complete your syllabus targets.</p>
+        </div>
+      </div>
+
+      <div class="planner-timeline">
+        <div class="plan-card">
+          <h4>Week 1: High-Yield Foundations <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 1-7</span></h4>
+          <div class="plan-task-item"><input type="checkbox" id="task-1" onchange="saveTaskState('task-1')"> <label for="task-1">English: Short Stories (Selfish Giant, Neighbours)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-2" onchange="saveTaskState('task-2')"> <label for="task-2">नेपाली: वीर पुर्खा / आमाको सपना (कविता व्याख्या)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-3" onchange="saveTaskState('task-3')"> <label for="task-3">Physics: Vectors & Kinematics</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-4" onchange="saveTaskState('task-4')"> <label for="task-4">Chemistry: Stoichiometry & Volumetric Analysis</label></div>
+        </div>
+
+        <div class="plan-card">
+          <h4>Week 2: Core Analytical Powers <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 8-14</span></h4>
+          <div class="plan-task-item"><input type="checkbox" id="task-5" onchange="saveTaskState('task-5')"> <label for="task-5">English: Essay Writing & Modal Verbs</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-6" onchange="saveTaskState('task-6')"> <label for="task-6">नेपाली: गाउँको माया / विरहिणी दमयन्ती (कथा सारांश)</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-7" onchange="saveTaskState('task-7')"> <label for="task-7">Maths: Limits, Continuity & Differentiation</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-8" onchange="saveTaskState('task-8')"> <label for="task-8">CS: C Control Statements & DBMS</label></div>
+        </div>
+
+        <div class="plan-card">
+          <h4>Week 3: Deep Dives & Grammar <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 15-21</span></h4>
+          <div class="plan-task-item"><input type="checkbox" id="task-9" onchange="saveTaskState('task-9')"> <label for="task-9">English: Critical Thinking & Reported Speech</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-10" onchange="saveTaskState('task-10')"> <label for="task-10">नेपाली: पदवर्ग, शब्दनिर्माण, व्यावसायिक पत्र</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-11" onchange="saveTaskState('task-11')"> <label for="task-11">Physics: Electricity & Magnetism</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-12" onchange="saveTaskState('task-12')"> <label for="task-12">Chemistry: Organic Fundamentals & Alcohols</label></div>
+        </div>
+
+        <div class="plan-card">
+          <h4>Week 4: Mock Tests & Board Drills <span style="font-size: 0.8rem; background: #e0e7ff; color:#3730a3; padding: 0.2rem 0.5rem; border-radius: 4px;">Days 22-30</span></h4>
+          <div class="plan-task-item"><input type="checkbox" id="task-13" onchange="saveTaskState('task-13')"> <label for="task-13">Complete 3 Full Timed Mock Exams</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-14" onchange="saveTaskState('task-14')"> <label for="task-14">Review All Weak-Topic AI Summaries</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-15" onchange="saveTaskState('task-15')"> <label for="task-15">Final Formula & Literary Device Sheet Review</label></div>
+          <div class="plan-task-item"><input type="checkbox" id="task-16" onchange="saveTaskState('task-16')"> <label for="task-16">Past 5 Years Question Bank Speed Drill</label></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: TIMED MOCK EXAM SIMULATOR -->
+    <div id="view-mock" class="view-section">
+      <div class="exam-header">
+        <div>
+          <h2 style="font-size: 1.5rem; font-weight: 800;">NEB Model Mock Examination</h2>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Timed Board Preparation • Multi-Subject Evaluation</p>
+        </div>
+        <div class="timer-badge">
+          <span>⏱️</span> <span id="exam-timer-display">10:00</span>
+        </div>
+      </div>
+
+      <div id="exam-result-card" style="display:none; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; text-align: center; box-shadow: var(--shadow);">
+        <h2 id="exam-score-heading" style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Score: 0 / 10</h2>
+        <p id="exam-feedback-text" style="color: var(--text-muted); margin-bottom: 1.25rem;">Review your answers and detailed performance below.</p>
+        <button class="btn-auth" onclick="startMockExam()">Retake Mock Exam</button>
+      </div>
+
+      <div id="mock-questions-container"></div>
+
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <button class="btn-ai-submit" id="btn-submit-mock-exam" onclick="submitMockExam()" style="margin: 0 auto; padding: 0.9rem 2.5rem; font-size: 1rem;">
+          Submit Examination & View Analysis 🎯
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 5: STUDENT DASHBOARD -->
+    <div id="view-dashboard" class="view-section">
+      
+      <div class="dashboard-header">
+        <div class="dash-greeting">
+          <h2 id="dash-student-greeting">Namaste, Student 👋</h2>
+          <p id="dash-student-class">Class 11 • NEB Board Exam Target: 2027</p>
+        </div>
+        <div class="resume-card">
+          <div>
+            <div style="font-size: 0.75rem; opacity: 0.85; text-transform: uppercase; font-weight: 700;">Continue Studying</div>
+            <div id="dash-resume-chapter" style="font-weight: 700; font-size: 1.05rem; margin-top: 0.15rem;">English: The Selfish Giant</div>
+          </div>
+          <button class="btn-resume" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">Resume Study</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="label">Lessons Mastered</div>
+          <div class="value" id="stat-chapters-mastered">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Mock Exams Completed</div>
+          <div class="value" id="stat-mocks-completed">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Avg Accuracy</div>
+          <div class="value" id="stat-accuracy">--</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Daily AI Limit</div>
+          <div class="value" id="stat-ai-quota">20 / 20</div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <div class="section-head">
+          <div>
+            <h2>Syllabus Coverage</h2>
+            <p>Track your completion across all 6 NEB subjects.</p>
+          </div>
+        </div>
+        <div id="subject-progress-container"></div>
+      </div>
+
+      <div class="weak-topic-alert">
+        <h3>⚡ Recommended Priority Revision Topics</h3>
+        <p>High-weightage CDC board exam focus areas:</p>
+        <div class="weak-pills" id="weak-topics-pills-container">
+          <span class="weak-pill" onclick="openChapterStudy('m11-01', 'c11-mathematics'); switchStudyTab('solutions');">Maths: Logic & Truth Tables (Ex 1.1)</span>
+          <span class="weak-pill" onclick="openChapterStudy('eng11-lit-s01', 'c11-english')">English: Selfish Giant Themes</span>
+          <span class="weak-pill" onclick="openChapterStudy('nep11-p01', 'c11-nepali')">नेपाली: वीर पुर्खा कविता व्याख्या</span>
+          <span class="weak-pill" onclick="openChapterStudy('p11-02', 'c11-physics')">Physics: Projectile Motion</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>GyanSetu AI</strong> — Independent Educational Study Platform for NEB Class 11 & 12.</p>
+    <p>Subjects: Compulsory English, अनिवार्य नेपाली, Physics, Chemistry, Mathematics, Computer Science.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8;">&copy; 2026 GyanSetu AI. All rights reserved.</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    let curriculumData = null;
+    let notesData = {};
+    let mathSolutionsData = null;
+    let currentClassId = 'class-11';
+    let currentSubjectId = 'c11-english';
+    let currentLanguage = 'bilingual';
+    let activeChapter = null;
+    let isAiCooldownActive = false;
+    let activeMathExerciseId = null;
+
+    // Embedded Complete Chapter 1 Mathematics Solutions Dataset
+    const MATH11_SOLUTIONS_DATA = {
+      "m11-01": {
+        "chapter_name": "Logic, Sets and Real Number System",
+        "exercises": [
+          {
+            "id": "ex1_1",
+            "name": "Exercise 1.1 (Logic)",
+            "questions": [
+              { "q_num": "1", "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?", "source_solution": "a) Declarative sentence -> Statement, Truth value: True (T).\nb) Declarative sentence -> Statement, Truth value: False (F).\nc) Declarative sentence -> Statement, Truth value: True (T).\nd) Interrogative sentence -> Not a statement.\ne) Imperative sentence -> Not a statement.\nf) Exclamatory sentence -> Not a statement." },
+              { "q_num": "2", "text": "Let p: demand is increasing and q: supply is decreasing. Express in words:\na) ~p, b) ~q, c) p ^ q, d) p v q, e) ~p ^ q, f) p v ~q, g) ~p ^ ~q, h) ~(p ^ q)", "source_solution": "a) Demand is not increasing.\nb) Supply is not decreasing.\nc) Demand is increasing and supply is decreasing.\nd) Demand is increasing or supply is decreasing.\ne) Demand is not increasing and supply is decreasing.\nf) Demand is increasing or supply is not decreasing.\ng) Neither demand is increasing nor supply is decreasing.\nh) It is false that demand is increasing and supply is decreasing." },
+              { "q_num": "3", "text": "Express in symbolic form:\na) Temperature is increasing (p) and length is expanding (q).\nb) Pressure is decreasing (p) or volume is increasing (q).\nc) Neither demand is increasing (p) nor price is increasing (q).\nd) It is false that Pradeep is bold (p) or Sandeep is handsome (q).", "source_solution": "a) p ^ q\nb) p v q\nc) ~p ^ ~q\nd) ~(p v q)" },
+              { "q_num": "4", "text": "Construct truth tables for:\na) (~p) ^ q, b) (~p) v (~q), c) ~(p ^ q), d) ~[p v (~q)], e) (p => q) ^ (q => p), f) (~p v q) => (p v q), g) [p ^ (p => q)] => q, h) (p => q) <=> (~p v q), i) (p <=> q) v (q <=> r)", "source_solution": "Truth values across standard truth rows:\na) (~p) ^ q -> [F, F, T, F]\nb) (~p) v (~q) -> [F, T, T, T]\nc) ~(p ^ q) -> [F, T, T, T]\nd) ~[p v (~q)] -> [F, F, T, F]\ne) (p => q) ^ (q => p) -> [T, F, F, T]\nf) (~p v q) => (p v q) -> [T, T, T, F]\ng) [p ^ (p => q)] => q -> [T, T, T, T] (Tautology)\nh) (p => q) <=> (~p v q) -> [T, T, T, T] (Tautology)\ni) (p <=> q) v (q <=> r) -> [T, T, F, T, T, F, T, T]" },
+              { "q_num": "5", "text": "If p=T, q=F, r=T, s=F, find truth values of:\na) p ^ q, b) p v (~q), c) (~p) ^ (~q), d) q v (p ^ s), e) ~(~p), f) (p v q) ^ (r v s)", "source_solution": "a) T ^ F = F\nb) T v T = T\nc) F ^ T = F\nd) F v (T ^ F) = F\ne) ~(~T) = T\nf) (T v F) ^ (T v F) = T" },
+              { "q_num": "6", "text": "Prove by truth table:\na) p ^ (~p) is contradiction c\nb) p v q is equivalent to q v p\nc) ~[p v (~q)] is equivalent to (~p) ^ q\nd) ~[(~p) ^ q] is equivalent to p v (~q)", "source_solution": "a) Evaluates to [F, F] -> Contradiction c.\nb) Both yield [T, T, T, F] -> Logically equivalent.\nc) Both yield [F, F, T, F] -> Logically equivalent.\nd) Both yield [T, T, F, T] -> Logically equivalent." },
+              { "q_num": "7", "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) x > 0\nd) Some students are weak in mathematics.\ne) All teachers are labourous.", "source_solution": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) x <= 0\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous." },
+              { "q_num": "8", "text": "Find truth value and negation of each:\na) 3 + 2 = 5 or 6 is a multiple of 5.\nb) 8 is a prime number and 4 is even.\nc) If 3 > 0 then 4 + 6 = 10.\nd) If 2 is odd or 3 is a natural number then 2 + 3 = 8.\ne) If 2 * 3 = 5 => 3 > 1 then 6 is even.\nf) Triangle ABC is right-angled at B <=> AB^2 + BC^2 = AC^2.", "source_solution": "a) Truth value: T. Negation: '3 + 2 != 5 and 6 is not a multiple of 5.'\nb) Truth value: F. Negation: '8 is not prime or 4 is odd.'\nc) Truth value: T. Negation: '3 > 0 and 4 + 6 != 10.'\nd) Truth value: F. Negation: '2 is odd or 3 is natural and 2 + 3 != 8.'\ne) Truth value: T. Negation: 'If 2 * 3 = 5, then 3 > 1 and 6 is odd.'\nf) Truth value: T. Negation: '(ABC right-angled at B and AB^2+BC^2 != AC^2) or (ABC not right-angled at B and AB^2+BC^2 = AC^2).'" },
+              { "q_num": "9", "text": "For statements (a to c), find antecedent/consequent, converse, inverse, contrapositive, and negation:", "source_solution": "a) Ant: 3 is natural; Con: 1/3 is rational. Conv: 1/3 rational => 3 natural. Inv: 3 not natural => 1/3 not rational. Contrap: 1/3 not rational => 3 not natural. Neg: 3 is natural and 1/3 is not rational.\nb) Ant: x = 2; Con: x^2 = 4. Conv: x^2 = 4 => x = 2. Inv: x != 2 => x^2 != 4. Contrap: x^2 != 4 => x != 2. Neg: x = 2 and x^2 != 4.\nc) Ant: Battery low; Con: Mobile fails. Conv: Mobile fails => battery low. Inv: Battery not low => mobile works. Contrap: Mobile works => battery not low. Neg: Battery low and mobile works." },
+              { "q_num": "10", "text": "Prove tautologies and contradictions (a to f):", "source_solution": "a) p v (~p ^ q) -> [T, T, T, T] (Tautology)\nb) (p ^ q) => (p v q) -> [T, T, T, T] (Tautology)\nc) ~(p v q) ^ q -> [F, F, F, F] (Contradiction)\nd) (p ^ q) ^ ~(p v q) -> [F, F, F, F] (Contradiction)\ne) [~q ^ (p => q)] => ~p -> [T, T, T, T] (Tautology)\nf) [(p ^ q) => p] => (q ^ ~q) -> [F, F, F, F] (Contradiction)" }
+            ]
+          },
+          {
+            "id": "ex1_2",
+            "name": "Exercise 1.2 (Sets)",
+            "topic": "Sets",
+            "questions": [
+              { "q_num": "1", "text": "If A and B are disjoint (A ∩ B = ∅), prove:\na) A ⊆ B'\nb) B ∩ A' = B\nc) A ∪ B' = B'", "source_solution": "Given A ∩ B = ∅:\na) For any x in A, x is not in B, so x is in B'. Hence A ⊆ B'.\nb) B ∩ A' consists of elements in B and not in A. Since no element of B is in A, B ∩ A' = B.\nc) Since A ⊆ B', taking union with B' yields A ∪ B' = B'." },
+              { "q_num": "2", "text": "If A ⊆ B, prove:\na) B' ⊆ A'\nb) A ∪ B = B\nc) A ∩ B = A", "source_solution": "Given A ⊆ B:\na) Let x be in B'. Then x is not in B, which implies x is not in A. Thus x is in A', proving B' ⊆ A'.\nb) Since every element of A is already in B, A ∪ B = B.\nc) The common elements between A and B are all elements of A, so A ∩ B = A." },
+              { "q_num": "3", "text": "Prove set difference identities:\na) B - A = B ∩ A'\nb) A - B = A ∩ B'\nc) A - B' = B - A'", "source_solution": "a) B - A = {x : x in B and x not in A} = {x : x in B and x in A'} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = {x : x in A and x in B'} = A ∩ B'.\nc) A - B' = A ∩ (B')' = A ∩ B = B ∩ A = B - A'." },
+              { "q_num": "4", "text": "If A, B, C are subsets of U, prove distributive laws:\na) A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)\nb) A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)", "source_solution": "a) An element x is in A ∪ (B ∩ C) iff x is in A, or (x is in B and x is in C). By logical distribution, this equals (x in A or x in B) and (x in A or x in C), defining (A ∪ B) ∩ (A ∪ C).\nb) Similarly, x in A ∩ (B ∪ C) means x in A and (x in B or x in C). Distributing gives (x in A and x in B) or (x in A and x in C), defining (A ∩ B) ∪ (A ∩ C)." },
+              { "q_num": "5", "text": "Prove De Morgan's laws and set differences:\na) (A ∪ B)' = A' ∩ B'\nb) (A ∩ B)' = A' ∪ B'\nc) A - (B ∪ C) = (A - B) ∩ (A - C) = (A - B) - C\nd) A - (B ∩ C) = (A - B) ∪ (A - C)", "source_solution": "a) x in (A ∪ B)' means x is not in (A ∪ B), so x is not in A and x is not in B. Hence x is in A' ∩ B'.\nb) x in (A ∩ B)' means x is not in (A ∩ B), so x is not in A or x is not in B. Hence x is in A' ∪ B'.\nc) x in A - (B ∪ C) means x is in A and not in B and not in C. Hence (A - B) ∩ (A - C). Removing B then C gives (A - B) - C.\nd) x in A - (B ∩ C) means x is in A and not in both B and C. Hence (A - B) ∪ (A - C)." }
+            ]
+          },
+          {
+            "id": "ex1_3",
+            "name": "Exercise 1.3 (Real Numbers)",
+            "topic": "Real Number System",
+            "questions": [
+              { "q_num": "1", "text": "Evaluate absolute values:\na) |-2| + 4\nb) |-5| + |-2| - 3\nc) 2 + |-3| - |-5|\nd) |3 - |-5||", "source_solution": "a) |-2| + 4 = 2 + 4 = 6\nb) |-5| + |-2| - 3 = 5 + 2 - 3 = 4\nc) 2 + |-3| - |-5| = 2 + 3 - 5 = 0\nd) |3 - |-5|| = |3 - 5| = |-2| = 2" },
+              { "q_num": "2", "text": "Let (i) x = 2, y = 3 and (ii) x = 2, y = -3. Verify:\na) |x + y| <= |x| + |y|\nb) |x - y| >= |x| - |y|\nc) |xy| = |x| * |y|\nd) |x/y| = |x| / |y|", "source_solution": "(i) For x = 2, y = 3:\na) |2 + 3| = 5 = |2| + |3| (Verified)\nb) |2 - 3| = 1 > |2| - |3| = -1 (Verified)\nc) |2 * 3| = 6 = |2| * |3| (Verified)\nd) |2/3| = 2/3 = |2| / |3| (Verified)\n\n(ii) For x = 2, y = -3:\na) |2 - 3| = 1 < |2| + |-3| = 5 (Verified)\nb) |2 - (-3)| = 5 > |2| - |-3| = -1 (Verified)\nc) |2 * (-3)| = 6 = |2| * |-3| (Verified)\nd) |2/(-3)| = 2/3 = |2| / |-3| (Verified)" },
+              { "q_num": "3", "text": "Solve inequalities:\na) x - 1 > 2\nb) x - 3 <= 5\nc) -1 < x - 2 < 3\nd) -3 <= 2x - 1 <= 5\ne) x^2 - 2x > 0\nf) 6 + 5x - x^2 >= 0\ng) x(x + 2)/(x - 1) <= 0", "source_solution": "a) x - 1 > 2 => x > 3\nb) x - 3 <= 5 => x <= 8\nc) -1 < x - 2 < 3 => 1 < x < 5\nd) -3 <= 2x - 1 <= 5 => -1 <= x <= 3\ne) x(x - 2) > 0 => x in (-inf, 0) U (2, inf)\nf) (x + 1)(x - 6) <= 0 => x in [-1, 6]\ng) Critical values: -2, 0, 1. Testing signs gives: x in (-inf, -2] U [0, 1)" },
+              { "q_num": "4", "text": "a) For A = [-3, 1) and B = [-2, 4], find A ∪ B, A ∩ B, A - B, B - A.\nb) For A = (-1, 4) and B = [3, 5), find A ∪ B, A ∩ B, A - B.\nc) For U = R, A = (-1, 3], B = [0, 5), find A ∪ B, A ∩ B, A - B, B - A, A', B'.", "source_solution": "a) A ∪ B = [-3, 4], A ∩ B = [-2, 1), A - B = [-3, -2), B - A = [1, 4].\nb) A ∪ B = (-1, 5), A ∩ B = [3, 4), A - B = (-1, 3).\nc) A ∪ B = (-1, 5), A ∩ B = [0, 3], A - B = (-1, 0), B - A = (3, 5), A' = (-inf, -1] U (3, inf), B' = (-inf, 0) U [5, inf)." },
+              { "q_num": "5", "text": "Write without absolute value sign:\na) |x| < 4\nb) |x - 3| < 2\nc) |3x + 1| <= 1\nd) |2x - 1| <= 5", "source_solution": "a) -4 < x < 4\nb) -2 < x - 3 < 2 => 1 < x < 5\nc) -1 <= 3x + 1 <= 1 => -2/3 <= x <= 0\nd) -5 <= 2x - 1 <= 5 => -2 <= x <= 3" },
+              { "q_num": "6", "text": "Rewrite### Step 2: Add Exercise 1.2 (Sets)
+
+Here is the exact block for **Exercise 1.2 (Questions 1 to 5)**.
+
+---
+
+#### Where to paste:
+In **`data/math11_solutions.json`**, go to the end of Exercise 1.1 (after line 67 where you see `}`), add a comma `,`, and paste this block:
 
 ```json
         ,
@@ -236,28 +2218,28 @@ In your file **`data/math11_solutions.json`** on GitHub, inside the `"exercises"
           "questions": [
             {
               "q_num": "1",
-              "text": "If A ∩ B = ∅, prove:\na) A ⊆ B'\nb) B ∩ A' = B\nc) A ∪ B' = B'",
-              "source_solution": "a) x in A implies x not in B, so x in B'. Thus A ⊆ B'.\nb) B ∩ A' = elements in B and not in A = B.\nc) Since A ⊆ B', A ∪ B' = B'."
+              "text": "If A ∩ B = ∅, prove: a) A ⊆ B', b) B ∩ A' = B, c) A ∪ B' = B'",
+              "source_solution": "a) x in A implies x not in B, so x in B'. Hence A ⊆ B'.\nb) B ∩ A' = {x: x in B and x not in A} = B.\nc) A ∪ B' = {x: x not in B or x in B'} = B'."
             },
             {
               "q_num": "2",
-              "text": "If A ⊆ B, prove:\na) B' ⊆ A'\nb) A ∪ B = B\nc) A ∩ B = A",
-              "source_solution": "a) x in B' implies x not in B implies x not in A, so x in A'. Thus B' ⊆ A'.\nb) All elements of A are in B, so A ∪ B = B.\nc) Common elements between A and B are A, so A ∩ B = A."
+              "text": "If A ⊆ B, prove: a) B' ⊆ A', b) A ∪ B = B, c) A ∩ B = A",
+              "source_solution": "a) x in B' implies x not in B implies x not in A, so x in A'. Thus B' ⊆ A'.\nb) Since A ⊆ B, A ∪ B = B.\nc) Since A ⊆ B, A ∩ B = A."
             },
             {
               "q_num": "3",
-              "text": "Prove:\na) B - A = B ∩ A'\nb) A - B = A ∩ B'\nc) A - B' = B - A'",
-              "source_solution": "a) B - A = {x : x in B and x not in A} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = A ∩ B'.\nc) A - B' = A ∩ (B')' = A ∩ B = B - A'."
+              "text": "Prove: a) B - A = B ∩ A', b) A - B = A ∩ B', c) A - B' = B - A'",
+              "source_solution": "a) B - A = {x : x in B and x not in A} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = A ∩ B'.\nc) A - B' = A ∩ B = B - A'."
             },
             {
               "q_num": "4",
-              "text": "Distributive Laws:\na) A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)\nb) A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
-              "source_solution": "a) x in A ∪ (B ∩ C) iff x in A or (x in B and x in C) iff (x in A or x in B) and (x in A or x in C) iff x in (A ∪ B) ∩ (A ∪ C).\nb) x in A ∩ (B ∪ C) iff x in A and (x in B or x in C) iff (x in A and x in B) or (x in A and x in C) iff x in (A ∩ B) ∪ (A ∩ C)."
+              "text": "Distributive laws: a) A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C), b) A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+              "source_solution": "a) Follows from logical distribution: x in A or (x in B and x in C) <=> (x in A or x in B) and (x in A or x in C).\nb) Follows from: x in A and (x in B or x in C) <=> (x in A and x in B) or (x in A and x in C)."
             },
             {
               "q_num": "5",
-              "text": "De Morgan's Laws:\na) (A ∪ B)' = A' ∩ B'\nb) (A ∩ B)' = A' ∪ B'\nc) A - (B ∪ C) = (A - B) ∩ (A - C)\nd) A - (B ∩ C) = (A - B) ∪ (A - C)",
-              "source_solution": "a) x in (A ∪ B)' iff x not in A and x not in B iff x in A' ∩ B'.\nb) x in (A ∩ B)' iff x not in A or x not in B iff x in A' ∪ B'.\nc) x in A - (B ∪ C) iff x in A and x not in B and x not in C iff x in (A - B) ∩ (A - C).\nd) x in A - (B ∩ C) iff x in A and not in both B and C iff x in (A - B) ∪ (A - C)."
+              "text": "De Morgan's Laws: a) (A ∪ B)' = A' ∩ B', b) (A ∩ B)' = A' ∪ B', c) A - (B ∪ C) = (A - B) ∩ (A - C)",
+              "source_solution": "a) x in (A ∪ B)' <=> x not in A and x not in B <=> x in A' ∩ B'.\nb) x in (A ∩ B)' <=> x not in A or x not in B <=> x in A' ∪ B'.\nc) x in A - (B ∪ C) <=> x in A and x not in B and x not in C <=> x in (A - B) ∩ (A - C)."
             }
           ]
         }
