@@ -1971,149 +1971,120 @@ async function getAiExplanation(item, containerId) {
     let activeMathExerciseId = null;
 
     // Direct Embedded CDC Curriculum
-    const curriculumData = {
-      classes: [
+// Verified CDC / Government of Nepal NEB Curriculum Structure
+const curriculumData = {
+  version: "2080-2081 (Current CDC/NEB)",
+  classes: [
+    {
+      id: "class-11",
+      name: "Class 11",
+      subjects: [
         {
-          id: "class-11",
-          name: "Class 11",
-          subjects: [
-            {
-              id: "c11-english",
-              name: "Compulsory English",
-              code: "Eng.003",
-              icon: "📖",
-              chapters: [
-                { id: "eng11-lit-s01", name: "The Selfish Giant", unit: "Short Stories", topics: ["Selfishness vs Generosity", "Christian Allegory", "Redemption"] },
-                { id: "eng11-lit-s02", name: "The Oval Portrait", unit: "Short Stories", topics: ["Art vs Life", "Gothic Fiction", "Obsession"] },
-                { id: "eng11-lit-p01", name: "Corona Says", unit: "Poems", topics: ["Nature Restoration", "Human Hubris", "Global Crisis"] },
-                { id: "eng11-g01", name: "Modal Verbs & Conditionals", unit: "Grammar & Vocab", topics: ["Probability", "Obligation", "Hypothetical Situations"] }
-              ]
-            },
-            {
-              id: "c11-nepali",
-              name: "अनिवार्य नेपाली",
-              code: "Nep.001",
-              icon: "🇳🇵",
-              chapters: [
-                { id: "nep11-p01", name: "वीर पुर्खा (कविता)", unit: "कविता", topics: ["वीरता", "इतिहास", "देशभक्ति"] },
-                { id: "nep11-s01", name: "गाउँको माया (कथा)", unit: "कथा", topics: ["सामाजिक परिवेश", "आत्मीयता", "गाउँले जीवन"] },
-                { id: "nep11-e01", name: "संस्कृति र पहिचान (निबन्ध)", unit: "निबन्ध", topics: ["सांस्कृतिक विविधता", "राष्ट्रिय एकता"] },
-                { id: "nep11-g01", name: "पदवर्ग र शब्दनिर्माण", unit: "व्याकरण", topics: ["नाम", "सर्वनाम", "विशेषण", "उपसर्ग/प्रत्यय"] }
-              ]
-            },
-            {
-              id: "c11-mathematics",
-              name: "Mathematics",
-              code: "Mat.101",
-              icon: "📐",
-              chapters: [
-                { id: "m11-01", name: "Logic, Sets and Real Number System", unit: "Algebra", topics: ["Logic & Truth Tables", "Set Theory", "Real Numbers & Inequalities"] },
-                { id: "m11-02", name: "Relations and Functions", unit: "Algebra", topics: ["Domain & Range", "Types of Functions", "Composite Functions"] },
-                { id: "m11-03", name: "Limits and Continuity", unit: "Calculus", topics: ["Indeterminate Forms", "L'Hopital's Rule", "Continuity at a Point"] },
-                { id: "m11-04", name: "Derivatives & Applications", unit: "Calculus", topics: ["First Principle", "Chain Rule", "Tangent and Normal"] }
-              ]
-            },
-            {
-              id: "c11-physics",
-              name: "Physics",
-              code: "Phy.101",
-              icon: "⚡",
-              chapters: [
-                { id: "p11-01", name: "Physical Quantities & Vectors", unit: "Mechanics", topics: ["Dimensional Analysis", "Vector Operations", "Dot and Cross Product"] },
-                { id: "p11-02", name: "Kinematics & Projectile Motion", unit: "Mechanics", topics: ["Equations of Motion", "Horizontal & Oblique Projectiles", "Range & Trajectory"] },
-                { id: "p11-03", name: "Work, Energy & Power", unit: "Mechanics", topics: ["Work-Energy Theorem", "Conservative Forces", "Collisions"] },
-                { id: "p11-04", name: "Electrostatics & Capacitance", unit: "Electricity & Magnetism", topics: ["Coulomb's Law", "Electric Field", "Capacitors in Series/Parallel"] }
-              ]
-            },
-            {
-              id: "c11-chemistry",
-              name: "Chemistry",
-              code: "Chem.101",
-              icon: "🧪",
-              chapters: [
-                { id: "c11-01", name: "Stoichiometry & Mole Concept", unit: "Physical Chemistry", topics: ["Avogadro's Number", "Empirical Formula", "Limiting Reactant"] },
-                { id: "c11-02", name: "Atomic Structure & Periodic Table", unit: "Inorganic Chemistry", topics: ["Bohr's Theory", "Quantum Numbers", "Electronic Configurations"] },
-                { id: "c11-03", name: "Chemical Equilibrium", unit: "Physical Chemistry", topics: ["Law of Mass Action", "Le Chatelier's Principle", "Equilibrium Constants"] },
-                { id: "c11-04", name: "Fundamentals of Organic Chemistry", unit: "Organic Chemistry", topics: ["IUPAC Nomenclature", "Hybridization", "Isomerism"] }
-              ]
-            },
-            {
-              id: "c11-computer",
-              name: "Computer Science",
-              code: "Com.101",
-              icon: "💻",
-              chapters: [
-                { id: "cs11-01", name: "Computer System & Architecture", unit: "Foundations", topics: ["CPU Components", "Memory Hierarchy", "System Buses"] },
-                { id: "cs11-02", name: "Number Systems & Boolean Logic", unit: "Digital Logic", topics: ["Binary/Octal/Hex Conversions", "Logic Gates", "Truth Tables"] },
-                { id: "cs11-03", name: "Programming in C", unit: "Programming", topics: ["Data Types", "Control Structures", "Loops and Arrays"] },
-                { id: "cs11-04", name: "Web Technology (HTML, CSS)", unit: "Software & Web", topics: ["HTML5 Tags", "CSS Selectors", "Responsive Layouts"] }
-              ]
-            }
-          ]
+          id: "c11-english",
+          name: "Compulsory English",
+          code: "Eng. 003",
+          icon: "📖",
+          type: "Language & Literature",
+          description: "Language Development, Reading Comprehension, Grammar, and Literature (Stories, Poems, Essays, Plays)."
         },
         {
-          id: "class-12",
-          name: "Class 12",
-          subjects: [
-            {
-              id: "c12-english",
-              name: "Compulsory English",
-              code: "Eng.004",
-              icon: "📖",
-              chapters: [
-                { id: "eng12-lit-s01", name: "My Old Home", unit: "Short Stories", topics: ["Social Alienation", "Childhood Memories", "Rural China"] },
-                { id: "eng12-lit-p01", name: "A Day", unit: "Poems", topics: ["Sunrise to Sunset", "Metaphor of Life", "Emily Dickinson"] }
-              ]
-            },
-            {
-              id: "c12-nepali",
-              name: "अनिवार्य नेपाली",
-              code: "Nep.002",
-              icon: "🇳🇵",
-              chapters: [
-                { id: "nep12-p01", name: "आमाको सपना (कविता)", unit: "कविता", topics: ["प्रजातन्त्र", "आमाको चाहना", "युवा पुस्ता"] }
-              ]
-            },
-            {
-              id: "c12-mathematics",
-              name: "Mathematics",
-              code: "Mat.201",
-              icon: "📐",
-              chapters: [
-                { id: "m12-01", name: "Permutation & Combination", unit: "Algebra", topics: ["Fundamental Counting Principle", "Permutations", "Combinations"] }
-              ]
-            },
-            {
-              id: "c12-physics",
-              name: "Physics",
-              code: "Phy.201",
-              icon: "⚡",
-              chapters: [
-                { id: "p12-01", name: "Wave Optics & Interference", unit: "Optics", topics: ["Huygens' Principle", "Young's Double Slit", "Diffraction"] }
-              ]
-            },
-            {
-              id: "c12-chemistry",
-              name: "Chemistry",
-              code: "Chem.201",
-              icon: "🧪",
-              chapters: [
-                { id: "c12-01", name: "Chemical Kinetics", unit: "Physical Chemistry", topics: ["Rate of Reaction", "Order and Molecularity", "Arrhenius Equation"] }
-              ]
-            },
-            {
-              id: "c12-computer",
-              name: "Computer Science",
-              code: "Com.201",
-              icon: "💻",
-              chapters: [
-                { id: "cs12-01", name: "Database Management System (DBMS)", unit: "Database", topics: ["Relational Model", "SQL Queries", "Normalization"] }
-              ]
-            }
-          ]
+          id: "c11-nepali",
+          name: "अनिवार्य नेपाली",
+          code: "Nep. 001",
+          icon: "🇳🇵",
+          type: "भाषा र साहित्य",
+          description: "गद्य, पद्य, कथा, कविता, निबन्ध, व्याकरण, र सिर्जनात्मक लेखन अभ्यास।"
+        },
+        {
+          id: "c11-math",
+          name: "Mathematics",
+          code: "Mat. 007",
+          icon: "📐",
+          type: "Science & Management",
+          description: "Algebra, Trigonometry, Analytic Geometry, Vectors, Statistics, and Calculus."
+        },
+        {
+          id: "c11-physics",
+          name: "Physics",
+          code: "Phy. 101",
+          icon: "⚡",
+          type: "Science",
+          description: "Mechanics, Heat & Thermodynamics, Waves & Optics, Electricity & Magnetism, Modern Physics."
+        },
+        {
+          id: "c11-chemistry",
+          name: "Chemistry",
+          code: "Chem. 101",
+          icon: "🧪",
+          type: "Science",
+          description: "General & Physical Chemistry, Inorganic Chemistry, Organic Chemistry, Applied Chemistry."
+        },
+        {
+          id: "c11-cs",
+          name: "Computer Science",
+          code: "Com. 427",
+          icon: "💻",
+          type: "Technical",
+          description: "Computer Systems, Number Systems, Boolean Logic, C Programming, Web Technology (HTML/CSS), Cyber Law."
         }
       ]
-    };
+    },
+    {
+      id: "class-12",
+      name: "Class 12",
+      subjects: [
+        {
+          id: "c12-english",
+          name: "Compulsory English",
+          code: "Eng. 004",
+          icon: "📖",
+          type: "Language & Literature",
+          description: "Advanced Reading & Writing, Critical Thinking, Academic English, and Literature."
+        },
+        {
+          id: "c12-nepali",
+          name: "अनिवार्य नेपाली",
+          code: "Nep. 002",
+          icon: "🇳🇵",
+          type: "भाषा र साहित्य",
+          description: "कथा, कविता, निबन्ध, एकाङ्की, उच्च व्याकरण, बोध तथा अभिव्यक्ति अभ्यास।"
+        },
+        {
+          id: "c12-math",
+          name: "Mathematics",
+          code: "Mat. 008",
+          icon: "📐",
+          type: "Science & Management",
+          description: "Advanced Algebra, Vectors & 3D Geometry, Calculus (Integration & Differential Equations), Probability."
+        },
+        {
+          id: "c12-physics",
+          name: "Physics",
+          code: "Phy. 102",
+          icon: "⚡",
+          type: "Science",
+          description: "Rotational Dynamics, Periodic Motion, Wave Optics, Electrostatics & Circuits, Nuclear Physics."
+        },
+        {
+          id: "c12-chemistry",
+          name: "Chemistry",
+          code: "Chem. 102",
+          icon: "🧪",
+          type: "Science",
+          description: "Chemical Kinetics, Thermodynamics, Transition Metals, Haloalkanes, Carbonyl Compounds, Biomolecules."
+        },
+        {
+          id: "c12-cs",
+          name: "Computer Science",
+          code: "Com. 428",
+          icon: "💻",
+          type: "Technical",
+          description: "Database Management Systems (DBMS), Networking, OOP (C++/Java), Web Tech (JS/PHP), Software Engineering."
+        }
+      ]
+    }
+  ]
+};
 
     // Direct Embedded Verified Math Solutions (Sukunda Basic Mathematics Grade XI)
     const mathSolutionsData = {
