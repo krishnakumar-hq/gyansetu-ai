@@ -1680,7 +1680,6 @@
   <script>
     let curriculumData = null;
     let notesData = {};
-    let mathSolutionsData = null;
     let activeMathExerciseId = null;
     let currentClassId = 'class-11';
     let currentSubjectId = 'c11-english';
@@ -1688,21 +1687,49 @@
     let activeChapter = null;
     let isAiCooldownActive = false;
 
-    // View Switching
-    function showView(viewName) {
-      document.getElementById('view-curriculum').classList.toggle('active', viewName === 'curriculum');
-      document.getElementById('view-chapter').classList.toggle('active', viewName === 'chapter');
-      document.getElementById('view-planner').classList.toggle('active', viewName === 'planner');
-      document.getElementById('view-mock').classList.toggle('active', viewName === 'mock');
-      document.getElementById('view-dashboard').classList.toggle('active', viewName === 'dashboard');
-      
-      document.getElementById('nav-btn-explore').classList.toggle('active', viewName === 'curriculum' || viewName === 'chapter');
-      document.getElementById('nav-btn-planner').classList.toggle('active', viewName === 'planner');
-      document.getElementById('nav-btn-mock').classList.toggle('active', viewName === 'mock');
-      document.getElementById('nav-btn-dash').classList.toggle('active', viewName === 'dashboard');
-
-      if (viewName === 'dashboard') updateDashboard();
-    }
+    // Embedded Grade 11 Mathematics Solutions (Offline-ready & Resilient)
+    const EMBEDDED_MATH_SOLUTIONS = {
+      "m11-01": [
+        {
+          "id": "ex1_1",
+          "name": "Exercise 1.1 (Logic)",
+          "questions": [
+            { "q_num": "1", "text": "Which of the following sentences are statements? Find their truth values:\na) Kathmandu is the capital of Nepal.\nb) Nepal exports oil.\nc) 3 + 5 = 8\nd) Where do you live?\ne) Understand logic.\nf) Oh! how beautiful the scene is?", "ans": "a) Declarative sentence -> Statement, Truth value: True (T).\nb) Declarative sentence -> Statement, Truth value: False (F).\nc) Declarative sentence -> Statement, Truth value: True (T).\nd) Interrogative sentence -> Not a statement.\ne) Imperative sentence -> Not a statement.\nf) Exclamatory sentence -> Not a statement." },
+            { "q_num": "2", "text": "Let p: demand is increasing and q: supply is decreasing. Express in words:\na) ~p, b) ~q, c) p ^ q, d) p v q, e) ~p ^ q, f) p v ~q, g) ~p ^ ~q, h) ~(p ^ q)", "ans": "a) Demand is not increasing.\nb) Supply is not decreasing.\nc) Demand is increasing and supply is decreasing.\nd) Demand is increasing or supply is decreasing.\ne) Demand is not increasing and supply is decreasing.\nf) Demand is increasing or supply is not decreasing.\ng) Neither demand is increasing nor supply is decreasing.\nh) It is false that demand is increasing and supply is decreasing." },
+            { "q_num": "3", "text": "Express in symbolic form:\na) Temperature is increasing (p) and length is expanding (q).\nb) Pressure is decreasing (p) or volume is increasing (q).\nc) Neither demand is increasing (p) nor price is increasing (q).\nd) It is false that Pradeep is bold (p) or Sandeep is handsome (q).", "ans": "a) p ^ q\nb) p v q\nc) ~p ^ ~q\nd) ~(p v q)" },
+            { "q_num": "4", "text": "Construct truth tables for (a to i):", "ans": "Truth values across standard truth rows:\na) (~p) ^ q -> [F, F, T, F]\nb) (~p) v (~q) -> [F, T, T, T]\nc) ~(p ^ q) -> [F, T, T, T]\nd) ~[p v (~q)] -> [F, F, T, F]\ne) (p => q) ^ (q => p) -> [T, F, F, T]\nf) (~p v q) => (p v q) -> [T, T, T, F]\ng) [p ^ (p => q)] => q -> [T, T, T, T] (Tautology)\nh) (p => q) <=> (~p v q) -> [T, T, T, T] (Tautology)\ni) (p <=> q) v (q <=> r) -> [T, T, F, T, T, F, T, T]" },
+            { "q_num": "5", "text": "If p=T, q=F, r=T, s=F, find truth values of (a to f):", "ans": "a) p ^ q = F\nb) p v (~q) = T\nc) (~p) ^ (~q) = F\nd) q v (p ^ s) = F\ne) ~(~p) = T\nf) (p v q) ^ (r v s) = T" },
+            { "q_num": "6", "text": "Prove by truth table:\na) p ^ (~p) is contradiction c\nb) p v q is equivalent to q v p\nc) ~[p v (~q)] is equivalent to (~p) ^ q\nd) ~[(~p) ^ q] is equivalent to p v (~q)", "ans": "a) Evaluates to [F, F] -> Contradiction c.\nb) Both yield [T, T, T, F] -> Logically equivalent.\nc) Both yield [F, F, T, F] -> Logically equivalent.\nd) Both yield [T, T, F, T] -> Logically equivalent." },
+            { "q_num": "7", "text": "Find the negation of each statement:\na) Light travels in a straight line.\nb) Rivers can be used to produce electricity.\nc) x > 0\nd) Some students are weak in mathematics.\ne) All teachers are labourous.", "ans": "a) Light does not travel in a straight line.\nb) Rivers cannot be used to produce electricity.\nc) x <= 0\nd) None of the students are weak in mathematics.\ne) Some teachers are not labourous." },
+            { "q_num": "8", "text": "Find truth value and negation of (a to f):", "ans": "a) Truth value: T. Negation: '3 + 2 != 5 and 6 is not a multiple of 5.'\nb) Truth value: F. Negation: '8 is not prime or 4 is odd.'\nc) Truth value: T. Negation: '3 > 0 and 4 + 6 != 10.'\nd) Truth value: F. Negation: '2 is odd or 3 is natural and 2 + 3 != 8.'\ne) Truth value: T. Negation: 'If 2 * 3 = 5, then 3 > 1 and 6 is odd.'\nf) Truth value: T. Negation: '(ABC right-angled at B and AB^2+BC^2 != AC^2) or (ABC not right-angled at B and AB^2+BC^2 = AC^2).'" },
+            { "q_num": "9", "text": "For statements (a to c), find antecedent/consequent, converse, inverse, contrapositive, and negation:", "ans": "a) Ant: 3 is natural; Con: 1/3 is rational. Conv: 1/3 rational => 3 natural. Inv: 3 not natural => 1/3 not rational. Contrap: 1/3 not rational => 3 not natural. Neg: 3 is natural and 1/3 is not rational.\nb) Ant: x = 2; Con: x^2 = 4. Conv: x^2 = 4 => x = 2. Inv: x != 2 => x^2 != 4. Contrap: x^2 != 4 => x != 2. Neg: x = 2 and x^2 != 4.\nc) Ant: Battery low; Con: Mobile fails. Conv: Mobile fails => battery low. Inv: Battery not low => mobile works. Contrap: Mobile works => battery not low. Neg: Battery low and mobile works." },
+            { "q_num": "10", "text": "Prove tautologies and contradictions (a to f):", "ans": "a) p v (~p ^ q) -> [T, T, T, T] (Tautology)\nb) (p ^ q) => (p v q) -> [T, T, T, T] (Tautology)\nc) ~(p v q) ^ q -> [F, F, F, F] (Contradiction)\nd) (p ^ q) ^ ~(p v q) -> [F, F, F, F] (Contradiction)\ne) [~q ^ (p => q)] => ~p -> [T, T, T, T] (Tautology)\nf) [(p ^ q) => p] => (q ^ ~q) -> [F, F, F, F] (Contradiction)" }
+          ]
+        },
+        {
+          "id": "ex1_2",
+          "name": "Exercise 1.2 (Sets)",
+          "questions": [
+            { "q_num": "1", "text": "If A and B are disjoint (A ∩ B = ∅), prove:\na) A ⊆ B'\nb) B ∩ A' = B\nc) A ∪ B' = B'", "ans": "Given A ∩ B = ∅:\na) For any x in A, x is not in B, so x is in B'. Hence A ⊆ B'.\nb) B ∩ A' consists of elements in B and not in A. Since no element of B is in A, B ∩ A' = B.\nc) Since A ⊆ B', taking union with B' yields A ∪ B' = B'." },
+            { "q_num": "2", "text": "If A ⊆ B, prove:\na) B' ⊆ A'\nb) A ∪ B = B\nc) A ∩ B = A", "ans": "Given A ⊆ B:\na) Let x be in B'. Then x is not in B, which implies x is not in A. Thus x is in A', proving B' ⊆ A'.\nb) Since every element of A is already in B, A ∪ B = B.\nc) The common elements between A and B are all elements of A, so A ∩ B = A." },
+            { "q_num": "3", "text": "Prove set difference identities: a) B - A = B ∩ A', b) A - B = A ∩ B', c) A - B' = B - A'", "ans": "a) B - A = {x : x in B and x not in A} = B ∩ A'.\nb) A - B = {x : x in A and x not in B} = A ∩ B'.\nc) A - B' = A ∩ (B')' = A ∩ B = B ∩ A = B - A'." },
+            { "q_num": "4", "text": "If A, B, C are subsets of U, prove distributive laws: a) A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C), b) A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)", "ans": "a) x in A ∪ (B ∩ C) iff x in A, or (x in B and x in C). By logical distribution, this equals (x in A or x in B) and (x in A or x in C), defining (A ∪ B) ∩ (A ∪ C).\nb) Similarly, x in A ∩ (B ∪ C) means x in A and (x in B or x in C). Distributing gives (x in A and x in B) or (x in A and x in C), defining (A ∩ B) ∪ (A ∩ C)." },
+            { "q_num": "5", "text": "Prove De Morgan's laws and set differences: a) (A ∪ B)' = A' ∩ B', b) (A ∩ B)' = A' ∪ B', c) A - (B ∪ C) = (A - B) ∩ (A - C) = (A - B) - C, d) A - (B ∩ C) = (A - B) ∪ (A - C)", "ans": "a) x in (A ∪ B)' means x is not in (A ∪ B), so x is not in A and x is not in B. Hence x is in A' ∩ B'.\nb) x in (A ∩ B)' means x is not in (A ∩ B), so x is not in A or x is not in B. Hence x is in A' ∪ B'.\nc) x in A - (B ∪ C) means x is in A and not in B and not in C. Hence (A - B) ∩ (A - C). Removing B then C gives (A - B) - C.\nd) x in A - (B ∩ C) means x is in A and not in both B and C. Hence (A - B) ∪ (A - C)." }
+          ]
+        },
+        {
+          "id": "ex1_3",
+          "name": "Exercise 1.3 (Real Numbers)",
+          "questions": [
+            { "q_num": "1", "text": "Evaluate absolute values:\na) |-2| + 4, b) |-5| + |-2| - 3, c) 2 + |-3| - |-5|, d) |3 - |-5||", "ans": "a) 6\nb) 4\nc) 0\nd) 2" },
+            { "q_num": "2", "text": "Let (i) x = 2, y = 3 and (ii) x = 2, y = -3. Verify:\na) |x + y| <= |x| + |y|, b) |x - y| >= |x| - |y|, c) |xy| = |x| * |y|, d) |x/y| = |x| / |y|", "ans": "(i) For x = 2, y = 3:\na) |2 + 3| = 5 = |2| + |3| (Verified)\nb) |2 - 3| = 1 > -1 (Verified)\nc) |2 * 3| = 6 = |2| * |3| (Verified)\nd) |2/3| = 2/3 = |2| / |3| (Verified)\n\n(ii) For x = 2, y = -3:\na) |2 - 3| = 1 < 5 (Verified)\nb) |2 - (-3)| = 5 > -1 (Verified)\nc) |2 * (-3)| = 6 = |2| * |-3| (Verified)\nd) |2/(-3)| = 2/3 = |2| / |-3| (Verified)" },
+            { "q_num": "3", "text": "Solve inequalities:\na) x - 1 > 2, b) x - 3 <= 5, c) -1 < x - 2 < 3, d) -3 <= 2x - 1 <= 5, e) x^2 - 2x > 0, f) 6 + 5x - x^2 >= 0, g) x(x + 2)/(x - 1) <= 0", "ans": "a) x > 3\nb) x <= 8\nc) 1 < x < 5\nd) -1 <= x <= 3\ne) x in (-inf, 0) U (2, inf)\nf) x in\ng) x in (-inf, -2] U, find A ∪ B, A ∩ B, A - B, B - A.\nb) For A = (-1, 4) and B =, B =, A ∩ B =.\nb) A ∪ B = (-1, 5), A ∩ B =, A - B = (-1, 0), B - A = (3, 5), A' = (-inf, -1] U (3, inf), B' = (-inf, 0) U [5, inf)." },
+            { "q_num": "5", "text": "Write without absolute value sign:\na) |x| < 4, b) |x - 3| < 2, c) |3x + 1| <= 1, d) |2x - 1| <= 5", "ans": "a) -4 < x < 4\nb) 1 < x < 5\nc) -2/3 <= x <= 0\nd) -2 <= x <= 3" },
+            { "q_num": "6", "text": "Rewrite using absolute value sign:\na) -5 < x < 7, b) -3 <= x <= -1, c) -4 <= x <= 1, d) -4 <= x <= -1", "ans": "a) |x - 1| < 6\nb) |x + 2| <= 1\nc) |2x + 3| <= 5\nd) |2x + 5| <= 3" },
+            { "q_num": "7", "text": "Solve absolute value inequalities:\na) |x + 2| < 4, b) |x - 1| <= 2, c) |2x + 3| <= 1, d) |x - 1| > 1, e) |2x + 1| >= 3", "ans": "a) x in (-6, 2)\nb) x in\nc) x in [-2, -1]\nd) x in (-inf, 0) U (2, inf)\ne) x in (-inf, -2] U
+        }
+      ]
+    };
 
     function renderMathSolutions(chapterId) {
       const pillsContainer = document.getElementById('math-exercise-pills');
@@ -1711,15 +1738,14 @@
       pillsContainer.innerHTML = '';
       questionsContainer.innerHTML = '';
 
-      if (!mathSolutionsData || !mathSolutionsData.chapters) return;
-      const chapterObj = mathSolutionsData.chapters[0];
-      if (!chapterObj || !chapterObj.exercises) return;
+      const exercises = EMBEDDED_MATH_SOLUTIONS[chapterId] || EMBEDDED_MATH_SOLUTIONS['m11-01'];
+      if (!exercises || exercises.length === 0) return;
 
       if (!activeMathExerciseId) {
-        activeMathExerciseId = chapterObj.exercises[0].id;
+        activeMathExerciseId = exercises[0].id;
       }
 
-      chapterObj.exercises.forEach(ex => {
+      exercises.forEach(ex => {
         const pill = document.createElement('button');
         pill.className = `exercise-pill ${ex.id === activeMathExerciseId ? 'active' : ''}`;
         pill.textContent = ex.name;
@@ -1727,7 +1753,7 @@
         pillsContainer.appendChild(pill);
       });
 
-      const currentEx = chapterObj.exercises.find(e => e.id === activeMathExerciseId) || chapterObj.exercises[0];
+      const currentEx = exercises.find(e => e.id === activeMathExerciseId) || exercises[0];
       if (!currentEx) return;
 
       currentEx.questions.forEach((qn, qIdx) => {
@@ -1790,7 +1816,22 @@
 
     function askAiAboutSolution(qNum, qText) {
       switchStudyTab('ai');
-      setAiPrompt(`Explain the steps for Question ${qNum} in simple terms:\n${qText}`);
+      setAiPrompt(`Explain Question ${qNum} in simple terms:\n${qText}`);
+    }
+
+    function showView(viewName) {
+      document.getElementById('view-curriculum').classList.toggle('active', viewName === 'curriculum');
+      document.getElementById('view-chapter').classList.toggle('active', viewName === 'chapter');
+      document.getElementById('view-planner').classList.toggle('active', viewName === 'planner');
+      document.getElementById('view-mock').classList.toggle('active', viewName === 'mock');
+      document.getElementById('view-dashboard').classList.toggle('active', viewName === 'dashboard');
+      
+      document.getElementById('nav-btn-explore').classList.toggle('active', viewName === 'curriculum' || viewName === 'chapter');
+      document.getElementById('nav-btn-planner').classList.toggle('active', viewName === 'planner');
+      document.getElementById('nav-btn-mock').classList.toggle('active', viewName === 'mock');
+      document.getElementById('nav-btn-dash').classList.toggle('active', viewName === 'dashboard');
+
+      if (viewName === 'dashboard') updateDashboard();
     }
 
     function switchStudyTab(tabKey) {
@@ -1836,7 +1877,7 @@
         concepts: `Conceptual breakdown and learning objectives for ${chapter.name}.`,
         bilingual: `${chapter.name} को मुख्य अवधारणाहरू र सारांश।`,
         themes: ["Core Concept", "Analytical Understanding"],
-        pastPapers: [{ q: `Explain the key ideas in ${chapter.name}.`, type: "5 Marks", ans: "Study concept explanation." }]
+        pastPapers: [{ q: `Explain key ideas in ${chapter.name}.`, type: "5 Marks", ans: "Core curriculum concepts." }]
       };
 
       document.getElementById('study-concepts-body').innerHTML = `<p style="font-size:0.95rem; line-height:1.7;">${note.concepts}</p>`;
@@ -1848,14 +1889,12 @@
 
     async function loadData() {
       try {
-        const [currRes, notesRes, mathRes] = await Promise.allSettled([
+        const [currRes, notesRes] = await Promise.allSettled([
           fetch('data/curriculum.json'),
-          fetch('data/notes.json'),
-          fetch('data/math11_solutions.json')
+          fetch('data/notes.json')
         ]);
         if (currRes.status === 'fulfilled' && currRes.value.ok) curriculumData = await currRes.value.json();
         if (notesRes.status === 'fulfilled' && notesRes.value.ok) notesData = await notesRes.value.json();
-        if (mathRes.status === 'fulfilled' && mathRes.value.ok) mathSolutionsData = await mathRes.value.json();
       } catch (err) {
         console.warn('Fallback data loading');
       }
@@ -2004,24 +2043,12 @@
       document.getElementById('form-register').style.display = mode === 'login' ? 'none' : 'block';
     }
 
-    function handleLogin(e) {
-      e.preventDefault();
-      closeAuthModal();
-    }
-
-    function handleRegister(e) {
-      e.preventDefault();
-      closeAuthModal();
-    }
-
-    function logoutStudent() {
-      showView('curriculum');
-    }
-
+    function handleLogin(e) { e.preventDefault(); closeAuthModal(); }
+    function handleRegister(e) { e.preventDefault(); closeAuthModal(); }
+    function logoutStudent() { showView('curriculum'); }
     function handleCurriculumSearch(q) {}
     function toggleCurrentChapterMastery() {}
 
-    // Init
     initLanguage();
     loadData();
   </script>
